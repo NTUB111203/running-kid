@@ -83,7 +83,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">班級管理項目:</h6>
-                        <a class="collapse-item" href="buttons.html">班級學生管理</a>
+                        <a class="collapse-item" href="class-student.html">班級學生管理</a>
                         <a class="collapse-item" href="cards.html">班級學生運動資訊</a>
                     </div>
                 </div>
@@ -474,10 +474,153 @@
                         </div>
                     </div>
 
-                    <!-- DataTales Example -->
+                    <!-- DataTales 班級增刪 -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">班級管理</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>年級</th>
+                                            <th>班別</th>
+                                            <th>人數</th>
+                                            <th>編輯班級</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>年級</th>
+                                            <th>班別</th>
+                                            <th>人數</th>
+                                            <th><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">新增班級</a></th>
+                                            <!-- 新增班級介面 -->
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <!-- <td><button>修改</button></td> -->
+                                            <td><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">刪除班級</a> &nbsp; <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改班級資訊</a></td>
+                                            <!-- href到修改介面 修改按鈕顏色 -->
+                                        </tr>
+                                        <tr>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>San Francisco</td>
+                                            <td>66</td>
+                                            <td>2009/01/12</td>
+                                            <td>$86,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Edinburgh</td>
+                                            <td>22</td>
+                                            <td>2012/03/29</td>
+                                            <td>$433,060</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tokyo</td>
+                                            <td>33</td>
+                                            <td>2008/11/28</td>
+                                            <td>$162,700</td>
+                                        </tr>
+                                        <tr>
+                                            <td>New York</td>
+                                            <td>61</td>
+                                            <td>2012/12/02</td>
+                                            <td>$372,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>San Francisco</td>
+                                            <td>59</td>
+                                            <td>2012/08/06</td>
+                                            <td>$137,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tokyo</td>
+                                            <td>55</td>
+                                            <td>2010/10/14</td>
+                                            <td>$327,900</td>
+                                        </tr>
+                                        <tr>
+                                            <td>San Francisco</td>
+                                            <td>39</td>
+                                            <td>2009/09/15</td>
+                                            <td>$205,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Edinburgh</td>
+                                            <td>23</td>
+                                            <td>2008/12/13</td>
+                                            <td>$103,600</td>
+                                        </tr>
+                                        <tr>
+                                            <td>London</td>
+                                            <td>43</td>
+                                            <td>2012/12/18</td>
+                                            <td>$313,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>London</td>
+                                            <td>19</td>
+                                            <td>2010/03/17</td>
+                                            <td>$385,750</td>
+                                        </tr>
+                                        <tr>
+                                            <td>London</td>
+                                            <td>66</td>
+                                            <td>2012/11/27</td>
+                                            <td>$198,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>New York</td>
+                                            <td>64</td>
+                                            <td>2010/06/09</td>
+                                            <td>$725,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>New York</td>
+                                            <td>59</td>
+                                            <td>2009/04/10</td>
+                                            <td>$237,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>London</td>
+                                            <td>41</td>
+                                            <td>2012/10/13</td>
+                                            <td>$132,000</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Edinburgh</td>
+                                            <td>35</td>
+                                            <td>2012/09/26</td>
+                                            <td>$217,500</td>
+                                        </tr>
+                                        <tr>
+                                            <td>New York</td>
+                                            <td>30</td>
+                                            <td>2011/09/03</td>
+                                            <td>$345,000</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DataTales 學生成員 -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">班級成員</h6>
+                            <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -487,7 +630,7 @@
                                             <th>班級(select)</th>
                                             <th>學號</th>
                                             <th>姓名</th>
-                                            <th>信箱?</th>
+                                            <th>性別</th>
                                             <th>密碼?</th>
                                             <th>資料修改</th>
                                         </tr>
@@ -511,6 +654,7 @@
                                             <td>2011/04/25</td>
                                             <!-- <td><button>修改</button></td> -->
                                             <td><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a></td>
+                                            <!-- href到修改介面 -->
                                         </tr>
                                         <tr>
                                             <td>Garrett Winters</td>
@@ -528,30 +672,7 @@
                                             <td>2009/01/12</td>
                                             <td>$86,000</td>
                                         </tr>
-                                        <tr>
-                                            <td>Cedric Kelly</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>22</td>
-                                            <td>2012/03/29</td>
-                                            <td>$433,060</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>33</td>
-                                            <td>2008/11/28</td>
-                                            <td>$162,700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>61</td>
-                                            <td>2012/12/02</td>
-                                            <td>$372,000</td>
-                                        </tr>
+                                        
                                         <tr>
                                             <td>Herrod Chandler</td>
                                             <td>Sales Assistant</td>
@@ -576,78 +697,7 @@
                                             <td>2009/09/15</td>
                                             <td>$205,500</td>
                                         </tr>
-                                        <tr>
-                                            <td>Sonya Frost</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td>23</td>
-                                            <td>2008/12/13</td>
-                                            <td>$103,600</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haley Kennedy</td>
-                                            <td>Senior Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>43</td>
-                                            <td>2012/12/18</td>
-                                            <td>$313,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tatyana Fitzpatrick</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>19</td>
-                                            <td>2010/03/17</td>
-                                            <td>$385,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Michael Silva</td>
-                                            <td>Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>66</td>
-                                            <td>2012/11/27</td>
-                                            <td>$198,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Paul Byrd</td>
-                                            <td>Chief Financial Officer (CFO)</td>
-                                            <td>New York</td>
-                                            <td>64</td>
-                                            <td>2010/06/09</td>
-                                            <td>$725,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Gloria Little</td>
-                                            <td>Systems Administrator</td>
-                                            <td>New York</td>
-                                            <td>59</td>
-                                            <td>2009/04/10</td>
-                                            <td>$237,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Bradley Greer</td>
-                                            <td>Software Engineer</td>
-                                            <td>London</td>
-                                            <td>41</td>
-                                            <td>2012/10/13</td>
-                                            <td>$132,000</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dai Rios</td>
-                                            <td>Personnel Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td>35</td>
-                                            <td>2012/09/26</td>
-                                            <td>$217,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jenette Caldwell</td>
-                                            <td>Development Lead</td>
-                                            <td>New York</td>
-                                            <td>30</td>
-                                            <td>2011/09/03</td>
-                                            <td>$345,000</td>
-                                        </tr>
+                                        
                                         
                                     </tbody>
                                 </table>
@@ -664,7 +714,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary"></h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
