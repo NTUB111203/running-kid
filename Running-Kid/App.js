@@ -1,20 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground,ScrollView,SafeAreaView,StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <SafeAreaView>
+    <ScrollView>
+      <View 
+        style={{
+            flexDirection: 'row',
+            height: 900,
+
+          }}>
+
+        <ImageBackground style={styles.backgroundimg} source={require('./img/background.png')} >
+        <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text>
+      
+        </ImageBackground>     
+    
+    
+      </View>
+    </ScrollView>
+  </SafeAreaView>
+);
+  
 }
 
 const styles = StyleSheet.create({
-  container: {
+  backgroundimg: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
   },
 });
