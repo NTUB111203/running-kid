@@ -22,10 +22,11 @@
     <style>
         .selections{
             border-radius: 10rem;
-            height: calc(2rem + 1.25rem );
+            height: calc(2em + 1.25rem );
             font-size: 0.8rem;
         }
     </style>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -41,21 +42,33 @@
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">班級編輯</h1>
+                                <h1 class="h4 text-gray-900 mb-4">新增學生</h1>
                             </div>
                             <form class="user">
+                                
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="學號">
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="姓名">
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
                                         <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option value="">請選
-                                            <option value="一年級">一年級
-                                            <option value="二年級">二年級
-                                            <option value="三年級">三年級
-                                            <option value="四年級">四年級
-                                            <option value="五年級">五年級
-                                            <option value="六年級">六年級
-                                            <option value="畢業生">畢業生
+                                            <option >性別
+                                            <option value="女生">女生
+                                            <option value="男生">男生
                                         </select>
                                     </div>
                                     <div class="col-sm-3 "></div>
@@ -64,15 +77,7 @@
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="班別">
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="人數">
+                                            placeholder="生日">
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
@@ -81,14 +86,14 @@
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-1 ">
-                                        <a href="class-maintain.html" class="btn btn-warning btn-user btn-block">
+                                        <a href="student-view.html" class="btn btn-warning btn-user btn-block">
                                             <i class="fas fa-arrow-left"></i>
                                         </a>
                                     </div>                                        
                                     <div class="col-sm-5 ">
 
-                                        <a href="class-maintain.html" class="btn btn-warning btn-user btn-block">
-                                            確認修改
+                                        <a href="student-view.html" class="btn btn-warning btn-user btn-block">
+                                            確認新增
                                         </a>
                                     </div>
                                     <div class="col-sm-3 "></div>

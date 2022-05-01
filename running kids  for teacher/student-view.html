@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
+                    <div class="col-lg-12">
+                        <!-- col-lg-7 -->
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">學生編輯</h1>
+                            </div>
+                            <!-- DataTales 學生成員 -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">一年甲班 班級成員</h6>
+                                    <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <!-- <th>班級</th> -->
+                                                    <th>學號</th>
+                                                    <th>姓名</th>
+                                                    <th>性別</th>
+                                                    <th>生日</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <!-- <th>Name</th> -->
+                                                    <th>學號</th>
+                                                    <th>姓名</th>
+                                                    <th>性別</th>
+                                                    <th>生日</th>
+                                                    <th>
+                                                        <a href="student-add.html""
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">新增</a>
+                                                    </th>
+                                                </tr>
+                                            </tfoot>
+                                            <tbody>
+                                                <tr>
+                                                    <!-- <td>Tiger Nixon</td> -->
+                                                    <td>System Architect</td>
+                                                    <td>Edinburgh</td>
+                                                    <td>女</td>
+                                                    <td>2011/04/25</td>
+                                                    <!-- <td><button>修改</button></td> -->
+                                                    <td>
+                                                        <a href="student-add.html"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a>
+                                                        <a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">刪除</a>
+                                                    </td>
+                                                    <!-- href到修改介面 -->
+                                                </tr>
+                                                <tr>
+                                                    <!-- <td>Garrett Winters</td> -->
+                                                    <td>Accountant</td>
+                                                    <td>Tokyo</td>
+                                                    <td>男</td>
+                                                    <td>2011/07/25</td>
+                                                    <td><a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a>
+                                                        <a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">刪除</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <td>Ashton Cox</td> -->
+                                                    <td>Junior Technical Author</td>
+                                                    <td>San Francisco</td>
+                                                    <td>女</td>
+                                                    <td>2009/01/12</td>
+                                                    <td><a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a>
+                                                        <a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">刪除</a>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <!-- <td>Herrod Chandler</td> -->
+                                                    <td>Sales Assistant</td>
+                                                    <td>San Francisco</td>
+                                                    <td>女</td>
+                                                    <td>2012/08/06</td>
+                                                    <td><a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a>
+                                                        <a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">刪除</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <td>Rhona Davidson</td> -->
+                                                    <td>Integration Specialist</td>
+                                                    <td>Tokyo</td>
+                                                    <td>男</td>
+                                                    <td>2010/10/14</td>
+                                                    <td><a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a>
+                                                        <a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">刪除</a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <td>Colleen Hurst</td> -->
+                                                    <td>Javascript Developer</td>
+                                                    <td>San Francisco</td>
+                                                    <td>女</td>
+                                                    <td>2009/09/15</td>
+                                                    <td><a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a>
+                                                        <a href="#"
+                                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">刪除</a>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <form class="user">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <select name="grade" id="grade" class="form-control form-control-user" >                                            
+                                            <option value="">請選
+                                            <option value="一年級">一年級
+                                            <option value="二年級">二年級
+                                            <option value="三年級">三年級
+                                            <option value="四年級">四年級
+                                            <option value="五年級">五年級
+                                            <option value="六年級">六年級
+                                            <option value="畢業生">畢業生
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="班別">
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="人數">
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div> -->
+
+                            <hr>
+                            <div class="form-group row">
+                                <div class="col-sm-3 "></div>
+                                <!-- <div class="col-sm-1 ">
+                                    <a href="class-maintain.html" class="btn btn-warning btn-user btn-block">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </a>
+                                </div> -->
+                                <div class="col-sm-6 ">
+
+                                    <a href="student-maintain.html" class="btn btn-warning btn-user btn-block">
+                                        回到班級列表
+                                    </a>
+                                </div>
+                                <div class="col-sm-3 "></div>
+                            </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
