@@ -1,33 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground,ScrollView,SafeAreaView,StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
+import Header from './page/header';
+import Indexp from './page/index/indexpage'
 
-export default function App() {
-  return (
+
+
+export default function App(){
+  return(
     <SafeAreaView>
-    <ScrollView>
-      <View 
-        style={{
-            flexDirection: 'row',
-            height: 900,
-
-          }}>
-
-        <ImageBackground style={styles.backgroundimg} source={require('./img/background.png')} >
-        <Text>{"\n"}{"\n"}{"\n"}{"\n"}</Text>
-      
-        </ImageBackground>     
-    
-    
+      <View style={style.header}>
+        <Header></Header>
       </View>
-    </ScrollView>
-  </SafeAreaView>
-);
-  
-}
+      <ScrollView>
+        <View>
+        <Indexp></Indexp>
+        </View>
+      </ScrollView>
 
-const styles = StyleSheet.create({
-  backgroundimg: {
-    flex: 1,
-    
-  },
+    </SafeAreaView>
+  
+  )
+};
+
+
+const BORDER_BOTTOM = {
+  borderBottomWidth: 1,
+  borderBottomColor: "#dbdbdb",
+};
+
+const style = StyleSheet.create({
+  header: {
+      ...BORDER_BOTTOM,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      paddingHorizontal: 16,
+      height: 44,
+    },
+
+   
 });
