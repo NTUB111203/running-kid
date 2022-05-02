@@ -21,24 +21,4 @@ export default function Header() {
     );
   }
 
-  const BORDER_BOTTOM = {
-    borderBottomWidth: 1,
-    borderBottomColor: "#dbdbdb",
-  };
-
-const style = StyleSheet.create({
-    header: {
-        ...BORDER_BOTTOM,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal: 16,
-        height: 44,
-      },
-
-      logo: {
-        flex: 1,
-        height: 30,
-        resizeMode: "contain",
-      },
-});
+ 

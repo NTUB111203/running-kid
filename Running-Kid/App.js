@@ -3,12 +3,14 @@ import React from 'react';
 import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
 import Header from './page/header';
 import Indexp from './page/index/indexpage'
+import Tabbars from './page/tabbar';
 
 
 
 export default function App(){
   return(
-    <SafeAreaView>
+    <>
+    <SafeAreaView style={{flex:20}}>
       <View style={style.header}>
         <Header></Header>
       </View>
@@ -16,10 +18,12 @@ export default function App(){
         <View>
         <Indexp></Indexp>
         </View>
+        
       </ScrollView>
-
+     
     </SafeAreaView>
-  
+    <Tabbars/>
+   </> 
   )
 };
 
