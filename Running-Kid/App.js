@@ -1,16 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
-import Header from './page/header';
-import Indexp from './page/index/indexpage'
 import Tabbars from './page/tabbar';
 
 
 
-export default function App(){
+const App = () => {
   return(
     <>
-    <SafeAreaView style={{flex:20}}>
+    {/*<SafeAreaView style={{flex:1}}>
       <View style={style.header}>
         <Header></Header>
       </View>
@@ -21,12 +20,15 @@ export default function App(){
         
       </ScrollView>
      
-    </SafeAreaView>
-    <Tabbars/>
-   </> 
-  )
-};
+  </SafeAreaView>*/}
+    <NavigationContainer>
+       <Tabbars/>
+    </NavigationContainer>
+   </>
+  );
+}
 
+export default App;
 
 const BORDER_BOTTOM = {
   borderBottomWidth: 1,

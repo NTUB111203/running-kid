@@ -1,34 +1,45 @@
 import React from "react";
-import { StyleSheet,Image,ScrollView,ImageBackground,View,Text} from "react-native";
+import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import Textbox, { BOX } from './Components/TextBox'
+import Header from "../header";
 
 
 export default function Indexp() {
   
   return (
-    <ScrollView contentContainerStyle={{padding:0}}>
-      <ImageBackground style={styles.backgroundimg} 
-      source={require('./img/background.png')}
-      >
-      <View style={styles.textbox}>
-        <Text style={styles.text}>   今日里程數</Text>
+  <SafeAreaView >
+      <View>
+        <Header style={styles.header}></Header>
       </View>
-      <View style={styles.textbox}>
-        <Text style={styles.text}>   累積里程數</Text>
-      </View> 
-      <View style={styles.center}>
 
-        <Image
-        style={styles.taiwan} 
-        source={require('./img/taiwan.png')}
-        />
+      <ScrollView>
+        <ImageBackground style={styles.backgroundimg} 
+        source={require('./img/background.png')}
+        >
+        <View style={styles.textbox}>
+          <Text style={styles.text}>   今日里程數</Text>
+        </View>
+        <View style={styles.textbox}>
+          <Text style={styles.text}>   累積里程數</Text>
+        </View> 
+        <View style={styles.center}>
 
-      </View>
-  
-      </ImageBackground>     
-    </ScrollView>
- 
+          <Image
+          style={styles.taiwan} 
+          source={require('./img/taiwan.png')}
+          />
+
+        </View>
+    
+        </ImageBackground>     
+      </ScrollView>
+  </SafeAreaView>
   )
+};
+
+const BORDER_BOTTOM = {
+  borderBottomWidth: 1,
+  borderBottomColor: "#dbdbdb",
 };
 
 const styles = StyleSheet.create({
@@ -84,4 +95,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
    },
+
+   header: {
+    ...BORDER_BOTTOM,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingHorizontal: 16,
+    height: 44,
+  },
+
 });
