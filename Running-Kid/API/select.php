@@ -11,5 +11,4 @@
 
     $getRecord="insert into record(r_no, m_id, r_dat) * from record";
 
-
 ?>
