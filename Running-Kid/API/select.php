@@ -9,5 +9,4 @@
     $getRecord="select * from record;";
 
 
-
 ?>
