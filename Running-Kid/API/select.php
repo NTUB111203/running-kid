@@ -1,14 +1,12 @@
 <?php
-    $CN=mysqli_connect("140.131.114.154","emily","@Tfboys806@");
-    $DB=mysqli_select_db($CN,"runningkids");
+    $mysql_host="140.131.114.154";
+    $mysql_user="emily";
+    $mysql_pass="@Tfboys806@";
+    $mysql_DB="runningkids";
+    $DB=mysqli_connect($mysql_host,$mysql_user,$mysql_pass);
 
-    
-    $r_no=$_POST('r_no');
-    $m_id=$_POST('m_id');
-    $r_datetime=$_POST('r_datetime');
-    $distance = $_POST('distance');
-    $c_no=$_POST('c_no');
+ 
+    $getRecord="select * from record;";
 
-    $getRecord="insert into record(r_no, m_id, r_dat) * from record";
 
 ?>
