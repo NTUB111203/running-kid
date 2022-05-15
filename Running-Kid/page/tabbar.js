@@ -3,6 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StyleSheet } from 'react-native';
 import { View,Text,Image,TouchableOpacity} from 'react-native';
 import Indexp from './index/indexpage';
+import Mission from './mission/mission';
+import { Taiwan_k } from './knowlege/taiwan_k/taiwan_k';
 
 
 const Tab = createBottomTabNavigator();
@@ -48,11 +50,12 @@ export default function Tabbars() {
     return(
         <Tab.Navigator
             screenOptions = {{
-                tabBarShowLabel: false,
+                tabBarShowLabel: false, 
+                Title:false, 
+                headerShown:false,
                 tabBarStyle : {
                     position:'absolute',
-                    marginBottom:20,
-                    marginTop:10,
+                    marginBottom:30,
                     marginLeft:10,
                     marginRight:10,
                     borderRadius:20,    
@@ -65,7 +68,7 @@ export default function Tabbars() {
             
         >
 
-        <Tab.Screen name='Game' component={Game} options={{
+        <Tab.Screen name='Game' component={Game}  options={{
             tabBarIcon:({focuse}) =>(
                 <View>
                     <Image 
@@ -76,7 +79,7 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                        marginTop:25,
+                       alignItems:"center"
                     }}
                     />
                   
@@ -94,8 +97,7 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                        marginTop:25,
-                    }}
+                        alignItems:"center"              }}
                     />
                   
                 </View>
@@ -103,19 +105,14 @@ export default function Tabbars() {
         }} />
         <Tab.Screen name='index' component={Indexp} 
         options={{
-            tabBarIcon:({focuse}) =>(
-                <View>
-                   
-                </View>
-            ),
-                
            tabBarButton:(props) =>(
                <Runbutton { ... props}/>
             )
-        }} 
+        }
+} 
         />
 
-        <Tab.Screen name='Knowlege'component={Sportknowlege} options={{
+        <Tab.Screen name='Knowlege'component={Taiwan_k} options={{
             tabBarIcon:({focuse}) =>(
                 <View>
                     <Image 
@@ -126,8 +123,7 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                        marginTop:25,
-                    }}
+                        alignItems:"center"             }}
                     />
                   
                 </View>
@@ -144,8 +140,7 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                        marginTop:25,
-                    }}
+                       alignItems:"center"                    }}
                     />
                   
                 </View>
@@ -173,13 +168,6 @@ function Game() {
     )
   };
   
-  function Mission() {
-    return (
-      <View >
-        <Text>Mission!</Text>
-      </View>
-    );
-  }
  
   function Sportknowlege() {
     return (

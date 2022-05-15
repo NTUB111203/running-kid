@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
 import Tabbars from './page/tabbar';
+import Indexp from './page/index/indexpage'
 
 
 
