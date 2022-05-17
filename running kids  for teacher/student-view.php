@@ -80,13 +80,13 @@
                                                 <tr>
                                                     <?php
                                                         $result = "SELECT * FROM members";
-    
+
                                                         $retval=mysqli_query($link, $result); 
                                                         
                                                         if ($retval) {
                                                             $num = mysqli_num_rows($retval);
-                                                           
-                                                               if (mysqli_num_rows($retval) > 0) {
+                                                            
+                                                                if (mysqli_num_rows($retval) > 0) {
                                                                 while ($row = mysqli_fetch_assoc($retval)) {
                                                                     
                                                                     echo "<th>".$row["m_id"]."</th>";
@@ -101,7 +101,7 @@
                                                                 }
                                                             }
                                                         }
-                                                        ?>
+                                                    ?>
     
                                                         <!-- <td>Tiger Nixon</td> -->
                                                         
