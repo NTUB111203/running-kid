@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import Header from "../header";
-import {Textbox_title,Mission_farm,Mission_farm2} from "./Components/TextBox";
 
-export default function Mission() {
+export default function Gift() {
     return (
         <SafeAreaView >
       
@@ -14,14 +13,8 @@ export default function Mission() {
              <Header/>
 
              <ImageBackground style={styles.backgroundimg} 
-            source={require('../../assets/background.png')}
+            source={require('../../assets/GIFT.png')}
             >
-            
-            <Textbox_title/>
-            <Mission_farm/>    
-            <Mission_farm2/>    
-
-           
 
             
             </ImageBackground>
@@ -34,9 +27,10 @@ const styles=StyleSheet.create({
     
 
     backgroundimg:{
-        width:'100%',
-        height:950,
+        width:"100%",
+        height:1400,
         flex:1,
+     
         justifyContent: 'flex-start',
         alignItems: 'center',
     
