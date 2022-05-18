@@ -27,18 +27,26 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
-  type: 'bar',
+// Area Chart Example
+var ctx = document.getElementById("chartSchool");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
   data: {
-    labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18"],
+    labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
     datasets: [{
-      label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [2, 3, 6, 1, 0, 5,2, 3, 1, 3, 5, 2,0, 1, 3, 4, 4, 1],
+      label: "跑步里程",
+      lineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [0, 10000, 5000, 15000, 16000, 20000, 35000, 38000, 40000, 38000, 45000, 52000],
     }],
   },
   options: {
@@ -54,26 +62,23 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'date'
         },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
-        },
-        maxBarThickness: 25,
+          maxTicksLimit: 7
+        }
       }],
       yAxes: [{
         ticks: {
-          min: 0,
-          max: 10,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return  number_format(value)+ 'KM';
+            return 'km' + number_format(value);
           }
         },
         gridLines: {
@@ -89,23 +94,25 @@ var myBarChart = new Chart(ctx, {
       display: false
     },
     tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
       titleMarginBottom: 10,
       titleFontColor: '#6e707e',
       titleFontSize: 14,
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
       borderColor: '#dddfeb',
       borderWidth: 1,
       xPadding: 15,
       yPadding: 15,
       displayColors: false,
+      intersect: false,
+      mode: 'index',
       caretPadding: 10,
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ 'KM ';
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'KM';
         }
       }
-    },
+    }
   }
 });

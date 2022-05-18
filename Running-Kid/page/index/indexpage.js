@@ -1,34 +1,47 @@
 import React from "react";
-import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
+import { TouchableOpacity,StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,navigation} from "react-native";
 import Textbox, { BOX } from './Components/TextBox'
 import Header from "../header";
+import Taiwan_k from "../knowlege/taiwan_k/taiwan_k";
 
 
 export default function Indexp() {
   
   return (
   <SafeAreaView >
-      <View>
-        <Header style={styles.header}></Header>
-      </View>
 
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        stickyHeaderIndices={[0]}>
+       <Header/>
+
         <ImageBackground style={styles.backgroundimg} 
-        source={require('./img/background.png')}
+        source={require('../../assets/background.png')}
         >
         <View style={styles.textbox}>
           <Text style={styles.text}>   今日里程數</Text>
         </View>
+        
         <View style={styles.textbox}>
           <Text style={styles.text}>   累積里程數</Text>
         </View> 
         <View style={styles.center}>
 
-          <Image
+        <TouchableOpacity
+        onPress={() => navigation.navigate(Taiwan_k, {title: '台灣知識庫'})}
+        activeOpacity={0.8}
+        >
+
+        <Image
           style={styles.taiwan} 
           source={require('./img/taiwan.png')}
           />
+        </TouchableOpacity>
 
+        </View>
+        <View flex={1}>
+          <Text >----------歷史紀錄----------</Text>
         </View>
     
         </ImageBackground>     
@@ -37,10 +50,7 @@ export default function Indexp() {
   )
 };
 
-const BORDER_BOTTOM = {
-  borderBottomWidth: 1,
-  borderBottomColor: "#dbdbdb",
-};
+
 
 const styles = StyleSheet.create({
   logo: {
@@ -64,6 +74,7 @@ const styles = StyleSheet.create({
     bottom:0,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   
   textbox:{
@@ -78,13 +89,14 @@ const styles = StyleSheet.create({
     shadowOffset: {
     height: 1,
     width: 0,
+    flex:1
     }
   },
 
 
   taiwan:{
     flex:1,
-    width:350,
+    width:400,
     resizeMode:'contain',
     justifyContent: 'center',
     alignItems: 'stretch',
@@ -96,13 +108,33 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
    },
 
-   header: {
-    ...BORDER_BOTTOM,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 16,
-    height: 44,
+  header:{
+    flex:1,
+    justifyContent: "space-around",
+    alignItems:"center",
+    backgroundColor:'#FFFAEE',
+    borderBottomWidth:1,
+    borderBottomColor:'#dcdcdc',
+    flexDirection:"row",
+    
   },
+  
+  usrimg:{
+    width:50,
+    height:50,
+    resizeMode:'contain',
+    justifyContent:'center',
+    flex:1
+  },
+
+  money:{
+    width:40,
+    height:40,
+    resizeMode:'contain',
+    justifyContent:'center',
+    alignItems:"center",
+    flex:1
+  }
+  
 
 });
