@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
-import Header from "../../header";
+import Header from "../header";
 
-export default function Sport_k() {
+export default function Game() {
     return (
         <SafeAreaView >
       
@@ -13,7 +13,7 @@ export default function Sport_k() {
              <Header/>
 
              <ImageBackground style={styles.backgroundimg} 
-            source={require("../../../assets/excercise.png")}
+            source={require('../../assets/game.jpg')}
             >
 
             
@@ -28,9 +28,10 @@ const styles=StyleSheet.create({
 
     backgroundimg:{
         width:"100%",
-        height:1400,
+        height:500,
         flex:1,
-        justifyContent: 'center',
+     
+        justifyContent: 'flex-start',
         alignItems: 'center',
     
         
