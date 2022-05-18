@@ -1,42 +1,67 @@
-import React from "react";
-import { TouchableOpacity,StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,navigation} from "react-native";
+import {React,useState} from "react";
+import { TouchableOpacity,StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,navigation,Modal} from "react-native";
 import Textbox, { BOX } from './Components/TextBox'
 import Header from "../header";
 import Taiwan_k from "../knowlege/taiwan_k/taiwan_k";
+import space from './img/A0.png';
+import taipei from './img/A2.png';
+import taichung from './img/A9.png';
+
 
 
 export default function Indexp() {
+
+
+  const [act, areaAct] = useState();
+
+  let imageSource = space;
+  let today_mi="0";
+  let total_mi=0;
+
+  if (act === "taipei") {
+    imageSource = taipei;
+  }
   
   return (
-  <SafeAreaView >
-
+  <SafeAreaView>
+     
       <ScrollView
         showsVerticalScrollIndicator={false}
         bounces={false}
+        style={{backgroundColor:'#000000'}}
         stickyHeaderIndices={[0]}>
        <Header/>
-
+      
         <ImageBackground style={styles.backgroundimg} 
         source={require('../../assets/background.png')}
         >
         <View style={styles.textbox}>
-          <Text style={styles.text}>   今日里程數</Text>
+          <Text style={styles.text}>   今日里程數 {today_mi} 公里</Text>
         </View>
         
         <View style={styles.textbox}>
-          <Text style={styles.text}>   累積里程數</Text>
+          <Text style={styles.text}>   累積里程數 {total_mi} 公里</Text>
         </View> 
         <View style={styles.center}>
 
         <TouchableOpacity
-        onPress={() => navigation.navigate(Taiwan_k, {title: '台灣知識庫'})}
+        onPress={() => {areaAct("taipei")}}
         activeOpacity={0.8}
         >
 
-        <Image
+        <ImageBackground
           style={styles.taiwan} 
           source={require('./img/taiwan.png')}
+          >
+
+          
+          <Image
+          style={styles.taiwan_part} 
+          source={imageSource}
           />
+  
+
+          </ImageBackground>
         </TouchableOpacity>
 
         </View>
@@ -96,8 +121,16 @@ const styles = StyleSheet.create({
 
   taiwan:{
     flex:1,
-    width:400,
-    resizeMode:'contain',
+    width:300,
+    resizeMode:'cover',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+  },
+
+  taiwan_part:{
+    flex:1,
+    width:300,
+    resizeMode:'cover',
     justifyContent: 'center',
     alignItems: 'stretch',
   },

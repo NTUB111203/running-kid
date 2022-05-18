@@ -13,22 +13,29 @@ export default function Header() {
      style={styles.usrimg}
      ></Image>
      <Text style={{flex:5,justifyContent:"center"}}>
-       林子元
+       GiGi
      </Text>
+
+    <View style={styles.txt}>
       <Image
-     source={require('../assets/icon-point.png')}
-     style={styles.money}
-     ></Image>
-     <Text style={{justifyContent:"flex-start"}}>
-       70
-     </Text>
-     <Image
-     source={require('../assets/icon-money.png')}
-     style={styles.money}
-     ></Image>
-     <Text style={{justifyContent:"flex-start",marginRight:5}} >
-       60
-     </Text>
+      source={require('../assets/icon-point.png')}
+      style={styles.money}
+      ></Image>
+      <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}}>
+      70
+      </Text>
+    </View>
+
+    <View style={styles.txt}>
+      <Image
+      source={require('../assets/icon-money.png')}
+      style={styles.money}
+      ></Image>
+      <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}} >
+        60
+      </Text>
+    </View>
+
      </View>
    </View>
     );
@@ -43,24 +50,40 @@ export default function Header() {
     backgroundColor:'#FFFAEE',
     borderBottomColor:'#dcdcdc',
     flexDirection:"row",
+    borderBottomWidth:2
     
   },
   
   usrimg:{
-    width:100,
+    width:50,
     height:50,
     resizeMode:'contain',
     justifyContent:'flex-start',
+    borderRadius:40,
     flex:2
   },
 
   money:{
-    width:30,
-    height:30,
-    resizeMode:'contain',
-    justifyContent:'center',
+    width:25,
+    height:25,
+    resizeMode:"contain",
+    justifyContent:"flex-start",
     alignItems:"center",
-    flex:1.5
+    flex:1
+  },
+
+  txt:{
+    flexDirection:"row",
+    flex:2.5,
+    width:400,
+    height:35,
+    justifyContent:"center",
+    alignItems:"center",
+    backgroundColor:"#ffffff",
+    borderRadius:25,
+    borderWidth:1,
+    borderColor:"#dadada",
+    marginRight:10
   }
   })
  
