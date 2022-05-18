@@ -5,11 +5,14 @@ import { View,Text,Image,TouchableOpacity} from 'react-native';
 import Indexp from './index/indexpage';
 import Mission from './mission/mission';
 import { Taiwan_k } from './knowlege/taiwan_k/taiwan_k';
+import Gift from './Gift/gift';
+import Sport_k from './knowlege/sport_k/sport_k';
+import Game from './Game/game';
 
 
 const Tab = createBottomTabNavigator();
 
-const Runbutton = ({run,onPress}) => (
+const Runbutton = ({run,onPress,focused}) => (
     <TouchableOpacity
         style={{
             top:-5,
@@ -30,7 +33,8 @@ const Runbutton = ({run,onPress}) => (
             }}
         >
              <Image 
-                    source={
+                   source={focused
+                    ? require('../assets/icon-go0.png') :
                     require('../assets/icon-go1.png')}
                     resizeMode='contain'
                     style={{
@@ -69,12 +73,12 @@ export default function Tabbars() {
         >
 
         <Tab.Screen name='Game' component={Game}  options={{
-            tabBarIcon:({focuse}) =>(
+            tabBarIcon:({focused}) =>(
                 <View>
                     <Image 
-                    source={focuse
-                    ? require('../assets/icon-p1.png') :
-                    require('../assets/icon-p2.png')}
+                    source={focused
+                    ? require('../assets/icon-p2.png') :
+                    require('../assets/icon-p0.png')}
                     resizeMode='contain'
                     style={{
                         width:40,
@@ -87,12 +91,12 @@ export default function Tabbars() {
             ),
         }} />
         <Tab.Screen name='Mission'component={Mission} options={{
-            tabBarIcon:({focuse}) =>(
+            tabBarIcon:({focused}) =>(
                 <View>
                     <Image 
-                    source={focuse
-                    ? require('../assets/icon-m0.png') :
-                    require('../assets/icon-m1.png')}
+                    source={focused
+                    ? require('../assets/icon-m1.png') :
+                    require('../assets/icon-m0.png')}
                     resizeMode='contain'
                     style={{
                         width:40,
@@ -112,13 +116,13 @@ export default function Tabbars() {
 } 
         />
 
-        <Tab.Screen name='Knowlege'component={Taiwan_k} options={{
-            tabBarIcon:({focuse}) =>(
+        <Tab.Screen name='Knowlege'component={Sport_k} options={{
+            tabBarIcon:({focused}) =>(
                 <View>
                     <Image 
-                    source={focuse
-                    ? require('../assets/icon-b0.png') :
-                    require('../assets/icon-b1.png')}
+                    source={focused
+                    ? require('../assets/icon-b1.png') :
+                    require('../assets/icon-b0.png')}
                     resizeMode='contain'
                     style={{
                         width:40,
@@ -129,13 +133,13 @@ export default function Tabbars() {
                 </View>
             ),
         }} />
-        <Tab.Screen name='Gift'component={Gift} options={{
-            tabBarIcon:({focuse}) =>(
+        <Tab.Screen name='Gift' component={Gift} options={{
+            tabBarIcon:({focused}) =>(
                 <View>
                     <Image 
-                    source={focuse
-                    ? require('../assets/icon-g0.png') :
-                    require('../assets/icon-g1.png')}
+                    source={focused
+                    ? require('../assets/icon-g1.png') :
+                    require('../assets/icon-g0.png')}
                     resizeMode='contain'
                     style={{
                         width:40,
@@ -152,23 +156,11 @@ export default function Tabbars() {
 };
 
 const styles =StyleSheet.create({
-    tabstyle:{
-        
-    }
-    
+   
 })
 
  
 
-function Game() {
-    return (
-      <View >
-        <Text>Game!</Text>
-      </View>
-    )
-  };
-  
- 
   function Sportknowlege() {
     return (
       <View >
@@ -177,10 +169,4 @@ function Game() {
     );
   }
 
-  function Gift() {
-    return (
-      <View>
-        <Text>Gift!</Text>
-      </View>
-    );
-  }
+ 
