@@ -96,7 +96,15 @@
                                                                     echo "<th>".$row["mail"]."</th>";
                                                                     echo "<th>".$row["password"]."</th>";
                                                                     echo "<th>".$row["enrollment"]."</th>";
-                                                                    echo "<td> <button type=\"button\" onclick='location.href=\"student-edit.html?id=". $row->m_id."\"'>更新</button></td>";
+                                                                    echo "<td>\n";
+                                                                    echo "<a href=\"student-edit.html\" class=\"btn btn-warning btn-icon-split \">\n";
+                                                                    echo "<span class=\"icon text-white-50\">\n";
+                                                                    echo "<i class=\"fas fa-exclamation-triangle\"></i>\n";
+                                                                    echo "</span>\n";
+                                                                    echo "<span class=\"text\">編輯學生</span>\n";
+                                                                    echo "</a>\n";
+                                                                    echo "</td>\n";
+                                                                    // echo "<td> <button type=\"button\" onclick='location.href=\"student-edit.html?id=". $row->m_id."\"'>更新</button></td>";
                                                                     echo '</tr>';
                                                                 }
                                                             }
