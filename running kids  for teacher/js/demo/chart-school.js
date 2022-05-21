@@ -46,7 +46,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 16000, 20000, 35000, 38000, 40000, 38000, 45000, 52000],
+      data: [0, 100, 50, 150, 160, 200, 350, 380, 400, 380, 450, 520],
     }],
   },
   options: {
