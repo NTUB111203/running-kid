@@ -400,8 +400,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                                累積里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1287KM</div>
+                                                今日里程</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0.1KM</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -418,8 +418,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
-                                                累積台灣圈數</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1.287圈</div>
+                                                累積里程</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1287KM</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -516,35 +516,35 @@
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">起始跑步日期 : 2021-2-13&nbsp;</span>
+                                        <span class="text">起始跑步日期 : 2021-03-01</span>
                                     </a>        
                                     <div class="my-2"></div>
                                     <a href="#" class="btn btn-primary btn-icon-split btn-lg">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">平均每月公里數 : 75.5 KM &nbsp;</span>
+                                        <span class="text">平均每月公里數 : 75.5 KM &nbsp;&nbsp;</span>
                                     </a>   
                                     <div class="my-2"></div>
                                     <a href="#" class="btn btn-primary btn-icon-split btn-lg">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">本月跑步公里數 : 84.9 KM &nbsp;</span>
+                                        <span class="text">本月跑步公里數 : 84.9 KM &nbsp;&nbsp;</span>
                                     </a>              
                                     <div class="my-2"></div>
                                     <a href="#" class="btn btn-primary btn-icon-split btn-lg">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">上個月跑步公里 : 81.6 KM &nbsp;</span>
+                                        <span class="text">上個月跑步公里 : 81.6 KM &nbsp;&nbsp;</span>
                                     </a>   
                                     <div class="my-2"></div>
                                     <a href="#" class="btn btn-warning btn-icon-split btn-lg">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
-                                        <span class="text">平均進步公里數 : 9.4 KM&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        <span class="text">平均進步公里數 : 9.4 KM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     </a> 
                                     <div class="my-4"></div>     
                                      
@@ -689,7 +689,7 @@
                                         <i class="fas fa-circle text-primary"></i> 五月每日跑步里程
                                     </span>
                                     
-                                </div> -->
+                                </div> 
                             </div>
                             
                         </div>

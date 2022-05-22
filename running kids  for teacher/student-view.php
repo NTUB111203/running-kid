@@ -57,23 +57,9 @@
                                                         <th>性別</th>
                                                         <th>電話</th>
                                                         <th>信箱</th>
-                                                        <th>密碼</th>
                                                         <th>入學年</th>
                                                         <th></th>
-                                                        <!-- <th>班級</th> -->
-                                                        <!-- <th>學號</th>
-                                                        <th>姓名</th>
-                                                        <th>性別</th>
-                                                        <th>生日</th>
-                                                        <th>
-                                                            <a href="student-add.html"
-                                                                class="btn btn-success btn-icon-split ">
-                                                                <span class="icon text-white-50">
-                                                                    <i class="fas fa-check"></i>
-                                                                </span>
-                                                                <span class="text">新增學生</span>
-                                                            </a>
-                                                        </th> -->
+                                                        
                                                     </tr>
                                             </thead>                                            
                                             <tbody>
@@ -94,7 +80,6 @@
                                                                     echo "<th>".$row["gender"]."</th>";
                                                                     echo "<th>".$row["phone"]."</th>";
                                                                     echo "<th>".$row["mail"]."</th>";
-                                                                    echo "<th>".$row["password"]."</th>";
                                                                     echo "<th>".$row["enrollment"]."</th>";
                                                                     echo "<td>\n";
                                                                     echo "<a href=\"student-edit.html\" class=\"btn btn-warning btn-icon-split \">\n";
