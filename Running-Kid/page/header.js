@@ -13,7 +13,7 @@ export default function Header() {
      style={styles.usrimg}
      ></Image>
      <Text style={{flex:5,justifyContent:"center"}}>
-       GiGi
+       Gigi
      </Text>
 
     <View style={styles.txt}>
