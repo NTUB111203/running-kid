@@ -16,7 +16,7 @@ export default function Mission() {
              <ImageBackground style={styles.backgroundimg} 
             source={require('../../assets/background.png')}
             >
-            
+            <Text></Text>
             <Textbox_title/>
             <Mission_farm/>    
             <Mission_farm2/>    

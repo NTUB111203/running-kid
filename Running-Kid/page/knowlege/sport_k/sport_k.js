@@ -11,7 +11,6 @@ export default function Sport_k() {
               bounces={false}
               stickyHeaderIndices={[0]}>
              <Header/>
-
              <ImageBackground style={styles.backgroundimg} 
             source={require("../../../assets/excercise.png")}
             >
@@ -28,7 +27,7 @@ const styles=StyleSheet.create({
 
     backgroundimg:{
         width:"100%",
-        height:1400,
+        height:1450,
         flex:1,
         justifyContent: 'center',
         alignItems: 'center',

@@ -83,7 +83,8 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                       alignItems:"center"
+                        alignItems:"center",
+                        marginTop:25
                     }}
                     />
                   
@@ -101,7 +102,9 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                        alignItems:"center"              }}
+                        alignItems:"center",
+                        marginTop:25
+                    }}
                     />
                   
                 </View>
@@ -127,7 +130,8 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                        alignItems:"center"             }}
+                        alignItems:"center",
+                        marginTop:25             }}
                     />
                   
                 </View>
@@ -144,7 +148,8 @@ export default function Tabbars() {
                     style={{
                         width:40,
                         height:40,
-                       alignItems:"center"                    }}
+                       alignItems:"center",
+                       marginTop:25                    }}
                     />
                   
                 </View>
