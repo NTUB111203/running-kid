@@ -1,12 +1,9 @@
-<?php
- include "db_connect.php";
- ?> 
- 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
+   
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,9 +17,10 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+    
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -70,9 +68,9 @@
                 <div id="exerciseANA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">運動分析項目:</h6>
-                        <a class="collapse-item" href="buttons.html">班級排行</a>
-                        <a class="collapse-item" href="cards.html">學生排行</a>
-                        <a class="collapse-item" href="cards.html">運動成長</a>
+                        <a class="collapse-item" href="buttons.html">全校分析</a>
+                        <a class="collapse-item" href="cards.html">班級分析</a>
+                        <a class="collapse-item" href="cards.html">學生個人分析</a>
                     </div>
                 </div>
             </li>
@@ -87,8 +85,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">管理項目:</h6>
-                        <a class="collapse-item" href="class-maintain.php">班級管理</a>    
-                        <a class="collapse-item" href="student-maintain.php">學生管理</a>
+                        <a class="collapse-item" href="class-maintain.html">班級管理</a>
+                        <a class="collapse-item" href="student-maintain.html">學生管理</a>
+                        <!-- 學生運動資訊透過學生管理介面連結到 -->
                     </div>
                 </div>
             </li>
@@ -386,237 +385,319 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">班級學生管理</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">學生GIGI個人分析</h1>
+                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">請選擇班級</h6>
-                        </div>
-                    </div>
                     <!-- Content Row -->
                     <div class="row">
-                        <!-- PHP 班級 -->
-                        <?php
-                        $result = "SELECT * FROM class";
 
-                        $retval=mysqli_query($link, $result);
-                        if ($retval) {
-                            $num = mysqli_num_rows($retval);
-                            
-                                if (mysqli_num_rows($retval) > 0) {
-                                while ($row = mysqli_fetch_assoc($retval)) {
-                                    echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
-                                    echo "<div class=\"card border-left-success shadow h-100 py-2\">\n";
-                                    echo "<div class=\"card-body\">\n";
-                                    echo "<div class=\"row no-gutters align-items-center\">\n";
-                                    echo "<div class=\"col mr-2\">\n";
-                                    echo "<div class=\"h1 font-weight-bold text-success text-uppercase mb-1\">\n";
-                                    echo "<h1>".$row["class"]."</h1>";
-                                    echo "</div>\n";
-                                    echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>3人</h5>";
-                                    echo "</div>";
-                                    //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
-                                    echo "</div>\n";
-                                    echo "<a href=\"student-view.php\" class=\"btn btn-success btn-circle btn-lg\">\n";
-                                    echo "<i class=\"fas fa-info-circle\"></i>\n";
-                                    echo "</a>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                        }
-                        }
-                        }
-                        ?>
-                                           
-                                         
-
-                                        
-                                        
-                                       
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
+                                                今日里程</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0.1KM</div>
                                         </div>
-                                        <tr>
-
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </a>
-                    
-                   
-                    <!-- DataTales 學生成員 -->
-                    <!-- <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">班級成員</h6> -->
-                            <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
-                        <!-- </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>班級(select)</th>
-                                            <th>學號</th>
-                                            <th>姓名</th>
-                                            <th>性別</th>
-                                            <th>密碼?</th>
-                                            <th>資料修改</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td> -->
-                                            <!-- <td><button>修改</button></td> -->
-                                            <!-- <td><a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">修改</a></td> -->
-                                            <!-- href到修改介面 -->
-                                        <!-- </tr>
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>63</td>
-                                            <td>2011/07/25</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>66</td>
-                                            <td>2009/01/12</td>
-                                            <td>$86,000</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <td>Herrod Chandler</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td>59</td>
-                                            <td>2012/08/06</td>
-                                            <td>$137,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                            <td>55</td>
-                                            <td>2010/10/14</td>
-                                            <td>$327,900</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>39</td>
-                                            <td>2009/09/15</td>
-                                            <td>$205,500</td>
-                                        </tr>
-                                        
-                                        
-                                    </tbody>
-                                </table>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
+                                                累積里程</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1287KM</div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div> -->
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
+                                                累積跑步時間</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">288.56HR</div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
+                                                平均跑步時速</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4.46KM/HR</div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Content Row -->
 
-                    <!-- <div class="row"> -->
-                        
+                    <div class="row">
+
                         <!-- Area Chart -->
-                        <!-- <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4"> -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <!-- <div
+                                <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary"></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">進步趨勢分析</h6>
                                     <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        </a> -->
+                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header">Dropdown Header:</div>
                                             <a class="dropdown-item" href="#">Action</a>
                                             <a class="dropdown-item" href="#">Another action</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                </div> -->
+                                </div>
                                 <!-- Card Body -->
-                                <!-- <div class="card-body">
+                                <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                        <canvas id="chartSchool"></canvas>
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
 
-                        <!-- Pie Chart -->
-                        <!-- <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4"> -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <!-- <div
+                                <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                    <h6 class="m-0 font-weight-bold text-primary">學生跑步資訊 </h6>
+                                    
+                                </div>
                                 <!-- Card Body -->
-                                <!-- <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
+                                <div class="card-body">         
+                                    <div class="my-4"></div>
+                                    <a href="#" class="btn btn-success btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">起始跑步日期 : 2021-03-01</span>
+                                    </a>        
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">平均每月公里數 : 75.5 KM &nbsp;&nbsp;</span>
+                                    </a>   
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">本月跑步公里數 : 84.9 KM &nbsp;&nbsp;</span>
+                                    </a>              
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">上個月跑步公里 : 81.6 KM &nbsp;&nbsp;</span>
+                                    </a>   
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-warning btn-icon-split btn-lg">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">平均進步公里數 : 9.4 KM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                    </a> 
+                                    <div class="my-4"></div>     
+                                     
+                                    <!-- <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="pieBMI"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-primary"></i> 適中
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-success"></i> 過瘦
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle text-info"></i> 過重
                                         </span>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
-                    </div> -->
 
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <!-- <div class="card shadow mb-4"> -->
+                                <!-- Card Header - Dropdown -->
+                                <!-- <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">BMI紀錄 </h6>
+                                    
+                                </div> -->
+                                <!-- Card Body -->
+                                <!-- <div class="card-body"> -->
+                                    <!-- <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">105上BMI:適中</span>
+                                    </a>
+                                    <a href="#" class="btn btn-warning btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">105下BMI:過瘦</span>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">106上BMI:適中</span>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">106下BMI:適中</span>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">107上BMI:適中</span>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">107下BMI:適中</span>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">108上BMI:適中</span>
+                                    </a>
+                                    <a href="#" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">108下BMI:過重</span>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-danger btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">109上BMI:過重</span>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">109下BMI:適中</span>
+                                    </a>
+                                    <div class="my-2"></div>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">110上BMI:適中</span>
+                                    </a>
+                                    <a href="#" class="btn btn-primary btn-icon-split">
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-flag"></i>
+                                        </span>
+                                        <span class="text">110下BMI:適中</span>
+                                    </a>
+                                    <div class="my-4"></div> -->
+                                    <!-- <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="pieBMI"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> 適中
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> 過瘦
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> 過重
+                                        </span>
+                                    </div> -->
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                    
+                        <!-- 排名table -->
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">個人里程紀錄</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-bar">
+                                    <canvas id="myBarChart"></canvas>
+                                </div>
+                                <hr>
+                                <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-primary"></i> 五月每日跑步里程
+                                    </span>
+                                    
+                                </div> 
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
                     <!-- Content Row -->
                     <!-- <div class="row"> -->
+                        
 
                         <!-- Content Column -->
                         <!-- <div class="col-lg-6 mb-4"> -->
@@ -728,9 +809,9 @@
                                 </div>
                             </div>
 
-                        </div> -->
+                        </div>
 
-                        <!-- <div class="col-lg-6 mb-4"> -->
+                        <div class="col-lg-6 mb-4"> -->
 
                             <!-- Illustrations -->
                             <!-- <div class="card shadow mb-4">
@@ -765,6 +846,14 @@
                                 </div>
                             </div>
 
+                            
+                        </div>
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">全校分析</h1>                            
+                        </div>
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800">學生分析</h1>
+                            
                         </div>
                     </div>
 
@@ -773,15 +862,16 @@
 
             <!-- </div> -->
             <!-- End of Main Content -->
+            
 
             <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
-            </footer> -->
+            </footer>
             <!-- End of Footer -->
 
         </div>
@@ -829,8 +919,14 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-school.js"></script>
+    <script src="js/demo/chart-area-demo.js"></script>    
+    <script src="js/demo/pie-BMI.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>    
+    <script src="js/demo/chart-bar-demo.js"></script>
 
 </body>
 

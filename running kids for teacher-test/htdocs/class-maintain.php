@@ -1,3 +1,8 @@
+<?php
+/*連接資料庫*/
+require_once 'db_connect.php';
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -417,102 +422,29 @@
                                             <th>狀態</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>入學學年</th>
-                                            <th>年級</th>
-                                            <th>班別</th>
-                                            <th>人數</th>
-                                            <th>狀態</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td>110</td>
-                                            <td>1年級</td>
-                                            <td>1班</td>
-                                            <td>25</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>110</td>
-                                            <td>1年級</td>
-                                            <td>2班</td>
-                                            <td>22</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>109</td>
-                                            <td>2年級</td>
-                                            <td>1班</td>
-                                            <td>25</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>108</td>
-                                            <td>3年級</td>
-                                            <td>1班</td>
-                                            <td>29</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>107</td>
-                                            <td>4年級</td>
-                                            <td>1班</td>
-                                            <td>28</td>
-                                            <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>108</td>
-                                            <td>3年級</td>
-                                            <td>1班</td>
-                                            <td>29</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>107</td>
-                                            <td>4年級</td>
-                                            <td>1班</td>
-                                            <td>28</td>
-                                            <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>108</td>
-                                            <td>3年級</td>
-                                            <td>1班</td>
-                                            <td>29</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>107</td>
-                                            <td>4年級</td>
-                                            <td>1班</td>
-                                            <td>28</td>
-                                            <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>108</td>
-                                            <td>3年級</td>
-                                            <td>1班</td>
-                                            <td>29</td>
-                                            <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>107</td>
-                                            <td>4年級</td>
-                                            <td>1班</td>
-                                            <td>28</td>
-                                            <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                        </tr>
-                                        <tr>
-                                            <td>105</td>
-                                            <td>6年級</td>
-                                            <td>3班</td>
-                                            <td>20</td>
-                                            <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                        </tr>
-                                       
-                                    </tbody>
+                                     
+                                               <!--表格資料仍有錯誤待修，目前只是把class表拉進-->
+                                                    <?php
+                                                        $result = "SELECT * FROM class";
+    
+                                                        $retval=mysqli_query($link, $result); 
+                                                        
+                                                        if ($retval) {
+                                                            $num = mysqli_num_rows($retval);
+                                                           
+                                                               if (mysqli_num_rows($retval) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($retval)) {
+                                                                    echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
+                                                                    echo "<th>".$row["class_no"]."</th>";
+                                                                    echo "<th>".$row["semester"]."</th>";
+                                                                    echo "<th>".$row["grade"]."</th>";
+                                                                    echo "<th>".$row["class"]."</th>";
+                                                                    echo '</tr>';
+                                                                }
+                                                            }
+                                                        }
+                                                    ?>
+                                                     
                                 </table>
                             </div>
                         </div>
