@@ -3,7 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
 import Tabbars from './page/tabbar';
-import Indexp from './page/index/indexpage'
+import Header from './page/header';
+import Indexp from './page/index/indexpage';
+import { Taiwan_k } from './page/knowlege/taiwan_k/taiwan_k';
+import { Taiwan_Qu } from './page/knowlege/taiwan_k/taiwam_qu';
 
 
 
@@ -25,6 +28,7 @@ const App = () => {
     <NavigationContainer>
        <Tabbars/>
     </NavigationContainer>
+      {/*<Taiwan_Qu></Taiwan_Qu>*/}
    </>
   );
 }
