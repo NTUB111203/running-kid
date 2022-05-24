@@ -81,7 +81,7 @@ export default function Indexp() {
         source={require('../../assets/background.png')}
         >
         <View style={styles.textbox}>
-          <Text style={styles.text}>   今日里程數 {today_mi} 公里</Text>
+          <Text style={styles.text}>   今日里程數 {today_mi}0 公里</Text>
         </View>
         
         <View style={styles.textbox}>
