@@ -30,101 +30,8 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="../Logo/logo-white.png" width="50px">
-                    <!-- <i class="fas fa-laugh-wink"></i> -->
-                </div>
-                <div class="sidebar-brand-text mx-3">孩是要運動</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>首頁</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                <!-- Interface -->
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#exerciseANA"
-                    aria-expanded="true" aria-controls="exerciseANA">
-                    <i class="fas fa-fw  fa-chart-line"></i>
-                    <span>運動分析</span>
-                </a>
-                <div id="exerciseANA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">運動分析項目:</h6>
-                        <a class="collapse-item" href="ana-school.html">全校分析</a>
-                        <a class="collapse-item" href="ana-choose-class.php">班級分析</a>
-                        <a class="collapse-item" href="ana-choose-student.php">學生個人分析</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>管理</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">管理項目:</h6>
-                        <a class="collapse-item" href="class-maintain.html">班級管理</a>
-                        <a class="collapse-item" href="student-maintain.html">學生管理</a>
-                        <!-- 學生運動資訊透過學生管理介面連結到 -->
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-gift"></i>
-                    <span>禮物兌換</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">禮物兌換項目:</h6>
-                        <a class="collapse-item" href="utilities-color.html">商品兌換數量統計</a>
-                        <a class="collapse-item" href="utilities-border.html">商品兌換核銷</a>
-                        <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a> -->
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-
-        </ul>
-        <!-- End of Sidebar -->
+        
+    <?php include("sidebar.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -340,94 +247,186 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">禮物兌換統計表</h1>
-                    
-                    <!-- DataTales Example -->
+                    <h1 class="h3 mb-2 text-gray-800">禮物核銷</h1>
                     <div class="card shadow mb-4">
-                        <!-- <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"></h6>
-                        </div> -->
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>產品名稱</th>
-                                            <th>產品廠商</th>
-                                            <th>產品廠商電話</th>
-                                            <th>兌換數量</th>
-                                            <!-- <th>Start date</th>
-                                            <th>Salary</th> -->
-                                        </tr>
-                                    </thead>
-                                    <!-- <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </tfoot> -->
-                                    <tbody>
-                                        <tr>
-                                            <td>鳳梨酥</td>
-                                            <td>家鄉糕點</td>
-                                            <td>02-22781234</td>
-                                            <td>61</td>
-                                        </tr>
-                                        <tr>
-                                            <td>米蛋糕</td>
-                                            <td>米商行</td>
-                                            <td>05-22321244</td>
-                                            <td>45</td>
-                                        </tr>
-                                        <tr>
-                                            <td>鳳眼糕</td>
-                                            <td>周家糕點</td>
-                                            <td>07-22123234</td>
-                                            <td>10</td>
-                                        </tr>
-                                        <tr>
-                                            <td>麻糬</td>
-                                            <td>曾記麻糬</td>
-                                            <td>03-22098123</td>
-                                            <td>105</td>
-                                        </tr>
-                                        <tr>
-                                            <td>聖女小番茄</td>
-                                            <td>喜悅番茄果園</td>
-                                            <td>04-22224434</td>
-                                            <td>20</td>
-                                        </tr>
-                                        <tr>
-                                            <td>文旦</td>
-                                            <td>御元文旦</td>
-                                            <td>06-57781234</td>
-                                            <td>15</td>
-                                        </tr>
-                                        <tr>
-                                            <td>鐵蛋</td>
-                                            <td>淡水阿婆</td>
-                                            <td>02-57648889</td>
-                                            <td>43</td>
-                                        </tr>
-                                        <tr>
-                                            <td>鳳梨酥</td>
-                                            <td>家鄉糕點</td>
-                                            <td>02-22781234</td>
-                                            <td>23</td>
-                                        </tr>
-                                        
-                                    </tbody>
-                                </table>
+                        
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseCardExample-two" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                            <h6 class="m-0 font-weight-bold text-primary">喜悅番茄果園 - 聖女小番茄</h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse show" id="collapseCardExample-two">
+                            <div class="card-body">
+                                <div class="row">
+                                    <a class="col-9"></a>
+                                    <a href="#" class="btn btn-success col-3">                                                    
+                                        <span class="text">全部核銷</span>
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="table-responsive">
+                                
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>年級</th>
+                                                <th>班級</th>
+                                                <th>姓名</th>
+                                                <th>數量</th>
+                                                <th>確認核銷</th>
+                                                <th>取消兌換</th>                                          
+                                            </tr>
+                                        </thead>
+                                        <!-- <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Office</th>
+                                                <th>Age</th>
+                                                <th>Start date</th>
+                                                <th>Salary</th>
+                                            </tr>
+                                        </tfoot> -->
+                                        <tbody>
+                                            <tr>                                             
+                                                <td>1年級</td>
+                                                <td>101</td>
+                                                <td>Dora</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="text">確認核銷</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning btn-icon-split">
+                                                        <span class="text">取消兌換</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>                                             
+                                                <td>2年級</td>
+                                                <td>201</td>
+                                                <td>Gigi</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-secondary btn-icon-split">
+                                                        <span class="text">已核銷</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning btn-icon-split">                                                    
+                                                        <span class="text">取消兌換</span>
+                                                    </a>
+                                                </td>
+                                            </tr>                                            
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                            <h6 class="m-0 font-weight-bold text-primary">曾記麻糬 - 麻糬</h6>
+                        </a>
+                        <!-- Card Content - Collapse -->
+                        <div class="collapse show" id="collapseCardExample">
+                            <div class="card-body">
+                                <div class="row">
+                                    <a class="col-9"></a>
+                                    <a href="#" class="btn btn-success col-3">                                                    
+                                        <span class="text">全部核銷</span>
+                                    </a>
+                                </div>
+                                <hr>
+                                <div class="table-responsive">
+                                
+                                    <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>年級</th>
+                                                <th>班級</th>
+                                                <th>姓名</th>
+                                                <th>數量</th>
+                                                <th>確認核銷</th>
+                                                <th>取消兌換</th>                                          
+                                            </tr>
+                                        </thead>
+                                        <!-- <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Office</th>
+                                                <th>Age</th>
+                                                <th>Start date</th>
+                                                <th>Salary</th>
+                                            </tr>
+                                        </tfoot> -->
+                                        <tbody>
+                                            <tr>                                             
+                                                <td>1年級</td>
+                                                <td>101</td>
+                                                <td>Mimi</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="text">確認核銷</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning btn-icon-split">
+                                                        <span class="text">取消兌換</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>                                             
+                                                <td>1年級</td>
+                                                <td>101</td>
+                                                <td>Emily</td>
+                                                <td>2</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="text">確認核銷</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning btn-icon-split">
+                                                        <span class="text">取消兌換</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            <tr>                                             
+                                                <td>2年級</td>
+                                                <td>201</td>
+                                                <td>Doni</td>
+                                                <td>1</td>
+                                                <td>
+                                                    <a href="#" class="btn btn-info btn-icon-split">
+                                                        <span class="text">確認核銷</span>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#" class="btn btn-warning btn-icon-split">                                                    
+                                                        <span class="text">取消兌換</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Page Heading -->
+                    
                 </div>
                 <!-- /.container-fluid -->
 
@@ -484,6 +483,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
@@ -491,7 +491,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
+    <script src="js/demo/datatables-demo1.js"></script>
 </body>
 
 </html>

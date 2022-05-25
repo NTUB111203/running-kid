@@ -33,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <img src="../Logo/logo-white.png" width="50px">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-home"></i>
                     <span>首頁</span></a>
             </li>
@@ -69,7 +69,7 @@
                 <div id="exerciseANA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">運動分析項目:</h6>
-                        <a class="collapse-item" href="ana-school.html">全校分析</a>
+                        <a class="collapse-item" href="ana-school.php">全校分析</a>
                         <a class="collapse-item" href="ana-choose-class.php">班級分析</a>
                         <a class="collapse-item" href="ana-choose-student.php">學生個人分析</a>
                     </div>
@@ -86,8 +86,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">管理項目:</h6>
-                        <a class="collapse-item" href="class-maintain.html">班級管理</a>
-                        <a class="collapse-item" href="student-maintain.html">學生管理</a>
+                        <a class="collapse-item" href="class-maintain.php">班級管理</a>
+                        <a class="collapse-item" href="student-maintain.php">學生管理</a>
                         <!-- 學生運動資訊透過學生管理介面連結到 -->
                     </div>
                 </div>
@@ -104,8 +104,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">禮物兌換項目:</h6>
-                        <a class="collapse-item" href="utilities-color.html">商品兌換數量統計</a>
-                        <a class="collapse-item" href="utilities-border.html">商品兌換核銷</a>
+                        <a class="collapse-item" href="gift-quantity.php">商品兌換數量統計</a>
+                        <a class="collapse-item" href="gift-check.php">商品兌換核銷</a>
                         <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a> -->
                     </div>
@@ -135,10 +135,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
-
+    
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>

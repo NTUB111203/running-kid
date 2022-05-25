@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +31,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-    <?php include("sidebar.php"); ?>
+        <?php include("sidebar.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -206,7 +208,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">郭明諭老師</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -242,11 +244,16 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">學生DONI個人分析</h1>
+                        <h1 class="h3 mb-0 text-gray-800">全校分析</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">本月全校班級平均公里數排行榜</h6>
+                        </div>
+                    </div>
                     <!-- Content Row -->
                     <div class="row">
 
@@ -257,8 +264,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                                今日里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">0.1KM</div>
+                                                第一名</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">二年一班</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -275,8 +282,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
-                                                累積里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1287KM</div>
+                                                第二名</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">四年三班</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -293,8 +300,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
-                                                累積跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">288.56HR</div>
+                                                第三名</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">五年四班</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -311,8 +318,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-                                                平均跑步時速</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">4.46KM/HR</div>
+                                                第四名</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">一年二班</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -333,8 +340,21 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">進步趨勢分析</h6>
-                                   
+                                    <h6 class="m-0 font-weight-bold text-primary">全校進步分析</h6>
+                                    <div class="dropdown no-arrow">
+                                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a> -->
+                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div> -->
+                                    </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -345,54 +365,31 @@
                             </div>
                         </div>
 
+                        <!-- Pie Chart -->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">學生跑步資訊 </h6>
-                                    
+                                    <h6 class="m-0 font-weight-bold text-primary">BMI比例分析 </h6>
+                                    <div class="dropdown no-arrow">
+                                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div> -->
+                                    </div>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">         
-                                    <div class="my-4"></div>
-                                    <a href="#" class="btn btn-success btn-icon-split btn-lg">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">起始跑步日期 : 2021-03-01</span>
-                                    </a>        
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">平均每月公里數 : 75.5 KM &nbsp;&nbsp;</span>
-                                    </a>   
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">本月跑步公里數 : 84.9 KM &nbsp;&nbsp;</span>
-                                    </a>              
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split btn-lg">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">上個月跑步公里 : 81.6 KM &nbsp;&nbsp;</span>
-                                    </a>   
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-warning btn-icon-split btn-lg">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">平均進步公里數 : 9.4 KM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                    </a> 
-                                    <div class="my-4"></div>     
-                                     
-                                    <!-- <div class="chart-pie pt-4 pb-2">
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
                                         <canvas id="pieBMI"></canvas>
                                     </div>
                                     <div class="mt-4 text-center small">
@@ -405,136 +402,211 @@
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-info"></i> 過重
                                         </span>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <!-- <div class="card shadow mb-4"> -->
-                                <!-- Card Header - Dropdown -->
-                                <!-- <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">BMI紀錄 </h6>
-                                    
-                                </div> -->
-                                <!-- Card Body -->
-                                <!-- <div class="card-body"> -->
-                                    <!-- <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">105上BMI:適中</span>
-                                    </a>
-                                    <a href="#" class="btn btn-warning btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">105下BMI:過瘦</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">106上BMI:適中</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">106下BMI:適中</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">107上BMI:適中</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">107下BMI:適中</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">108上BMI:適中</span>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">108下BMI:過重</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-danger btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">109上BMI:過重</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">109下BMI:適中</span>
-                                    </a>
-                                    <div class="my-2"></div>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">110上BMI:適中</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-flag"></i>
-                                        </span>
-                                        <span class="text">110下BMI:適中</span>
-                                    </a>
-                                    <div class="my-4"></div> -->
-                                    <!-- <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="pieBMI"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> 適中
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> 過瘦
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> 過重
-                                        </span>
-                                    </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
                         </div>
                     </div>
                     
                         <!-- 排名table -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">個人里程紀錄</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">全校班級排名</h6>
                             </div>
                             <div class="card-body">
-                                <div class="chart-bar">
-                                    <canvas id="myBarChart"></canvas>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Position</th>
+                                                <th>Office</th>
+                                                <th>Age</th>
+                                                <th>Start date</th>
+                                                <th>Salary</th>
+                                            </tr>
+                                        </thead>                                        
+                                        <tbody>
+                                            
+                                            <tr>
+                                                <td>Unity Butler</td>
+                                                <td>Marketing Designer</td>
+                                                <td>San Francisco</td>
+                                                <td>47</td>
+                                                <td>2009/12/09</td>
+                                                <td>$85,675</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Howard Hatfield</td>
+                                                <td>Office Manager</td>
+                                                <td>San Francisco</td>
+                                                <td>51</td>
+                                                <td>2008/12/16</td>
+                                                <td>$164,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hope Fuentes</td>
+                                                <td>Secretary</td>
+                                                <td>San Francisco</td>
+                                                <td>41</td>
+                                                <td>2010/02/12</td>
+                                                <td>$109,850</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vivian Harrell</td>
+                                                <td>Financial Controller</td>
+                                                <td>San Francisco</td>
+                                                <td>62</td>
+                                                <td>2009/02/14</td>
+                                                <td>$452,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Timothy Mooney</td>
+                                                <td>Office Manager</td>
+                                                <td>London</td>
+                                                <td>37</td>
+                                                <td>2008/12/11</td>
+                                                <td>$136,200</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jackson Bradshaw</td>
+                                                <td>Director</td>
+                                                <td>New York</td>
+                                                <td>65</td>
+                                                <td>2008/09/26</td>
+                                                <td>$645,750</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Olivia Liang</td>
+                                                <td>Support Engineer</td>
+                                                <td>Singapore</td>
+                                                <td>64</td>
+                                                <td>2011/02/03</td>
+                                                <td>$234,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bruno Nash</td>
+                                                <td>Software Engineer</td>
+                                                <td>London</td>
+                                                <td>38</td>
+                                                <td>2011/05/03</td>
+                                                <td>$163,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sakura Yamamoto</td>
+                                                <td>Support Engineer</td>
+                                                <td>Tokyo</td>
+                                                <td>37</td>
+                                                <td>2009/08/19</td>
+                                                <td>$139,575</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Thor Walton</td>
+                                                <td>Developer</td>
+                                                <td>New York</td>
+                                                <td>61</td>
+                                                <td>2013/08/11</td>
+                                                <td>$98,540</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Finn Camacho</td>
+                                                <td>Support Engineer</td>
+                                                <td>San Francisco</td>
+                                                <td>47</td>
+                                                <td>2009/07/07</td>
+                                                <td>$87,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Serge Baldwin</td>
+                                                <td>Data Coordinator</td>
+                                                <td>Singapore</td>
+                                                <td>64</td>
+                                                <td>2012/04/09</td>
+                                                <td>$138,575</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Zenaida Frank</td>
+                                                <td>Software Engineer</td>
+                                                <td>New York</td>
+                                                <td>63</td>
+                                                <td>2010/01/04</td>
+                                                <td>$125,250</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Zorita Serrano</td>
+                                                <td>Software Engineer</td>
+                                                <td>San Francisco</td>
+                                                <td>56</td>
+                                                <td>2012/06/01</td>
+                                                <td>$115,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jennifer Acosta</td>
+                                                <td>Junior Javascript Developer</td>
+                                                <td>Edinburgh</td>
+                                                <td>43</td>
+                                                <td>2013/02/01</td>
+                                                <td>$75,650</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Cara Stevens</td>
+                                                <td>Sales Assistant</td>
+                                                <td>New York</td>
+                                                <td>46</td>
+                                                <td>2011/12/06</td>
+                                                <td>$145,600</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hermione Butler</td>
+                                                <td>Regional Director</td>
+                                                <td>London</td>
+                                                <td>47</td>
+                                                <td>2011/03/21</td>
+                                                <td>$356,250</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Lael Greer</td>
+                                                <td>Systems Administrator</td>
+                                                <td>London</td>
+                                                <td>21</td>
+                                                <td>2009/02/27</td>
+                                                <td>$103,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Jonas Alexander</td>
+                                                <td>Developer</td>
+                                                <td>San Francisco</td>
+                                                <td>30</td>
+                                                <td>2010/07/14</td>
+                                                <td>$86,500</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Shad Decker</td>
+                                                <td>Regional Director</td>
+                                                <td>Edinburgh</td>
+                                                <td>51</td>
+                                                <td>2008/11/13</td>
+                                                <td>$183,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Michael Bruce</td>
+                                                <td>Javascript Developer</td>
+                                                <td>Singapore</td>
+                                                <td>29</td>
+                                                <td>2011/06/27</td>
+                                                <td>$183,000</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Donna Snider</td>
+                                                <td>Customer Support</td>
+                                                <td>New York</td>
+                                                <td>27</td>
+                                                <td>2011/01/25</td>
+                                                <td>$112,000</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <hr>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-primary"></i> 五月每日跑步里程
-                                    </span>
-                                    
-                                </div> 
-                            </div>
                             
                         </div>
                         
@@ -770,8 +842,7 @@
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="js/demo/datatables-demo.js"></script>    
-    <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 

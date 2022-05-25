@@ -2,7 +2,7 @@
 
 session_start();
 
-	$host = "140.131.114.154";
+	$host = "140.131.114.154:3306";
 	$user = "emily";
 	$pd = "@Tfboys806@";
 	$dbname = "runningkids";
