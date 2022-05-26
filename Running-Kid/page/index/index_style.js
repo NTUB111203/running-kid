@@ -141,11 +141,21 @@ const styles = StyleSheet.create({
       justifyContent:"center"
     },
 
-    modalButton:{
+    modalButton_on:{
       width:250,
       height:50,
       marginTop:10,
       backgroundColor:"#117C72",
+      borderRadius:15,
+      alignItems:"center",
+      justifyContent:"space-between"
+    },
+
+    modalButton_off:{
+      width:250,
+      height:50,
+      marginTop:10,
+      backgroundColor:"#dadada",
       borderRadius:15,
       alignItems:"center",
       justifyContent:"space-between"

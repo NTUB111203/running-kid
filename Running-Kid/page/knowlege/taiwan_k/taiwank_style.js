@@ -45,7 +45,8 @@ const styles_TK = StyleSheet.create({
       },
 
       title:{
-        textAlign:"center",
+        justifyContent:"center",
+        alignItems:'center',
         fontSize:30,
         color:"#117C72",
         fontWeight:"600"
@@ -87,7 +88,7 @@ const styles_TK = StyleSheet.create({
         borderRadius:20,
         backgroundColor:'#ffffff',
         justifyContent:"center",
-        alignItems:'flex-start',
+        alignItems:'center',
         flexDirection:"column",
         marginBottom:30,
         marginTop:10,
