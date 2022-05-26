@@ -8,14 +8,20 @@ import taipei from './img/A2.png';
 import taichung from './img/A9.png';
 import styles from './index_style';
 import Modal_index from "./Components/Modal";
+import { render } from "react-dom";
 
 
+export default function  Indexp() {
 
-export default function Indexp() {
+  
+  
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [act, areaAct] = useState();
-  const [mi, setTodayMi] = useState();
+  const [modalVisible1, setModalVisible1] = useState(false);
+  const [modalVisible2, setModalVisible2] = useState(true);
+
+
+  const [act, areaAct] = useState(0);
+  const [mi, setTodayMi] = useState(0);
 
   let imageSource = space;
   let today_mi=0;
@@ -24,22 +30,21 @@ export default function Indexp() {
   if (act === "taipei") {
     imageSource = taipei;
   }
-
   if(mi !== 0){
     today_mi = mi
   }
   
-  
+ 
   return (
   <SafeAreaView>
      <Modal   /* 滑出視窗 */
-        animationType="fade"
+        animationType="none"
         transparent={true}
-        visible={modalVisible}
+        visible={modalVisible1}
         onRequestClose={() => {
-         
-          setModalVisible(!modalVisible);
+          setModalVisible1(!modalVisible1);
         }}
+        onBackdropPress={() => {setModalVisible1(false)}}
       >
         <View style={styles.centeredView}>
         <ImageBackground source={require('../../assets/background.png')} style={styles.modalView}>
@@ -49,20 +54,66 @@ export default function Indexp() {
             <TouchableOpacity
               style={{ ...styles.openButton}}
               onPress={() => {
-                setModalVisible(!modalVisible);
+                setModalVisible1(!modalVisible1);
               }}
             >
-              <View style={styles.modalButton}>
+              <View style={styles.modalButton_on}>
                 <Text style={styles.modalText}>個人跑步</Text>
               </View>
              </TouchableOpacity>
 
-             <View style={styles.modalButton}>
+             <TouchableOpacity
+              style={{ ...styles.openButton}}
+              onPress={() => {
+                setModalVisible2(true);
+                setModalVisible1(!modalVisible1);
+              }}
+            >
+             <View style={styles.modalButton_off}>
                 <Text style={styles.modalText}>加入房間</Text>
               </View>
+              </TouchableOpacity>
 
-              <View style={styles.modalButton}>
+              <View style={styles.modalButton_off}>
                 <Text style={styles.modalText}>創立房間</Text>
+              </View>
+           
+          
+          </ImageBackground>
+        </View>
+      </Modal>
+
+      <Modal   /* 滑出視窗2 */
+        animationType="none"
+        transparent={true}
+        visible={modalVisible2}
+        onRequestClose={() => {
+          setModalVisible2(!modalVisible2);
+        }}
+        onBackdropPress={() => setModalVisible2(false)}
+      >
+        <View style={styles.centeredView}>
+        <ImageBackground source={require('../../assets/background.png')} style={styles.modalView}>
+         
+            <Text style={styles.modalTitle}>1</Text>
+
+            <TouchableOpacity
+              style={{ ...styles.openButton}}
+              onPress={() => {
+                setModalVisible2(!modalVisible2);
+              }}
+            >
+              <View style={styles.modalButton_on}>
+                <Text style={styles.modalText}>1跑步</Text>
+              </View>
+             </TouchableOpacity>
+
+             <View style={styles.modalButton_off}>
+                <Text style={styles.modalText}>1間</Text>
+              </View>
+
+              <View style={styles.modalButton_off}>
+                <Text style={styles.modalText}>創1</Text>
               </View>
            
           
@@ -81,11 +132,11 @@ export default function Indexp() {
         source={require('../../assets/background.png')}
         >
         <View style={styles.textbox}>
-          <Text style={styles.text}>   今日里程數 {today_mi}0 公里</Text>
+          <Text style={styles.text}>   今日里程數 {today_mi} 公里</Text>
         </View>
         
         <View style={styles.textbox}>
-          <Text style={styles.text}>   累積里程數 {total_mi} 公里</Text>
+          <Text style={styles.text}>   累積里程數 {today_mi} 公里</Text>
         </View> 
 
         
@@ -94,7 +145,7 @@ export default function Indexp() {
         <TouchableOpacity
         onPress={() => {areaAct("taipei"),setTodayMi(0.1)}}
         activeOpacity={0.8}
-        onLongPress={() => {setModalVisible(true);}}
+        onLongPress={() => {setModalVisible1(true);}}
         >
 
         <ImageBackground
@@ -123,7 +174,7 @@ export default function Indexp() {
       </ScrollView>
   </SafeAreaView>
   )
-};
+}
 
 
 

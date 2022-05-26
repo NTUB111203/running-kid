@@ -45,6 +45,9 @@ export  function Taiwan_k() {
           <Image source={require('../../../assets/taipei_k.jpeg')} style={styles_TK.textbox_image}></Image>
           <Text>據《臺灣島之歷史與地誌》，景美源自梘尾，指瑠公圳大木梘之尾，其址約在今日舊景美橋附近，後取臺語同音，改稱「景尾」。總共有12個行政區</Text>
         </View>
+
+      
+        <View style={styles_TK.button_on}><Text style={{fontSize:20,color:"#ffffff"}}>開始作答</Text></View>
           
         
           

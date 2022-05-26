@@ -13,7 +13,7 @@ export default function Gift() {
              <Header/>
 
              <ImageBackground style={styles.backgroundimg} 
-            source={require('../../assets/GIFT.png')}
+            source={require('../../assets/GIFT.jpg')}
             >
 
             
