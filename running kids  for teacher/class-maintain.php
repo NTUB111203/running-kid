@@ -273,7 +273,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>入學學年</th>
+                                            <th>學年度</th>
                                             <th>年級</th>
                                             <th>班別</th>
                                             <th>人數</th>
@@ -284,7 +284,6 @@
                                                <!--表格資料仍有錯誤待修，目前只是把class表拉進-->
                                                     <?php
                                                         $result = "SELECT * FROM class";
-    
                                                         $retval=mysqli_query($link, $result); 
                                                         
                                                         if ($retval) {
@@ -292,11 +291,13 @@
                                                            
                                                                if (mysqli_num_rows($retval) > 0) {
                                                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                                                    echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
-                                                                    echo "<th>".$row["class_no"]."</th>";
+                                                                    // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
                                                                     echo "<th>".$row["semester"]."</th>";
                                                                     echo "<th>".$row["grade"]."</th>";
                                                                     echo "<th>".$row["class"]."</th>";
+                                                                    
+                                                                    echo "<th>3</th>\n";
+                                                                    echo "<th style=\"color: rgb(0, 87, 248);\">現任班級</th>\n";
                                                                     echo '</tr>';
                                                                 }
                                                             }
