@@ -3,11 +3,18 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
 import Tabbars from './page/tabbar';
-import Indexp from './page/index/indexpage'
+import Header from './page/header';
+import Indexp from './page/index/indexpage';
+import { Taiwan_k } from './page/knowlege/taiwan_k/taiwan_k';
+import { Taiwan_Qu } from './page/knowlege/taiwan_k/taiwam_qu';
+import Run_solo from './page/Run/run_solo';
+import Run_solo2 from './page/Run/run_solo2';
 
 
 
 const App = () => {
+  
+
   return(
     <>
     {/*<SafeAreaView style={{flex:1}}>
@@ -21,10 +28,11 @@ const App = () => {
         
       </ScrollView>
      
-  </SafeAreaView>*/}
+  </SafeAreaView>
     <NavigationContainer>
        <Tabbars/>
-    </NavigationContainer>
+  </NavigationContainer>*/}
+      <Run_solo2></Run_solo2>
    </>
   );
 }

@@ -32,13 +32,13 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18"],
+    labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18","19", "20", "21", "22", "23", "24","25", "26", "27", "28", "29", "30","31"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [2, 3, 6, 1, 0, 5,2, 3, 1, 3, 5, 2,0, 1, 3, 4, 4, 1],
+      data: [2.3, 3, 6, 1, 0, 5.4,2, 3, 1, 3, 5, 2,0.8, 1, 3, 4.2, 4, 1, 2, 3, 1, 3, 5, 3, 6, 1, 0, 5.4,2.7,1.1,4],
     }],
   },
   options: {
@@ -68,7 +68,7 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 10,
+          max: 8,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

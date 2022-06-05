@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="icon" href="../Logo/logo-pink.png" type="image/x-icon">
     <title>running kids for teacher</title>
 
     <!-- Custom fonts for this template-->
@@ -33,95 +33,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Running Kids</div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-home"></i>
-                    <span>首頁</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#exerciseANA"
-                    aria-expanded="true" aria-controls="exerciseANA">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>運動分析</span>
-                </a>
-                <div id="exerciseANA" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">運動分析項目:</h6>
-                        <a class="collapse-item" href="buttons.html">全校分析</a>
-                        <a class="collapse-item" href="cards.html">班級分析</a>
-                        <a class="collapse-item" href="cards.html">學生個人分析</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>管理</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">管理項目:</h6>
-                        <a class="collapse-item" href="class-maintain.html">班級管理</a>
-                        <a class="collapse-item" href="student-maintain.html">學生管理</a>
-                        <!-- 學生運動資訊透過學生管理介面連結到 -->
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>禮物兌換</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">禮物兌換項目:</h6>
-                        <a class="collapse-item" href="utilities-color.html">商品兌換數量統計</a>
-                        <a class="collapse-item" href="utilities-border.html">商品兌換核銷</a>
-                        <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a> -->
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-           
-
-        </ul>
-        <!-- End of Sidebar -->
+    <?php include("sidebar.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -334,14 +246,14 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">班級分析</h1>
+                        <h1 class="h3 mb-0 text-gray-800">學生分析</h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">請選擇班級</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">請選擇學生</h6>
                         </div>
                     </div>
                     <!-- Content Row -->
@@ -365,7 +277,7 @@
                                     echo "<h1>".$row["m_name"]."</h1>";
                                     echo "</div>\n";
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-student.html\" class=\"btn btn-warning btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-student.php\" class=\"btn btn-warning btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
@@ -499,7 +411,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    <script src="js/sb-admin-2.js"></script>
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
 

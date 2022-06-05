@@ -13,7 +13,7 @@ export default function Gift() {
              <Header/>
 
              <ImageBackground style={styles.backgroundimg} 
-            source={require('../../assets/GIFT.png')}
+            source={require('../../assets/GIFT.jpg')}
             >
 
             
@@ -28,7 +28,7 @@ const styles=StyleSheet.create({
 
     backgroundimg:{
         width:"100%",
-        height:1400,
+        height:1450,
         flex:1,
      
         justifyContent: 'flex-start',

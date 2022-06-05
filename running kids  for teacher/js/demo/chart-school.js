@@ -32,7 +32,7 @@ var ctx = document.getElementById("chartSchool");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    labels: [ "六月", "七月", "八月", "九月", "十月", "十一月", "十二月","一月", "二月", "三月", "四月", "五月"],
     datasets: [{
       label: "跑步里程",
       lineTension: 0.3,
@@ -46,7 +46,8 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 16000, 20000, 35000, 38000, 40000, 38000, 45000, 52000],
+      data: [70, 73, 70, 72.8, 75.1, 75, 77.5, 80, 82, 81.2, 81.6, 84.9],
+      //70+70+70
     }],
   },
   options: {
