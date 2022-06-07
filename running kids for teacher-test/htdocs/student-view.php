@@ -1,8 +1,7 @@
 <?php
 /*連接資料庫*/
- require_once 'db_connect.php';
+require_once 'db_connect.php';
  ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,79 +47,97 @@
                                     <h6 class="m-0 font-weight-bold text-primary">編輯學生資料</h6>
                                     <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
                                 </div>
-
-                        
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <!-- <th>班級</th> -->
-                                                    <th>序號</th>
-                                                    <th>姓名</th>
-                                                    <th>身分</th>
-                                                    <th>性別</th>
-                                                    <th>
-                                                        <a href="student-add.php"
-                                                            class="btn btn-success btn-icon-split ">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-check"></i>
-                                                            </span>
-                                                            <span class="text">新增學生</span>
-                                                        </a>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            
-                                            
+                                                    <th>會員編號</th>
+                                                        <th>姓名</th>
+                                                        <th>性別</th>
+                                                        <th>生日</th>
+                                                        <th>電話</th>
+                                                        <th>信箱</th>
+                                                        <th>入學年</th>
+                                                        <th></th>
+                                                        <!-- <th>班級</th> -->
+                                                        <!-- <th>學號</th>
+                                                        <th>姓名</th>
+                                                        <th>性別</th>
+                                                        <th>生日</th>
+                                                        <th>
+                                                            <a href="student-add.html"
+                                                                class="btn btn-success btn-icon-split ">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-check"></i>
+                                                                </span>
+                                                                <span class="text">新增學生</span>
+                                                            </a>
+                                                        </th> -->
+                                                    </tr>
+                                            </thead>                                            
                                             <tbody>
                                                 <tr>
-                                                    
-                                                    <!-- <td><button>修改</button></td> -->
-                                                    <!-- <th>班級</th> -->
-                                                    
                                                     <?php
-                                                    $result = "SELECT * FROM members";
-
-                                                    $retval=mysqli_query($link, $result); 
-                                                    
-                                                    if ($retval) {
-                                                        $num = mysqli_num_rows($retval);
-                                                       
-                                                           if (mysqli_num_rows($retval) > 0) {
-                                                            while ($row = mysqli_fetch_assoc($retval)) {
-                                                                
-                                                                echo "<th>".$row["m_id"]."</th>";
-                                                                echo "<th>".$row["m_name"]."</th>";
-                                                                echo "<th>".$row["identity"]."</th>";
-                                                                echo "<th>".$row["gender"]."</th>";
-                                                                
+                                                        $result = "SELECT * FROM members where class= '201'";
+    
+                                                        $retval=mysqli_query($link, $result); 
+                                                        
+                                                        if ($retval) {
+                                                            $num = mysqli_num_rows($retval);
+                                                           
+                                                               if (mysqli_num_rows($retval) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($retval)) {
+                                                                    
+                                                                    echo "<th>".$row["m_id"]."</th>";
+                                                                    echo "<th>".$row["m_name"]."</th>";
+                                                                    echo "<th>".$row["gender"]."</th>";
+                                                                    echo "<th>".$row["birthday"]."</th>";
+                                                                    echo "<th>".$row["phone"]."</th>";
+                                                                    echo "<th>".$row["mail"]."</th>";
+                                                                    echo "<th>".$row["enrollment"]."</th>";
+                                                                   // echo "<td> <button type=\"button\" onclick='location.href=\"student-edit.html?id=". $row->m_id."\"'>更新</button></td>";
+                                                                    echo "<td>\n";
+                                                                    echo "<a href=\"student-edit.html\" class=\"btn btn-warning btn-icon-split \">\n";
+                                                                    echo "<span class=\"icon text-white-50\">\n";
+                                                                    echo "<i class=\"fas fa-exclamation-triangle\"></i>\n";
+                                                                    echo "</span>\n";
+                                                                    echo "<span class=\"text\">編輯學生</span>\n";
+                                                                    echo "</a>\n";
+                                                                    echo "</td>\n";
+                                                                    echo "<tr>";
+                                                                }
                                                             }
                                                         }
-                                                    }
-                                                    ?>
-                                                   
-                                                 <tr>
-                                                       
-                                                    <th>
-                                                        <a href="student-edit.html"
-                                                            class="btn btn-warning btn-icon-split ">
-                                                            <span class="icon text-white-50">
-                                                                <i class="fas fa-exclamation-triangle"></i>
-                                                            </span>
-                                                            <span class="text">編輯學生</span>
-                                                        </a>
-                                                    </th>
-                                                  </tr>
-                                                    <!-- href到修改介面 -->
-                                               
+                                                        ?>
+    
+                                                        <!-- <td>Tiger Nixon</td> -->
+                                                        
+                                                      
+                                                        <!-- href到修改介面 -->
+                                                    </tr>
+                                                    
+                                                    <!-- <tr>                                                    
+                                                        <td>Javascript Developer</td>
+                                                        <td>San Francisco</td>
+                                                        <td>女</td>
+                                                        <td>2009/09/15</td>
+                                                        <td>
+                                                            <a href="student-edit.html"
+                                                                class="btn btn-warning btn-icon-split ">
+                                                                <span class="icon text-white-50">
+                                                                    <i class="fas fa-exclamation-triangle"></i>
+                                                                </span>
+                                                                <span class="text">編輯學生</span>
+                                                            </a>
+                                                        </td>
+                                                    </tr> -->
+   
                                             </tbody>
-                                        
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                   
 
 
                             <div class="card shadow mb-4">
@@ -142,15 +159,19 @@
                                                         <div class="form-group row">
                                                             <div class="col-sm-3 "></div>
                                                             <div class="col-sm-6 ">
-                                                                <select name="grade" id="grade"
-                                                                    class="form-control selections">
-                                                                    <option value="">請選擇學校
-                                                                    <option value="學校1">學校1
+
+
+                                                                <select name="grade" id="grade" class="form-control selections">
+                                                                <option value = '請選擇'>請選擇</option>
+                                                                
+                                                                    <!-- <option value="">請選擇學校
+                                                                    <option value=".$row["s_name"].">.$row["s_name"].
                                                                     <option value="學校2">學校2
                                                                     <option value="學校3">學校3
                                                                     <option value="學校4">學校4
-                                                                    <option value="學校5">學校5
+                                                                    <option value="學校5">學校5 -->
                                                                 </select>
+                                                                 
                                                             </div>
                                                             <div class="col-sm-3 "></div>
                                                         </div>
@@ -160,7 +181,8 @@
                                                             <div class="col-sm-6 ">
                                                                 <select name="grade" id="grade"
                                                                     class="form-control selections">
-                                                                    <option value="">請選擇年級
+                                                                    
+                                                                    <option value="$result['local']">請選擇年級
                                                                     <option value="一年級">一年級
                                                                     <option value="二年級">二年級
                                                                     <option value="三年級">三年級
@@ -177,6 +199,23 @@
                                                             <div class="col-sm-6 ">
                                                                 <select name="grade" id="grade"
                                                                     class="form-control selections">
+                                                                    
+                                                                    <?
+                                                                    // mysql_select_db($dbName);//開啟資料庫，這邊這行會很多餘嗎？ 
+                                                                    // 14	 
+                                                                    // 15	$str="SELECT `local` FROM `0227_postofficenum`";//主要是希望0227_postofficenum這張資料表的local欄位資料全部進入下拉式選單... 
+                                                                    // 16	$result=mysql_query($str);//sql查詢結果 
+                                                                    // 17	$result=mysql_fetch_assoc($result);//將sql查詢結果轉為陣列再度存回result 
+                                                                    // 18	?> 
+                                                                    // ?>
+                                                                    // <? 
+                                                                    // do 
+                                                                    // { 
+                                                                    // echo "<option value=$result['local']>"; 
+                                                                    // echo $result['local']; 
+                                                                    // echo "</option>"; 
+                                                                    // }while($result=mysql_fetch_assoc($result)); 
+                                                                    ?> 
                                                                     <option value="">請選擇班級
                                                                     <option value="一班">一班
                                                                     <option value="二班">二班
@@ -217,94 +256,30 @@
                                                 cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                        <th>學號</th>
+                                                        <th></th>
                                                         <th>姓名</th>
                                                     </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>學號</th>
-                                                        <th>姓名</th>
-                                                    </tr>
-                                                </tfoot>
+                                                </thead>                                                
                                                 <tbody>
                                                     <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck1" checked>
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck1">11001</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>小花</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck2">
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck2">11002</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>小瓜</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck3">
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck3">11003</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>大吉</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck4">
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck4">11004</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>源源</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck5">
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck5">11005</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>阿咪</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck4">
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck4">11004</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>輕輕</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="custom-control custom-checkbox">
-                                                                <input type="checkbox" class="custom-control-input"
-                                                                    id="customCheck5">
-                                                                <label class="custom-control-label"
-                                                                    for="customCheck5">11005</label>
-                                                            </div>
-                                                        </td>
-                                                        <td>飄飄</td>
-                                                    </tr>
+                                                        <?php
+                                                        $result = "SELECT * FROM members where class='201'";
+    
+                                                        $retval=mysqli_query($link, $result); 
+                                                        
+                                                        if ($retval) {
+                                                            $num = mysqli_num_rows($retval);
+                                                           
+                                                               if (mysqli_num_rows($retval) > 0) {
+                                                                while ($row = mysqli_fetch_assoc($retval)) {
+                                                                    echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
+                                                                    echo "<th>".$row["m_name"]."</th>";
+                                                                    echo '</tr>';
+                                                                }
+                                                            }
+                                                        }
+                                                        ?>
+                                                       
                                                 </tbody>
 
                                         </div>

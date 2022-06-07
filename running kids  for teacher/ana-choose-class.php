@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="icon" href="../Logo/logo-pink.png" type="image/x-icon">
     <title>running kids for teacher</title>
 
     <!-- Custom fonts for this template-->
@@ -281,7 +281,7 @@
                                     echo "</div>";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-class.html\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-class.php\" class=\"btn btn-success btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
@@ -415,7 +415,8 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>    
+    <script src="js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>

@@ -392,232 +392,63 @@
                     </div>
 
                     <!-- Content Row -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">請選擇班級</h6>
+                        </div>
+                    </div>
+                    <!-- Content Row -->
                     <div class="row">
-                        <!-- 改掉icon -->
-                        <!-- Earnings (Monthly) Card Example -->                        
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">一年甲班</div>                                                
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">24人</div>
-                                        </div>
+                        <!-- PHP 班級 -->
+                        <?php
+                        $result = "SELECT * FROM class";
+
+                        $retval=mysqli_query($link, $result);
+                        if ($retval) {
+                            $num = mysqli_num_rows($retval);
+                            
+                                if (mysqli_num_rows($retval) > 0) {
+                                while ($row = mysqli_fetch_assoc($retval)) {
+                                    echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
+                                    echo "<div class=\"card border-left-success shadow h-100 py-2\">\n";
+                                    echo "<div class=\"card-body\">\n";
+                                    echo "<div class=\"row no-gutters align-items-center\">\n";
+                                    echo "<div class=\"col mr-2\">\n";
+                                    echo "<div class=\"h1 font-weight-bold text-success text-uppercase mb-1\">\n";
+                                    echo "<h1>".$row["class"]."</h1>";
+                                    echo "</div>\n";
+                                    echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
+                                    echo "<h5>3人</h5>";
+                                    echo "</div>";
+                                    //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
+                                    echo "</div>\n";
+                                    echo "<a href=\"student-view.php\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    echo "<i class=\"fas fa-info-circle\"></i>\n";
+                                    echo "</a>\n";
+                                    echo "</div>\n";
+                                    echo "</div>\n";
+                                    echo "</div>\n";
+                                    echo "</div>\n";
+                        }
+                        }
+                        }
+                        ?>
+                                           
+                                         
 
                                         
                                         
-                                        <div class="col-auto">
-                                            <form class="user" action='select-test.php'>
-                                                <a href="student-view.php" class="btn btn-primary btn-circle btn-lg">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </a>
-                                            </form>
+                                       
                                         </div>
-                                        
+                                        <tr>
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         </a>
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-success text-uppercase mb-1">一年乙班</div>                                                
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">21人</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">二年甲班</div>
-                                            
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">25人</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">二年乙班</div>                                                
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18人</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 以上為第一列 以下為第二列-->
-                         <!-- Content Row -->
-                         <div class="row">
-
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">三年甲班</div>                                                    
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">24人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">三年乙班</div>                                                
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">26人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-info text-uppercase mb-1">四年甲班</div>
-                                                
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">32人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Pending Requests Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">四年乙班</div>                                                
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">28人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- 以上為第二列 以下為第三列-->
-                         <!-- Content Row -->
-                         <div class="row">
-
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-primary shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">五年甲班</div>                                                    
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">20人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-success shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-success text-uppercase mb-1">五年乙班</div>                                                
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">18人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Earnings (Monthly) Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-info shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-info text-uppercase mb-1">六年甲班</div>
-                                                
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">23人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <!-- Pending Requests Card Example -->
-                            <div class="col-xl-3 col-md-6 mb-4">
-                                <div class="card border-left-warning shadow h-100 py-2">
-                                    <div class="card-body">
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col mr-2">
-                                                <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">六年乙班</div>                                                
-                                                <div class="h5 mb-0 font-weight-bold text-gray-800">30人</div>
-                                            </div>
-                                            <div class="col-auto">
-                                                <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    
+                   
                     <!-- DataTales 學生成員 -->
                     <!-- <div class="card shadow mb-4">
                         <div class="card-header py-3">
