@@ -259,15 +259,18 @@
                     <!-- Content Row -->
                     <div class="row">
                         <!-- PHP 班級 -->
+                    
                         <?php
                         $result = "SELECT * FROM class";
-
                         $retval=mysqli_query($link, $result);
                         if ($retval) {
                             $num = mysqli_num_rows($retval);
                             
                                 if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
+                                    $members = "select count(*)as member from members where class =". $row['class'];
+                                    $retval2=mysqli_query($link, $members);
+                                    $rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
                                     echo "<div class=\"card border-left-success shadow h-100 py-2\">\n";
                                     echo "<div class=\"card-body\">\n";
@@ -277,11 +280,12 @@
                                     echo "<h1>".$row["class"]."</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>".$row["grade"]."</h5>";
+                                    echo "<h5>".$rowMember['member']."人</h5>";
                                     echo "</div>";
-                                    echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
+                                    //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
+                                    //按鈕
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-class.php\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-class.php?class=".$row['class']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
@@ -291,7 +295,7 @@
                         }
                         }
                         }
-                        ?>
+                        ?>       
                         
                         <!-- PHP 班級 -->
                         <!-- Earnings (Monthly) Card Example -->

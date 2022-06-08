@@ -268,6 +268,9 @@
                             
                                 if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
+                                    $members = "select count(*)as member from members where class =". $row['class'];
+                                    $retval2=mysqli_query($link, $members);
+                                    $rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
                                     echo "<div class=\"card border-left-warning shadow h-100 py-2\">\n";
                                     echo "<div class=\"card-body\">\n";
@@ -276,8 +279,12 @@
                                     echo "<div class=\"h1 font-weight-bold text-warning text-uppercase mb-1\">\n";
                                     echo "<h1>".$row["m_name"]."</h1>";
                                     echo "</div>\n";
+                                    echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
+                                    echo "<h5>班級:".$row['class']."</h5>";
+                                    echo "</div>";
+
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-student.php\" class=\"btn btn-warning btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-student.php?class=".$row['class']. "\" class=\"btn btn-warning btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
@@ -288,6 +295,8 @@
                         }
                         }
                         ?>
+
+                       
                         <!-- PHP 班級 -->
                         <!-- Earnings (Monthly) Card Example -->
                         <!-- <div class="col-xl-3 col-md-6 mb-4">

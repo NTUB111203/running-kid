@@ -259,6 +259,7 @@ require_once 'DataBase.php';
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">編輯學生資料</h6>
                                     <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
+                                   
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -272,28 +273,27 @@ require_once 'DataBase.php';
                                                         <th>電話</th>
                                                         <th>信箱</th>
                                                         <th>入學年</th>
-                                                        <th></th>
-                                                        <!-- <th>班級</th> -->
-                                                        <!-- <th>學號</th>
-                                                        <th>姓名</th>
-                                                        <th>性別</th>
-                                                        <th>生日</th>
-                                                        <th>
-                                                            <a href="student-add.html"
+                                                        <th><a href="student-add.html"
                                                                 class="btn btn-success btn-icon-split ">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-check"></i>
                                                                 </span>
                                                                 <span class="text">新增學生</span>
-                                                            </a>
-                                                        </th> -->
-                                                    </tr>
+                                                        </a></th>
+                                                       
+                                                        <!-- <th>班級</th> -->
+                                                        <!-- <th>學號</th>
+                                                        <th>姓名</th>
+                                                        <th>性別</th>
+                                                        <th>生日</th>-->
+                                                       
+                                                </tr>
                                             </thead>                                            
                                             <tbody>
                                                 <tr>
                                                     <?php
-                                                        $result = "SELECT * FROM members where class= '201'";
-    
+                                                        $result = "SELECT * FROM members where class= ".$_GET["class"];
+                                                       
                                                         $retval=mysqli_query($link, $result); 
                                                         
                                                         if ($retval) {
@@ -377,12 +377,10 @@ require_once 'DataBase.php';
                                                                 <select name="grade" id="grade" class="form-control selections">
                                                                 <option value = '請選擇'>請選擇</option>
                                                                 
-                                                                    <!-- <option value="">請選擇學校
-                                                                    <option value=".$row["s_name"].">.$row["s_name"].
-                                                                    <option value="學校2">學校2
-                                                                    <option value="學校3">學校3
-                                                                    <option value="學校4">學校4
-                                                                    <option value="學校5">學校5 -->
+                                                                <?php
+                                                                echo"hi";
+                                                                ?>
+                                                               
                                                                 </select>
                                                                  
                                                             </div>
@@ -455,7 +453,7 @@ require_once 'DataBase.php';
                                                 <div class="col-sm-3 "></div>
                                                 <div class="col-sm-6 ">
 
-                                                    <a href="student-maintain.html"
+                                                    <a href="student-maintain.php"
                                                         class="btn btn-warning btn-user btn-block">
                                                         確認修改
                                                     </a>
@@ -475,8 +473,8 @@ require_once 'DataBase.php';
                                                 </thead>                                                
                                                 <tbody>
                                                     <tr>
-                                                        <?php
-                                                        $result = "SELECT * FROM members where class='201'";
+                                                    <?php
+                                                        $result = "SELECT * FROM members where class= ".$_GET["class"];
     
                                                         $retval=mysqli_query($link, $result); 
                                                         
