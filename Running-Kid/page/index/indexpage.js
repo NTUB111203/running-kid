@@ -9,15 +9,14 @@ import taichung from './img/A9.png';
 import styles from './index_style';
 import Modal_index from "./Components/Modal";
 import { render } from "react-dom";
+import RouteNavigator from "../Route/route";
+import StackNavigator  from 'react-navigation';
 
 
-export default function  Indexp() {
-
-  
-  
+export default function  Indexp({navigation}) {
 
   const [modalVisible1, setModalVisible1] = useState(false);
-  const [modalVisible2, setModalVisible2] = useState(true);
+  
 
 
   const [act, areaAct] = useState(0);
@@ -44,7 +43,7 @@ export default function  Indexp() {
         onRequestClose={() => {
           setModalVisible1(!modalVisible1);
         }}
-        onBackdropPress={() => {setModalVisible1(false)}}
+        onBackdropPress={() => setModalVisible1(false)}
       >
         <View style={styles.centeredView}>
         <ImageBackground source={require('../../assets/background.png')} style={styles.modalView}>
@@ -53,9 +52,7 @@ export default function  Indexp() {
 
             <TouchableOpacity
               style={{ ...styles.openButton}}
-              onPress={() => {
-                setModalVisible1(!modalVisible1);
-              }}
+              onPress={() => {setModalVisible1(false),setTodayMi(0.1),areaAct('taipei'),navigation.navigate('Run_solo')}}
             >
               <View style={styles.modalButton_on}>
                 <Text style={styles.modalText}>個人跑步</Text>
@@ -64,6 +61,7 @@ export default function  Indexp() {
 
              <TouchableOpacity
               style={{ ...styles.openButton}}
+              disabled={true}
               onPress={() => {
                 setModalVisible2(true);
                 setModalVisible1(!modalVisible1);
@@ -83,43 +81,7 @@ export default function  Indexp() {
         </View>
       </Modal>
 
-      <Modal   /* 滑出視窗2 */
-        animationType="none"
-        transparent={true}
-        visible={modalVisible2}
-        onRequestClose={() => {
-          setModalVisible2(!modalVisible2);
-        }}
-        onBackdropPress={() => setModalVisible2(false)}
-      >
-        <View style={styles.centeredView}>
-        <ImageBackground source={require('../../assets/background.png')} style={styles.modalView}>
-         
-            <Text style={styles.modalTitle}>1</Text>
-
-            <TouchableOpacity
-              style={{ ...styles.openButton}}
-              onPress={() => {
-                setModalVisible2(!modalVisible2);
-              }}
-            >
-              <View style={styles.modalButton_on}>
-                <Text style={styles.modalText}>1跑步</Text>
-              </View>
-             </TouchableOpacity>
-
-             <View style={styles.modalButton_off}>
-                <Text style={styles.modalText}>1間</Text>
-              </View>
-
-              <View style={styles.modalButton_off}>
-                <Text style={styles.modalText}>創1</Text>
-              </View>
-           
-          
-          </ImageBackground>
-        </View>
-      </Modal>
+    
 
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -143,9 +105,9 @@ export default function  Indexp() {
         <View style={styles.center}>
 
         <TouchableOpacity
-        onPress={() => {areaAct("taipei"),setTodayMi(0.1)}}
+        onPress={() => navigation.navigate('Taiwan_K')}
         activeOpacity={0.8}
-        onLongPress={() => {setModalVisible1(true);}}
+        onLongPress={() => {setModalVisible1(true)}}
         >
 
         <ImageBackground

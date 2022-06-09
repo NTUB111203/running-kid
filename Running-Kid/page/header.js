@@ -22,7 +22,7 @@ export default function Header() {
       style={styles.money}
       ></Image>
       <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}}>
-      70
+      0
       </Text>
     </View>
 
@@ -32,7 +32,7 @@ export default function Header() {
       style={styles.money}
       ></Image>
       <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}} >
-        60
+        0
       </Text>
     </View>
 

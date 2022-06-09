@@ -14,7 +14,7 @@ function Mission_farm(){
   return(
   <View style={styles.textbox}>
     <Text style={styles.text}>慢跑一公里</Text>
-    <ProgressBar progress={0.5} style={styles.probarStyle} color={'#FEBC5F'}/> 
+    <ProgressBar progress={0.1} style={styles.probarStyle} color={'#FEBC5F'}/> 
     <View style={{flexDirection:"row"}}>
       <Image
       source={require('../../../assets/icon-money.png')}

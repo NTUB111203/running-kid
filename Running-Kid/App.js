@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
 import Tabbars from './page/tabbar';
@@ -10,7 +11,7 @@ import { Taiwan_Qu } from './page/knowlege/taiwan_k/taiwam_qu';
 import Run_solo from './page/Run/run_solo';
 import Run_solo2 from './page/Run/run_solo2';
 
-
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   
@@ -28,11 +29,17 @@ const App = () => {
         
       </ScrollView>
      
-  </SafeAreaView>
+  </SafeAreaView>*/}
     <NavigationContainer>
-       <Tabbars/>
-  </NavigationContainer>*/}
-      <Run_solo2></Run_solo2>
+       <Stack.Navigator screenOptions={{ headerShown: false }}>
+         <Stack.Screen  name="Tabbar" component={Tabbars}/>
+         <Stack.Screen  name="Run_solo" component={Run_solo}/>
+         <Stack.Screen  name="Run_solo2" component={Run_solo2}/>
+         <Stack.Screen name="Taiwan_K" component={Taiwan_k}/>
+         <Stack.Screen name="Taiwan_Qu" component={Taiwan_Qu}/>
+       </Stack.Navigator>
+    </NavigationContainer>
+     
    </>
   );
 }
