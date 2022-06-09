@@ -12,6 +12,7 @@ const styles_run = StyleSheet.create({
       },
       map: {
         width: "100%",
+        height:1300,
         height: Dimensions.get('window').height,
         justifyContent:'flex-end',
         alignItems:'center'

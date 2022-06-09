@@ -8,6 +8,7 @@ import { Taiwan_k } from './knowlege/taiwan_k/taiwan_k';
 import Gift from './Gift/gift';
 import Sport_k from './knowlege/sport_k/sport_k';
 import Game from './Game/game';
+import Run_solo from './Run/run_solo';
 
 
 const Tab = createBottomTabNavigator();
@@ -155,6 +156,10 @@ export default function Tabbars() {
                 </View>
             ),
         }} />
+
+
+
+       
 
         </Tab.Navigator>
     )
