@@ -341,7 +341,7 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="chartSchool"></canvas>
+                                        <canvas id="chartStudent"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -766,7 +766,7 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-school.js"></script>
+    <script src="js/demo/chart-student.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>    
     <script src="js/demo/pie-BMI.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>

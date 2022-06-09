@@ -301,7 +301,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
                                                 第三名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">103</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -319,7 +319,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
                                                 第四名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">207</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

@@ -57,11 +57,11 @@ var myBarChart = new Chart(ctx, {
           unit: 'month'
         },
         gridLines: {
-          display: false,
+          display: true,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 50 //X軸label最大數量
         },
         maxBarThickness: 25,
       }],
