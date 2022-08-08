@@ -249,9 +249,30 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                <div class="container">
+                        <div class="row">
+                            <div class="col">                            
+                                <h1 class="h3 mb-2 text-gray-800">
+                                <i class="fas fa-fw fa-gift"></i>禮品核銷
+                                </h1>
+                            </div>
+                            <div class="col">
+                            
+                            </div>
+                            <div class="col align-right">
+                                <div class="row justify-content-end ">
+                                    <a href="gift-add.php" class=" btn btn-success btn-icon-split " >
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text" style="font-weight:bold;">一鍵核銷</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">禮物兌換統計表</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -263,10 +284,10 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>產品名稱</th>
-                                            <th>產品廠商</th>
-                                            <th>產品廠商電話</th>
-                                            <th>兌換數量</th>
+                                            <th>學生姓名</th>
+                                            <th>學號</th>
+                                            <th>兌換禮物</th>
+                                            <th>核銷(是否領取)</th>
                                             <!-- <th>Start date</th>
                                             <th>Salary</th> -->
                                         </tr>
@@ -286,49 +307,51 @@
                                             <td>鳳梨酥</td>
                                             <td>家鄉糕點</td>
                                             <td>02-22781234</td>
-                                            <td>61</td>
+                                            <td> 
+                                                <input type="checkbox" id="checkbox-circle1" name="check">                                                
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>米蛋糕</td>
                                             <td>米商行</td>
                                             <td>05-22321244</td>
-                                            <td>45</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         <tr>
                                             <td>鳳眼糕</td>
                                             <td>周家糕點</td>
                                             <td>07-22123234</td>
-                                            <td>10</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         <tr>
                                             <td>麻糬</td>
                                             <td>曾記麻糬</td>
                                             <td>03-22098123</td>
-                                            <td>105</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         <tr>
                                             <td>聖女小番茄</td>
                                             <td>喜悅番茄果園</td>
                                             <td>04-22224434</td>
-                                            <td>20</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         <tr>
                                             <td>文旦</td>
                                             <td>御元文旦</td>
                                             <td>06-57781234</td>
-                                            <td>15</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         <tr>
                                             <td>鐵蛋</td>
                                             <td>淡水阿婆</td>
                                             <td>02-57648889</td>
-                                            <td>43</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         <tr>
                                             <td>鳳梨酥</td>
                                             <td>家鄉糕點</td>
                                             <td>02-22781234</td>
-                                            <td>23</td>
+                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
                                         </tr>
                                         
                                     </tbody>
