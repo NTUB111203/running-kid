@@ -106,7 +106,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">禮物兌換項目:</h6>
                         <!-- <a class="collapse-item" href="gift-on.php">商品上架</a> -->
-                        <a class="collapse-item" href="gift-edit.php">禮品編輯</a>
+                        <a class="collapse-item" href="gift.php">禮品編輯</a>
                         <!-- <a class="collapse-item" href="gift-update.php">商品修改</a> -->
                         <a class="collapse-item" href="gift-off.php">禮品核銷</a>
                         <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>

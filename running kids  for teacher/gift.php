@@ -26,6 +26,14 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+        .right {
+            display: flex;
+            align-items: right;
+            justify-content: right;
+            margin-bottom: 0;
+        }
+    </style>
 
 </head>
 
@@ -249,31 +257,44 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                <div class="container">
+                    
+                    <!-- Page Heading -->
+
+                    <div class="container">
                         <div class="row">
                             <div class="col">                            
                                 <h1 class="h3 mb-2 text-gray-800">
-                                <i class="fas fa-fw fa-gift"></i>禮品核銷
+                                <i class="fas fa-fw fa-gift"></i>禮品項目
                                 </h1>
                             </div>
                             <div class="col">
                             
                             </div>
-                            <div class="col align-right">
+                            <div class="col">
                                 <div class="row justify-content-end ">
                                     <a href="gift-add.php" class=" btn btn-success btn-icon-split " >
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
-                                        <span class="text" style="font-weight:bold;">一鍵核銷</span>
+                                        <span class="text" style="font-weight:bold;">新增禮品</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Page Heading -->
                     
+                    <!-- <div class="row">
+                    
+                    <h1 class="h3 mb-2 text-gray-800">禮品項目</h1>
+                    <div class="row justify-content-end">
+                    <a href="gift-on.php" class=" btn btn-success btn-icon-split " >
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text" style="font-weight:bold;">新增禮品</span>
+                    </a>
+                    </div>
+                    </div> -->
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <!-- <div class="card-header py-3">
@@ -284,12 +305,15 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>學生姓名</th>
-                                            <th>學號</th>
-                                            <th>兌換禮物</th>
-                                            <th>核銷(是否領取)</th>
-                                            <!-- <th>Start date</th>
-                                            <th>Salary</th> -->
+                                            <th>禮品名稱</th>
+                                            <th>禮品積分</th>
+                                            <th>禮品數量</th>
+                                            <th>禮品描述</th>
+                                            <th>禮品到期時間</th>
+                                            <th>禮品供應商</th>
+                                            <th>供應商連絡電話</th>                                            
+                                            <th>修改</th>
+                                            <th>刪除</th>
                                         </tr>
                                     </thead>
                                     <!-- <tfoot>
@@ -304,54 +328,26 @@
                                     </tfoot> -->
                                     <tbody>
                                         <tr>
+                                            <!-- 顯示出資料庫資料 -->
                                             <td>鳳梨酥</td>
+                                            <td>100點</td>
+                                            <td>35</td>
+                                            <td>家鄉糕點最有名的就是鳳梨酥喔!</td>
+                                            <td>2022-07-30</td>
                                             <td>家鄉糕點</td>
-                                            <td>02-22781234</td>
-                                            <td> 
-                                                <input type="checkbox" id="checkbox-circle1" name="check">                                                
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>米蛋糕</td>
-                                            <td>米商行</td>
-                                            <td>05-22321244</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>鳳眼糕</td>
-                                            <td>周家糕點</td>
-                                            <td>07-22123234</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>麻糬</td>
-                                            <td>曾記麻糬</td>
-                                            <td>03-22098123</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>聖女小番茄</td>
-                                            <td>喜悅番茄果園</td>
-                                            <td>04-22224434</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>文旦</td>
-                                            <td>御元文旦</td>
-                                            <td>06-57781234</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>鐵蛋</td>
-                                            <td>淡水阿婆</td>
-                                            <td>02-57648889</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>鳳梨酥</td>
-                                            <td>家鄉糕點</td>
-                                            <td>02-22781234</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
+                                            <td>02-22781234</td>    
+                                            <td>
+                                            <a href="gift-edit.php" class=" btn btn-warning btn-icon-split " >                                               
+                                                <span class="text" style="font-weight:bold;">修改</span>
+                                            </a>
+                                            </td>    
+                                            <!-- 連接到gift-change.php -->
+                                            <td>
+                                            <a href="gift-on.php" class=" btn btn-danger btn-icon-split " >                                                
+                                                <span class="text" style="font-weight:bold;">刪除</span>
+                                            </a>
+                                            </td> 
+                                            <!-- 跳出確認刪除按鈕                                                                                                -->
                                         </tr>
                                         
                                     </tbody>
