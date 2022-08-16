@@ -261,26 +261,8 @@
                     <!-- Page Heading -->
 
                     <div class="container">
-                        <div class="row">
-                            <div class="col">                            
-                                <h1 class="h3 mb-2 text-gray-800">
-                                <i class="fas fa-fw fa-gift"></i>禮品項目
-                                </h1>
-                            </div>
-                            <div class="col">
-                            
-                            </div>
-                            <div class="col">
-                                <div class="row justify-content-end ">
-                                    <a href="gift-add.php" class=" btn btn-success btn-icon-split " >
-                                        <span class="icon text-white-50">
-                                            <i class="fas fa-check"></i>
-                                        </span>
-                                        <span class="text" style="font-weight:bold;">新增禮品</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                       
+                           
                     </div>
                     
                     <!-- <div class="row">
@@ -300,7 +282,28 @@
                         <!-- <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary"></h6>
                         </div> -->
+                 
+                        
+                    
                         <div class="card-body">
+                        <div class="row">
+                            <div class="col">                            
+                                <h1 class="h3 mb-2 text-gray-800">
+                                <i class="fas fa-fw fa-gift"></i>禮品項目
+                                </h1>
+                            </div>
+                            <div class="col">
+                                <div class="row justify-content-end ">
+                                    <a href="gift-add.php" class=" btn btn-success btn-icon-split " >
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text" style="font-weight:bold;">新增禮品</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
@@ -309,7 +312,6 @@
                                             <th>禮品積分</th>
                                             <th>禮品數量</th>
                                             <th>禮品描述</th>
-                                            <th>禮品到期時間</th>
                                             <th>禮品供應商</th>
                                             <th>供應商連絡電話</th>                                            
                                             <th>修改</th>
@@ -326,14 +328,18 @@
                                             <th>Salary</th>
                                         </tr>
                                     </tfoot> -->
+
+                                    <?php
+                                       
+                                    ?>
+
                                     <tbody>
                                         <tr>
                                             <!-- 顯示出資料庫資料 -->
                                             <td>鳳梨酥</td>
                                             <td>100點</td>
                                             <td>35</td>
-                                            <td>家鄉糕點最有名的就是鳳梨酥喔!</td>
-                                            <td>2022-07-30</td>
+                                            <td>家鄉糕點最有名的就是鳳梨酥喔!</td>                                            
                                             <td>家鄉糕點</td>
                                             <td>02-22781234</td>    
                                             <td>
@@ -363,13 +369,13 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <!-- <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
-            </footer>
+            </footer> -->
             <!-- End of Footer -->
 
         </div>

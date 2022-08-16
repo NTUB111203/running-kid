@@ -250,10 +250,21 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                 <div class="container">
+                        
+                    </div>
+
+                    <!-- Page Heading -->
+                    
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <!-- <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary"></h6>
+                        </div> -->
+                        <div class="card-body">
                         <div class="row">
                             <div class="col">                            
                                 <h1 class="h3 mb-2 text-gray-800">
-                                <i class="fas fa-fw fa-gift"></i>禮品核銷
+                                <i class="fas fa-fw fa-gift"></i>禮品兌換
                                 </h1>
                             </div>
                             <div class="col">
@@ -265,29 +276,29 @@
                                         <span class="icon text-white-50">
                                             <i class="fas fa-check"></i>
                                         </span>
-                                        <span class="text" style="font-weight:bold;">一鍵核銷</span>
+                                        <span class="text" style="font-weight:bold;">確認兌換</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Page Heading -->
-                    
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <!-- <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"></h6>
-                        </div> -->
-                        <div class="card-body">
+                        <hr>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>學生姓名</th>
                                             <th>學號</th>
-                                            <th>兌換禮物</th>
-                                            <th>核銷(是否領取)</th>
+                                            <th>學生姓名</th>                                            
+                                            <th>禮品名稱</th>
+                                            <th>兌換數量</th>
+                                            <th>兌換日期</th>
+                                            <th>                                            
+                                            <input type="checkbox" name="all" onclick="check_all(this,'c')">
+                                            <!-- 美化 -->
+                                            <!-- 全選/全不選 -->
+                                            已兌換(請打勾)
+                                            </a>
+                                            
+                                            </th>
                                             <!-- <th>Start date</th>
                                             <th>Salary</th> -->
                                         </tr>
@@ -304,54 +315,34 @@
                                     </tfoot> -->
                                     <tbody>
                                         <tr>
-                                            <td>鳳梨酥</td>
-                                            <td>家鄉糕點</td>
-                                            <td>02-22781234</td>
+                                            <td>學號data1</td>
+                                            <td>姓名data1</td>
+                                            <td>禮品名稱data1</td>
+                                            <td>兌換數量data1</td>
+                                            <td>兌換日期data1</td>
                                             <td> 
-                                                <input type="checkbox" id="checkbox-circle1" name="check">                                                
+                                                <input type="checkbox" name="c" value="" />                                               
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>米蛋糕</td>
-                                            <td>米商行</td>
-                                            <td>05-22321244</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
+                                            <td>學號data2</td>
+                                            <td>姓名data2</td>
+                                            <td>禮品名稱data2</td>
+                                            <td>兌換數量data2</td>
+                                            <td>兌換日期data2</td>
+                                            <td> 
+                                                <input type="checkbox" name="c" value="" />                                                
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>鳳眼糕</td>
-                                            <td>周家糕點</td>
-                                            <td>07-22123234</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>麻糬</td>
-                                            <td>曾記麻糬</td>
-                                            <td>03-22098123</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>聖女小番茄</td>
-                                            <td>喜悅番茄果園</td>
-                                            <td>04-22224434</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>文旦</td>
-                                            <td>御元文旦</td>
-                                            <td>06-57781234</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>鐵蛋</td>
-                                            <td>淡水阿婆</td>
-                                            <td>02-57648889</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
-                                        </tr>
-                                        <tr>
-                                            <td>鳳梨酥</td>
-                                            <td>家鄉糕點</td>
-                                            <td>02-22781234</td>
-                                            <td><input type="checkbox" id="checkbox-circle1" name="check"></td>
+                                            <td>學號data3</td>
+                                            <td>姓名data3</td>
+                                            <td>禮品名稱data3</td>
+                                            <td>兌換數量data3</td>
+                                            <td>兌換日期data3</td>
+                                            <td> 
+                                                <input type="checkbox" name="c" value="" />                                           
+                                            </td>
                                         </tr>
                                         
                                     </tbody>
@@ -423,6 +414,15 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <!-- checkbox 全選功能 -->
+    <script type="text/javascript">
+    function check_all(obj,cName)
+    {
+        var checkboxs = document.getElementsByName(cName);
+        for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
+    }
+    </script>
 
 </body>
 
