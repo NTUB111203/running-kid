@@ -61,6 +61,16 @@
                             </div>
                             <form class="user">
                                 <div class="form-group row">
+                                    <div class="col-sm-4 "></div>
+                                    
+                                        <label for="file-upload" class="btn btn-info custom-file-upload selections col-sm-4 text-center align-center">
+                                        <i class="fa fa-cloud-upload"></i> 上傳照片檔案
+                                        </label>
+                                        <input id="file-upload" type="file"/>
+                                    
+                                    <div class="col-sm-4 "></div>
+                                </div>
+                                <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-3 ">
                                         <input type="text" class="form-control form-control-user" id="exampleFirstName"
@@ -91,16 +101,16 @@
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-4 "></div>
                                     
-                                        <label for="file-upload" class="btn btn-info custom-file-upload selections col-sm-6 text-center align-center">
+                                        <label for="file-upload" class="btn btn-info custom-file-upload selections col-sm-4 text-center align-center">
                                         <i class="fa fa-cloud-upload"></i> 上傳照片檔案
                                         </label>
                                         <input id="file-upload" type="file"/>
                                     
-                                    <div class="col-sm-3 "></div>
-                                </div>
+                                    <div class="col-sm-4 "></div>
+                                </div> -->
                                
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
@@ -111,7 +121,7 @@
                                     </div>                                        
                                     <div class="col-sm-5 ">
 
-                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
+                                        <a href="gift.php" class="btn btn-warning btn-user btn-block">
                                             確認新增禮品
                                         </a>
                                     </div>
