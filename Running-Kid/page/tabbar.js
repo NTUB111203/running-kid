@@ -64,10 +64,11 @@ export default function Tabbars() {
                     marginLeft:10,
                     marginRight:10,
                     borderRadius:20,    
-                    borderTopWidth:4,
-                    borderWidth:4,
+                    borderTopWidth:2,
+                    borderWidth:2,
                     borderColor:'#DCDCDC',
                     height:60,
+                    
                 },
             }}
             
