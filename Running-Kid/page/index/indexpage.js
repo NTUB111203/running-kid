@@ -11,12 +11,13 @@ import Modal_index from "./Components/Modal";
 import { render } from "react-dom";
 import RouteNavigator from "../Route/route";
 import StackNavigator  from 'react-navigation';
+import { TouchableWithoutFeedback } from "react-native";
 
 
 export default function  Indexp({navigation}) {
 
   const [modalVisible1, setModalVisible1] = useState(false);
-  
+
 
 
   const [act, areaAct] = useState(0);
@@ -45,6 +46,9 @@ export default function  Indexp({navigation}) {
         }}
         onBackdropPress={() => setModalVisible1(false)}
       >
+
+       
+      <TouchableWithoutFeedback onPress={() => setModalVisible1(false) }>
         <View style={styles.centeredView}>
         <ImageBackground source={require('../../assets/background.png')} style={styles.modalView}>
          
@@ -77,8 +81,10 @@ export default function  Indexp({navigation}) {
               </View>
            
           
-          </ImageBackground>
+        </ImageBackground>
+        
         </View>
+         </TouchableWithoutFeedback>
       </Modal>
 
     
@@ -105,9 +111,9 @@ export default function  Indexp({navigation}) {
         <View style={styles.center}>
 
         <TouchableOpacity
-        onPress={() => navigation.navigate('Taiwan_K')}
+        onLongPress={() => navigation.navigate('Taiwan_K')}
         activeOpacity={0.8}
-        onLongPress={() => {setModalVisible1(true)}}
+        onPress={() => {setModalVisible1(true)}}
         >
 
         <ImageBackground

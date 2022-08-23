@@ -5,64 +5,54 @@ import {ProgressBar} from 'react-native-paper';
 function Textbox_title(){
   return(
   <View style={styles.textbox_title}>
-    <Text style={styles.title}>今日任務</Text>
+    <Text style={styles.title}>禮物兌換-台北特產</Text>
   </View>
   )
 };
 
-function Mission_farm(){
+function Textbox_title2(){
+  return(
+  <View style={styles.textbox_title}>
+    <Text style={styles.title}>台北特產</Text>
+  </View>
+  )
+};
+
+function Gift_farm(){
   return(
   <View style={styles.textbox}>
-    <Text style={styles.text}>慢跑一公里</Text>
-    <ProgressBar progress={0.1} style={styles.probarStyle} color={'#FEBC5F'}/> 
-    <View style={{flexDirection:"row"}}>
-      <Image
-      source={require('../../../assets/icon-money.png')}
-      style={styles.money}/>
-      <Text flex={1} style={{fontSize:20}}> 20 </Text>
-    </View>
+    <Text style={styles.text}>海邊走走</Text>
+    <Image
+      source={require('../../assets/eggr.jpeg')}
+      style={styles.imga}/>
+   
+   
     <TouchableOpacity style={styles.button_off} disabled>
-      <Text style={{fontSize:20,color:"#FFFFFF"}}>領取獎勵</Text>
-    </TouchableOpacity>
-  </View>
-  )
-};
-
-function Mission_farm2(){
-  const showAlert=() =>{
-    Alert.alert(
-       '恭喜你獲得任務獎勵10金幣'
-    )
- }
-  return(
-    
-  <View style={styles.textbox}>
-    <Text style={styles.text}>交一個新朋友</Text>
-    <ProgressBar progress={0} style={styles.probarStyle} color={'#FEBC5F'}/> 
-    <View style={{flexDirection:"row"}}>
+    <View style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}>
       <Image
-      source={require('../../../assets/icon-money.png')}
+      source={require('../../assets/icon-money.png')}
       style={styles.money}/>
-      <Text flex={1} style={{fontSize:20}}> 10 </Text>
+      <Text flex={1} style={{fontSize:20,color:'#ffffff'}}> 40 </Text>
     </View>
-    <TouchableOpacity style={styles.button_off} onPress={showAlert}>
-      <Text style={{fontSize:20,color:"#FFFFFF"}}>領取獎勵</Text>
+      
     </TouchableOpacity>
   </View>
   )
 };
 
 
-export {Textbox_title,Mission_farm,Mission_farm2};
+
+export {Textbox_title,Textbox_title2,Gift_farm};
 
 const styles = StyleSheet.create({
   button_off:{
-    width:250,
+    width:220,
     height:40,
     backgroundColor:"#DADADA",
     justifyContent:"center",
     alignItems:"center",
     fontSize:50,
+    flexDirection:"row",
     borderRadius:20
   },
 
@@ -94,10 +84,10 @@ const styles = StyleSheet.create({
     fontSize:24,
     color:"#117C72",
     fontWeight:"600",
-    marginBottom:10,
+    
   },
   textbox_title:{
-    width:280,
+    width:320,
     height:50,
     borderRadius:20,
     shadowOpacity: 0.2,
@@ -115,7 +105,7 @@ const styles = StyleSheet.create({
 
   textbox:{
     width:280,
-    height:200,
+    height:250,
     borderRadius:20,
     shadowOpacity: 0.2,
     shadowRadius: 1,
@@ -136,7 +126,17 @@ const styles = StyleSheet.create({
     resizeMode:'contain',
     justifyContent:'center',
     alignItems:"center",
-    marginBottom:10
+    
+    
+  },
+  imga:{
+    width:200,
+    height:150,
+    resizeMode:'contain',
+    justifyContent:'center',
+    alignItems:"center",
+    
+    
     
   }
   

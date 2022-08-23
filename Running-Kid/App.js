@@ -17,19 +17,6 @@ const App = () => {
   
 
   return(
-    <>
-    {/*<SafeAreaView style={{flex:1}}>
-      <View style={style.header}>
-        <Header></Header>
-      </View>
-      <ScrollView>
-        <View>
-        <Indexp></Indexp>
-        </View>
-        
-      </ScrollView>
-     
-  </SafeAreaView>*/}
     <NavigationContainer>
        <Stack.Navigator screenOptions={{ headerShown: false }}>
          <Stack.Screen  name="Tabbar" component={Tabbars}/>
@@ -40,7 +27,7 @@ const App = () => {
        </Stack.Navigator>
     </NavigationContainer>
      
-   </>
+   
   );
 }
 

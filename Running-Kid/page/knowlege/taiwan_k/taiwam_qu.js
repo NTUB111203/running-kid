@@ -35,7 +35,7 @@ export  function Taiwan_Qu({navigation}) {
             <Text style={{fontSize:26,marginTop:10,marginBottom:40,color:'red'}}>獲得積分 30 分</Text>
 
             <TouchableOpacity
-              onPress={() => {setModalVisible1(false),navigation.navigate('Tabbar')} }
+              onPress={() => {setModalVisible1(false),navigation.navigate('Tabbar',{point:30})} }
             >
               <View style={{backgroundColor:"#117C72",width:200,height:50,alignItems:'center',justifyContent:'center',borderRadius:20}}>
                 <Text style={{color:'#ffffff',fontSize:22,fontWeight:'700'}}>回到首頁</Text>

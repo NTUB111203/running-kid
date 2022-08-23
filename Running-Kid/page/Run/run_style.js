@@ -12,8 +12,7 @@ const styles_run = StyleSheet.create({
       },
       map: {
         width: "100%",
-        height:1300,
-        height: Dimensions.get('window').height,
+        height: 550,
         justifyContent:'flex-end',
         alignItems:'center'
       },
@@ -23,9 +22,9 @@ const styles_run = StyleSheet.create({
           alignItems:'flex-start',
           padding:20,
           backgroundColor:'#ffffff',
-          width:350,
+          width:400,
           height:250,
-          borderRadius:30,
+          
           borderWidth:1,
           borderColor:'#696969',
           marginBottom:70
