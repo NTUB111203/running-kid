@@ -20,7 +20,7 @@ const styles_TK = StyleSheet.create({
       },
 
       map:{
-        textAlign:'center',
+       
         borderRadius:30,
         alignItems:"center",
         
@@ -37,7 +37,7 @@ const styles_TK = StyleSheet.create({
         borderWidth:3,
         width:250,
         height:250,
-        textAlign:'center',
+     
         borderColor:"#ffffff",
         borderRadius:50,
         alignContent: 'center',

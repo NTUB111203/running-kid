@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import Header from "../header";
+import {Textbox_title,Textbox_title2,Gift_farm} from "./TextBox";
 
 export default function Gift() {
     return (
@@ -13,8 +14,14 @@ export default function Gift() {
              <Header/>
 
              <ImageBackground style={styles.backgroundimg} 
-            source={require('../../assets/GIFT.jpg')}
+            source={require('../../assets/background.png')}
             >
+            <Text></Text>
+            <Textbox_title/>
+           
+            <Gift_farm/>    
+        
+
 
             
             </ImageBackground>

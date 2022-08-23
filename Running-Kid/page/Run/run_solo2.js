@@ -11,17 +11,14 @@ export default function Run_solo2 ({navigation}){
 
             <MapView 
                 style={styles_run.map} 
-                initialRegion={{
-                    latitude:25,
-                    longitude:121,
-                   
-                    
-                }}>
-                <Marker coordinate={{latitude:25,
-                    longitude:121,
-                    }}></Marker> 
+                >
+                
 
-                <View style={styles_run.textbox}>
+                
+
+            </MapView>
+
+            <View style={styles_run.textbox}>
                     <Text style={styles_run.title}>個人跑步：</Text>
                     <View style={{width:310,height:80,marginTop:8,justifyContent:'flex-start',alignItems:'flex-start',borderTopWidth:2,borderColor:'#dcdcdc'}}>
                         <Text style={styles_run.text}>目前距離數：0.1公里</Text>
@@ -33,8 +30,6 @@ export default function Run_solo2 ({navigation}){
                     </TouchableOpacity>
                     
                 </View>
-
-            </MapView>
 
         </SafeAreaView>
     );
