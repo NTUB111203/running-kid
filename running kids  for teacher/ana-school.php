@@ -265,7 +265,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                                 第一名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">二年一班</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">201</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -283,7 +283,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
                                                 第二名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">四年三班</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">101</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -301,7 +301,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
                                                 第三名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">五年四班</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">103</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -319,7 +319,7 @@
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
                                                 第四名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">一年二班</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">207</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -341,12 +341,12 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">全校進步分析</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">當月全校班級里程</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <div class="chart-area">
-                                        <canvas id="chartSchool"></canvas>
+                                        <canvas id="chartBarSchool"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -817,6 +817,7 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-school.js"></script>
+    <script src="js/demo/chart-bar-school.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>    
     <script src="js/demo/pie-BMI.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>

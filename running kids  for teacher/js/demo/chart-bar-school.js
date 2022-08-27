@@ -28,17 +28,17 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
+var ctx = document.getElementById("chartBarSchool");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["1", "2", "3", "4", "5", "6","7", "8", "9", "10", "11", "12","13", "14", "15", "16", "17", "18","19", "20", "21", "22", "23", "24","25", "26", "27", "28", "29", "30","31"],
+    labels: ["102", "304", "201", "401", "101", "506","207", "108", "602", "103"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#36b9cc",
+      hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [2.3, 3, 6, 1, 0, 5.4,2, 3, 1, 3, 5, 2,0.8, 1, 3, 4.2, 4, 1, 2, 3, 1, 3, 5, 3, 6, 1, 0, 5.4,2.7,1.1,4],
+      data: [230, 300, 600, 100, 540,200, 350, 100, 300, 500,],
     }],
   },
   options: {
@@ -57,18 +57,18 @@ var myBarChart = new Chart(ctx, {
           unit: 'month'
         },
         gridLines: {
-          display: false,
+          display: true,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 50 //X軸label最大數量
         },
         maxBarThickness: 25,
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 8,
+          max: 800,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks

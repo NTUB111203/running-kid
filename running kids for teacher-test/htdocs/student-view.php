@@ -161,17 +161,8 @@ require_once 'db_connect.php';
                                                             <div class="col-sm-6 ">
 
 
-                                                                <select name="grade" id="grade" class="form-control selections">
-                                                                <option value = '請選擇'>請選擇</option>
                                                                 
-                                                                    <!-- <option value="">請選擇學校
-                                                                    <option value=".$row["s_name"].">.$row["s_name"].
-                                                                    <option value="學校2">學校2
-                                                                    <option value="學校3">學校3
-                                                                    <option value="學校4">學校4
-                                                                    <option value="學校5">學校5 -->
-                                                                </select>
-                                                                 
+
                                                             </div>
                                                             <div class="col-sm-3 "></div>
                                                         </div>
@@ -242,7 +233,7 @@ require_once 'db_connect.php';
                                                 <div class="col-sm-3 "></div>
                                                 <div class="col-sm-6 ">
 
-                                                    <a href="student-maintain.html"
+                                                    <a href="student-maintain.php"
                                                         class="btn btn-warning btn-user btn-block">
                                                         確認修改
                                                     </a>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>會員註冊</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        
+        function validateForm() {
+            var x = document.forms["registerForm"]["password"].value;
+            var y = document.forms["registerForm"]["password_check"].value;
+            if(x.length<6){
+                alert("密碼長度不足");
+                return false;
+            }
+            if (x != y) {
+                alert("請確認密碼是否輸入正確");
+                return false;
+            }
+        }
+        window.onload=function getSchool(){
+            $.ajax({
+                type: "POST",
+                url: 'getRow.php',
+                dataType: 'json',
+                data: {name:"schoolList"},
+
+                success: function (res) {
+                    $.each(res, function(index,val) {
+                        $("#sch_no").append($("<option></option>").attr("value", index).text(val));
+                    })
+                }
+            });
+        }
+        
+    </script>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+ 
+
+  <body>
+        <div class="container">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+
+        
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">註冊頁面</h1>
+                                </div>
+                                
+                                <form name="registerForm" method="post" action="register_test.php" onsubmit="return validateForm()">
+                                    <div class="form-group row">                 
+                                            <select name="sch_no" id="sch_no" class="form-control selections" required>                                            
+                                                <option value="">請選擇學校
+                                            </select>
+                                        <div class="col-sm-3 "></div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" 
+                                                   name="m_name"  value="" placeholder="姓名"required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <select name="gender" class="form-control selections"required >                                            
+                                                <option value="">生理性別
+                                                <option value="F">女生
+                                                <option value="M">男生
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" 
+                                                   name="phone" id="phone" value="" placeholder="電話"required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="mail" class="form-control form-control-user" 
+                                                   name="mail" id="mail" value="" placeholder="信箱"required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" 
+                                                   name="m_id" id="m_id" value="" placeholder="帳號"required>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control form-control-user" 
+                                                   name="birthday" id="birthday" value="" placeholder="生日"required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                            <input type="password" class="form-control form-control-user" 
+                                            name="password"  id="password" value="" placeholder="輸入介於8~20位數之密碼，需同時含英文和數字，英文不分大小寫"
+                                            autocomplete="off"required>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <input type="password" class="form-control form-control-user" 
+                                        name="repassword" value="" placeholder="再次輸入密碼"
+                                        autocomplete="off"required>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0" >
+                                    <input type="submit" value="註冊" name="submit">
+                                    <input type="reset" value="重設" name="submit">
+                                    </div>
+                                </form>
+
+                                    <!--<div class="col-sm-6 mb-3 mb-sm-0" >
+                                        <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                            註冊
+                                        </a>
+                                    </div>-->
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">忘記密碼?</a>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+    
+        </div>
+    
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
+        
+        
+
+      
+
+  </body>
+
+<body class="bg-gradient-primary">
+    
+    
+</body>
+
+</html>

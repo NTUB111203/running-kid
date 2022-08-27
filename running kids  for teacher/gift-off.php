@@ -7,7 +7,6 @@
 
 <head>
 
-   
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,14 +15,16 @@
     <link rel="icon" href="../Logo/logo-pink.png" type="image/x-icon">
     <title>running kids for teacher</title>
 
-    <!-- Custom fonts for this template-->
+    <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    
-    <!-- Custom styles for this template-->
+
+    <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
@@ -32,7 +33,6 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
     <?php include("sidebar.php"); ?>
 
         <!-- Content Wrapper -->
@@ -45,9 +45,11 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+                    <form class="form-inline">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                    </form>
 
                     <!-- Topbar Search -->
                     <form
@@ -157,7 +159,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -168,7 +171,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -179,7 +183,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -210,8 +215,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">郭明諭老師</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -243,138 +249,119 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                <div class="container">
+                        
+                    </div>
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">班級分析</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                    </div>
-
+                    
+                    <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">請選擇班級</h6>
+                        <!-- <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary"></h6>
+                        </div> -->
+                        <div class="card-body">
+                        <div class="row">
+                            <div class="col">                            
+                                <h1 class="h3 mb-2 text-gray-800">
+                                <i class="fas fa-fw fa-gift"></i>禮品兌換
+                                </h1>
+                            </div>
+                            <div class="col">
+                            
+                            </div>
+                            <div class="col align-right">
+                                <div class="row justify-content-end ">
+                                    <a href="gift-add.php" class=" btn btn-success btn-icon-split " >
+                                        <span class="icon text-white-50">
+                                            <i class="fas fa-check"></i>
+                                        </span>
+                                        <span class="text" style="font-weight:bold;">確認兌換</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>學號</th>
+                                            <th>學生姓名</th>                                            
+                                            <th>禮品名稱</th>
+                                            <th>兌換數量</th>
+                                            <th>兌換日期</th>
+                                            <th>                                            
+                                            <input type="checkbox" name="all" onclick="check_all(this,'c')">
+                                            <!-- 美化 -->
+                                            <!-- 全選/全不選 -->
+                                            已兌換(請打勾)
+                                            </a>
+                                            
+                                            </th>
+                                            <!-- <th>Start date</th>
+                                            <th>Salary</th> -->
+                                        </tr>
+                                    </thead>
+                                    <!-- <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </tfoot> -->
+                                    <tbody>
+                                        <tr>
+                                            <td>學號data1</td>
+                                            <td>姓名data1</td>
+                                            <td>禮品名稱data1</td>
+                                            <td>兌換數量data1</td>
+                                            <td>兌換日期data1</td>
+                                            <td> 
+                                                <input type="checkbox" name="c" value="" />                                               
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>學號data2</td>
+                                            <td>姓名data2</td>
+                                            <td>禮品名稱data2</td>
+                                            <td>兌換數量data2</td>
+                                            <td>兌換日期data2</td>
+                                            <td> 
+                                                <input type="checkbox" name="c" value="" />                                                
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>學號data3</td>
+                                            <td>姓名data3</td>
+                                            <td>禮品名稱data3</td>
+                                            <td>兌換數量data3</td>
+                                            <td>兌換日期data3</td>
+                                            <td> 
+                                                <input type="checkbox" name="c" value="" />                                           
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- PHP 班級 -->
-                    
-                        <?php
-                        $result = "SELECT * FROM class";
-                        $retval=mysqli_query($link, $result);
-                        if ($retval) {
-                            $num = mysqli_num_rows($retval);
-                            
-                                if (mysqli_num_rows($retval) > 0) {
-                                while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class =". $row['class'];
-                                    $retval2=mysqli_query($link, $members);
-                                    $rowMember = mysqli_fetch_assoc($retval2);
-                                    echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
-                                    echo "<div class=\"card border-left-success shadow h-100 py-2\">\n";
-                                    echo "<div class=\"card-body\">\n";
-                                    echo "<div class=\"row no-gutters align-items-center\">\n";
-                                    echo "<div class=\"col mr-2\">\n";
-                                    echo "<div class=\"h1 font-weight-bold text-success text-uppercase mb-1\">\n";
-                                    echo "<h1>".$row["class"]."</h1>";
-                                    echo "</div>\n";
-                                    echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>".$rowMember['member']."人</h5>";
-                                    echo "</div>";
-                                    //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
-                                    //按鈕
-                                    echo "</div>\n";
-                                    echo "<a href=\"ana-class.php?class=".$row['class']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
-                                    echo "<i class=\"fas fa-info-circle\"></i>\n";
-                                    echo "</a>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                        }
-                        }
-                        }
-                        ?>       
-                        
-                        <!-- PHP 班級 -->
-                        <!-- Earnings (Monthly) Card Example -->
-                        <!-- <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                                平均跑步里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">20KM</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <!-- <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-success text-uppercase mb-1">累計跑步里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">450KM</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <!-- <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
-                                                平均跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2.6HR</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <!-- <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-                                                累計跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">68HR</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-
-                    
-                    
-
-                </div> 
+                </div>
                 <!-- /.container-fluid -->
 
-            <!-- </div> -->
+            </div>
             <!-- End of Main Content -->
-            
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>
@@ -419,20 +406,23 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>    
-    <script src="js/sb-admin-2.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-school.js"></script>
-    <script src="js/demo/chart-area-demo.js"></script>    
-    <script src="js/demo/pie-BMI.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <!-- checkbox 全選功能 -->
+    <script type="text/javascript">
+    function check_all(obj,cName)
+    {
+        var checkboxs = document.getElementsByName(cName);
+        for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
+    }
+    </script>
 
 </body>
 

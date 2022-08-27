@@ -245,7 +245,7 @@
                                                 <div class="col-sm-3 "></div>
                                                 <div class="col-sm-6 ">
 
-                                                    <a href="student-maintain.html"
+                                                    <a href="student-view.php"
                                                         class="btn btn-warning btn-user btn-block">
                                                         確認修改
                                                     </a>
