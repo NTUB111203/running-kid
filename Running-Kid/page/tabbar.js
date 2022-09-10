@@ -27,7 +27,7 @@ const Runbutton = ({run,onPress,focused}) => (
                 width:75,
                 height:75,
                 borderRadius:20,
-                borderColor:'#696969',
+                borderColor:'#DCDCDC',
                 borderWidth:2,
                 backgroundColor:'#ffffff'
                 
@@ -68,6 +68,7 @@ export default function Tabbars() {
                     borderWidth:2,
                     borderColor:'#DCDCDC',
                     height:60,
+                    backgroundColor:'#99dd70'
                     
                 },
             }}
@@ -79,7 +80,7 @@ export default function Tabbars() {
                 <View>
                     <Image 
                     source={focused
-                    ? require('../assets/icon-p2.png') :
+                    ? require('../assets/icon-p0.png') :
                     require('../assets/icon-p0.png')}
                     resizeMode='contain'
                     style={{
@@ -98,7 +99,7 @@ export default function Tabbars() {
                 <View>
                     <Image 
                     source={focused
-                    ? require('../assets/icon-m1.png') :
+                    ? require('../assets/icon-m0.png') :
                     require('../assets/icon-m0.png')}
                     resizeMode='contain'
                     style={{
@@ -126,7 +127,7 @@ export default function Tabbars() {
                 <View>
                     <Image 
                     source={focused
-                    ? require('../assets/icon-b1.png') :
+                    ? require('../assets/icon-b0.png') :
                     require('../assets/icon-b0.png')}
                     resizeMode='contain'
                     style={{
@@ -144,7 +145,7 @@ export default function Tabbars() {
                 <View>
                     <Image 
                     source={focused
-                    ? require('../assets/icon-g1.png') :
+                    ? require('../assets/icon-g0.png') :
                     require('../assets/icon-g0.png')}
                     resizeMode='contain'
                     style={{

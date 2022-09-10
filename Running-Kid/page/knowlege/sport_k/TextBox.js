@@ -1,7 +1,7 @@
-import { StyleSheet,View,Text,Image,TouchableOpacity,Alert} from "react-native";
+import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react-native";
 import {ProgressBar} from 'react-native-paper';
-import ReactPlayer from "react-player";
-
+import YoutubePlayer from "react-native-youtube-iframe";
+import { Font } from "expo";
 
 function Textbox_title(){
   return(
@@ -19,15 +19,23 @@ function Textbox_title2(){
   )
 };
 
+
+
+
 function Sport_farm(){
+  
   return(
   <View style={styles.textbox}>
     <Text style={styles.text}>15分鐘暖身運動</Text>
     
-    
-    <ReactPlayer url='https://www.youtube.com/watch?v=HgzGwKwLmgM'/>
+    <YoutubePlayer
+        style={styles.video}
+        height={300}
+        width={320}
+        play={true}
+        videoId={"DslXasYvkak"}
       
-    
+      />
     
   </View>
   )
@@ -70,7 +78,8 @@ const styles = StyleSheet.create({
       textAlign:"center",
       fontSize:30,
       color:"#117C72",
-      fontWeight:"600"
+      fontWeight:"600",
+      fontFamily:'BpmfGenSenRounded-H'
   },
   text:{
     textAlign:"justify",
@@ -78,8 +87,8 @@ const styles = StyleSheet.create({
     color:"#117C72",
     fontWeight:"600",
     marginBottom:15,
-    marginTop:10
-    
+    marginTop:10,
+    fontFamily:'BpmfGenSenRounded-H'
     
   },
   textbox_title:{
@@ -100,8 +109,8 @@ const styles = StyleSheet.create({
   },
 
   textbox:{
-    width:300,
-    height:250,
+    width:350,
+    height:270,
     borderRadius:20,
     shadowOpacity: 0.2,
     shadowRadius: 1,
@@ -125,10 +134,11 @@ const styles = StyleSheet.create({
     alignItems:"center",
     borderRadius:30
     
-    
-    
-  }
+  },
   
+  video:{
+    borderRadius:20
+  }
   
 
 })
