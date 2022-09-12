@@ -1,5 +1,4 @@
 import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react-native";
- import {ProgressBar} from 'react-native-paper';
  import YoutubePlayer from "react-native-youtube-iframe";
  import { Font } from "expo";
 
