@@ -93,6 +93,7 @@ export default function Gift() {
 
                 </View>   
             </Modal>
+
       
             <ScrollView     /* 主畫面 */
               showsVerticalScrollIndicator={false}

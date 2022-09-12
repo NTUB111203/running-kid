@@ -1,6 +1,11 @@
-import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react-native";
+import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} from "react-native";
  import YoutubePlayer from "react-native-youtube-iframe";
  import { Font } from "expo";
+ import {useNavigation} from "@react-navigation/native";
+
+
+
+
 
  function Textbox_title(){
    return(
@@ -10,51 +15,33 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react
    )
  };
 
- function Textbox_title2(){
-   return(
-   <View style={styles.textbox_title}>
-     <Text style={styles.title}>台北特產</Text>
-   </View>
-   )
- };
+ 
 
-
-
-
- function Sport_farm(){
-
-   return(
-   <View style={styles.textbox}>
-     <Text style={styles.text}>15分鐘暖身運動</Text>
-
-     <YoutubePlayer
+ /** <YoutubePlayer
          style={styles.video}
          height={300}
          width={320}
          play={true}
          videoId={"DslXasYvkak"}
 
-       />
+       />  */
 
-   </View>
+
+ function Sport_farm(){
+  const navigation = useNavigation();
+  return(
+    <View style={styles.textbox}>
+     
+    </View>
    )
  };
 
 
 
- export {Textbox_title,Textbox_title2,Sport_farm};
+ export {Textbox_title,Sport_farm};
 
  const styles = StyleSheet.create({
-   button_off:{
-     width:220,
-     height:40,
-     backgroundColor:"#DADADA",
-     justifyContent:"center",
-     alignItems:"center",
-     fontSize:50,
-     flexDirection:"row",
-     borderRadius:20
-   },
+ 
 
    button_on:{
      width:250,
@@ -63,7 +50,8 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react
      justifyContent:"center",
      alignItems:"center",
      fontSize:50,
-     borderRadius:20
+     borderRadius:20,
+     marginTop:5
    },
 
    probarStyle: {
@@ -109,7 +97,7 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react
 
    textbox:{
      width:350,
-     height:270,
+     height:320,
      borderRadius:20,
      shadowOpacity: 0.2,
      shadowRadius: 1,
@@ -137,7 +125,9 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState} from "react
 
    video:{
      borderRadius:20
-   }
+   },
+
+   
 
 
  })

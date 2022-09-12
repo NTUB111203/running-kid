@@ -22,7 +22,7 @@ function Mission_farm(){
       <Text flex={1} style={{fontSize:20}}> 20 </Text>
     </View>
     <TouchableOpacity style={styles.button_off} disabled>
-      <Text style={{fontSize:20,color:"#FFFFFF"}}>領取獎勵</Text>
+      <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRounded-L'}}>領取獎勵</Text>
     </TouchableOpacity>
   </View>
   )
@@ -46,7 +46,7 @@ function Mission_farm2(){
       <Text flex={1} style={{fontSize:20}}> 10 </Text>
     </View>
     <TouchableOpacity style={styles.button_off} onPress={showAlert}>
-      <Text style={{fontSize:20,color:"#FFFFFF"}}>領取獎勵</Text>
+      <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRounded-L'}}>領取獎勵</Text>
     </TouchableOpacity>
   </View>
   )
@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
       textAlign:"center",
       fontSize:30,
       color:"#117C72",
-      fontWeight:"600"
+      fontWeight:"600",
+      fontFamily:'BpmfGenSenRounded-H'
   },
   text:{
     textAlign:"justify",
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     color:"#117C72",
     fontWeight:"600",
     marginBottom:10,
+    fontFamily:'BpmfGenSenRounded-L'
   },
   textbox_title:{
     width:280,
