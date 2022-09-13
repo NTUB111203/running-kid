@@ -11,7 +11,8 @@ const styles = StyleSheet.create({
     text:{
       textAlign:'left',
       fontSize: 18,
-      color:'#696969'
+      color:'#117c72',
+      fontFamily:'BpmfGenSenRounded-H'
     },
   
     backgroundimg:{

@@ -24,13 +24,14 @@ const Runbutton = ({run,onPress,focused}) => (
     >
         <View 
             style={{
-                width:75,
-                height:75,
+                width:80,
+                height:80,
                 borderRadius:20,
-                borderColor:'#696969',
+                borderColor:'#999EA2',
                 borderWidth:2,
-                backgroundColor:'#ffffff'
-                
+                backgroundColor:'#ffffff',
+                justifyContent:'center',
+               alignItems:'center'
             }}
         >
              <Image 
@@ -39,8 +40,8 @@ const Runbutton = ({run,onPress,focused}) => (
                     require('../assets/icon-go1.png')}
                     resizeMode='contain'
                     style={{
-                        width:75,
-                        height:75,
+                        width:65,
+                        height:65,
                         justifyContent:'center',
                         alignContent:'center',
                     }}
