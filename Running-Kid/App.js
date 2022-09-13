@@ -12,6 +12,8 @@ import Run_solo from './page/Run/run_solo';
 import Run_solo2 from './page/Run/run_solo2';
 import Sport_k from './page/knowlege/sport_k/sport_k';
 import Sport_kF from './page/knowlege/sport_k/sport_kF';
+import Shop from './page/Game/shop';
+import Game from './page/Game/game';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,8 @@ const App = () => {
          <Stack.Screen name="Taiwan_Qu" component={Taiwan_Qu}/>
          <Stack.Screen name="Sport_k" component={Sport_k}/>
          <Stack.Screen name="Sport_kF" component={Sport_kF}/>
+         <Stack.Screen name="Shop" component={Shop}/>
+         <Stack.Screen name="Game" component={Game}/>
        </Stack.Navigator>
     </NavigationContainer>
      
