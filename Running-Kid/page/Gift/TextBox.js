@@ -1,5 +1,9 @@
-import { StyleSheet,View,Text,Image,TouchableOpacity,Alert} from "react-native";
-import {ProgressBar} from 'react-native-paper';
+import { useState } from "react";
+import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,TouchableWithoutFeedback} from "react-native";
+import {Modal, ProgressBar} from 'react-native-paper';
+
+
+
 
 
 function Textbox_title(){
@@ -11,28 +15,49 @@ function Textbox_title(){
 };
 
 function Textbox_title2(){
+ 
   return(
   <View style={styles.textbox_title}>
+   
     <Text style={styles.title}>台北特產</Text>
   </View>
   )
 };
 
+
 function Gift_farm(){
+  const [modalVisible,setModalVisible] = useState(false);
+
   return(
   <View style={styles.textbox}>
-    <Text style={styles.text}>海邊走走</Text>
+
+     <Modal
+      animationType="none"
+      transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+        onBackdropPress={() => setModalVisible(false)}
+      >
+        <TouchableWithoutFeedback onPress={() => setModalVisible1(false) }>
+          <View></View>
+        </TouchableWithoutFeedback>
+        
+    </Modal>
+
+    <Text style={styles.text}>海  邊  走  走</Text>
     <Image
       source={require('../../assets/eggr.jpeg')}
       style={styles.imga}/>
    
    
-    <TouchableOpacity style={styles.button_off} disabled>
+    <TouchableOpacity 
+      style={styles.button_on}
+      onPress={()=>{setModalVisible(true)}}
+    >
     <View style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}>
-      <Image
-      source={require('../../assets/icon-money.png')}
-      style={styles.money}/>
-      <Text flex={1} style={{fontSize:20,color:'#ffffff'}}> 40 </Text>
+      <Text flex={1} style={{fontSize:14,color:'#ffffff',fontFamily:'BpmfGenSenRounded-H'}}> 了解更多 </Text>
     </View>
       
     </TouchableOpacity>
@@ -57,7 +82,7 @@ const styles = StyleSheet.create({
   },
 
   button_on:{
-    width:250,
+    width:150,
     height:40,
     backgroundColor:"#117C72",
     justifyContent:"center",
@@ -75,15 +100,17 @@ const styles = StyleSheet.create({
   },
   title:{
       textAlign:"center",
-      fontSize:30,
+      fontSize:24,
       color:"#117C72",
-      fontWeight:"600"
+      fontWeight:"600",
+      fontFamily:'BpmfGenSenRounded-H'
   },
   text:{
     textAlign:"justify",
-    fontSize:24,
+    fontSize:18,
     color:"#117C72",
     fontWeight:"600",
+    fontFamily:'BpmfGenSenRounded-H'
     
   },
   textbox_title:{
@@ -100,7 +127,8 @@ const styles = StyleSheet.create({
     backgroundColor:'#ffffff',
     justifyContent:"center",
     alignItems:"center",
-    marginBottom:30
+    marginBottom:30,
+   
   },
 
   textbox:{
@@ -117,7 +145,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#ffffff',
     justifyContent:"center",
     alignItems:"center",
-    marginBottom:30
+    marginBottom:20
   },
 
   money:{

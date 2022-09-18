@@ -69,6 +69,11 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BpmfGenSenRounded-L.ttf</string>
+		<string>BpmfGenSenRounded-H.ttf</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
