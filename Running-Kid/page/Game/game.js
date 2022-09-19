@@ -19,25 +19,48 @@ export default function Game({navigation}) {
                 
                 
                 
-                <ImageBackground style={styles.backgroundimg} 
-                source={require('../../assets/background.png')}
-                >
-                    <TouchableOpacity>
-                        <View style={styles.cl_button}>
-                        <Feather name="watch" size={32} color="gray" />
-                        </View>
-                    </TouchableOpacity>
+                <ImageBackground style={styles.backgroundimg}                 >
+                    <View style={{flexDirection:'row',marginTop:10,justifyContent:'flex-end',width:390}}>
+                        <TouchableOpacity onPress={()=> navigation.navigate('Wardrobe')}>
+                            <View style={styles.cl_button}>
+                            <Feather name="watch" size={32} color="gray" />
+                            </View>
+                        </TouchableOpacity>
 
-                    <TouchableOpacity onPress={()=> navigation.navigate('Shop')}>
-                        <View style={styles.cl_button}>
-                        <Feather name="shopping-cart" size={25} color="gray" />
-                        </View>
-                    </TouchableOpacity>
+                        <TouchableOpacity onPress={()=> navigation.navigate('Shop')}>
+                            <View style={styles.cl_button}>
+                            <Feather name="shopping-cart" size={25} color="gray" />
+                            </View>
+                        </TouchableOpacity>
               
+                    </View>
+                    <View style ={styles.view_center}>
+                        <ImageBackground 
+                            style={styles.img_center}
+                            source={require('../../assets/game_man/body0.png')}
+                        >
+                            <ImageBackground
+                             style={styles.img_center}
+                             source={require('../../assets/game_man/hair0.png')}>
+                                <ImageBackground
+                                    style={styles.img_center}
+                                    source={require('../../assets/game_man/pant0.png')}>
+                                        <ImageBackground
+                                          style={styles.img_center}
+                                          source={require('../../assets/game_man/vest0.png')}>
+                                        
+                                         </ImageBackground>
+                                </ImageBackground>
+                            </ImageBackground>
+           
+
+                        </ImageBackground>
+                        
+                    </View>
+         
             
                 </ImageBackground>
                 </ScrollView>
         </SafeAreaView> 
     )
 }
-

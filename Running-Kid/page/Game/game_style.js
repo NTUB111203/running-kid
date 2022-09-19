@@ -8,21 +8,20 @@ const styles = StyleSheet.create({
       height:50,
       backgroundColor:"#ffffff",
       marginRight:10,
-      marginTop:10,
       borderWidth:1,
       borderRadius:20,
       borderColor:"#696969",
       justifyContent:"center",
-      alignItems:"center"
+      alignItems:"center",
   },
 
   backgroundimg:{
       width:"100%",
-      height:800,
+      height:700,
       flex:1,
-      flexDirection: "row",
       justifyContent: 'flex-end',
-      alignItems: "flex-start"
+      alignItems: "flex-start",
+      backgroundColor:'#fff2e0'
     },
     text:{
       textAlign:'left',
@@ -146,6 +145,58 @@ const styles = StyleSheet.create({
       borderRadius:15,
       alignItems:"center",
       justifyContent:"space-between"
+    },
+
+    textbox_title:{
+      width:280,
+      height:50,
+      borderRadius:20,
+      shadowOpacity: 0.2,
+      shadowRadius: 1,
+      shadowOffset: {
+      height: 3,
+      width: 2,
+      flex:1
+      },
+      backgroundColor:'#ffffff',
+      justifyContent:"center",
+      alignItems:"center",
+      marginBottom:30
+    },  
+    title:{
+      textAlign:"center",
+      fontSize:30,
+      color:"#117C72",
+      fontWeight:"600",
+      fontFamily:'BpmfGenSenRounded-H'
+    },
+    
+    shop_textbox:{
+      width:160,
+      height:160,
+      borderColor:'#dcdcdc',
+      borderWidth:2,
+      borderRadius:10,
+      backgroundColor:'#ffffff',
+      marginLeft:24,
+  
+    },
+    img_center:{
+      flex:2,
+      width:460 ,
+      height:500,
+      resizeMode:'cover',
+      justifyContent: 'center',
+      alignItems: 'center',
+     
+    },
+    view_center:{
+      flex: 2,
+      height:400,
+      width:400,
+      resizeMode:"cover",
+      justifyContent: 'center',
+      alignItems: 'center',
     }
     
   

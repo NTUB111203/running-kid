@@ -19,14 +19,51 @@ export default function Shop({navigation}) {
                 
                 
                 
-                <ImageBackground style={[styles.backgroundimg,{justifyContent:'flex-start'}]} 
+                <ImageBackground style={[styles.backgroundimg,{justifyContent:'flex-start',flexDirection:'column'}]} 
                 source={require('../../assets/background.png')}
                 >
-                    <TouchableOpacity onPress={() => navigation.goBack()}>
-                        <View style={[styles.cl_button,{marginLeft:10}]}>
-                        <Feather name="arrow-left" size={32} color="gray" />
+                    <View style={{marginTop:10,flexDirection:'row'}}>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <View style={[styles.cl_button,{marginLeft:10}]}>
+                            <Feather name="arrow-left" size={32} color="gray" />
+                            </View>
+                        </TouchableOpacity>
+
+                        <View style={styles.textbox_title}>
+                            <Text style={styles.title}>配件商店</Text>
                         </View>
-                    </TouchableOpacity>
+                    </View>
+
+                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                        <View style={styles.shop_textbox}>
+                            
+                        </View>
+
+                        <View style={styles.shop_textbox}>
+
+                        </View>
+                    </View>
+
+                    <View  style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
+                            <View style={styles.shop_textbox}>
+                            
+                            </View>
+    
+                            <View style={styles.shop_textbox}>
+    
+                            </View>
+                    </View>
+
+                    <View  style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
+                            <View style={styles.shop_textbox}>
+                            
+                            </View>
+    
+                            <View style={styles.shop_textbox}>
+    
+                            </View>
+                    </View>
+                   
 
                     
               
