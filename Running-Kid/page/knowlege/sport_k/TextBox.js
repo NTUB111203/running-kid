@@ -31,7 +31,16 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} 
   const navigation = useNavigation();
   return(
     <View style={styles.textbox}>
-     
+        <Text style={styles.text}>15分鐘暖身運動</Text>
+                <Image
+                    source={require('../../../assets/BeSport.png')}
+                    style={{width:220,height:200}}
+                />
+                <TouchableOpacity onPress={() => navigation.navigate('Sport_kF')}>
+                    <View style={styles.button_on}>
+                    <Text style={{fontSize:24,color:'#ffffff',fontFamily:'BpmfGenSenRounded-L'}}>開 始 學 習</Text>
+                    </View>
+                </TouchableOpacity>
     </View>
    )
  };

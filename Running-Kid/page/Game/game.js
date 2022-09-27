@@ -4,8 +4,9 @@ import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Header from "../header";
+import styles from "./game_style";
 
-export default function Game() {
+export default function Game({navigation}) {
     return (
         <SafeAreaView >
       
@@ -18,51 +19,48 @@ export default function Game() {
                 
                 
                 
-                <ImageBackground style={styles.backgroundimg} 
-                source={require('../../assets/game.jpg')}
-                >
+                <ImageBackground style={styles.backgroundimg}                 >
+                    <View style={{flexDirection:'row',marginTop:10,justifyContent:'flex-end',width:390}}>
+                        <TouchableOpacity onPress={()=> navigation.navigate('Wardrobe')}>
+                            <View style={styles.cl_button}>
+                            <Feather name="watch" size={32} color="gray" />
+                            </View>
+                        </TouchableOpacity>
 
-               <TouchableOpacity>
-                    <View style={styles.cl_button}>
-                    <Feather name="watch" size={32} color="gray" />
+                        <TouchableOpacity onPress={()=> navigation.navigate('Shop')}>
+                            <View style={styles.cl_button}>
+                            <Feather name="shopping-cart" size={25} color="gray" />
+                            </View>
+                        </TouchableOpacity>
+              
                     </View>
-                </TouchableOpacity>
+                    <View style ={styles.view_center}>
+                        <ImageBackground 
+                            style={styles.img_center}
+                            source={require('../../assets/game_man/body0.png')}
+                        >
+                            <ImageBackground
+                             style={styles.img_center}
+                             source={require('../../assets/game_man/hair0.png')}>
+                                <ImageBackground
+                                    style={styles.img_center}
+                                    source={require('../../assets/game_man/pant0.png')}>
+                                        <ImageBackground
+                                          style={styles.img_center}
+                                          source={require('../../assets/game_man/vest0.png')}>
+                                        
+                                         </ImageBackground>
+                                </ImageBackground>
+                            </ImageBackground>
+           
 
-                <TouchableOpacity>
-                    <View style={styles.cl_button}>
-                    <Feather name="shopping-cart" size={25} color="gray" />
+                        </ImageBackground>
+                        
                     </View>
-                </TouchableOpacity>
-                
+         
+            
                 </ImageBackground>
                 </ScrollView>
         </SafeAreaView> 
     )
 }
-
-const styles=StyleSheet.create({
-    
-    cl_button:{
-        width:50,
-        height:50,
-        backgroundColor:"#ffffff",
-        marginRight:10,
-        marginTop:10,
-        borderWidth:1,
-        borderRadius:20,
-        borderColor:"#696969",
-        justifyContent:"center",
-        alignItems:"center"
-    },
-
-    backgroundimg:{
-        width:"100%",
-        height:650,
-        flex:1,
-        flexDirection: "row",
-        justifyContent: 'flex-end',
-        alignItems: "flex-start"
-    
-        
-      },
-})
