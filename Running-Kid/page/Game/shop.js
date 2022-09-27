@@ -36,31 +36,31 @@ export default function Shop({navigation}) {
 
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                         <View style={styles.shop_textbox}>
-                            
+                            <Text>頭髮</Text>
                         </View>
 
                         <View style={styles.shop_textbox}>
-
+                            <Text>表情</Text>
                         </View>
                     </View>
 
                     <View  style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
                             <View style={styles.shop_textbox}>
-                            
+                                <Text>上衣</Text>
                             </View>
     
                             <View style={styles.shop_textbox}>
-    
+                                <Text>下衣</Text>
                             </View>
                     </View>
 
                     <View  style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
                             <View style={styles.shop_textbox}>
-                            
+                                <Text>姿勢</Text>
                             </View>
     
                             <View style={styles.shop_textbox}>
-    
+                                <Text>鞋子</Text>
                             </View>
                     </View>
                    

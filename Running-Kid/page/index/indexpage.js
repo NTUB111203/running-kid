@@ -97,7 +97,7 @@ export default function  Indexp({navigation}) {
        <Header/>
       
         <ImageBackground style={styles.backgroundimg} 
-        source={require('../../assets/background.png')}
+       
         >
         <View style={styles.textbox}>
           <Text style={styles.text}>   今日里程數 {today_mi} 公里</Text>
@@ -134,9 +134,6 @@ export default function  Indexp({navigation}) {
 
         </View>
 
-        <View flex={1}>
-          <Text >----------歷史紀錄----------</Text>
-        </View>
     
         </ImageBackground>     
       </ScrollView>

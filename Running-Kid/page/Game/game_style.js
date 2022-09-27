@@ -179,6 +179,8 @@ const styles = StyleSheet.create({
       borderRadius:10,
       backgroundColor:'#ffffff',
       marginLeft:24,
+      justifyContent:'center',
+      alignItems:'center'
   
     },
     img_center:{
@@ -197,6 +199,16 @@ const styles = StyleSheet.create({
       resizeMode:"cover",
       justifyContent: 'center',
       alignItems: 'center',
+    },
+    textbox:{
+      width:350,
+      height:600,
+      backgroundColor:'#ffffff',
+      borderWidth:1,
+      borderColor:'#696969',
+      borderRadius:20,
+      alignItems:'center',
+      justifyContent:'flex-start'
     }
     
   

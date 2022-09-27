@@ -47,7 +47,7 @@ export default function Header() {
     flex:1,
     justifyContent: "space-around",
     alignItems:"center",
-    backgroundColor:'#FFFAEE',
+    backgroundColor:'#FAF0E6',
     borderBottomColor:'#dcdcdc',
     flexDirection:"row",
     borderBottomWidth:2

@@ -48,6 +48,7 @@ const Runbutton = ({run,onPress,focused}) => (
                     />
             {run}
         </View>
+      
        
     </TouchableOpacity>
 );
@@ -97,6 +98,7 @@ export default function Tabbars() {
         <Tab.Screen name='Mission'component={Mission} options={{
             tabBarIcon:({focused}) =>(
                 <View>
+                 
                     <Image 
                     source={focused
                     ? require('../assets/icon-m1.png') :
@@ -117,8 +119,8 @@ export default function Tabbars() {
         options={{
            tabBarButton:(props) =>(
                <Runbutton { ... props}/>
-            )
-        }
+            ),
+           }
 } 
         />
 
