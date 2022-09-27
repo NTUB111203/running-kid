@@ -12,6 +12,7 @@ session_start();
 // }
 
 $m_name=$_SESSION["m_name"];
+
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
 //echo "<tr>";
@@ -61,60 +62,15 @@ $m_name=$_SESSION["m_name"];
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                   <!-- Page Heading -->
-                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">學生分析</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                    </div>
-
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">請選擇學生</h6>
-                        </div>
-                    </div>
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-1 text-gray-800">Other Utilities</h1>
+                    <p class="mb-4">Bootstrap's default utility classes can be found on the official <a
+                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities
+                        below were created to extend this theme past the default utility classes built into Bootstrap's
+                        framework.</p>
 
                     <!-- Content Row -->
                     <div class="row">
-
-                    <!-- PHP 班級 -->
-                    <?php
-                        $result = "SELECT * FROM members where identity='S'";
-
-                        $retval=mysqli_query($link, $result);
-                        if ($retval) {
-                            $num = mysqli_num_rows($retval);
-                            
-                                if (mysqli_num_rows($retval) > 0) {
-                                while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class =". $row['class'];
-                                    $retval2=mysqli_query($link, $members);
-                                    $rowMember = mysqli_fetch_assoc($retval2);
-                                    echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
-                                    echo "<div class=\"card border-left-warning shadow h-100 py-2\">\n";
-                                    echo "<div class=\"card-body\">\n";
-                                    echo "<div class=\"row no-gutters align-items-center\">\n";
-                                    echo "<div class=\"col mr-2\">\n";
-                                    echo "<div class=\"h1 font-weight-bold text-warning text-uppercase mb-1\">\n";
-                                    echo "<h1>".$row["m_name"]."</h1>";
-                                    echo "</div>\n";
-                                    echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>班級:".$row['class']."</h5>";
-                                    echo "</div>";
-
-                                    echo "</div>\n";
-                                    echo "<a href=\"ana-student.php?class=".$row['class']. "\" class=\"btn btn-warning btn-circle btn-lg\">\n";
-                                    echo "<i class=\"fas fa-info-circle\"></i>\n";
-                                    echo "</a>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    echo "</div>\n";
-                                    }
-                                }
-                            }
-                        ?>
-
 
                         <div class="col-lg-6">
 
