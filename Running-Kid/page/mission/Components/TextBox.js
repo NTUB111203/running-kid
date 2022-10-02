@@ -38,14 +38,14 @@ function Mission_farm2(){
     
   <View style={styles.textbox}>
     <Text style={styles.text}>交一個新朋友</Text>
-    <ProgressBar progress={0} style={styles.probarStyle} color={'#FEBC5F'}/> 
+    <ProgressBar progress={1} style={styles.probarStyle} color={'#FEBC5F'}/> 
     <View style={{flexDirection:"row"}}>
       <Image
       source={require('../../../assets/icon-money.png')}
       style={styles.money}/>
       <Text flex={1} style={{fontSize:20}}> 10 </Text>
     </View>
-    <TouchableOpacity style={styles.button_off} onPress={showAlert}>
+    <TouchableOpacity style={styles.button_on} onPress={showAlert}>
       <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRounded-L'}}>領取獎勵</Text>
     </TouchableOpacity>
   </View>

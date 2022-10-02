@@ -44,10 +44,10 @@ export default function Game({navigation}) {
                              source={require('../../assets/game_man/hair0.png')}>
                                 <ImageBackground
                                     style={styles.img_center}
-                                    source={require('../../assets/game_man/pant0.png')}>
+                                    source={require('../../assets/game_man/short0.png')}>
                                         <ImageBackground
                                           style={styles.img_center}
-                                          source={require('../../assets/game_man/vest0.png')}>
+                                          source={require('../../assets/game_man/pant0.png')}>
                                         
                                          </ImageBackground>
                                 </ImageBackground>

@@ -59,26 +59,10 @@ export default function  Indexp({navigation}) {
               onPress={() => {setModalVisible1(false),setTodayMi(0.1),areaAct('taipei'),navigation.navigate('Run_solo')}}
             >
               <View style={styles.modalButton_on}>
-                <Text style={styles.modalText}>個人跑步</Text>
+                <Text style={styles.modalText}>開始跑步</Text>
               </View>
              </TouchableOpacity>
 
-             <TouchableOpacity
-              style={{ ...styles.openButton}}
-              disabled={true}
-              onPress={() => {
-                setModalVisible2(true);
-                setModalVisible1(!modalVisible1);
-              }}
-            >
-             <View style={styles.modalButton_off}>
-                <Text style={styles.modalText}>加入房間</Text>
-              </View>
-              </TouchableOpacity>
-
-              <View style={styles.modalButton_off}>
-                <Text style={styles.modalText}>創立房間</Text>
-              </View>
            
           
         </ImageBackground>
@@ -121,13 +105,11 @@ export default function  Indexp({navigation}) {
           source={require('./img/taiwan.png')}
           >
 
-          <Image
+          <ImageBackground
           style={styles.taiwan_part} 
           source={imageSource}
           />
 
-
-       
 
           </ImageBackground>
         </TouchableOpacity>

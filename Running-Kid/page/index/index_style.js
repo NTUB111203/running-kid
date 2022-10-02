@@ -19,10 +19,7 @@ const styles = StyleSheet.create({
       width:'100%',
       height:750,
       flex:1,
-      left:0,
-      right:0,
-      top:0,
-      bottom:0,
+     marginLeft:0,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor:'#7AB8CC'
@@ -47,7 +44,8 @@ const styles = StyleSheet.create({
   
     taiwan:{
       flex:2,
-      width:320,
+      width:330,
+      marginLeft:40,
       height:500,
       resizeMode:'cover',
       justifyContent: 'center',
@@ -56,7 +54,7 @@ const styles = StyleSheet.create({
   
     taiwan_part:{
       flex:2,
-      width:320,
+      width:300,
       marginRight:2,
       marginBottom:35,
       height:500,
@@ -68,7 +66,7 @@ const styles = StyleSheet.create({
     center:{
       flex: 2,
       height:500,
-      width:320,
+      width:330,
       resizeMode:"cover",
       justifyContent: 'center',
       alignItems: 'center',
@@ -116,7 +114,7 @@ const styles = StyleSheet.create({
     modalView: {
       margin: 20,
       width:300,
-      height:350,
+      height:150,
       backgroundColor: "white",
       borderRadius:50,
       overflow: 'hidden',

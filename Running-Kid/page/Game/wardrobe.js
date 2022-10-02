@@ -49,11 +49,11 @@ export default function Wardrobe({navigation}) {
                             </TouchableOpacity>
                             <TouchableOpacity>
                                 <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>下衣</Text>
+                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>下著</Text>
                                 </View>
                             </TouchableOpacity>
                         </View>
-                        <View style={{width:340,flex:1,flexDirection:'row',justifyContent:'space-around'}}>
+                        <View style={{width:340,flex:1,flexDirection:'row',justifyContent:'space-around',borderBottomWidth:1,borderColor:'#696969',paddingBottom:10}}>
                             <TouchableOpacity>
                                 <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
                                     <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>表情</Text>
@@ -71,23 +71,24 @@ export default function Wardrobe({navigation}) {
                             </TouchableOpacity>
                         </View>
                         <View style={{flex:4,justifyContent:'flex-start',flexDirection:'row'}}>
-                            <View style={{flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
+                            <View style={{flex:1,borderRadius:20,alignItems:'center',justifyContent:'center',borderWidth:2}}>
                                 <Image
                                     source={require('../../assets/game_man/hair0.png')}
                                     style={{width:150,height:100}}></Image>
-                                <Text>20元</Text>
+                                    <Text style={{fontFamily:'BpmfGenSenRounded-H',marginTop:10}}>配戴中</Text>
+                              
                             </View>
                         <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                             <Image
-                                    source={require('../../assets/game_man/hair0.png')}
+                                    source={require('../../assets/game_man/hair1.png')}
                                     style={{width:150,height:100}}></Image>
-                                    <Text>30元</Text>
+                                   
                         </View>
                             <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                             <Image
-                                    source={require('../../assets/game_man/hair0.png')}
+                                    source={require('../../assets/game_man/hair2.png')}
                                     style={{width:150,height:100}}></Image>
-                                    <Text>50元</Text>
+                                    
                             </View>
 
                         </View>
@@ -95,29 +96,24 @@ export default function Wardrobe({navigation}) {
                           
                                 <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                                 <Image
-                                        source={require('../../assets/game_man/hair0.png')}
+                                        source={require('../../assets/game_man/hair3.png')}
                                         style={{width:150,height:100}}></Image>
-                                        <Text>50元</Text>
+                                        
                                 </View>
                            
                           
                                 <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
-                                <Image
-                                        source={require('../../assets/game_man/hair0.png')}
-                                        style={{width:150,height:100}}></Image>
-                                        <Text>50元</Text>
+                              
                                 </View>
                            
                            
                                 <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
-                                <Image
-                                        source={require('../../assets/game_man/hair0.png')}
-                                        style={{width:150,height:100}}></Image>
-                                        <Text>50元</Text>
+            
                                 </View>
                            
 
                         </View>
+
                         <View style={{flex:4,justifyContent:'space-around',flexDirection:'row'}}>
                             <View style={{width:100,flex:1,borderRadius:20}}></View>
                             <View style={{width:100,flex:1,borderRadius:20}}></View>
