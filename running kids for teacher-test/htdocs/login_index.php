@@ -34,7 +34,7 @@
                     </button>
                     <!-- Logo -->
                     <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="../Logo/logo-pink.png" width="50px">
+                    <img src="Logo/logo-pink.png" width="50px">
                     </div>
                     <div class="sidebar-brand-text mx-3">孩是要運動</div>
                     <!-- Topbar Search -->
@@ -161,7 +161,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login_index.php">Logout</a>
                 </div>
             </div>
         </div>
@@ -180,10 +180,6 @@
 
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
