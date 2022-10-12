@@ -89,7 +89,7 @@ $m_name=$_SESSION["m_name"];
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>會員編號</th>
+                                            <th>學號</th>
                                                 <th>姓名</th>
                                                 <th>性別</th>
                                                 <th>生日</th>
@@ -115,13 +115,23 @@ $m_name=$_SESSION["m_name"];
                                     <tbody>
                                         <tr>
                                             <?php
-                                                $result = "SELECT * FROM members where class= ".$_GET["class"];
-                                               
+                                           //$result = "SELECT * FROM members where identity='S'";
+                                            switch ($_GET['class']) {
+                                                case 201:
+                                                    $class_no = 2;
+                                                    break;
+                                                case 101:
+                                                    $class_no = 1;
+                                                    break;
+                                            }
+                                             
+                                             $result = "SELECT * FROM members where class_no= ".$class_no;
+                                            
                                                 $retval=mysqli_query($link, $result); 
                                                 
                                                 if ($retval) {
                                                     $num = mysqli_num_rows($retval);
-                                                   
+
                                                        if (mysqli_num_rows($retval) > 0) {
                                                         while ($row = mysqli_fetch_assoc($retval)) {
                                                             
@@ -297,6 +307,7 @@ $m_name=$_SESSION["m_name"];
                                         <tbody>
                                             <tr>
                                             <?php
+                                               
                                                 $result = "SELECT * FROM members where class= ".$_GET["class"];
 
                                                 $retval=mysqli_query($link, $result); 

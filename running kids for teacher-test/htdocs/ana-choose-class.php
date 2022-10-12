@@ -90,7 +90,7 @@ $m_name=$_SESSION["m_name"];
                             
                                 if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class =". $row['class'];
+                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
                                     $retval2=mysqli_query($link, $members);
                                     $rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";

@@ -5,17 +5,20 @@ echo $_POST['sch_no'];
     $m_name = $_POST['m_name'];
     $gender = isset($_POST['gender'])? $_POST['gender'] : 'F';
     $gender = $_POST['gender'];
+    $identity = isset($_POST['identity'])? $_POST['identity'] : 'T';
+    $identity = $_POST['identity'];
     $phone = $_POST['phone'];
     $mail = $_POST['mail'];
     $birthday = $_POST['birthday'];
     $m_id = $_POST['m_id'];
 	$password = $_POST['password'];
     $class = $_POST["class"];
+    $m_id = $_POST['m_id'];
 
 	
 
-$sql = "INSERT INTO members(sch_no,identity,m_name,gender,phone,mail,birthday,m_id,password,class) VALUES ('$sch_no','T','$m_name','$gender','$phone','$mail','$birthday'
-,'$m_id','$password','1')";
+$sql = "INSERT INTO members(sch_no,class_no,identity,m_name,gender,phone,mail,birthday,m_id,password) 
+        VALUES ('$sch_no','$class_no','$identity','$m_name','$gender','$phone','$mail','$birthday','$m_id','$password')";
 if(mysqli_query($link,$sql)){
     echo "註冊成功!!";
 }else{

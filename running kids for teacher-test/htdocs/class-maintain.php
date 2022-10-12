@@ -97,7 +97,7 @@ $m_name=$_SESSION["m_name"];
                                             <th>年級</th>
                                             <th>班別</th>
                                             <th>人數</th>
-                                            <th>狀態</th>
+                                         
                                         </tr>
                                     </thead>
                                      
@@ -111,16 +111,14 @@ $m_name=$_SESSION["m_name"];
                                                            
                                                                if (mysqli_num_rows($retval) > 0) {
                                                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                                                    $members = "select count(*)as member from members where class =". $row['class'];
+                                                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
                                                                     $retval2=mysqli_query($link, $members);
                                                                     $rowMember = mysqli_fetch_assoc($retval2);
                                                                     // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
                                                                     echo "<th>".$row["semester"]."</th>";
                                                                     echo "<th>".$row["grade"]."</th>";
-                                                                    echo "<th>".$row["class"]."</th>";
+                                                                    echo "<th>".$row["class_no"]."</th>";
                                                                     echo "<th>".$rowMember['member']."</th>";
-                                                
-                                                                    echo "<th style=\"color: rgb(0, 87, 248);\">現任班級</th>\n";
                                                                     echo '</tr>';
                                                                 }
                                                             }

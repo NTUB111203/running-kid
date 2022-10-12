@@ -176,7 +176,7 @@ $m_name=$_SESSION["m_name"];
                                                </td>    
                                                <!-- 連接到gift-change.php -->
                                                <td>
-                                               <a href="gift-on.php" class=" btn btn-danger btn-icon-split " >                                                
+                                               <a href="gift-delete.php" class=" btn btn-danger btn-icon-split " >                                                
                                                    <span class="text" style="font-weight:bold;">刪除</span>
                                                </a>
                                                </td> 

@@ -3,7 +3,7 @@
 require_once 'DataBase.php';
 
 // Define variables and initialize with empty values
-$m_id=$_POST["m_id"];
+$mail=$_POST["mail"];
 $password=$_POST["password"];
 // $repassword=$_POST["repassword"];
 
@@ -11,7 +11,7 @@ $password=$_POST["password"];
 $password_hash=password_hash($password,PASSWORD_DEFAULT);
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $sql = "SELECT * FROM members WHERE m_id ='".$m_id."'";
+    $sql = "SELECT * FROM members WHERE mail ='".$mail."'";
     $result=mysqli_query($link,$sql);
     $row = mysqli_fetch_assoc($result);
     // print_r(mysqli_fetch_assoc($result));
