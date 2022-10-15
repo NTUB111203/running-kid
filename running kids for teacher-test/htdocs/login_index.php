@@ -96,7 +96,7 @@
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <button class="btn btn-primary btn-user btn-block" type="submit">login</button>
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">登入</button>
                                             
                                         <hr>
                                         <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
