@@ -12,6 +12,8 @@ session_start();
 // }
 
 $m_name=$_SESSION["m_name"];
+$class = $_GET['id'];
+
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
@@ -64,7 +66,8 @@ $m_name=$_SESSION["m_name"];
 
                      <!-- Page Heading -->
                      <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">班級分析</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><?php echo $class ?>班級分析</h1>
+                        
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
