@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 const Runbutton = ({run,onPress,focused}) => (
     <TouchableOpacity
         style={{
-            top:-5,
+            top:-20,
             justifyContent:'center',
             alignContent:'center',
         }}
@@ -88,7 +88,7 @@ export default function Tabbars() {
                         width:40,
                         height:40,
                         alignItems:"center",
-                        marginTop:25
+                       
                     }}
                     />
                   
@@ -108,7 +108,7 @@ export default function Tabbars() {
                         width:40,
                         height:40,
                         alignItems:"center",
-                        marginTop:25
+                       
                     }}
                     />
                   
@@ -136,7 +136,7 @@ export default function Tabbars() {
                         width:40,
                         height:40,
                         alignItems:"center",
-                        marginTop:25             }}
+                                     }}
                     />
                   
                 </View>
@@ -154,7 +154,7 @@ export default function Tabbars() {
                         width:40,
                         height:40,
                        alignItems:"center",
-                       marginTop:25                    }}
+                              }}
                     />
                   
                 </View>

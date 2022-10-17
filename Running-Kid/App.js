@@ -15,6 +15,7 @@ import Sport_kF from './page/knowlege/sport_k/sport_kF';
 import Shop from './page/Game/shop';
 import Game from './page/Game/game';
 import Wardrobe from './page/Game/wardrobe';
+import { TGOS_map } from './page/knowlege/taiwan_k/webview';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ const App = () => {
          <Stack.Screen name="Shop" component={Shop}/>
          <Stack.Screen name="Game" component={Game}/>
          <Stack.Screen name="Wardrobe" component={Wardrobe}/>
+         <Stack.Screen name="TGOS_map" component={TGOS_map}/>
        </Stack.Navigator>
     </NavigationContainer>
      

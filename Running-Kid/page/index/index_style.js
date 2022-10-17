@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
       textAlign:'left',
       fontSize: 18,
       color:'#117c72',
-      fontFamily:'BpmfGenSenRounded-H'
+      marginTop:-15,
+      fontFamily:'BpmfGenSenRoundedH'
     },
   
     backgroundimg:{
