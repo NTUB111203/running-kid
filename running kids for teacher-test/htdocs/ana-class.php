@@ -1,7 +1,9 @@
 <?php
 /*連接資料庫*/
 require_once 'DataBase.php';
+?>
 
+<?php
 // Initialize the session
 session_start();
  
@@ -114,11 +116,12 @@ $class_no = $_GET['id'];
                                             where record.m_id in
                                             (SELECT members.m_id FROM runningkids.class
                                             inner join members on class.class_no=members.class_no
-                                            where  members.identity='S' and members.class_no =)" .$_GET['id'] ;
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
                                             $retval=mysqli_query($link, $result);
-                                            echo($retval);
+                                            $rowMember = mysqli_fetch_assoc($retval);
+                                            echo "<p>".$rowMember["totalDistance"]."KM</p>";
                                             ?>
-                                            200KM
+                                            <!-- KM -->
                                             </div>
                                         </div>
                                         <!-- <div class="col-auto">
