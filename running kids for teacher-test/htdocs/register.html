@@ -60,11 +60,12 @@
           dataType: "json",
           data: { 
             school:$("#sch_no").val(),
-            class:$("#class").val(),
+            class:$("#class_no").val(),
             id:$("#m_id").val(),
             password: $("#password").val(),
             name:$("#m_name").val(),
             gender:$("#gender").val(),
+            identity:$("#identity").val(),
             phone:$("#phone").val(),
             mail:$("#mail").val(),
             bir:$("#birthday").val(),
@@ -201,8 +202,8 @@
                             <input
                               type="text"
                               class="form-control form-control-user"
-                              name="class"
-                              id="class"
+                              name="class_no"
+                              id="class_no"
                               value=""
                               placeholder="請輸入您的處室或班級"
                               required
@@ -215,6 +216,18 @@
                               class="form-control form-control-user"
                               name="m_id"
                               id="m_id"
+                              value=""
+                              placeholder="請輸入您的教師編號"
+                              required
+                            />
+                          </div>
+
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control form-control-user"
+                              name="mail"
+                              id="mail"
                               value=""
                               placeholder="請輸入您的帳號(請使用學校信箱)"
                               required
@@ -248,6 +261,14 @@
                           </div>
 
                           <div class="form-group">
+                            <select name="gender" class="form-control selections"required >                                            
+                              <option value="">身分
+                              <option value="PE">體育組公用帳號
+                              <option value="T">導師
+                          </select>
+                          </div>
+
+                          <div class="form-group">
                             <input 
                               type="text" 
                               class="form-control form-control-user" 
@@ -270,10 +291,7 @@
                             name="phone" id="phone" value="" placeholder="電話"required>
                           </div>
 
-                          <div class="form-group">
-                            <input type="mail" class="form-control form-control-user" 
-                            name="mail" id="mail" value="" placeholder="信箱"required>
-                          </div>
+                        
 
                           <div class="form-group">
                             <input type="date" class="form-control form-control-user" 

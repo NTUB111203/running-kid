@@ -90,7 +90,7 @@ $m_name=$_SESSION["m_name"];
                             
                                 if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class =". $row['class'];
+                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
                                     $retval2=mysqli_query($link, $members);
                                     $rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
@@ -107,7 +107,7 @@ $m_name=$_SESSION["m_name"];
                                     //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
                                     //按鈕
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-class.php?class=".$row['class']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-class.php?id=".$row['class_no']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";

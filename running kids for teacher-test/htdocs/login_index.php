@@ -81,8 +81,8 @@
                                     </div>
                                     <form class="user" method="post" action="login.php">
                                         <div class="form-group">
-                                            <input type="text" name="m_id" class="form-control form-control-user"
-                                                id="m_id" aria-describedby="emailHelp"
+                                            <input type="text" name="mail" class="form-control form-control-user"
+                                                id="mail" aria-describedby="emailHelp"
                                                 placeholder="請輸入您的帳號(使用您的信箱)">
                                         </div>
                                         <div class="form-group">
@@ -96,7 +96,7 @@
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <button class="btn btn-primary btn-user btn-block" type="submit">login</button>
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">登入</button>
                                             
                                         <hr>
                                         <!-- <a href="index.html" class="btn btn-google btn-user btn-block">

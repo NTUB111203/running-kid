@@ -8,7 +8,7 @@ import styles from "./game_style";
 
 export default function Game({navigation}) {
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{paddingTop:30}}>
       
             <ScrollView
                 showsVerticalScrollIndicator={false}

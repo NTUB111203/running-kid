@@ -12,13 +12,17 @@ import { render } from "react-dom";
 import RouteNavigator from "../Route/route";
 import StackNavigator  from 'react-navigation';
 import { TouchableWithoutFeedback } from "react-native";
-
+import { useFonts } from "../font";
+import AppLoading from 'expo-app-loading';
 
 export default function  Indexp({navigation}) {
 
   const [modalVisible1, setModalVisible1] = useState(false);
 
-
+  const [fontsLoaded, setFontsLoaded] = useState(false)
+  const LoadFonts = async () => {
+    await useFonts();
+  };
 
   const [act, areaAct] = useState(0);
   const [mi, setTodayMi] = useState(0);
@@ -32,6 +36,18 @@ export default function  Indexp({navigation}) {
   }
   if(mi !== 0){
     today_mi = mi
+  }
+
+ 
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
   }
   
  
@@ -80,7 +96,7 @@ export default function  Indexp({navigation}) {
         stickyHeaderIndices={[0]}>
        <Header/>
       
-        <ImageBackground style={styles.backgroundimg} 
+        <ImageBackground style={[styles.backgroundimg,{height:1200}]} 
        
         >
         <View style={styles.textbox}>
@@ -95,6 +111,8 @@ export default function  Indexp({navigation}) {
         <View style={styles.center}>
 
         <TouchableOpacity
+      
+        
         onLongPress={() => navigation.navigate('Taiwan_K')}
         activeOpacity={0.8}
         onPress={() => {setModalVisible1(true)}}
@@ -108,15 +126,22 @@ export default function  Indexp({navigation}) {
           <ImageBackground
           style={styles.taiwan_part} 
           source={imageSource}
+          >
+            <ImageBackground
+          style={styles.taiwan_part} 
+          source={require('./img/A3.png')}
           />
+          </ImageBackground>
+
+          
 
 
           </ImageBackground>
         </TouchableOpacity>
 
-        </View>
 
-    
+        </View>
+      
         </ImageBackground>     
       </ScrollView>
   </SafeAreaView>

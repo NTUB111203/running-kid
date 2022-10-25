@@ -87,9 +87,9 @@ $m_name=$_SESSION["m_name"];
                             
                                 if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class =". $row['class'];
+                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
                                     $retval2=mysqli_query($link, $members);
-                                    $rowMember = mysqli_fetch_assoc($retval2);
+                                    //$rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
                                     echo "<div class=\"card border-left-warning shadow h-100 py-2\">\n";
                                     echo "<div class=\"card-body\">\n";
@@ -99,7 +99,7 @@ $m_name=$_SESSION["m_name"];
                                     echo "<h1>".$row["m_name"]."</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>班級:".$row['class']."</h5>";
+                                    echo "<h5>年級:".$row['class_no']."</h5>";
                                     echo "</div>";
 
                                     echo "</div>\n";

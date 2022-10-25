@@ -37,7 +37,7 @@ const styles_TK = StyleSheet.create({
         borderWidth:3,
         width:250,
         height:250,
-     
+        fontFamily:'BpmfGenSenRounded-H',
         borderColor:"#ffffff",
         borderRadius:50,
         alignContent: 'center',
@@ -49,7 +49,8 @@ const styles_TK = StyleSheet.create({
         alignItems:'center',
         fontSize:30,
         color:"#117C72",
-        fontWeight:"600"
+        fontWeight:"600",
+        fontFamily:'BpmfGenSenRounded-H',
     },
 
     textbox_image:{
@@ -60,6 +61,7 @@ const styles_TK = StyleSheet.create({
 
     textbox_title:{
         marginLeft:5,
+        fontFamily:'BpmfGenSenRounded-H',
         marginRight:25,
         width:280,
         height:50,
@@ -125,16 +127,16 @@ const styles_TK = StyleSheet.create({
 
     textbox_back:{
         marginLeft:-20,
-        width:50,
-        height:50,
-        borderRadius:20,
+        width:40,
+        height:40,
+        borderRadius:10,
         backgroundColor:'#ffffff',
         justifyContent:"center",
         alignItems:"center",
         marginBottom:30,
         marginTop:10,
         borderWidth:2,
-        borderColor:"#dadada"
+        borderColor:"#696969"
     },
 
     button_on:{
