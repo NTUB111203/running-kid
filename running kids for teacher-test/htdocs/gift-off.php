@@ -30,7 +30,7 @@ $m_name=$_SESSION["m_name"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Other Utilities</title>
+    <title>禮物兌換</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -123,7 +123,34 @@ $m_name=$_SESSION["m_name"];
                                         </tr>
                                     </tfoot> -->
                                     <tbody>
-                                        <tr>
+                                    <?php
+                                           $result = "SELECT * FROM student_exchange as a 
+                                           LEFT JOIN members as b ON a.student_id = b.m_id
+                                           LEFT JOIN gift as c ON a.gift_no = c.gift_no";
+                                           $retval=mysqli_query($link, $result); 
+                                                           
+                                           if ($retval) {
+                                               $num = mysqli_num_rows($retval);
+                                                              
+                                               if (mysqli_num_rows($retval) > 0) {
+                                                    while ($row = mysqli_fetch_assoc($retval)) {
+                                                        //$members = "select count(*)as member from members where class =". $row['class'];
+                                                        //$retval2=mysqli_query($link, $members);
+                                                        //$rowMember = mysqli_fetch_assoc($retval2);
+                                                                                // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
+                                                        echo "<th>".$row["m_id"]."</th>";
+                                                        echo "<th>".$row["m_name"]."</th>";
+                                                        echo "<th>".$row["gift"]."</th>";
+                                                        echo "<th>".$row['exchange_qty']."</th>";
+                                                        echo "<th>".$row["exchange_date"]."</th>";
+                                                        echo "<th>".$row['exchange_status']."</tr>";
+                                                    }
+                                                }
+                                            }   //echo "<th style=\"color: rgb(0, 87, 248);\">現任班級</th>\n"
+                           
+                                       ?>
+
+                                        <!-- <tr>
                                             <td>學號data1</td>
                                             <td>姓名data1</td>
                                             <td>禮品名稱data1</td>
@@ -152,7 +179,7 @@ $m_name=$_SESSION["m_name"];
                                             <td> 
                                                 <input type="checkbox" name="c" value="" />                                           
                                             </td>
-                                        </tr>
+                                        </tr> -->
                                         
                                     </tbody>
                                 </table>
