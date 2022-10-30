@@ -91,7 +91,7 @@ $class_no = $_GET['id'];
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">本月班級紀錄</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">班級紀錄</h6>
                         </div>
                     </div>
                     <!-- Content Row -->
@@ -104,12 +104,12 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                            平均跑步里程
+                                            累計跑步里程
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             
                                             
-                                            <!-- bug -->
+                                            <!-- 累計跑步里程 -->
                                             <?php 
                                             $result = "SELECT sum(record.distance) as totalDistance FROM runningkids.record
                                             inner join members on members.m_id=record.m_id
@@ -118,9 +118,10 @@ $class_no = $_GET['id'];
                                             inner join members on class.class_no=members.class_no
                                             where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
                                             $retval=mysqli_query($link, $result);
-                                            $rowMember = mysqli_fetch_assoc($retval);
-                                            echo "<p>".$rowMember["totalDistance"]."KM</p>";
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            echo "<p>".$rowClass["totalDistance"]."KM</p>";
                                             ?>
+                                            
                                             <!-- KM -->
                                             </div>
                                         </div>
@@ -139,8 +140,47 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
-                                                累計跑步里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">450KM</div>
+                                                平均跑步里程</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <!-- 以下為SQL班級人數 -->
+                                            <?php 
+                                            $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            $retval=mysqli_query($link, $result);
+                                            
+                                             $rowClass = mysqli_fetch_assoc($retval);
+                                             echo "<p>".$rowClass["classMembers"]."人</p>";
+                                            ?>
+
+                                            <?php 
+                                            $result = "SELECT sum(record.distance) as totalDistance FROM runningkids.record
+                                            inner join members on members.m_id=record.m_id
+                                            where record.m_id in
+                                            (SELECT members.m_id FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            echo "<p>".$rowClass["totalDistance"]."KM</p>";
+
+                                            $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            $retval=mysqli_query($link, $result);
+                                            
+                                             $rowClass = mysqli_fetch_assoc($retval);
+                                             echo "<p>".$rowClass["classMembers"]."人</p>";
+                                             echo (float)$rowClass["totalDistance"]/(float)$rowClass["classMembers"];
+                                            ?>
+
+                                            
+                                            
+                                            
+
+                                        
+
+                                        </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -161,6 +201,7 @@ $class_no = $_GET['id'];
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">2.6HR</div>
                                         </div>
                                         <!-- <div class="col-auto">
+                                            
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div> -->
                                     </div>
@@ -176,7 +217,19 @@ $class_no = $_GET['id'];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
                                                 累計跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">68HR</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php 
+                                            $result = "SELECT sum(timestampdiff(minute, r_datetime, end_time)) as totalTime FROM runningkids.record
+                                            inner join members on members.m_id=record.m_id
+                                            where record.m_id in
+                                            (SELECT members.m_id FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            echo "<p>".$rowClass["totalTime"]."分鐘</p>";
+                                            ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
