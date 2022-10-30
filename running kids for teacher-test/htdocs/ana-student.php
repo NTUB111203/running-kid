@@ -12,6 +12,7 @@ session_start();
 // }
 
 $m_name=$_SESSION["m_name"];
+$m_id = $_GET['id'];
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
@@ -66,7 +67,23 @@ $m_name=$_SESSION["m_name"];
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         
                     <!-- FIX改成相對的學生姓名 -->
-                        <h1 class="h3 mb-0 text-gray-800">學生FIX個人分析</h1>
+                        <h1 class="h3 mb-0 text-gray-800">
+                        學生
+                            <?php 
+                            $result = "SELECT * FROM members where m_id=".$_GET['id'];
+                            $retval=mysqli_query($link, $result);
+                            if ($retval) {
+                                $num = mysqli_num_rows($retval);
+                                if (mysqli_num_rows($retval) > 0){
+                                    while ($row = mysqli_fetch_assoc($retval)) {
+                                        echo $row["m_name"];
+                                        // echo "<h1>".$row["grade"]."</h1>";
+                                    }
+                                }
+                            }    
+                            ?>
+                        個人分析
+                        </h1>
                         <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
@@ -469,7 +486,9 @@ $m_name=$_SESSION["m_name"];
     <?php 
         
         $query = $link->query("
-            SELECT m_id,distance,r_datetime FROM runningkids.record;
+            SELECT m_id,distance,r_datetime FROM runningkids.record
+            where m_id=" .$_GET['id']. "
+            ;
         ");
 
         foreach($query as $data){

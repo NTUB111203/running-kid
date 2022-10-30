@@ -103,7 +103,7 @@ $m_name=$_SESSION["m_name"];
                                     echo "</div>";
 
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-student.php?name=".$row['m_name']. "\" class=\"btn btn-warning btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-student.php?id=".$row['m_id'].  "\" class=\"btn btn-warning btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
