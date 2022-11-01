@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
-import { SafeAreaView,StyleSheet,View,ScrollView} from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { SafeAreaView,StyleSheet,View,ScrollView,Text} from 'react-native';
 import Tabbars from './page/tabbar';
 import Header from './page/header';
 import Indexp from './page/index/indexpage';
@@ -16,12 +16,31 @@ import Shop from './page/Game/shop';
 import Game from './page/Game/game';
 import Wardrobe from './page/Game/wardrobe';
 import { TGOS_map } from './page/knowlege/taiwan_k/webview';
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 
+
+console.disableYellowBox = true;
 const Stack = createNativeStackNavigator();
 
-const App = () => {
-  
 
+
+
+const App = () => {
+  const [fontsLoaded] = useFonts({
+    'BpmfGenSenRoundedH': require('./assets/BpmfGenSenRounded-H.ttf'),
+    'BpmfGenSenRoundedL': require('./assets/BpmfGenSenRounded-L.ttf')
+  })
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+       
+      />
+    );
+  }
+ 
+  
   return(
     <NavigationContainer>
        <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -38,8 +57,7 @@ const App = () => {
          <Stack.Screen name="TGOS_map" component={TGOS_map}/>
        </Stack.Navigator>
     </NavigationContainer>
-     
-   
+    
   );
 }
 

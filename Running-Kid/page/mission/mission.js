@@ -1,11 +1,17 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import Header from "../header";
 import {Textbox_title,Mission_farm,Mission_farm2} from "./Components/TextBox";
 
 export default function Mission() {
+    const [AreaPadding,setpadding] = useState(0);
+
+    useEffect(() => {
+    if(Platform.OS=='android'){
+        setpadding(30);
+    }})
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{paddingTop:AreaPadding}}>
       
             <ScrollView
               showsVerticalScrollIndicator={false}

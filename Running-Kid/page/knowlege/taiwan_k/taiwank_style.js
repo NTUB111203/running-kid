@@ -37,7 +37,7 @@ const styles_TK = StyleSheet.create({
         borderWidth:3,
         width:250,
         height:250,
-        fontFamily:'BpmfGenSenRounded-H',
+        
         borderColor:"#ffffff",
         borderRadius:50,
         alignContent: 'center',
@@ -50,7 +50,7 @@ const styles_TK = StyleSheet.create({
         fontSize:30,
         color:"#117C72",
         fontWeight:"600",
-        fontFamily:'BpmfGenSenRounded-H',
+       
     },
 
     textbox_image:{
@@ -61,7 +61,7 @@ const styles_TK = StyleSheet.create({
 
     textbox_title:{
         marginLeft:5,
-        fontFamily:'BpmfGenSenRounded-H',
+       
         marginRight:25,
         width:280,
         height:50,

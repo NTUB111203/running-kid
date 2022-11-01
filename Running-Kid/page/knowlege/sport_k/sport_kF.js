@@ -1,13 +1,32 @@
-import React from "react";
+import React,{useState} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,TouchableOpacity} from "react-native";
 import Header from "../../header";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Feather } from "@expo/vector-icons";
-import { Sport_farm } from "./TextBox";
+import { useFonts } from '../../font';
+import AppLoading from 'expo-app-loading';
+import { WebView } from "react-native-webview";
+
 
 
 
 export default function Sport_kF({navigation}) {
+    /*{===============字體載入===============
+  const [fontsLoaded,setFontsLoaded] = useState(false)
+  const LoadFonts = async () => {
+    await useFonts();
+  };
+
+  if (!fontsLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadFonts}
+        onFinish={() => setFontsLoaded(true)}
+        onError={(err) => console.log(err)}
+      />
+    );
+  }
+  /*{====================================}*/
     return (
         <SafeAreaView >
       
@@ -46,29 +65,28 @@ export default function Sport_kF({navigation}) {
                     <Text style={styles.textbox_title}>第一招：屈膝抱腿</Text>
                     <Text style={styles.text}>挺胸，背挺直，雙手抱膝(如果怕跌倒可以扶牆)</Text>
                 </View>
+
                 <View style={styles.textbox}>
                     <Text style={styles.textbox_title}>第二招：弓箭步胸椎轉體</Text>
                     <Text style={styles.text}>腳踩弓箭步，膝蓋不點地，肚子要穩住，記得以轉胸為主，頭往後方看</Text>
                 </View>
+
                 <View style={styles.textbox}>
                     <Text style={styles.textbox_title}>第三招：上肢肩膀伸展</Text>
                     <Text style={styles.text}>因為跑步時手臂也會跟著晃動，所以雙手也是需要暖身的喔！記得挺胸不要駝背。</Text>
                 </View>
 
-                <View style={[styles.textbox_Video]}>
+                <View style={[styles.textbox_Video]} >
                     <Text style={[styles.textbox_title,{marginBottom:15}]}>觀看影片</Text>
-                    <YoutubePlayer
+                   {/*<YoutubePlayer
                         height={300}
                         width={320}
                         play={true}
                         videoId={"DslXasYvkak"}
-                    />
+                    /> */} 
                 </View>
                 
-                
-                   
-                
-                
+                  
             </ImageBackground>
             </ScrollView>
         </SafeAreaView> 
@@ -89,13 +107,13 @@ const styles=StyleSheet.create({
       },
     
     title:{
-        fontFamily:'BpmfGenSenRounded-H',
+        fontFamily:'BpmfGenSenRoundedH',
         fontSize:24,
         color:'#117c72',
         marginLeft:35
     },
     textbox_title:{
-        fontFamily:'BpmfGenSenRounded-H',
+        fontFamily:'BpmfGenSenRoundedH',
         fontSize:18,
         color:'#117c72',
         marginTop:20,
@@ -119,7 +137,7 @@ const styles=StyleSheet.create({
         },
     },
     text:{
-        fontFamily:'BpmfGenSenRounded-L',
+        fontFamily:'BpmfGenSenRoundedL',
         lineHeight:20,
         letterSpacing:3,
         fontSize:14,

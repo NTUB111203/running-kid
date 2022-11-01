@@ -9,18 +9,40 @@ import {
     SafeAreaView,
     TouchableWithoutFeedback,
     Modal,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Header from "../header";
+import AppLoading from "expo-app-loading";
+import useFonts  from '../font'
 
 export default function Gift() {
 
     const [modalVisible,setModalVisible] = useState(false);
     const [giftquantity,setgiftquantity] = useState(0);
+    const [fontsLoaded, setFontsLoaded] = useState(false)
+    const LoadFonts = async () => {
+        await useFonts();
+    };
+
+    if (!fontsLoaded) {
+        return (
+        <AppLoading
+            startAsync={LoadFonts}
+            onFinish={() => setFontsLoaded(true)}
+            onError={(err) => console.log(err)}
+        />
+        );
+    }
+
+    let AreaPadding=0;
+    if(Platform.OS=='android'){
+        AreaPadding=30;
+    }
   
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{paddingTop:AreaPadding}}>
             <Modal      /* 彈出選擇數量視窗 */
             animationType="none"
             transparent={true}
@@ -47,7 +69,7 @@ export default function Gift() {
                                 source={require('../../assets/eggr.jpeg')}
                                 style={styles.imgb}
                             />
-                            <Text style={{fontFamily:'BpmfGenSenRounded-L',lineHeight:20,letterSpacing:3}}>
+                            <Text style={{fontFamily:'BpmfGenSenRoundedL',lineHeight:20,letterSpacing:3,marginTop:-15}}>
                             海邊走走最暢銷的明星商品. 
                             蛋捲餅皮無添加水及牛奶稀釋，
                             使用洗選蛋與純紐西蘭安佳奶油調製
@@ -56,7 +78,7 @@ export default function Gift() {
                             每一口都是讓人無法抵擋的美味!!
                             </Text>
 
-                            <View style={{flexDirection:'row',height:50,width:250,borderColor:'#000000',borderWidth:1,borderRadius:9,marginTop:20,justifyContent:'space-around',alignItems:'center'}}>
+                            <View style={{flexDirection:'row',height:50,width:250,borderColor:'#000000',borderWidth:1,borderRadius:9,marginTop:15,justifyContent:'space-around',alignItems:'center'}}>
                                 
                                 <TouchableOpacity 
                                     style={{flex:1,alignItems:'center',backgroundColor:'#DCDCDC',height:48,justifyContent:'center',borderTopLeftRadius:9,borderBottomLeftRadius:9}}
@@ -83,7 +105,7 @@ export default function Gift() {
 
                             <TouchableOpacity onPress={() => {setModalVisible(false),setgiftquantity(0)}}>
                                 <View style={styles.modal_button}>
-                                    <Text style={{color:'#ffffff',fontSize:26,fontFamily:'BpmfGenSenRounded-L'}}>確認兌換</Text>
+                                    <Text style={{color:'#ffffff',fontSize:24,fontFamily:'BpmfGenSenRoundedL',marginTop:-25}}>確認兌換</Text>
                                 </View>
                             </TouchableOpacity>
                             
@@ -121,7 +143,7 @@ export default function Gift() {
                             onPress={()=>{setModalVisible(true)}}
                         >
                             <View style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}>
-                                <Text flex={1} style={{fontSize:14,color:'#ffffff',fontFamily:'BpmfGenSenRounded-H'}}> 我 要 兌 換 </Text>
+                                <Text flex={1} style={{fontSize:14,color:'#ffffff',fontFamily:'BpmfGenSenRoundedH',marginTop:-15}}> 我 要 兌 換 </Text>
                             </View>
                         
                         </TouchableOpacity>
@@ -149,10 +171,11 @@ const styles=StyleSheet.create({
 
       title:{
         textAlign:"center",
-        fontSize:24,
+        fontSize:22,
         color:"#117C72",
-        fontWeight:"600",
-        fontFamily:'BpmfGenSenRounded-H'
+        fontWeight:"500",
+        fontFamily:'BpmfGenSenRoundedH',
+        marginTop:-30
     },
     textbox_title:{
         width:320,
@@ -174,9 +197,10 @@ const styles=StyleSheet.create({
       text:{
         textAlign:"justify",
         fontSize:24,
+        marginTop:-30,
         color:"#117C72",
         fontWeight:"600",
-        fontFamily:'BpmfGenSenRounded-H'
+        fontFamily:'BpmfGenSenRoundedH'
         
       },
       textbox:{

@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
+import React, { useState,useEffect } from "react";
+import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,Platform} from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
@@ -7,8 +7,16 @@ import Header from "../header";
 import styles from "./game_style";
 
 export default function Game({navigation}) {
+    
+    const [AreaPadding,setpadding] = useState(0);
+
+    useEffect(() => {
+    if(Platform.OS=='android'){
+        setpadding(30);
+    }})
+
     return (
-        <SafeAreaView style={{paddingTop:30}}>
+        <SafeAreaView style={{paddingTop:AreaPadding}}>
       
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -29,6 +37,7 @@ export default function Game({navigation}) {
 
                         <TouchableOpacity onPress={()=> navigation.navigate('Shop')}>
                             <View style={styles.cl_button}>
+                                
                             <Feather name="shopping-cart" size={25} color="gray" />
                             </View>
                         </TouchableOpacity>
