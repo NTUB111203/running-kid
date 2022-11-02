@@ -5,13 +5,16 @@ import Header from "../header";
 import space from './img/A0.png';
 import taipei from './img/A2.png';
 import styles from './index_style';
-import { TouchableWithoutFeedback } from "react-native";
 /*{import { useFonts } from "../font";}*/
 import { useFonts } from "expo-font";
 import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
+import { useIsFocused } from "@react-navigation/native"; 
+ 
 
 export default function  Indexp({navigation}) {
+
+  const focus = useIsFocused();  
 
   const [modalVisible1, setModalVisible1] = useState(false);
   const [AreaPadding,setpadding] = useState(0);
@@ -26,6 +29,12 @@ export default function  Indexp({navigation}) {
   const [act, areaAct] = useState(0);
   const [mi, setTodayMi] = useState(0);
 
+  const [todaydis, setdis] = useState([]);
+
+
+  let Data= {'m_id':10902};
+ 
+
   let imageSource = space;
   let today_mi=0;
 
@@ -37,9 +46,31 @@ export default function  Indexp({navigation}) {
   
 
   useEffect(() => {
-  if(Platform.OS=='android'){
-      setpadding(30);
-  }})
+    if(Platform.OS=='android'){
+        setpadding(30);
+    }
+    getdis();
+    if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
+      getdis();
+   };
+    console.log();
+  },[focus])
+
+  const getdis = () => {
+    try {
+      fetch('http://140.131.114.154/api/index.php', {
+        method: 'POST',
+        headers:
+        {'Accept': 'application/json',
+        'Content-Type': 'application/json'},
+        body: JSON.stringify(Data)
+      })
+      .then ((response)=>response.json())
+      .then ((response)=> {setdis(response[0].todaydis)})
+      ;    
+   } catch (error) {
+    console.error(error);
+  }}
 
  
 
@@ -68,7 +99,7 @@ export default function  Indexp({navigation}) {
        
         >
         <View style={styles.textbox}>
-          <Text style={styles.text}>   今日里程數 {today_mi} 公里</Text>
+          <Text style={styles.text}>   今日里程數 {todaydis} 公里</Text>
         </View>
         
         <TouchableOpacity

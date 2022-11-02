@@ -76,15 +76,7 @@ export default function Sport_kF({navigation}) {
                     <Text style={styles.text}>因為跑步時手臂也會跟著晃動，所以雙手也是需要暖身的喔！記得挺胸不要駝背。</Text>
                 </View>
 
-                <View style={[styles.textbox_Video]} >
-                    <Text style={[styles.textbox_title,{marginBottom:15}]}>觀看影片</Text>
-                   {/*<YoutubePlayer
-                        height={300}
-                        width={320}
-                        play={true}
-                        videoId={"DslXasYvkak"}
-                    /> */} 
-                </View>
+                
                 
                   
             </ImageBackground>

@@ -55,6 +55,7 @@ const App = () => {
          <Stack.Screen name="Game" component={Game}/>
          <Stack.Screen name="Wardrobe" component={Wardrobe}/>
          <Stack.Screen name="TGOS_map" component={TGOS_map}/>
+         <Stack.Screen name="Indexp" component={Indexp}/>
        </Stack.Navigator>
     </NavigationContainer>
     

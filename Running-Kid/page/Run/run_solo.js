@@ -6,6 +6,7 @@ import MapView ,{ Polyline,AnimatedRegion,Marker,PROVIDER_GOOGLE} from 'react-na
 import haversine from 'haversine-distance';
 
 
+
 const LOCATION_TRACKING = 'location-tracking';
 
 const { width, height } = Dimensions.get("window");
@@ -15,6 +16,8 @@ const LONGITUDE = -122.4324;
 const LATITUDE_DELTA = 0.0062;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 var mi=0;
+var st='';
+var en='';
 
 export default function Run_solo ({navigation}){
     
@@ -24,10 +27,70 @@ export default function Run_solo ({navigation}){
     const [routeCoordinates,setcoor] = useState([]);
     const [distanceTravelled,setdistanceTravelled] = useState(0);
     const [prevLatLng,setprevLat] = useState({});
-    const [beLatLng,setbeLatLng] = useState([]);
+    const [m_id,setmid] = useState(0);
+    const [r_datetime,setstarttime] = useState('');
+    const [c_no,setcno] = useState('');
+    const [end_time,setendtime] = useState('');
+
+    const [isLoading, setLoading] = useState(true);
+
+    
+    const getstarttime =() =>{
+        let date = new Date();
+        let years = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        return (`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
+    };
+
+    const getendtime =() =>{
+        let date = new Date();
+        let years = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        return (`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
+    };
+    
+    let Data={ 
+        'm_id':m_id,
+        'r_datetime':r_datetime,
+        'distance':distanceTravelled,
+        'c_no':c_no,
+        'end_time':end_time};
+  
+  
+    
+    const getMovies = async () => {
+        st=getendtime();
+        setendtime(st);
+        console.log(st);
+        setdistanceTravelled(distanceTravelled);
+      try {
+        fetch('http://140.131.114.154/api/distance.php', {
+          method: 'POST',
+          headers:
+          {'Accept': 'application/json',
+          'Content-Type': 'application/json'},
+          body: JSON.stringify(Data)
+        });
+        console.log(Data);
+   
+     } catch (error) {
+       console.error(error);
+     }finally {
+      setLoading(false);
+    }};
+
 
     
     
+        
     findLocation = async () => {
         await Location.startLocationUpdatesAsync(LOCATION_TRACKING,{
              accuracy:Location.Accuracy.Highest,
@@ -53,12 +116,17 @@ export default function Run_solo ({navigation}){
          config();
              }, []);
 
+
     const startLocation = () => {
                  findLocation();
-                 mi=0;
+                 en=getstarttime();
+                 setstarttime(en);
+                 console.log(en);
+                 mi=0;      
                  
              }
-    const stopLocation = () => {
+
+    const stopLocation = () => {              
                  setLocationStarted(false);
                  mi =0;
                  setdistanceTravelled(0);
@@ -97,18 +165,25 @@ export default function Run_solo ({navigation}){
              setuserlat(latitude);
              setuserlong(longitude);
              setcoor(routeCoordinates.concat([newCoordinate]));
-             
-            
+
+             setmid(10902);
+             setcno(1);
+             setendtime(getendtime());
+       
              mi = mi + calcDistance(newCoordinate);
-             
+              
              setprevLat(newCoordinate);
+
+             if(isNaN(mi)){
+                mi=0;
+             }
  
              
              setdistanceTravelled(Math.round(mi));
              
             
          console.log(
-                 `${new Date(Date.now()).toLocaleString()}: ${latitude},${longitude},${mi}`
+                 `${new Date(Date.now()).toLocaleString()}: ${latitude},${longitude},${mi},${en}`
              );
          }
      });
@@ -124,7 +199,7 @@ export default function Run_solo ({navigation}){
                  <View style={{width:"100%",height:750,justifyContent:'center'}}>
                 <MapView
                     provider = {PROVIDER_GOOGLE}
-                    style={{width:350,height:500,justifyContent:'center'}}
+                    style={{width:500,height:600,justifyContent:'center',marginTop:20}}
                     region={getMapRegion()}>
                     <Polyline coordinates={routeCoordinates} strokeWidth={3} />
                      <Marker 
@@ -135,18 +210,13 @@ export default function Run_solo ({navigation}){
                         </Marker>
                  
                 </MapView>
-                       
-                    <TouchableOpacity onPress={stopLocation}>
-                        <Text style={styles.btnText}>Stop Tracking</Text>
-                        <Text>當前緯度：{latitude}</Text>
-                        <Text>當前經度：{longitude}</Text>
-                        <Text>上次緯度與經度：{prevLatLng.latitude}  {prevLatLng.longitude}</Text>
-                        <Text>共移動：{distanceTravelled}公尺</Text>
-                       
-                        
-                        
-                    </TouchableOpacity>
+                <ImageBackground source={require('../../assets/background.png')} style={{width:'100%',height:200,justifyContent:'flex-start',alignItems:'center'}}>
+                <Text style={styles.nText}>共移動：{distanceTravelled}公尺</Text>
+                    <TouchableOpacity onPress={()=>{getMovies(),stopLocation(),navigation.goBack()}}>
+                        <Text style={[styles.btnText,{width:300,height:80,backgroundColor:'#d11507',fontFamily:'BpmfGenSenRoundedH',}]}>結束跑步</Text>
 
+                    </TouchableOpacity>
+                </ImageBackground>
                 
                 </View>
                 :
@@ -199,6 +269,17 @@ const styles = StyleSheet.create({
         marginTop:-30,
         borderRadius: 10,
         
+        textAlign:'center',textAlignVertical:'top'
+    },
+    nText: {
+        fontSize: 24,
+        width:300
+        ,fontFamily:'BpmfGenSenRoundedH',
+
+        color: '#117c72',
+        height:120,
+       
+        borderRadius: 10,
         textAlign:'center',textAlignVertical:'top'
     },
 });
