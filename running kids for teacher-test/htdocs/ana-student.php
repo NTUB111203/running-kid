@@ -100,7 +100,24 @@ $m_id = $_GET['id'];
                 <div class="col mr-2">
                     <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                         今日里程</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">0.1KM</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <?php 
+                    $resultToday = "SELECT sum(record.distance) as TodayDistance FROM runningkids.record
+                    inner join members on members.m_id=record.m_id
+                    where record.m_id in
+                    (SELECT members.m_id FROM runningkids.class
+                    inner join members on class.class_no=members.class_no
+                    where  members.identity='S'and day(r_datetime) = day(now()) and members.m_id =" .$_GET['id']. ")" ;
+                    $retvalToday=mysqli_query($link, $resultToday);
+                    $rowToday = mysqli_fetch_assoc($retvalToday);
+                    $TodayDistance = $rowS["TodayDistance"];
+                    if (empty($TodayDistance)) {
+                        echo "0公尺";
+                    }else {
+                        echo $TodayDistance."公尺";
+                    }
+                    ?>
+                    </div>
                 </div>
                 <!-- <div class="col-auto">
                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -175,7 +192,7 @@ $m_id = $_GET['id'];
         <!-- Card Header - Dropdown -->
         <div
             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">進步趨勢分析</h6>
+            <h6 class="m-0 font-weight-bold text-primary">里程紀錄分析</h6>
            
         </div>
         <!-- Card Body -->
@@ -202,35 +219,72 @@ $m_id = $_GET['id'];
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">起始跑步日期 : 2021-03-01</span>
+                <span class="text">起始跑步日期 :
+                <?php 
+                $result = "SELECT min(r_datetime)as starttime FROM runningkids.record
+                where m_id =  " .$_GET['id']. "" ;
+                $retval=mysqli_query($link, $result);
+                
+                    $rowTime = mysqli_fetch_assoc($retval);
+                    echo "<p>".$rowTime["starttime"]."</p>";
+                ?>
+                    </span>
             </a>        
             <div class="my-2"></div>
             <a href="#" class="btn btn-primary btn-icon-split btn-lg">
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">平均每月公里數 : 75.5 KM &nbsp;&nbsp;</span>
+                <span class="text">本月累計公里數 : 
+                    <?php 
+                    $result = "SELECT sum(record.distance) as stuMonDistance FROM runningkids.record
+                    inner join members on members.m_id=record.m_id
+                    where record.m_id in
+                    (SELECT members.m_id FROM runningkids.class
+                    inner join members on class.class_no=members.class_no
+                    where  members.identity='S'and day(r_datetime) = day(now())-1 and members.m_id =" .$_GET['id']. ")" ;
+                    $retval=mysqli_query($link, $result);
+                    $rowS = mysqli_fetch_assoc($retval);
+                    $stuMonDistance = $rowS["stuMonDistance"];
+                    echo $stuMonDistance."公尺";
+                    
+                    ?> </span>
             </a>   
-            <div class="my-2"></div>
+            <!-- <div class="my-2"></div>
             <a href="#" class="btn btn-primary btn-icon-split btn-lg">
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
                 <span class="text">本月跑步公里數 : 84.9 KM &nbsp;&nbsp;</span>
-            </a>              
+            </a>               -->
             <div class="my-2"></div>
             <a href="#" class="btn btn-primary btn-icon-split btn-lg">
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">上個月跑步公里 : 81.6 KM &nbsp;&nbsp;</span>
+                <span class="text">上個月跑步公里 : <?php 
+                    $resultLast = "SELECT sum(record.distance) as stuMonDistanceLast FROM runningkids.record
+                    inner join members on members.m_id=record.m_id
+                    where record.m_id in
+                    (SELECT members.m_id FROM runningkids.class
+                    inner join members on class.class_no=members.class_no
+                    where  members.identity='S'and month(r_datetime) = month(now())-1 and members.m_id =" .$_GET['id']. ")" ;
+                    $retvalLast=mysqli_query($link, $resultLast);
+                    $rowSMD = mysqli_fetch_assoc($retvalLast);
+                    $stuMonDistanceLast=$rowSMD["stuMonDistanceLast"];
+                    echo $stuMonDistanceLast."公尺";
+                    ?> </span>
             </a>   
             <div class="my-2"></div>
             <a href="#" class="btn btn-warning btn-icon-split btn-lg">
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">平均進步公里數 : 9.4 KM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="text">平均進步公里數 :
+                    <?php
+                    echo $stuMonDistance-$stuMonDistanceLast.'公尺';
+                    ?>
+                </span>
             </a> 
             <div class="my-4"></div>     
              
@@ -278,7 +332,7 @@ $m_id = $_GET['id'];
     </div>
     <div class="card-body">
         <div class="chart-bar">
-            <canvas id="myBarChart"></canvas>
+            <canvas id="studentRecord"></canvas>
         </div>
         <hr>
         <div class="mt-4 text-center small">
@@ -346,15 +400,17 @@ $m_id = $_GET['id'];
     <!-- 進步趨勢分析 -->
     <script>
     <?php 
-        
+       
         $query = $link->query("
-            SELECT * FROM runningkids.record WHERE m_id = '11001';
-            
+        select  MONTH(r_datetime) as Months ,sum(distance) as 'eachMonth' 
+        from runningkids.record
+        WHERE  (r_datetime between '2022/09/01' and '2023/08/31') and m_id=" .$_GET['id']."
+        GROUP BY  MONTH(r_datetime);    
         ");
 
         foreach($query as $data){
-            $distance[] = $data['distance'];
-            $r_datetime[] = $data['r_datetime'];
+            $eachMonth[] = $data['eachMonth'];
+            $Months[] = $data['Months'];
         }
     ?>
         // Set new default font family and font color to mimic Bootstrap's default styling
@@ -391,8 +447,8 @@ $m_id = $_GET['id'];
         var myLineChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels:<?php echo json_encode($r_datetime) ?>,
-            // labels: [ "六月", "七月", "八月", "九月", "十月", "十一月", "十二月","一月", "二月", "三月", "四月", "五月"],
+            //labels:<?php echo json_encode($Months) ?>,
+            labels: <?php echo json_encode($Months) ?> ,
             datasets: [{
             label: "跑步里程",
             lineTension: 0.3,
@@ -406,7 +462,7 @@ $m_id = $_GET['id'];
             pointHoverBorderColor: "rgba(54, 185, 204, 1)",
             pointHitRadius: 10,
             pointBorderWidth: 2,
-            data:<?php echo json_encode($distance) ?> ,
+            data:<?php echo json_encode($eachMonth) ?> ,
             // data: [70, 73, 70, 72.8, 75.1, 75, 77.5, 80, 82, 81.2, 81.6, 84.9],
             //70+70+70
             }],
@@ -440,7 +496,7 @@ $m_id = $_GET['id'];
                 padding: 10,
                 // Include a dollar sign in the ticks
                 callback: function(value, index, values) {
-                    return 'km' + number_format(value);
+                    return '公尺' + number_format(value);
                 }
                 },
                 gridLines: {
@@ -472,7 +528,7 @@ $m_id = $_GET['id'];
             callbacks: {
                 label: function(tooltipItem, chart) {
                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'KM';
+                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'公尺';
                 }
             }
             }
@@ -484,6 +540,7 @@ $m_id = $_GET['id'];
     <!-- 個人里程圖表 -->
     <script>
     <?php 
+    //get 月份累加
         
         $query = $link->query("
             SELECT m_id,distance,r_datetime FROM runningkids.record
@@ -527,8 +584,8 @@ $m_id = $_GET['id'];
         }
 
         // Bar Chart Example
-        var ctx = document.getElementById("myBarChart");
-        var myBarChart = new Chart(ctx, {
+        var ctx = document.getElementById("studentRecord");
+        var studentRecord = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: <?php echo json_encode($r_datetime) ?>,
@@ -567,12 +624,13 @@ $m_id = $_GET['id'];
             yAxes: [{
                 ticks: {
                 min: 0,
-                max: 8,
+                //確認資料是否合理
+                max: 150,
                 maxTicksLimit: 5,
                 padding: 10,
                 // Include a dollar sign in the ticks
                 callback: function(value, index, values) {
-                    return  number_format(value)+ 'KM';
+                    return  number_format(value)+ '公尺';
                 }
                 },
                 gridLines: {
@@ -602,7 +660,7 @@ $m_id = $_GET['id'];
             callbacks: {
                 label: function(tooltipItem, chart) {
                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ 'KM ';
+                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ '公尺 ';
                 }
             }
             },

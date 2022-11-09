@@ -76,7 +76,7 @@ $class_no = $_GET['id'];
                                 $num = mysqli_num_rows($retval);
                                 if (mysqli_num_rows($retval) > 0){
                                     while ($row = mysqli_fetch_assoc($retval)) {
-                                        echo $row["class"];
+                                        echo $row["grade"].$row["class"];
                                         // echo "<h1>".$row["grade"]."</h1>";
                                     }
                                 }
@@ -144,13 +144,13 @@ $class_no = $_GET['id'];
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <!-- 以下為SQL班級人數 -->
                                             <?php 
-                                            $result = "SELECT count(m_id) as classMembers FROM runningkids.class
-                                            inner join members on class.class_no=members.class_no
-                                            where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
-                                            $retval=mysqli_query($link, $result);
+                                            // $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            // inner join members on class.class_no=members.class_no
+                                            // where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            // $retval=mysqli_query($link, $result);
                                             
-                                             $rowClass = mysqli_fetch_assoc($retval);
-                                             echo "<p>".$rowClass["classMembers"]."人</p>";
+                                            //  $rowClass = mysqli_fetch_assoc($retval);
+                                            //  echo "<p>".$rowClass["classMembers"]."人</p>";
                                             ?>
 
                                             <?php 
@@ -162,7 +162,8 @@ $class_no = $_GET['id'];
                                             where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
                                             $retval=mysqli_query($link, $result);
                                             $rowClass = mysqli_fetch_assoc($retval);
-                                            echo "<p>".$rowClass["totalDistance"]."KM</p>";
+                                            //echo "<p>".$rowClass["totalDistance"]."KM</p>";
+                                            $totaldis= (float)$rowClass["totalDistance"];
 
                                             $result = "SELECT count(m_id) as classMembers FROM runningkids.class
                                             inner join members on class.class_no=members.class_no
@@ -170,8 +171,10 @@ $class_no = $_GET['id'];
                                             $retval=mysqli_query($link, $result);
                                             
                                              $rowClass = mysqli_fetch_assoc($retval);
-                                             echo "<p>".$rowClass["classMembers"]."人</p>";
-                                             echo (float)$rowClass["totalDistance"]/(float)$rowClass["classMembers"];
+                                            //echo "<p>".$rowClass["classMembers"]."人</p>";
+                                            $clas = (float)$rowClass["classMembers"];
+                                            //echo ($totaldis/$clas);
+                                            echo "<p>".round($totaldis/$clas)."KM</p>";
                                             ?>
 
                                             
@@ -197,8 +200,21 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
-                                                平均跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2.6HR</div>
+                                            累計跑步時間</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php 
+                                            $result = "SELECT round(ABS(sum(timestampdiff(minute, r_datetime, end_time)))) as totalTime FROM runningkids.record
+                                            inner join members on members.m_id=record.m_id
+                                            where record.m_id in
+                                            (SELECT members.m_id FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            $totalTime = $rowClass["totalTime"];
+                                            echo "<p>".$rowClass["totalTime"]."分鐘</p>";
+                                            ?>    
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             
@@ -216,10 +232,10 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-                                                累計跑步時間</div>
+                                                平均跑步時間</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php 
-                                            $result = "SELECT sum(timestampdiff(minute, r_datetime, end_time)) as totalTime FROM runningkids.record
+                                            $result = "SELECT round(ABS(sum(timestampdiff(minute, r_datetime, end_time)))) as totalTime FROM runningkids.record
                                             inner join members on members.m_id=record.m_id
                                             where record.m_id in
                                             (SELECT members.m_id FROM runningkids.class
@@ -227,8 +243,16 @@ $class_no = $_GET['id'];
                                             where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
                                             $retval=mysqli_query($link, $result);
                                             $rowClass = mysqli_fetch_assoc($retval);
-                                            echo "<p>".$rowClass["totalTime"]."分鐘</p>";
-                                            ?>
+                                            $totalTime = $rowClass["totalTime"];
+                                            $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            $clas = (float)$rowClass["classMembers"];
+                                            echo "<p>".round($totalTime/$clas)."分鐘</p>";
+
+                                            ?>  
                                             </div>
                                         </div>
                                         <!-- <div class="col-auto">
@@ -251,20 +275,9 @@ $class_no = $_GET['id'];
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">班級進步分析</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">班級數據分析</h6>
                                     <div class="dropdown no-arrow">
-                                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a> -->
-                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div> -->
+                                    
                                     </div>
                                 </div>
                                 <!-- Card Body -->
