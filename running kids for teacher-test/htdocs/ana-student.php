@@ -112,9 +112,9 @@ $m_id = $_GET['id'];
                     $rowToday = mysqli_fetch_assoc($retvalToday);
                     $TodayDistance = $rowS["TodayDistance"];
                     if (empty($TodayDistance)) {
-                        echo "0公尺";
+                        echo "0公里";
                     }else {
-                        echo $TodayDistance."公尺";
+                        echo sprintf('%.2f', ($TodayDistance/1000))."公里";
                     }
                     ?>
                     </div>
@@ -135,11 +135,25 @@ $m_id = $_GET['id'];
                 <div class="col mr-2">
                     <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
                         累積里程</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">1287KM</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    <?php 
+                    $resultStuTotal = "SELECT sum(record.distance) as stuTotalDistance FROM runningkids.record
+                    inner join members on members.m_id=record.m_id
+                    where record.m_id in
+                    (SELECT members.m_id FROM runningkids.class
+                    inner join members on class.class_no=members.class_no
+                    where  members.identity='S' and members.m_id =" .$_GET['id']. ")" ;
+                    $retvalStuTotal=mysqli_query($link, $resultStuTotal);
+                    $rowToday = mysqli_fetch_assoc($retvalStuTotal);
+                    $stuTotalDistance = $rowToday["stuTotalDistance"];
+                    if (empty($stuTotalDistance)) {
+                        echo "0公里";
+                    }else {
+                        echo sprintf('%.2f', ($stuTotalDistance/1000))."公里";
+                    }
+                    ?>
+                    </div>
                 </div>
-                <!-- <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </div> -->
             </div>
         </div>
     </div>
@@ -153,11 +167,25 @@ $m_id = $_GET['id'];
                 <div class="col mr-2">
                     <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
                         累積跑步時間</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">288.56HR</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php 
+                        $resultStuTime = "SELECT round(ABS(sum(timestampdiff(minute, r_datetime, end_time)))) as totalTime FROM runningkids.record
+                        inner join members on members.m_id=record.m_id
+                        where record.m_id in
+                        (SELECT members.m_id FROM runningkids.class
+                        inner join members on class.class_no=members.class_no
+                        where  members.identity='S' and members.m_id =" .$_GET['id']. ")" ;
+                        $retvalStuTime=mysqli_query($link, $resultStuTime);
+                        $rowStuTime = mysqli_fetch_assoc($retvalStuTime);
+                        $totalTime = $rowStuTime["totalTime"];
+                        if (empty($totalTime)) {
+                            echo "0小時";
+                        }else {
+                            echo "<p>".sprintf('%.2f', ($totalTime/60))."小時</p>";
+                        }
+                        ?> 
+                    </div>
                 </div>
-                <!-- <div class="col-auto">
-                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                </div> -->
             </div>
         </div>
     </div>
@@ -171,7 +199,23 @@ $m_id = $_GET['id'];
                 <div class="col mr-2">
                     <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
                         平均跑步時速</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">4.46KM/HR</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?php 
+                        
+                        if (empty($totalTime)||empty($stuTotalDistance)) {
+                            echo "0 ";
+                        }else {
+                            $StuSpeed = sprintf('%.2f', ($stuTotalDistance/1000))/sprintf('%.2f', ($totalTime/60));
+                            $showStuSpeed = sprintf('%.2f', $StuSpeed);
+                            echo $showStuSpeed;
+                            //echo round($StuSpeed,2);
+                        }
+                        
+                        
+                        
+                        ?> 
+                        公里/小時
+                    </div>
                 </div>
                 <!-- <div class="col-auto">
                     <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -224,9 +268,13 @@ $m_id = $_GET['id'];
                 $result = "SELECT min(r_datetime)as starttime FROM runningkids.record
                 where m_id =  " .$_GET['id']. "" ;
                 $retval=mysqli_query($link, $result);
-                
-                    $rowTime = mysqli_fetch_assoc($retval);
+                $rowTime = mysqli_fetch_assoc($retval);
+                if(empty($rowTime["starttime"])){
+                    echo "尚未有紀錄";
+                }else{
                     echo "<p>".$rowTime["starttime"]."</p>";
+                }
+                    
                 ?>
                     </span>
             </a>        
@@ -242,13 +290,18 @@ $m_id = $_GET['id'];
                     where record.m_id in
                     (SELECT members.m_id FROM runningkids.class
                     inner join members on class.class_no=members.class_no
-                    where  members.identity='S'and day(r_datetime) = day(now())-1 and members.m_id =" .$_GET['id']. ")" ;
+                    where  members.identity='S'and month(r_datetime) = month(now()) and members.m_id =" .$_GET['id']. ")" ;
                     $retval=mysqli_query($link, $result);
                     $rowS = mysqli_fetch_assoc($retval);
                     $stuMonDistance = $rowS["stuMonDistance"];
-                    echo $stuMonDistance."公尺";
+                    if(empty($stuMonDistance)){
+                        echo "0";
+                    }else{
+                        echo sprintf('%.2f',$stuMonDistance/1000);
+                    }
                     
-                    ?> </span>
+                    
+                    ?>公里 </span>
             </a>   
             <!-- <div class="my-2"></div>
             <a href="#" class="btn btn-primary btn-icon-split btn-lg">
@@ -272,17 +325,18 @@ $m_id = $_GET['id'];
                     $retvalLast=mysqli_query($link, $resultLast);
                     $rowSMD = mysqli_fetch_assoc($retvalLast);
                     $stuMonDistanceLast=$rowSMD["stuMonDistanceLast"];
-                    echo $stuMonDistanceLast."公尺";
-                    ?> </span>
+                    echo sprintf('%.2f',$stuMonDistanceLast/1000);
+                    
+                    ?>公里 </span>
             </a>   
             <div class="my-2"></div>
             <a href="#" class="btn btn-warning btn-icon-split btn-lg">
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">平均進步公里數 :
+                <span class="text">進步公里數 :
                     <?php
-                    echo $stuMonDistance-$stuMonDistanceLast.'公尺';
+                    echo sprintf('%.2f',$stuMonDistance/1000)-sprintf('%.2f',$stuMonDistanceLast/1000).'公里';
                     ?>
                 </span>
             </a> 
