@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>新增供應商</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -24,6 +24,22 @@
             border-radius: 10rem;
             height: calc(2rem + 1.25rem );
             font-size: 0.8rem;
+        }
+        input[type="file"] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            /* margin: -1px; */
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 18px 12px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -41,23 +57,26 @@
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">班級編輯</h1>
+                                <h1 class="h4 text-gray-900 mb-4">新增供應商</h1>
                             </div>
-                            <form class="user" method="POST" action="class-edit.php">   
-                           
+
+                            <form class="user"
+                                  method="post"
+                                  action="sup-add.php">
+                            
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        
-                                        <H6>學年度:</H6>
-                                        <input
-                                          type="text"
-                                          class="form-control form-control-user"
-                                          name="semester"
-                                          id="semester"
-                                          value=""
-                                          placeholder="學年度:110、109"
-                                          required/> 
+                                    <h6>供應商名稱</h6>
+                                            <input
+                                            type="text"
+                                            class="form-control form-control-user"
+                                            name="sup_name"
+                                            id="sup_name"
+                                            value=""
+                                            placeholder=""
+                                            required
+                                          />
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
@@ -65,51 +84,55 @@
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option value="">請選擇年級
-                                            <option value="1">一年級
-                                            <option value="2">二年級
-                                            <option value="3">三年級
-                                            <option value="4">四年級
-                                            <option value="5">五年級
-                                            <option value="6">六年級
-                                            <!-- <option value="畢業生">畢業生 -->
-                                        </select>
+                                        <h6>供應商電話</h6>
+                                            <input
+                                            type="text"
+                                            class="form-control form-control-user"
+                                            name="sup_tel"
+                                            id="sup_tel"
+                                            value=""
+                                            placeholder=""
+                                            required
+                                          />
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <input
-                                          type="text"
-                                          class="form-control form-control-user"
-                                          name="class"
-                                          id="class"
-                                          value=""
-                                          placeholder="班別 : 甲班、二班、01"
-                                          required/>
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                
+                      
 
-                                <hr>
+                               
+                                    
+                             
+                                <!-- <div class="form-group row">
+                                    <div class="col-sm-4 "></div>
+                                    
+                                        <label for="file-upload" class="btn btn-info custom-file-upload selections col-sm-4 text-center align-center">
+                                        <i class="fa fa-cloud-upload"></i> 上傳照片檔案
+                                        </label>
+                                        <input id="file-upload" type="file"/>
+                                    
+                                    <div class="col-sm-4 "></div>
+                                </div> -->
+                               
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-1 ">
-                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
+                                        <a href="supplier.php" class="btn btn-warning btn-user btn-block">
                                             <i class="fas fa-arrow-left"></i>
                                         </a>
                                     </div>                                        
                                     <div class="col-sm-5 ">
-
-                                        <button type="submit" class="btn btn-warning btn-user btn-block">
-                                            確認編輯班級
-                                        </button>
+                                        
+                                        
+                                        
+                                        <button type="submit" class="btn btn-warning btn-user btn-block">確認新增禮品</button>
+                                            
+                                        </a>
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
+
+
+
                             </form>
                         </div>
                     </div>
@@ -129,14 +152,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/datatables-demo.js"></script> -->
 
 </body>
 

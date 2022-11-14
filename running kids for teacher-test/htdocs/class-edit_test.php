@@ -1,3 +1,10 @@
+<?php
+require_once 'DataBase.php';
+
+$class_no = $_GET['class_no'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,43 +16,21 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>新增教室</title>
+    <title>班級編輯</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        .selections{
+        .selections {
             border-radius: 10rem;
-            height: calc(2rem + 1.25rem );
+            height: calc(2rem + 1.25rem);
             font-size: 0.8rem;
         }
     </style>
-     <script>
-        window.onload = function getSchool() {
-       $.ajax({
-         type: "POST",
-         url: "getRow.php",
-         dataType: "json",
-         data: { name: "schoolList" },
-
-         success: function (res) {
-           $.each(res, function (index, val) {
-             $("#sch_no").append(
-               $("<option></option>")
-                 .attr("value", index)
-                 .text(val)
-             );
-           });  
-         },
-       });
-     };
-   </script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -61,27 +46,17 @@
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">新增班級</h1>
+                                <h1 class="h4 text-gray-900 mb-4">班級編輯</h1>
                             </div>
-                            <form class="user" method="POST" action="class-add.php">  
+
+                            <form class="user" method="POST" action="class-update.php">
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
+
                                         <H6>學年度:</H6>
-                                        <input
-                                          type="text" 
-                                          id="semester" 
-                                          class="form-control form-control-user"
-                                          name="semester"
-                                          value=""
-                                          placeholder= ""
-                                          readonly="readonly"
-                                          required/>
-                                          <script>
-                                            now =new Date();
-                                            Year = now.getFullYear() - 1911
-                                            document.getElementById('semester').value=Year;
-                                          </script>
+                                        <input type="text" class="form-control form-control-user" name="semester" id="semester" value="" />
+                                        <!-- placeholder="學年度:110、109" required />  -->
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
@@ -90,14 +65,15 @@
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
                                         <H6>年級:</H6>
-                                        <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option value="">請選擇年級(體育室則免填)
+                                        <select name="grade" id="grade" class="form-control selections">
+                                            <option value="">
                                             <option value="1">一年級
                                             <option value="2">二年級
                                             <option value="3">三年級
                                             <option value="4">四年級
                                             <option value="5">五年級
                                             <option value="6">六年級
+                                                <!-- <option value="畢業生">畢業生 -->
                                         </select>
                                     </div>
                                     <div class="col-sm-3 "></div>
@@ -107,18 +83,11 @@
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
                                         <H6>班別:</H6>
-                                        <input
-                                        type="text"
-                                        class="form-control form-control-user"
-                                        name="class"
-                                        id="class"
-                                        value=""
-                                        placeholder="請填:甲班、二班、01"
-                                        required/>
+                                        <input type="text" class="form-control form-control-user" name="class" id="class" value="" />
+                                        <!-- placeholder="班別 : 甲班、二班、01" required  -->
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
-
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
@@ -126,16 +95,37 @@
                                         <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
                                             <i class="fas fa-arrow-left"></i>
                                         </a>
-                                    </div>                                        
+                                    </div>
                                     <div class="col-sm-5 ">
 
                                         <button type="submit" class="btn btn-warning btn-user btn-block">
-                                            確認新增班級
+                                            確認編輯班級
                                         </button>
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
-                            </form>
+
+
+                                <tobody>
+                                    <?php
+                                    $result = "SELECT * FROM class WHERE class_no = '$class_no'";
+                                    // $result = "SELECT * FROM class";
+                                    $retval = mysqli_query($link, $result);
+
+                                    if ($retval) {
+                                        $num = mysqli_num_rows($retval);
+
+                                        if (mysqli_num_rows($retval) > 0) {
+                                            while ($row = mysqli_fetch_assoc($retval)) {
+                                                echo "<tr>" . $row["semester"] . "</tr>";
+                                                echo "<th>" . $row["grade"] . "</th>";
+                                                echo "<tr>" . $row["class"] . "</tr>";
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </tobody>
+
                         </div>
                     </div>
                 </div>
@@ -154,6 +144,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <!-- <script src="js/demo/datatables-demo.js"></script> -->
 
 </body>
 

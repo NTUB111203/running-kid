@@ -44,13 +44,25 @@ $class = $_POST['class'];
 
 $sql = "INSERT INTO  class(semester,grade, class)VALUES('$semester','$grade', '$class')";
 if(mysqli_query($link,$sql)){
-echo "新增成功!!";
+    function_alert("班級新增成功!");
 }else{
-echo "新增失敗".mysqli_error($link);
+    function_alert("班級新增失敗！");
 }
 
 // 如果有新增成功
 header('Location: class-maintain.php'); 
+
+// Close connection
+mysqli_close($link);
+
+function function_alert($message)
+{
+
+    echo "<script>alert('$message');
+    window.history.back(); 
+    </script>";
+    return false;
+}
  ?>
 
 

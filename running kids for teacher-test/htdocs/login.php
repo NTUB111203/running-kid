@@ -19,7 +19,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Store data in session variables
         session_start();
         $_SESSION["loggedin"] = true;
+        $_SESSION["m_id"] = $row["m_id"];
         $_SESSION["m_name"] = $row["m_name"];
+        $_SESSION["school_no"] = $row["school_no"];
+        $_SESSION["class_no"] = $row["class_no"];
+        $_SESSION["mail"] = $row["mail"];
+        $_SESSION["phone"] = $row["phone"];
+        $_SESSION["identity"] = $row["identity"];
+        $_SESSION["birthday"] = $row["birthday"];
+        $_SESSION["gender"] = $row["gender"];
         //這些是之後可以用到的變數
         //$_SESSION["id"] = mysqli_fetch_assoc($result)["id"];
         //$_SESSION["username"] = mysqli_fetch_assoc($result)["username"];

@@ -4,14 +4,14 @@ require_once 'DataBase.php';
 
 // Initialize the session
 session_start();
- 
+
 // // Check if the user is already logged in, if yes then redirect him to welcome page
 // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 //     header("location: welcome.php");
 //     exit;  //記得要跳出來，不然會重複轉址過多次
 // }
 
-$m_name=$_SESSION["m_name"];
+$m_name = $_SESSION["m_name"];
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
@@ -30,13 +30,11 @@ $m_name=$_SESSION["m_name"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Other Utilities</title>
+    <title>學生管理</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -50,15 +48,15 @@ $m_name=$_SESSION["m_name"];
     <div id="wrapper">
 
 
-    <?php include("side.php"); ?>
+        <?php include("side.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">        
-                
-    <?php include("top.php"); ?>
+            <div id="content">
+
+                <?php include("top.php"); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -77,19 +75,19 @@ $m_name=$_SESSION["m_name"];
                     <!-- Content Row -->
                     <div class="row">
                         <!-- PHP 班級 -->
-                        
-                       
+
+
                         <?php
-                        
+
                         $result = "SELECT * FROM class";
-                        $retval=mysqli_query($link, $result);
+                        $retval = mysqli_query($link, $result);
                         if ($retval) {
                             $num = mysqli_num_rows($retval);
-                            
-                                if (mysqli_num_rows($retval) > 0) {
+
+                            if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
-                                    $retval2=mysqli_query($link, $members);
+                                    $members = "select count(*)as member from members where class_no =" . $row['class_no'];
+                                    $retval2 = mysqli_query($link, $members);
                                     $rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
                                     echo "<div class=\"card border-left-success shadow h-100 py-2\">\n";
@@ -97,7 +95,7 @@ $m_name=$_SESSION["m_name"];
                                     echo "<div class=\"row no-gutters align-items-center\">\n";
                                     echo "<div class=\"col mr-2\">\n";
                                     echo "<div class=\"h1 font-weight-bold text-success text-uppercase mb-1\">\n";
-                                    echo "<h1>".$row["class"]."</h1>";
+                                    echo "<h1>" . $row["grade"] . $row["class"] . "</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
                                     //echo "<h5>".$rowMember['member']."人</h5>";
@@ -105,41 +103,41 @@ $m_name=$_SESSION["m_name"];
                                     //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
                                     //按鈕
                                     echo "</div>\n";
-                                    echo "<a href=\"student-view.php?class=".$row['class']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    echo "<a href=\"student-view.php?class_no=" . $row['class_no'] . "\" class=\"btn btn-success btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
                                     echo "</div>\n";
                                     echo "</div>\n";
                                     echo "</div>\n";
+                                }
+                            }
                         }
-                        }
-                        }
-                        ?>                
-                                       
-                                        </div>
-                                        <tr>
+                        ?>
 
-                                    </div>
-                                    <!-- Footer -->
-                        <?php include("footer.php"); ?>
-                        <!-- End of Footer -->  
-                                </div>
-                            </div>
-                        
-                        </div>
-                        
-                    </a>
                     </div>
-                <!-- /.container-fluid -->
-                
+                    <tr>
+
+                </div>
+                <!-- Footer -->
+                <?php include("footer.php"); ?>
+                <!-- End of Footer -->
             </div>
-            <!-- End of Main Content -->
-
-             
-
         </div>
-        <!-- End of Content Wrapper -->
+
+    </div>
+
+    </a>
+    </div>
+    <!-- /.container-fluid -->
+
+    </div>
+    <!-- End of Main Content -->
+
+
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->

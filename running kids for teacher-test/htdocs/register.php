@@ -76,4 +76,3 @@ function function_alert($message) {
     
     return false;
 } */
-?>

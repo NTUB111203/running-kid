@@ -1,3 +1,10 @@
+<?php
+/*連接資料庫*/
+require_once 'DataBase.php';
+session_start();
+$m_name = $_SESSION["m_name"];
+$school_no = $_SESSION["school_no"];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>新增學生</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -30,88 +37,32 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<?php
+echo
+$_POST['sch_no'];
+$_POST['class_no'];
+$m_id = $_POST['m_id'];
+$m_name = $_POST['m_name'];
+$gender = isset($_POST['gender']) ? $_POST['gender'] : 'F';
+$gender = $_POST['gender'];
+$enrollment = $_POST['enrollment'];
+$birthday = $_POST['birthday'];
+$class_no = $_GET['class_no'];
+$identity = $_POST['identity'];
+$mail = $_POST['mail'];
 
-    <div class="container">
+$sql = "INSERT INTO  members(m_id,m_name,gender,mail,identity,class_no)
+        VALUES('$m_id','$m_name','$gender',' ','S','$class_no')";
+if (mysqli_query($link, $sql)) {
+    echo "新增成功!!";
+} else {
+    echo "新增失敗" . mysqli_error($link);
+}
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
-                    <div class="col-lg-12">
-                        <!-- col-lg-7 -->
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">新增學生</h1>
-                            </div>
-                            
-                            <form class="user" action='select-test.php'>
-                                
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="學號">
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="姓名">
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option >性別
-                                            <option value="女生">女生
-                                            <option value="男生">男生
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="生日">
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
+// 如果有新增成功
+header('Location: student-view.php');
 
-                                <hr>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-1 ">
-                                        <a href="student-view.php" class="btn btn-warning btn-user btn-block">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </a>
-                                    </div>                                        
-                                    <div class="col-sm-5 ">
-
-                                        <input type="submit" name="submit2" value="確認新增">
-                                        
-   
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-
-
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </div>
+?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

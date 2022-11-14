@@ -1,22 +1,8 @@
 <?php
 /*連接資料庫*/
 require_once 'DataBase.php';
-
-// Initialize the session
 session_start();
-
-// // Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: welcome.php");
-//     exit;  //記得要跳出來，不然會重複轉址過多次
-// }
-
 $m_name = $_SESSION["m_name"];
-
-//echo session_save_path();
-//echo "<h1>你好 ".$m_name."</h1>";
-//echo "<tr>";
-//echo "<a href='logout.php'>登出</a>";
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +16,7 @@ $m_name = $_SESSION["m_name"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>禮物管理</title>
+    <title>供應商管理</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -91,23 +77,16 @@ $m_name = $_SESSION["m_name"];
                             <div class="row">
                                 <div class="col">
                                     <h1 class="h3 mb-2 text-gray-800">
-                                        <i class="fas fa-fw fa-gift"></i>禮品項目
+                                        <i class="fas fa-fw fa-gift"></i>供應商資訊
                                     </h1>
                                 </div>
                                 <div class="col">
                                     <div class="row justify-content-end ">
-                                        <a href="supplier.php" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-flag"></i>
-                                            </span>
-                                            <span class="text">供應商資訊</span>
-                                        </a>
-
-                                        <a href="gift-add.html" class=" btn btn-success btn-icon-split ">
+                                        <a href="sup-add.html" class=" btn btn-success btn-icon-split ">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                             </span>
-                                            <span class="text" style="font-weight:bold;">新增禮品</span>
+                                            <span class="text" style="font-weight:bold;">新增供應商</span>
                                         </a>
                                     </div>
                                 </div>
@@ -119,32 +98,18 @@ $m_name = $_SESSION["m_name"];
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>禮品名稱</th>
-                                            <th>禮品積分</th>
-                                            <!-- <th>禮品數量</th> -->
-                                            <th>禮品描述</th>
                                             <th>禮品供應商</th>
                                             <th>供應商連絡電話</th>
-                                            <th>修改</th>
+                                            <th>編輯</th>
                                             <th>刪除</th>
                                         </tr>
                                     </thead>
-                                    <!-- <tfoot>
-                                           <tr>
-                                               <th>Name</th>
-                                               <th>Position</th>
-                                               <th>Office</th>
-                                               <th>Age</th>
-                                               <th>Start date</th>
-                                               <th>Salary</th>
-                                           </tr>
-                                       </tfoot> -->
+
                                     <tbody>
                                         <!--表格資料仍有錯誤待修，目前只是把class表拉進-->
                                         <?php
-                                        $result = "SELECT * FROM gift LEFT JOIN gift_supplier ON gift.gift_sup_no = gift_supplier.sup_no";
-                                        // $result = "SELECT * FROM gift";
-                                        //$result = "SELECT * FROM git_supplier";        
+                                        $result = "SELECT * FROM  gift_supplier";
+                                        //$result = "SELECT * FROM gift LEFT JOIN gift_supplier ON gift.gift_sup_no = gift_supplier.sup_no";  
                                         $retval = mysqli_query($link, $result);
 
                                         if ($retval) {
@@ -152,43 +117,33 @@ $m_name = $_SESSION["m_name"];
 
                                             if (mysqli_num_rows($retval) > 0) {
                                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                                    //$members = "select count(*)as member from members where class =". $row['class'];
-                                                    //$retval2=mysqli_query($link, $members);
-                                                    //$rowMember = mysqli_fetch_assoc($retval2);
-                                                    // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
-                                                    echo "<th>" . $row["gift"] . "</th>";
-                                                    echo "<th>" . $row["exchange_points"] . "</th>";
-                                                    //    echo "<th>".$row["gift_sup_no"]."</th>";
-                                                    echo "<th>" . $row['gift_description'] . "</th>";
                                                     echo "<th>" . $row["sup_name"] . "</th>";
                                                     echo "<th>" . $row['sup_tel'] . "</th>";
 
-                                                    //echo "<th style=\"color: rgb(0, 87, 248);\">現任班級</th>\n"
-
-
                                         ?>
-                                                    < <td>
+                                                    <td>
                                                         <?php
-                                                        echo '<a href="gift-edit.php?gift_no=' . $row['gift_no'] . '" class=" btn btn-warning btn-icon-split ">';
+                                                        echo '<a href="sup-edit.php?sup_no=' . $row['sup_no'] . '" class=" btn btn-warning btn-icon-split ">';
                                                         echo '<span class="text" style="font-weight:bold;">編輯</span>';
                                                         echo '</a>';
                                                         ?>
-                                                        </a>
-                                                        </td>
-                                                        <!-- 連接到gift-change.php -->
-                                                        <td>
-                                                            <?php
-                                                            echo '<a href="gift-delete.php?gift_no=' . $row['gift_no'] . '" class=" btn btn-danger btn-icon-split ">';
-                                                            echo '<span class="text" style="font-weight:bold;">刪除</span>';
-                                                            echo '</a>';
-                                                            ?>
-                                                        </td>
-                                                        <!-- 跳出確認刪除按鈕                                                                                                -->
-                                                        </tr>
-                                            <?php
+                                                    </td>
+
+                                                     <!-- 連接到sup-delete.php -->
+                                                    <td>
+                                                        <?php
+                                                        echo '<a href="sup-delete.php?sup_no=' . $row['sup_no'] . '" class=" btn btn-danger btn-icon-split ">';
+                                                        echo '<span class="text" style="font-weight:bold;">刪除</span>';
+                                                        echo '</a>';
+                                                        ?>
+                                                    </td>
+                                                    <!-- 跳出確認刪除按鈕                                                                                                -->
+                                                    </tr>
+                                        <?php
                                                 }
                                             }
-                                        } ?>
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
