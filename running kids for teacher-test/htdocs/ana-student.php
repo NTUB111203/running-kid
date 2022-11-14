@@ -451,14 +451,15 @@ $m_id = $_GET['id'];
 
     <!-- SELECT m_id,distance,r_datetime FROM runningkids.record; -->
 
-    <!-- 進步趨勢分析 -->
+    <!-- 里程紀錄分析 -->
+    
     <script>
     <?php 
        
         $query = $link->query("
         select  MONTH(r_datetime) as Months ,sum(distance) as 'eachMonth' 
         from runningkids.record
-        WHERE  (r_datetime between '2022/09/01' and '2023/08/31') and m_id=" .$_GET['id']."
+        WHERE (r_datetime between '2022/09/01' and '2023/08/31') and m_id=" .$_GET['id']."
         GROUP BY  MONTH(r_datetime);    
         ");
 
@@ -516,9 +517,7 @@ $m_id = $_GET['id'];
             pointHoverBorderColor: "rgba(54, 185, 204, 1)",
             pointHitRadius: 10,
             pointBorderWidth: 2,
-            data:<?php echo json_encode($eachMonth) ?> ,
-            // data: [70, 73, 70, 72.8, 75.1, 75, 77.5, 80, 82, 81.2, 81.6, 84.9],
-            //70+70+70
+            data:<?php echo json_encode($eachMonth) ?> 
             }],
         },
         options: {
@@ -541,7 +540,7 @@ $m_id = $_GET['id'];
                 drawBorder: false
                 },
                 ticks: {
-                maxTicksLimit: 7
+                maxTicksLimit: 12
                 }
             }],
             yAxes: [{
@@ -673,7 +672,7 @@ $m_id = $_GET['id'];
                 ticks: {
                 maxTicksLimit: 6
                 },
-                maxBarThickness: 25,
+                maxBarThickness: 20,
             }],
             yAxes: [{
                 ticks: {

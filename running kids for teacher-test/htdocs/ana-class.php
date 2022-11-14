@@ -212,7 +212,7 @@ $class_no = $_GET['id'];
                                             $retval=mysqli_query($link, $result);
                                             $rowClass = mysqli_fetch_assoc($retval);
                                             $totalTime = $rowClass["totalTime"];
-                                            echo "<p>".$rowClass["totalTime"]."分鐘</p>";
+                                            echo sprintf('%.2f',$totalTime/60).'小時';
                                             ?>    
                                             </div>
                                         </div>
@@ -250,7 +250,8 @@ $class_no = $_GET['id'];
                                             $retval=mysqli_query($link, $result);
                                             $rowClass = mysqli_fetch_assoc($retval);
                                             $clas = (float)$rowClass["classMembers"];
-                                            echo "<p>".round($totalTime/$clas)."分鐘</p>";
+                                            // echo "<p>".round($totalTime/$clas)."分鐘</p>";
+                                            echo sprintf('%.2f',$totalTime/$clas/60).'小時';
 
                                             ?>  
                                             </div>
@@ -331,13 +332,154 @@ $class_no = $_GET['id'];
      <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-school.js"></script>
+    <!-- <script src="js/demo/chart-school.js"></script> -->
     <!-- <script src="js/demo/chart-area-demo.js"></script>     -->
     <!-- <script src="js/demo/pie-BMI.js"></script> -->
     <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
+
+    <!-- 里程紀錄分析 -->
+    <script>
+    <?php 
+       
+        $query = $link->query("
+        SELECT sum(distance) as monthDistance ,month(r_datetime) as months FROM runningkids.record
+        where c_no=" .$_GET['id']." 
+        group by month(r_datetime);    
+        ");
+        foreach($query as $data){
+            $monthDistance[] = $data['monthDistance'];
+            $Months[] = $data['months'];
+        }
+    ?>
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        function number_format(number, decimals, dec_point, thousands_sep) {
+        // *     example: number_format(1234.56, 2, ',', ' ');
+        // *     return: '1 234,56'
+        number = (number + '').replace(',', '').replace(' ', '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function(n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+            };
+        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+        }
+
+        // Area Chart Example
+        var ctx = document.getElementById("chartSchool");
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            //labels: echo json_encode($months) ,
+            labels: <?php echo json_encode($months) ?> ,
+            datasets: [{
+            label: "跑步里程",
+            lineTension: 0.3,
+            backgroundColor: "rgba(54, 185, 204, 0.05)",
+            borderColor: "rgba(54, 185, 204, 1)",
+            pointRadius: 3,
+            pointBackgroundColor: "rgba(54, 185, 204, 1)",
+            pointBorderColor: "rgba(54, 185, 204, 1)",
+            pointHoverRadius: 3,
+            pointHoverBackgroundColor: "rgba(54, 185, 204, 1)",
+            pointHoverBorderColor: "rgba(54, 185, 204, 1)",
+            pointHitRadius: 10,
+            pointBorderWidth: 2,
+            data:<?php echo json_encode($monthDistance) ?> ,
+            
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+            padding: {
+                left: 10,
+                right: 25,
+                top: 25,
+                bottom: 0
+            }
+            },
+            scales: {
+            xAxes: [{
+                time: {
+                unit: 'date'
+                },
+                gridLines: {
+                display: false,
+                drawBorder: false
+                },
+                ticks: {
+                maxTicksLimit: 30,
+                padding: 10,
+                callback: function(value, index, values) {
+                    return number_format(value)+'';
+                }
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                maxTicksLimit: 3,//左側顯示項次數量
+                padding: 10,
+                // Include a dollar sign in the ticks
+                callback: function(value, index, values) {
+                    return '公里' + number_format(value);
+                }
+                },
+                gridLines: {
+                color: "rgb(234, 236, 244)",
+                zeroLineColor: "rgb(234, 236, 244)",
+                drawBorder: false,
+                borderDash: [2],
+                zeroLineBorderDash: [2]
+                }
+            }],
+            },
+            legend: {
+            display: false
+            },
+            tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            intersect: false,
+            mode: 'index',
+            caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'公里';
+                }
+            }
+            }
+        }
+        });
+
+        </script>
 
 </body>
 
