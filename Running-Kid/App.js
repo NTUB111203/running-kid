@@ -20,6 +20,8 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 
 
+
+
 console.disableYellowBox = true;
 const Stack = createNativeStackNavigator();
 

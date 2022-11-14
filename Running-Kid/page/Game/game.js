@@ -5,15 +5,22 @@ import { Feather } from "@expo/vector-icons";
 import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Header from "../header";
 import styles from "./game_style";
+import { useIsFocused } from "@react-navigation/native"; 
+
 
 export default function Game({navigation}) {
-    
+    const focus = useIsFocused();  
+
     const [AreaPadding,setpadding] = useState(0);
 
     useEffect(() => {
     if(Platform.OS=='android'){
         setpadding(30);
-    }})
+    };
+    if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
+       
+     }
+})
 
     return (
         <SafeAreaView style={{paddingTop:AreaPadding}}>
@@ -23,9 +30,6 @@ export default function Game({navigation}) {
                 bounces={false}
                 stickyHeaderIndices={[0]}>
                 <Header/>
-                
-                
-                
                 
                 <ImageBackground style={styles.backgroundimg}                 >
                     <View style={{flexDirection:'row',marginTop:10,justifyContent:'flex-end',width:390}}>

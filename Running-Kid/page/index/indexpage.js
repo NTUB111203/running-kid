@@ -19,12 +19,6 @@ export default function  Indexp({navigation}) {
   const [modalVisible1, setModalVisible1] = useState(false);
   const [AreaPadding,setpadding] = useState(0);
 
-  const [fontsLoaded] = useFonts({
-    'BpmfGenSenRoundedH': require('../../assets/BpmfGenSenRounded-H.ttf'),
-    'BpmfGenSenRoundedL': require('../../assets/BpmfGenSenRounded-L.ttf')
-  })
-  
-
 
   const [act, areaAct] = useState(0);
   const [mi, setTodayMi] = useState(0);
@@ -36,7 +30,7 @@ export default function  Indexp({navigation}) {
  
 
   let imageSource = space;
-  let today_mi=0;
+
 
   if (act === "taipei") {
     imageSource = taipei;
@@ -68,20 +62,15 @@ export default function  Indexp({navigation}) {
       .then ((response)=>response.json())
       .then ((response)=> {setdis(response[0].todaydis)})
       ;    
+
+      console.log(todaydis)
+      if (todaydis==''){
+        setdis(0);
+      }
    } catch (error) {
     console.error(error);
   }}
 
- 
-
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-
-      />
-    );
-  }
-  
  
   return (
   <SafeAreaView style={{paddingTop:AreaPadding}}>
@@ -99,7 +88,7 @@ export default function  Indexp({navigation}) {
        
         >
         <View style={styles.textbox}>
-          <Text style={styles.text}>   今日里程數 {todaydis} 公里</Text>
+          <Text style={styles.text}>   今日里程數 {todaydis} 公尺</Text>
         </View>
         
         <TouchableOpacity

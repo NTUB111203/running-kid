@@ -7,8 +7,8 @@ import { TouchableOpacity,StyleSheet,Image,Text,View} from 'react-native';
 export default function Header() {
 
   const [isLoading, setLoading] = useState(true);
-  const [coin, setCoin] = useState([]);
-  const [score, setScore] = useState([]);
+  const [coin, setCoin] = useState([0]);
+  const [score, setScore] = useState([0]);
 
 
   let Data= {'m_id':10902};
@@ -22,7 +22,7 @@ export default function Header() {
         body: JSON.stringify(Data)
       })
       .then ((response)=>response.json())
-      .then ((response)=> {setCoin(response[0].coinsum),setScore(response[0].scoresum)})
+      .then ((response)=> {setCoin(response[1].coinsum),setScore(response[0].scoresum)})
       ;
       
 
@@ -38,7 +38,7 @@ export default function Header() {
 
    useEffect(() => {
     getMovies();
-  }, []);
+  }, );
 
 
 
@@ -59,7 +59,7 @@ export default function Header() {
       style={styles.money}
       ></Image>
       <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}}>
-      {coin} $
+      {score}  $
       </Text>
     </View>
 
@@ -69,7 +69,7 @@ export default function Header() {
       style={styles.money}
       ></Image>
       <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}} >
-      {score} 
+      {coin}
       </Text>
     </View>
 

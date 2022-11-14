@@ -1,28 +1,13 @@
 import { StyleSheet,View,Text,Image,TouchableOpacity,Alert} from "react-native";
-import React,{useState} from 'react';
+import {React,useState,useEffect} from "react";
 import {ProgressBar} from 'react-native-paper';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import useFonts from '../../font'
-
-
-
+import { useIsFocused } from "@react-navigation/native"; 
 
 function Textbox_title(){
-  const [fontsLoaded, setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
-  };
 
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
   return(
   <View style={styles.textbox_title}>
     <Text style={styles.title}>今日任務</Text>
@@ -31,34 +16,131 @@ function Textbox_title(){
 };
 
 function Mission_farm(){
-  const [fontsLoaded, setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
+
+  const showAlert = () =>{
+    Alert.alert(
+        '恭喜',
+        '獲得 10 金幣',
+        [
+            {text: '確定', onPress: () => submitd()},
+            
+        ],
+        {cancelable: false}
+    )
+}
+  
+  const focus = useIsFocused();  
+  const [buttonstatus, setFontsLoaded] = useState(false);
+  const [distancea,setdis]=useState(0);
+  const [disper,setdisper]=useState(0);
+  const [coin,setcoin]=useState(10);
+  const [time,settime]=useState(0);
+
+  
+
+const gettime =() =>{
+    let date = new Date();
+    let years = date.getFullYear();
+    let month = date.getMonth();
+    let day = date.getDate();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    settime(`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
+    console.log(time);
+};
+ 
+let Data = {'m_id':10902,'coin':coin,'datetime':time};
+
+  useEffect(() => {
+    getd();
+    if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
+      getd();
+   };
+   gettime();
+  })
+
+  const getd = ()=>{  try {
+    fetch('http://140.131.114.154/api/index.php', {
+      method: 'POST',
+      headers:
+      {'Accept': 'application/json',
+      'Content-Type': 'application/json'},
+      body: JSON.stringify(Data)
+    })
+    .then ((response)=>response.json())
+    .then ((response)=> {setdis(response[0].todaydis)})
+    ;    
+  
+    console.log(distancea);
+    setdisper(Number((distancea/1000).toFixed(1)));
+    console.log(disper);
+
+    if (distancea==''){
+      setdis(0);
+    };
+    if(disper>=1){
+      setFontsLoaded(true);
+    }else{
+      setFontsLoaded(false);
+    };
+    
+    console.log(typeof disper);
+  } catch (error) {
+  console.error(error);
+  }
+}
+
+  const submitd = ()=>{  
+  
+  console.log(Data);
+  try {
+  fetch('http://140.131.114.154/api/addcoin.php', {
+    method: 'POST',
+    headers:
+    {'Accept': 'application/json',
+    'Content-Type': 'application/json'},
+    body: JSON.stringify(Data)
+  })  ;    
+
+ 
+  if (distancea==''){
+    setdis(0);
   };
 
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
+  
+
+  console.log(typeof disper);
+} catch (error) {
+console.error(error);
+}
+}
+
+
 
   return(
   <View style={styles.textbox}>
-    <Text style={styles.text}>慢跑一公里</Text>
-    <ProgressBar progress={0.1} style={styles.probarStyle} color={'#FEBC5F'}/> 
+    <Text style={[styles.title,{fontSize:24}]}>慢跑一公里</Text> 
+    <Text style={styles.text}>已經跑了 {distancea} 公尺</Text> 
+    <ProgressBar progress={disper} style={styles.probarStyle} color={'#FEBC5F'}/> 
     <View style={{flexDirection:"row"}}>
       <Image
       source={require('../../../assets/icon-money.png')}
       style={styles.money}/>
       <Text flex={1} style={{fontSize:20}}> 20 </Text>
     </View>
-    <TouchableOpacity style={styles.button_off} disabled>
+    {
+      buttonstatus ?
+      <TouchableOpacity style={styles.button_on} onPress={()=>{setcoin(10),gettime(),showAlert()}}>
       <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRoundedL',marginTop:-20}}>領取獎勵</Text>
-    </TouchableOpacity>
+      </TouchableOpacity>
+      :
+      <TouchableOpacity style={styles.button_off} disabled>
+      <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRoundedL',marginTop:-20}}>領取獎勵</Text>
+       </TouchableOpacity>
+    }
+  
+
   </View>
   )
 };
@@ -143,10 +225,11 @@ const styles = StyleSheet.create({
   },
   text:{
     textAlign:"center",
-    fontSize:24,
+    fontSize:12,
     color:"#117C72",
     fontWeight:"600",
-    marginBottom:20,
+    marginBottom:10,
+    marginTop:-5,
     fontFamily:'BpmfGenSenRoundedH'
   },
   textbox_title:{
