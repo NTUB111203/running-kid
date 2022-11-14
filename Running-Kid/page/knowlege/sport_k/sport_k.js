@@ -4,33 +4,23 @@ import Header from "../../header";
 import { Textbox_title,Sport_farm } from "./TextBox";
 import { useFonts } from "../../font";
 import AppLoading from 'expo-app-loading';
+import { useIsFocused } from "@react-navigation/native"; 
 
 
 export default function Sport_k({navigation}) {
+  const focus = useIsFocused();  
 
   const [AreaPadding,setpadding] = useState(0);
 
   useEffect(() => {
   if(Platform.OS=='android'){
       setpadding(30);
-  }})
-
-  /*{===============字體載入===============}*/
-  const [fontsLoaded,setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
   };
+  if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
+    }
+},[focus])
 
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
-  /*{====================================}*/
+ 
 
     return (
         <SafeAreaView style={{marginTop:AreaPadding}}>
