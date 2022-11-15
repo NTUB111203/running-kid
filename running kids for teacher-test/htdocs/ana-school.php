@@ -340,7 +340,7 @@ $m_name=$_SESSION["m_name"];
         yAxes: [{
             ticks: {
             min: 0,
-            max: 2000,
+            max: 3000,
             maxTicksLimit: 5,
             padding: 100,
             // Include a dollar sign in the ticks

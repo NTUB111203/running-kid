@@ -344,15 +344,26 @@ $class_no = $_GET['id'];
     <script>
     <?php 
        
-        $query = $link->query("
-        SELECT sum(distance) as monthDistance ,month(r_datetime) as months FROM runningkids.record
-        where c_no=" .$_GET['id']." 
-        group by month(r_datetime);    
-        ");
+       $query = $link->query("
+       SELECT sum(distance) as monthDistance ,concat(year(r_datetime),'/',right(100+month(r_datetime),2)) as eachMonth FROM runningkids.record
+        where c_no=" .$_GET['id']."
+        group by eachMonth
+        order by eachMonth ASC
+        ;");
         foreach($query as $data){
             $monthDistance[] = $data['monthDistance'];
-            $months[] = $data['months'];
+            $eachMonth[] = $data['eachMonth'];
         }
+
+        // $query = $link->query("
+        // SELECT sum(distance) as monthDistance ,month(r_datetime) as months FROM runningkids.record
+        // where c_no=" .$_GET['id']." 
+        // group by month(r_datetime);    
+        // ");
+        // foreach($query as $data){
+        //     $monthDistance[] = $data['monthDistance'];
+        //     $months[] = $data['months'];
+        // }
     ?>
         // Set new default font family and font color to mimic Bootstrap's default styling
         Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -389,7 +400,7 @@ $class_no = $_GET['id'];
         type: 'line',
         data: {
             //labels: echo json_encode($months) ,
-            labels: <?php echo json_encode($months) ?> ,
+            labels: <?php echo json_encode($eachMonth) ?> ,
             datasets: [{
             label: "跑步里程",
             lineTension: 0.3,
@@ -429,9 +440,9 @@ $class_no = $_GET['id'];
                 ticks: {
                     maxTicksLimit: 30,
                     padding: 10,
-                    callback: function(value, index, values) {
-                        return number_format(value)+'月';
-                    }
+                    // callback: function(value, index, values) {
+                    //     return number_format(value)+'月';
+                    // }
                 }
             }],
             yAxes: [{
