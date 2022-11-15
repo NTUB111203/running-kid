@@ -93,31 +93,20 @@ $m_name=$_SESSION["m_name"];
                                                 group by c_no
                                                 order by sum(distance) DESC;" ;
                                                 $retval4=mysqli_query($link, $resultSchoolDistance);
-                                                $row4 = mysqli_fetch_assoc($retval4);
-                                                $num1 = $row4[0];
+                                                $NO1 = mysqli_fetch_assoc($retval4);
+                                                $NO2 = mysqli_fetch_assoc($retval4);
+                                                $NO3 = mysqli_fetch_assoc($retval4);
+                                                $NO4 = mysqli_fetch_assoc($retval4);
+                                                // $num1 = $row4[0];
 
                                                 //如何取排序第一筆資料第一個
                                                 //第二名取第二筆 以此類推
                                                 //echo $row4['schoolClass'];
-                                                echo $num1['schoolClass'];
+                                                echo $NO1['schoolClass'];
+                                                
                                                 
                                             ?> 
-                                            <?php 
-                                            $queryNo1 = $link->query("
-                                            SELECT sum(distance) as schoolDistance,c_no,CONCAT(grade,class) as schoolClass FROM runningkids.record
-                                                inner join class on record.c_no = class.class_no
-                                                group by c_no
-                                                order by schoolDistance DESC;    
-                                            ");
-
-                                            foreach($queryNo1 as $dataNo1){
-                                                $schoolDistanceNo1[] = $dataNo1['schoolDistance'];
-                                                $schoolClassNo1[] = $dataNo1['schoolClass'];
-                                                $No1 = max($schoolDistanceNo1);
-                                             
-                                            }
-                                            echo $No1;
-                                                ?>
+                                            
                                             </div>
                                         </div>
                                         <!-- <div class="col-auto">
@@ -136,7 +125,11 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
                                                 第二名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">101</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                echo $NO2['schoolClass'];
+                                                ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -154,7 +147,11 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
                                                 第三名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">103</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                                echo $NO3['schoolClass'];
+                                                ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -172,7 +169,11 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
                                                 第四名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">207</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                                echo $NO4['schoolClass'];
+                                                ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

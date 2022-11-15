@@ -351,7 +351,7 @@ $class_no = $_GET['id'];
         ");
         foreach($query as $data){
             $monthDistance[] = $data['monthDistance'];
-            $Months[] = $data['months'];
+            $months[] = $data['months'];
         }
     ?>
         // Set new default font family and font color to mimic Bootstrap's default styling
@@ -420,35 +420,35 @@ $class_no = $_GET['id'];
             scales: {
             xAxes: [{
                 time: {
-                unit: 'date'
+                    unit: 'date'
                 },
                 gridLines: {
-                display: false,
-                drawBorder: false
+                    display: false,
+                    drawBorder: false
                 },
                 ticks: {
-                maxTicksLimit: 30,
-                padding: 10,
-                callback: function(value, index, values) {
-                    return number_format(value)+'';
-                }
+                    maxTicksLimit: 30,
+                    padding: 10,
+                    callback: function(value, index, values) {
+                        return number_format(value)+'月';
+                    }
                 }
             }],
             yAxes: [{
                 ticks: {
-                maxTicksLimit: 3,//左側顯示項次數量
-                padding: 10,
-                // Include a dollar sign in the ticks
-                callback: function(value, index, values) {
-                    return '公里' + number_format(value);
-                }
+                    maxTicksLimit: 3,//左側顯示項次數量
+                    padding: 10,
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return '公里' + number_format(value);
+                    }
                 },
                 gridLines: {
-                color: "rgb(234, 236, 244)",
-                zeroLineColor: "rgb(234, 236, 244)",
-                drawBorder: false,
-                borderDash: [2],
-                zeroLineBorderDash: [2]
+                    color: "rgb(234, 236, 244)",
+                    zeroLineColor: "rgb(234, 236, 244)",
+                    drawBorder: false,
+                    borderDash: [2],
+                    zeroLineBorderDash: [2]
                 }
             }],
             },
