@@ -106,7 +106,7 @@ export default function  Indexp({navigation}) {
         <TouchableOpacity
       
         
-        onLongPress={() => navigation.navigate('Taiwan_K')}
+        onPress={() => navigation.navigate('Taiwan_K')}
         activeOpacity={0.8}
         
         >
@@ -122,7 +122,7 @@ export default function  Indexp({navigation}) {
           >
             <ImageBackground
           style={styles.taiwan_part} 
-          source={require('./img/A3.png')}
+          source={require('./img/A2.png')}
           />
           </ImageBackground>
 

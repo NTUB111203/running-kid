@@ -1,32 +1,14 @@
-import React,{useState,useEffect} from "react";
+import React from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Header from "../header";
 import styles from "./game_style";
-import { useIsFocused } from "@react-navigation/native";
 
-export default function Wardrobe({navigation}) {
-
-    const focus = useIsFocused();  
-    const [AreaPadding,setpadding] = useState(0);
-
-
-    useEffect(()=>{
-        if(Platform.OS=='android'){
-            setpadding(30);
-         };
-    },[focus])
-
-    var clothView =[];
-    let h=3;
-    
-
-  
-
+export default function Shop_hair({navigation}) {
     return (
-        <SafeAreaView style={{marginTop:AreaPadding}}>
+        <SafeAreaView >
       
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -48,75 +30,40 @@ export default function Wardrobe({navigation}) {
                         </TouchableOpacity>
 
                         <View style={styles.textbox_title}>
-                            <Text style={styles.title}>衣櫃</Text>
+                            <Text style={styles.title}>髮型商店</Text>
                         </View>
                     </View>
 
                     <View style= {styles.textbox}>
 
-                        <View style={{width:340,flex:1,flexDirection:'row',justifyContent:'space-around'}}>
-                            <TouchableOpacity>
-                                <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>頭髮</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>上衣</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>下著</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{width:340,flex:1,flexDirection:'row',justifyContent:'space-around',borderBottomWidth:1,borderColor:'#696969',paddingBottom:10}}>
-                            <TouchableOpacity>
-                                <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>表情</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text  style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>鞋子</Text>
-                                </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity>
-                                <View style={{height:50,width:100,justifyContent:'center',alignItems:'center'}}>
-                                    <Text style={{fontFamily:'BpmfGenSenRounded-H',color:'#117c72'}}>姿勢</Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>
+                
+                    
                         <View style={{flex:4,justifyContent:'flex-start',flexDirection:'row'}}>
-                            <View style={{flex:1,borderRadius:20,alignItems:'center',justifyContent:'center',borderWidth:2}}>
+                            <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                                 <Image
-                                    source={require('../../assets/game_man/hair0.png')}
+                                    source={require('../../assets/game_man/hair3.png')}
                                     style={{width:150,height:100}}></Image>
-                                    <Text style={{fontFamily:'BpmfGenSenRounded-H',marginTop:10}}>配戴中</Text>
-                              
+                                    <Text style={[styles.text,{color:"#ff8800"}]}>200金幣</Text>
                             </View>
                         <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                             <Image
                                     source={require('../../assets/game_man/hair1.png')}
                                     style={{width:150,height:100}}></Image>
+                                     <Text style={[styles.text,{color:"#ff8800"}]}>200金幣</Text>
                                    
                         </View>
                             <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                             <Image
                                     source={require('../../assets/game_man/hair2.png')}
                                     style={{width:150,height:100}}></Image>
-                                    
+                                     <Text style={[styles.text,{color:"#ff8800"}]}>100金幣</Text>
                             </View>
 
                         </View>
                         <View style={{flex:4,justifyContent:'flex-start',flexDirection:'row'}}>
                           
                                 <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
-                                <Image
-                                        source={require('../../assets/game_man/hair'+h+'.png')}
-                                        style={{width:150,height:100}}></Image>
-                                        
+                              
                                 </View>
                            
                           
@@ -147,4 +94,5 @@ export default function Wardrobe({navigation}) {
         </SafeAreaView> 
     )
 }
+
 

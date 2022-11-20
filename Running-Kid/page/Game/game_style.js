@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
     text:{
       textAlign:'left',
       fontSize: 18,
+      marginTop:5,
       color:'#117c72',
-      fontFamily:'BpmfGenSenRounded-H'
+      fontFamily:'BpmfGenSenRoundedH'
     },
   
     taiwan:{
@@ -165,10 +166,11 @@ const styles = StyleSheet.create({
     },  
     title:{
       textAlign:"center",
-      fontSize:30,
+      fontSize:24,
       color:"#117C72",
       fontWeight:"600",
-      fontFamily:'BpmfGenSenRounded-H'
+      fontFamily:'BpmfGenSenRoundedH',
+      marginTop:-30
     },
     
     shop_textbox:{

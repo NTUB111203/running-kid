@@ -61,6 +61,15 @@ export default function Game({navigation}) {
                                         <ImageBackground
                                           style={styles.img_center}
                                           source={require('../../assets/game_man/pant0.png')}>
+                                        <ImageBackground
+                                          style={styles.img_center}
+                                          source={require('../../assets/game_man/face0.png')}>
+                                         <ImageBackground
+                                          style={styles.img_center}
+                                          source={require('../../assets/game_man/shoes0.png')}>
+                                        
+                                         </ImageBackground>
+                                         </ImageBackground>
                                         
                                          </ImageBackground>
                                 </ImageBackground>

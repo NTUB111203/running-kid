@@ -20,7 +20,7 @@ function Mission_farm(){
   const showAlert = () =>{
     Alert.alert(
         '恭喜',
-        '獲得 10 金幣',
+        '獲得'+coin+'金幣',
         [
             {text: '確定', onPress: () => submitd()},
             
@@ -35,6 +35,7 @@ function Mission_farm(){
   const [disper,setdisper]=useState(0);
   const [coin,setcoin]=useState(10);
   const [time,settime]=useState(0);
+  const [tri,settri]=useState(true);
 
   
 
@@ -47,7 +48,7 @@ const gettime =() =>{
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
     settime(`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
-    console.log(time);
+    
 };
  
 let Data = {'m_id':10902,'coin':coin,'datetime':time};
@@ -57,10 +58,12 @@ let Data = {'m_id':10902,'coin':coin,'datetime':time};
     if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
       getd();
    };
+
    gettime();
   })
 
   const getd = ()=>{  try {
+    
     fetch('http://140.131.114.154/api/index.php', {
       method: 'POST',
       headers:
@@ -72,36 +75,46 @@ let Data = {'m_id':10902,'coin':coin,'datetime':time};
     .then ((response)=> {setdis(response[0].todaydis)})
     ;    
   
-    console.log(distancea);
+   
     setdisper(Number((distancea/1000).toFixed(1)));
-    console.log(disper);
+    
 
     if (distancea==''){
       setdis(0);
     };
-    if(disper>=1){
+
+    if(tri){
       setFontsLoaded(true);
+        if(disper<1){
+          setFontsLoaded(false);
+        };
     }else{
       setFontsLoaded(false);
-    };
+    }
+
     
-    console.log(typeof disper);
+
+   
+ 
+   
   } catch (error) {
   console.error(error);
   }
 }
 
   const submitd = ()=>{  
-  
-  console.log(Data);
+  let Data2 = {'m_id':10902,'coin':coin,'datetime':time};
+
+  console.log(Data2);
   try {
   fetch('http://140.131.114.154/api/addcoin.php', {
     method: 'POST',
     headers:
     {'Accept': 'application/json',
     'Content-Type': 'application/json'},
-    body: JSON.stringify(Data)
+    body: JSON.stringify(Data2)
   })  ;    
+
 
  
   if (distancea==''){
@@ -125,13 +138,13 @@ console.error(error);
     <ProgressBar progress={disper} style={styles.probarStyle} color={'#FEBC5F'}/> 
     <View style={{flexDirection:"row"}}>
       <Image
-      source={require('../../../assets/icon-money.png')}
+      source={require('../../../assets/icon-money.png')}      
       style={styles.money}/>
-      <Text flex={1} style={{fontSize:20}}> 20 </Text>
+      <Text flex={1} style={{fontSize:20}}> 10 </Text>
     </View>
     {
       buttonstatus ?
-      <TouchableOpacity style={styles.button_on} onPress={()=>{setcoin(10),gettime(),showAlert()}}>
+      <TouchableOpacity style={styles.button_on} onPress={()=>{setcoin(20),gettime(),showAlert(),settri(false)}}>
       <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRoundedL',marginTop:-20}}>領取獎勵</Text>
       </TouchableOpacity>
       :

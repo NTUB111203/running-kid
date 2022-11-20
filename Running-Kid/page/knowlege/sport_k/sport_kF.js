@@ -1,34 +1,29 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,TouchableOpacity} from "react-native";
 import Header from "../../header";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Feather } from "@expo/vector-icons";
 import { useFonts } from '../../font';
 import AppLoading from 'expo-app-loading';
-import { WebView } from "react-native-webview";
+import { useIsFocused } from "@react-navigation/native"; 
 
 
 
 
 export default function Sport_kF({navigation}) {
-    /*{===============字體載入===============
-  const [fontsLoaded,setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
-  };
 
-  if (!fontsLoaded) {
+    const focus = useIsFocused();  
+    const [AreaPadding,setpadding]=useState();
+
+    useEffect(()=>{
+        if(Platform.OS=='android'){
+            setpadding(30);
+         };
+       
+       },[focus])
+  
     return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
-  /*{====================================}*/
-    return (
-        <SafeAreaView >
+        <SafeAreaView  style={{paddingTop:AreaPadding}}>
       
             <ScrollView
               showsVerticalScrollIndicator={false}
@@ -37,7 +32,7 @@ export default function Sport_kF({navigation}) {
              <Header/>
              <ImageBackground style={styles.backgroundimg} 
                 source={require("../../../assets/background.png")}>
-                <View style={{height:50,flexDirection:'row',alignItems:'center',marginTop:10,justifyContent:''}}>  
+                <View style={{height:100,flexDirection:'row',alignItems:'center'}}>  
                     <TouchableOpacity  onPress={()=> navigation.goBack()}>
                         <Feather name="arrow-left-circle" size={32} color='#117c72' style={{marginLeft:15}} />
                     </TouchableOpacity>
@@ -50,7 +45,7 @@ export default function Sport_kF({navigation}) {
                 <View style={styles.img}>
                     <Image
                         source={require('../../../assets/BeSport.png')}
-                        style={{width:220,height:200}}
+                        style={{width:200,height:180}}
                     ></Image>
                      <Text style={styles.text}>
                     暖身是為了要讓肌肉有溫度，
@@ -102,14 +97,15 @@ const styles=StyleSheet.create({
         fontFamily:'BpmfGenSenRoundedH',
         fontSize:24,
         color:'#117c72',
-        marginLeft:35
+        marginLeft:35,
+        marginTop:-20
     },
     textbox_title:{
         fontFamily:'BpmfGenSenRoundedH',
         fontSize:18,
         color:'#117c72',
-        marginTop:20,
-        marginBottom:-10
+        marginTop:-20,
+        marginBottom:15
         
     },
     img:{
@@ -118,7 +114,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#ffffff',
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:20,
+        marginLeft:30,
         borderRadius:10,
         shadowOpacity: 0.2,
         shadowRadius: 1,
@@ -133,7 +129,9 @@ const styles=StyleSheet.create({
         lineHeight:20,
         letterSpacing:3,
         fontSize:14,
-        margin:20
+        margin:20,
+        marginTop:-20
+
     },
     textbox:{
         width:350,
@@ -141,7 +139,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#ffffff',
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:20,
+        marginLeft:30,
         marginTop:20,
         borderRadius:10,
         shadowOpacity: 0.2,

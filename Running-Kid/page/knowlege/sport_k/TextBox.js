@@ -13,20 +13,7 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,navigation} from "rea
  function Textbox_title(){
 
   /*{===============字體載入===============}*/
-  const [fontsLoaded,setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
-  };
-
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
+  
   /*{====================================}*/
    return(
    <View style={styles.textbox_title}>
@@ -50,20 +37,7 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,navigation} from "rea
  function Sport_farm(){
 
   /*{===============字體載入===============}*/
-  const [fontsLoaded,setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
-  };
 
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
   /*{====================================}*/
   const navigation = useNavigation();
   return(

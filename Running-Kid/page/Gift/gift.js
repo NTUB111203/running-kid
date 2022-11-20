@@ -27,7 +27,7 @@ export default function Gift() {
     const [giftquantity,setgiftquantity] = useState(1);
     const [AreaPadding,setpadding] = useState(0);
     const [Data,setdata]=useState({'m_id':10902});
-    const [score,setscore] =useState();
+    const [scorea,setscore] =useState();
     const [gift,setgift] = useState([]);
     const [test,settest] = useState('');
     const [giftid,setid]= useState();
@@ -54,17 +54,17 @@ export default function Gift() {
         'gift_no':giftid,
         'exchange_qty':giftquantity,
         'exchange_date':exchangeda,
-        'exchange_status':'未兌換'
+        'exchange_status':'未兌換',
+        'score':-(giftchange*giftquantity)
         };
   
     
     const change =()=>{
-        if (score<(giftquantity*giftchange)){
+        if (scorea<(giftquantity*giftchange)){
             Alert.alert('你的積分不夠喔');
         }else{
             Alert.alert('兌換成功~');
             console.log(changeData);
-
             try {
                 fetch('http://140.131.114.154/api/exchange.php', {
                   method: 'POST',
@@ -73,7 +73,6 @@ export default function Gift() {
                   'Content-Type': 'application/json'},
                   body: JSON.stringify(changeData)
                 });
-                console.log(Data);
            
              } catch (error) {
                console.error(error);
@@ -126,11 +125,11 @@ export default function Gift() {
         }
     }
 
-    console.log(score);
-    console.log(gift.length);
-
   
    useEffect(()=>{
+    if(Platform.OS=='android'){
+        setpadding(30);
+     };
     getscore();
     getgift();
     if (focus){
@@ -140,9 +139,6 @@ export default function Gift() {
    },[focus])
        
 
-        if(Platform.OS=='android'){
-           setpadding(30);
-        };
       
   
       var ComponentsView =[];
@@ -153,7 +149,7 @@ export default function Gift() {
        
             <Text style={styles.text}>{gift[i].gift}</Text>
                 <Image
-                source={require('../../assets/eggr.jpeg')}
+                source={require('../../assets/Papple.jpg')}
                 style={styles.imga}/>
     
                 <TouchableOpacity 
@@ -194,7 +190,7 @@ export default function Gift() {
                         </View>
                         <View style={{flex:10,alignItems:'center',justifyContent:'flex-start',marginLeft:20,marginRight:20}}>
                             <Image  
-                                source={require('../../assets/eggr.jpeg')}
+                                source={require('../../assets/Papple.jpg')}
                                 style={styles.imgb}
                             />
                             <Text style={{fontFamily:'BpmfGenSenRoundedL',lineHeight:20,letterSpacing:3,marginTop:-15}}>
