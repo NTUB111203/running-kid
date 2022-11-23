@@ -71,7 +71,7 @@ $m_name=$_SESSION["m_name"];
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">本月全校班級平均公里數排行榜</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">班級排行榜</h6>
                         </div>
                     </div>
 
@@ -195,7 +195,7 @@ $m_name=$_SESSION["m_name"];
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">當月全校班級里程</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">全校班級里程</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -303,10 +303,9 @@ $m_name=$_SESSION["m_name"];
     var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        //labels: ["102", "304", "201", "401", "101", "506","207", "108", "602", "103"],
         labels: <?php echo json_encode($schoolClass) ?> ,
         datasets: [{
-        label: "全校跑步里程",
+        label: "跑步里程",
         backgroundColor: "#4e73df",
         hoverBackgroundColor: "#2e59d9",
         borderColor: "#4e73df",
@@ -340,12 +339,12 @@ $m_name=$_SESSION["m_name"];
         yAxes: [{
             ticks: {
             min: 0,
-            max: 3000,
-            maxTicksLimit: 5,
+            //max: 3000,
+            //maxTicksLimit: 5,
             padding: 100,
             // Include a dollar sign in the ticks
             callback: function(value, index, values) {
-                return  number_format(value)+ 'KM';
+                return  number_format(value)+ '公尺';
             }
             },
             gridLines: {
@@ -375,7 +374,7 @@ $m_name=$_SESSION["m_name"];
         callbacks: {
             label: function(tooltipItem, chart) {
             var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-            return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ 'KM ';
+            return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ '公尺 ';
             }
         }
         },

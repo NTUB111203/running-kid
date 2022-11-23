@@ -79,7 +79,8 @@ $m_name=$_SESSION["m_name"];
 
                     <!-- PHP 班級 -->
                     <?php
-                        $result = "SELECT * FROM members where identity='S'";
+                        $result = "SELECT * FROM runningkids.members
+                        inner join class on class.class_no = members.class_no";
 
                         $retval=mysqli_query($link, $result);
                         if ($retval) {
@@ -99,7 +100,7 @@ $m_name=$_SESSION["m_name"];
                                     echo "<h1>".$row["m_name"]."</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>年級:".$row['class_no']."</h5>";
+                                    echo "<h5>年級:".$row['grade'].$row['class']."</h5>";
                                     echo "</div>";
 
                                     echo "</div>\n";

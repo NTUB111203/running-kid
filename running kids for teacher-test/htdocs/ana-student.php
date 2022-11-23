@@ -263,16 +263,17 @@ $m_id = $_GET['id'];
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">起始跑步日期 :
+                <span class="text">起始日期 :
                 <?php 
-                $result = "SELECT min(r_datetime)as starttime FROM runningkids.record
+                $result = "SELECT min(date(r_datetime))as starttime FROM runningkids.record
                 where m_id =  " .$_GET['id']. "" ;
                 $retval=mysqli_query($link, $result);
                 $rowTime = mysqli_fetch_assoc($retval);
-                if(empty($rowTime["starttime"])){
+                $starttime = $rowTime["starttime"];
+                if(empty($starttime)){
                     echo "尚未有紀錄";
                 }else{
-                    echo "<p>".$rowTime["starttime"]."</p>";
+                    echo $starttime;
                 }
                     
                 ?>
@@ -283,7 +284,7 @@ $m_id = $_GET['id'];
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">本月累計公里數 : 
+                <span class="text">本月公里數 : 
                     <?php 
                     $result = "SELECT sum(record.distance) as stuMonDistance FROM runningkids.record
                     inner join members on members.m_id=record.m_id
@@ -315,7 +316,7 @@ $m_id = $_GET['id'];
                 <span class="icon text-white-50">
                     <i class="fas fa-flag"></i>
                 </span>
-                <span class="text">上個月跑步公里 : <?php 
+                <span class="text">上個月公里數 : <?php 
                     $resultLast = "SELECT sum(record.distance) as stuMonDistanceLast FROM runningkids.record
                     inner join members on members.m_id=record.m_id
                     where record.m_id in
@@ -391,7 +392,7 @@ $m_id = $_GET['id'];
         <hr>
         <div class="mt-4 text-center small">
             <span class="mr-2">
-                <i class="fas fa-circle text-primary"></i> 五月每日跑步里程
+                <i class="fas fa-circle text-primary"></i> 每日跑步里程
             </span>
             
         </div> 
@@ -598,6 +599,7 @@ $m_id = $_GET['id'];
         $query = $link->query("
             SELECT m_id,distance,r_datetime FROM runningkids.record
             where m_id=" .$_GET['id']. "
+            order by r_datetime ASC
             ;
         ");
 
@@ -643,7 +645,7 @@ $m_id = $_GET['id'];
         data: {
             labels: <?php echo json_encode($r_datetime) ?>,
             datasets: [{
-            label: "Revenue",
+            label: "跑步里程",
             backgroundColor: "#4e73df",
             hoverBackgroundColor: "#36b9cc",
             borderColor: "#4e73df",
@@ -678,7 +680,7 @@ $m_id = $_GET['id'];
                 ticks: {
                 min: 0,
                 //確認資料是否合理
-                max: 150,
+                //max: 150,
                 maxTicksLimit: 5,
                 padding: 10,
                 // Include a dollar sign in the ticks

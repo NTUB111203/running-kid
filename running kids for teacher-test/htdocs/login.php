@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //這些是之後可以用到的變數
         //$_SESSION["id"] = mysqli_fetch_assoc($result)["id"];
         //$_SESSION["username"] = mysqli_fetch_assoc($result)["username"];
-        header("location:index.php");
+        header("location:ana-school.php");
     }else{
         function_alert("帳號或密碼錯誤"); 
     }

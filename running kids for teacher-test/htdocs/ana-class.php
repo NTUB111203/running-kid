@@ -117,9 +117,12 @@ $class_no = $_GET['id'];
                                             (SELECT members.m_id FROM runningkids.class
                                             inner join members on class.class_no=members.class_no
                                             where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+
+                                           
+
                                             $retval=mysqli_query($link, $result);
                                             $rowClass = mysqli_fetch_assoc($retval);
-                                            echo "<p>".$rowClass["totalDistance"]."KM</p>";
+                                            echo "<p>".$rowClass["totalDistance"]."公尺</p>";
                                             ?>
                                             
                                             <!-- KM -->
@@ -162,7 +165,7 @@ $class_no = $_GET['id'];
                                             where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
                                             $retval=mysqli_query($link, $result);
                                             $rowClass = mysqli_fetch_assoc($retval);
-                                            //echo "<p>".$rowClass["totalDistance"]."KM</p>";
+                                            //echo "<p>".$rowClass["totalDistance"]."公尺</p>";
                                             $totaldis= (float)$rowClass["totalDistance"];
 
                                             $result = "SELECT count(m_id) as classMembers FROM runningkids.class
@@ -174,7 +177,7 @@ $class_no = $_GET['id'];
                                             //echo "<p>".$rowClass["classMembers"]."人</p>";
                                             $clas = (float)$rowClass["classMembers"];
                                             //echo ($totaldis/$clas);
-                                            echo "<p>".round($totaldis/$clas)."KM</p>";
+                                            echo "<p>".round($totaldis/$clas)."公尺</p>";
                                             ?>
 
                                             
@@ -213,6 +216,7 @@ $class_no = $_GET['id'];
                                             $rowClass = mysqli_fetch_assoc($retval);
                                             $totalTime = $rowClass["totalTime"];
                                             echo sprintf('%.2f',$totalTime/60).'小時';
+                                           
                                             ?>    
                                             </div>
                                         </div>
@@ -345,10 +349,14 @@ $class_no = $_GET['id'];
     <?php 
        
        $query = $link->query("
-       SELECT sum(distance) as monthDistance ,concat(year(r_datetime),'/',right(100+month(r_datetime),2)) as eachMonth FROM runningkids.record
-        where c_no=" .$_GET['id']."
+       SELECT  sum(distance) as monthDistance,concat(year(r_datetime),'/',right(100+month(r_datetime),2)) as eachMonth  FROM runningkids.record
+        inner join members on members.m_id=record.m_id
+        where record.m_id in
+        (SELECT members.m_id FROM runningkids.class
+        inner join members on class.class_no=members.class_no
+	    where  members.identity='S' and members.class_no =" .$_GET['id'].")
         group by eachMonth
-        order by eachMonth ASC
+	    order by eachMonth ASC
         ;");
         foreach($query as $data){
             $monthDistance[] = $data['monthDistance'];
@@ -451,7 +459,7 @@ $class_no = $_GET['id'];
                     padding: 10,
                     // Include a dollar sign in the ticks
                     callback: function(value, index, values) {
-                        return '公里' + number_format(value);
+                        return '公尺' + number_format(value);
                     }
                 },
                 gridLines: {
@@ -483,7 +491,7 @@ $class_no = $_GET['id'];
             callbacks: {
                 label: function(tooltipItem, chart) {
                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'公里';
+                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'公尺';
                 }
             }
             }
