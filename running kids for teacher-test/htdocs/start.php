@@ -20,7 +20,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 <body>
     <h1>登入</h1>
     <h2>你可以選擇登入或是註冊帳號~</h2>
-<form method="post" action="login.php">
+<form method="post" action="ana-school.php">
 帳號：
 <input type="text" name="m_id"><br/><br/>
 密碼：

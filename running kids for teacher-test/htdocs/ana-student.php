@@ -110,7 +110,7 @@ $m_id = $_GET['id'];
                     where  members.identity='S'and day(r_datetime) = day(now()) and members.m_id =" .$_GET['id']. ")" ;
                     $retvalToday=mysqli_query($link, $resultToday);
                     $rowToday = mysqli_fetch_assoc($retvalToday);
-                    $TodayDistance = $rowS["TodayDistance"];
+                    $TodayDistance = $rowToday["TodayDistance"];
                     if (empty($TodayDistance)) {
                         echo "0公里";
                     }else {
