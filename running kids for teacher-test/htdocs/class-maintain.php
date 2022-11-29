@@ -31,7 +31,7 @@ $m_name = $_SESSION["m_name"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>班級管理</title>
+    <!-- <title>班級管理</title> -->
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -86,6 +86,7 @@ $m_name = $_SESSION["m_name"];
                             </div>
                         </div>
 
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -97,12 +98,14 @@ $m_name = $_SESSION["m_name"];
                                             <th>人數</th>
                                             <th>編輯</th>
                                             <th>刪除</th>
+
                                         </tr>
                                     </thead>
-
                                     <tobody>
 
+
                                         <?php
+
                                         $result = "SELECT * FROM class";
                                         $retval = mysqli_query($link, $result);
 
@@ -111,12 +114,14 @@ $m_name = $_SESSION["m_name"];
 
                                             if (mysqli_num_rows($retval) > 0) {
                                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                                    $members = "select count(*)as member from members where class_no =" . $row['class_no'];
+                                                    $_SESSION['class_no'] = $row["class_no"];
+                                                    $members = "select count(*)as member from members where class_no =" . $row['class_no'] . " AND identity='S'";
+                                                    //$members = "select count(*)as member from members where class_no =".$row['class_no'];
                                                     $retval2 = mysqli_query($link, $members);
                                                     $rowMember = mysqli_fetch_assoc($retval2);
                                                     // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
                                                     echo "<th>" . $row["semester"] . "</th>";
-                                                    //echo "<th>" . $row["grade"] . "</th>";
+                                                    //echo "<th>".$row["grade"]."</th>";
                                                     echo "<th>" . $row["grade"] . $row["class"] . "</th>";
                                                     echo "<th>" . $rowMember['member'] . "</th>";
                                         ?>
@@ -127,7 +132,9 @@ $m_name = $_SESSION["m_name"];
                                                         echo '<span class="text" style="font-weight:bold;">編輯</span>';
                                                         echo '</a>'
                                                         ?>
+
                                                     </td>
+
                                                     <!-- 連接到class-delete.php -->
 
                                                     <td>
@@ -139,17 +146,15 @@ $m_name = $_SESSION["m_name"];
                                                     </td>
                                                     <!-- 跳出確認刪除按鈕                                                                                                -->
                                                     </tr>
-
-
                                         <?php
                                                 }
                                             }
-                                        }
-                                        ?>
+                                        } ?>
                                     </tobody>
                                 </table>
                             </div>
                         </div>
+
                     </div>
 
 

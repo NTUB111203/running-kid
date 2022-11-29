@@ -1,3 +1,10 @@
+<?php
+require_once 'DataBase.php';
+
+$sup_no = $_GET['sup_no'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,49 +64,48 @@
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">編輯供應商</h1>
+                                <h1 class="h4 text-gray-900 mb-4">供應商編輯</h1>
                             </div>
 
                             <form class="user" method="post" action="sup-update.php">
                                 <thead>
+                                    <?php
+                                    $result = "SELECT * FROM gift_supplier WHERE sup_no = '$sup_no'";
+                                    $retval = mysqli_query($link, $result);
 
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <h6>供應商名稱</h6>
-                                        <input type="text" class="form-control form-control-user" name="sup_name" id="sup_name" value="" placeholder="" required />
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
+                                    if ($retval) {
+                                        $num = mysqli_num_rows($retval);
 
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <h6>供應商電話</h6>
-                                        <input type="text" class="form-control form-control-user" name="sup_tel" id="sup_tel" value="" placeholder="" required />
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                </thead>
-
-<tobody>
-                                <?php
-                                $sup_no = $_GET['sup_no'];
-                                $result = "SELECT * FROM gift_supplier where sup_no = $sup_no";
-                                $retval = mysqli_query($link, $result);
-                                if ($retval) {
-                                    $num = mysqli_num_rows($retval);
-
-                                    if (mysqli_num_rows($retval) > 0) {
-                                        while ($row = mysqli_fetch_assoc($retval)) {
-                                            //$class_no = $_GET['class_no'];
-                                            //echo "<th> <input type=cheakbox name=change></th>";
-                                            //echo "<th>";
-                                            echo "<tr>" . $row["sup_name"] . "</tr>";
-                                            echo "<tr>" . $row["sup_tel"] . "</tr>";
+                                        if (mysqli_num_rows($retval) > 0) {
+                                            while ($row = mysqli_fetch_assoc($retval)) {
+                                                $sup_name =  $row["sup_name"];
+                                                $sup_tel =  $row["sup_tel"];
+                                            }
                                         }
                                     }
-                                } ?>
+                                    ?>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 "></div>
+                                        <div class="col-sm-6 ">
+                                            <h6>供應商名稱</h6>
+                                            <?php echo "<input type='text' class='form-control form-control-user' name='sup_name' id='sup_name' value='$sup_name' require/>" ?>
+
+                                        </div>
+                                        <div class="col-sm-3 "></div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-3 "></div>
+                                        <div class="col-sm-6 ">
+                                            <h6>供應商電話</h6>
+                                            <?php echo "<input type='text' class='form-control form-control-user' name='sup_tel' id='sup_tel' value='$sup_tel' require/>" ?>
+                                        </div>
+                                        <div class="col-sm-3 "></div>
+                                    </div>
+                                </thead>
+
+
 
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
@@ -112,7 +118,7 @@
 
 
 
-                                        <button type="submit" class="btn btn-warning btn-user btn-block">確認新增禮品</button>
+                                        <button type="submit" class="btn btn-warning btn-user btn-block">確認編輯禮品</button>
 
                                         </a>
                                     </div>

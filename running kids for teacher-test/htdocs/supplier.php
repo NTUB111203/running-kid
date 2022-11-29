@@ -108,6 +108,7 @@ $m_name = $_SESSION["m_name"];
                                     <tbody>
                                         <!--表格資料仍有錯誤待修，目前只是把class表拉進-->
                                         <?php
+                                        //  $_SESSION['sup_no'] = $row["sup_no"];
                                         $result = "SELECT * FROM  gift_supplier";
                                         //$result = "SELECT * FROM gift LEFT JOIN gift_supplier ON gift.gift_sup_no = gift_supplier.sup_no";  
                                         $retval = mysqli_query($link, $result);
@@ -129,7 +130,7 @@ $m_name = $_SESSION["m_name"];
                                                         ?>
                                                     </td>
 
-                                                     <!-- 連接到sup-delete.php -->
+                                                    <!-- 連接到sup-delete.php -->
                                                     <td>
                                                         <?php
                                                         echo '<a href="sup-delete.php?sup_no=' . $row['sup_no'] . '" class=" btn btn-danger btn-icon-split ">';

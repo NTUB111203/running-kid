@@ -21,22 +21,19 @@ $school_no = $_SESSION["school_no"];
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        .selections{
+        .selections {
             border-radius: 10rem;
-            height: calc(2em + 1.25rem );
+            height: calc(2em + 1.25rem);
             font-size: 0.8rem;
         }
     </style>
 
 </head>
-
 <?php
 echo
 $_POST['sch_no'];
@@ -51,6 +48,7 @@ $class_no = $_GET['class_no'];
 $identity = $_POST['identity'];
 $mail = $_POST['mail'];
 
+
 $sql = "INSERT INTO  members(m_id,m_name,gender,mail,identity,class_no)
         VALUES('$m_id','$m_name','$gender',' ','S','$class_no')";
 if (mysqli_query($link, $sql)) {
@@ -63,6 +61,31 @@ if (mysqli_query($link, $sql)) {
 header('Location: student-view.php');
 
 ?>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <!-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> -->
+                    <div class="col-lg-12">
+                        <!-- col-lg-7 -->
+                        <div class="p-5">
+                            <div class="text-center">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

@@ -110,6 +110,7 @@ $m_name = $_SESSION["m_name"];
                                             <span class="text" style="font-weight:bold;">新增禮品</span>
                                         </a>
                                     </div>
+
                                 </div>
                             </div>
                             <hr>
@@ -125,7 +126,7 @@ $m_name = $_SESSION["m_name"];
                                             <th>禮品描述</th>
                                             <th>禮品供應商</th>
                                             <th>供應商連絡電話</th>
-                                            <th>修改</th>
+                                            <th>編輯</th>
                                             <th>刪除</th>
                                         </tr>
                                     </thead>
@@ -158,37 +159,41 @@ $m_name = $_SESSION["m_name"];
                                                     // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
                                                     echo "<th>" . $row["gift"] . "</th>";
                                                     echo "<th>" . $row["exchange_points"] . "</th>";
-                                                    //    echo "<th>".$row["gift_sup_no"]."</th>";
+                                                    //echo "<th>".$row["gift_sup_no"]."</th>";
                                                     echo "<th>" . $row['gift_description'] . "</th>";
                                                     echo "<th>" . $row["sup_name"] . "</th>";
                                                     echo "<th>" . $row['sup_tel'] . "</th>";
 
-                                                    //echo "<th style=\"color: rgb(0, 87, 248);\">現任班級</th>\n"
-
-
                                         ?>
-                                                    < <td>
+
+                                                    <td>
+                                                        <!-- <a href="gift-edit.php?id=' . $row['gift_no'] . '" class=" btn btn-warning btn-icon-split ">
+                                                            <span class="text" style="font-weight:bold;">修改</span>
+                                                        </a> -->
                                                         <?php
                                                         echo '<a href="gift-edit.php?gift_no=' . $row['gift_no'] . '" class=" btn btn-warning btn-icon-split ">';
                                                         echo '<span class="text" style="font-weight:bold;">編輯</span>';
                                                         echo '</a>';
                                                         ?>
-                                                        </a>
-                                                        </td>
-                                                        <!-- 連接到gift-change.php -->
-                                                        <td>
-                                                            <?php
-                                                            echo '<a href="gift-delete.php?gift_no=' . $row['gift_no'] . '" class=" btn btn-danger btn-icon-split ">';
-                                                            echo '<span class="text" style="font-weight:bold;">刪除</span>';
-                                                            echo '</a>';
-                                                            ?>
-                                                        </td>
-                                                        <!-- 跳出確認刪除按鈕                                                                                                -->
-                                                        </tr>
-                                            <?php
+                                                    </td>
+                                                    <!-- 連接到gift-change.php -->
+                                                    <td>
+                                                        <!-- <a href="gift-delete.php?id=' . $row['gift_no'] . '" class=" btn btn-danger btn-icon-split " >
+                                                        <span class="text" style="font-weight:bold;">刪除</span>
+                                                        </a> -->
+                                                        <?php
+                                                        echo '<a href="gift-delete.php?gift_no=' . $row['gift_no'] . '" class=" btn btn-danger btn-icon-split ">';
+                                                        echo '<span class="text" style="font-weight:bold;">刪除</span>';
+                                                        echo '</a>';
+                                                        ?>
+                                                    </td>
+                                                    <!-- 跳出確認刪除按鈕                                                                                                -->
+                                                    </tr>
+                                        <?php
                                                 }
                                             }
-                                        } ?>
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

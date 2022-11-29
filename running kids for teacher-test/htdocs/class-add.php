@@ -1,11 +1,11 @@
 <?php
 /*連接資料庫*/
- require_once 'DataBase.php';
- ?>
+require_once 'DataBase.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-    
+
 
 <head>
 
@@ -19,21 +19,20 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        .selections{
+        .selections {
             border-radius: 10rem;
-            height: calc(2rem + 1.25rem );
+            height: calc(2rem + 1.25rem);
             font-size: 0.8rem;
         }
     </style>
-    
+
 </head>
+
 
 <?php
 echo $_POST['sch_no'];
@@ -42,15 +41,17 @@ $semester = $_POST['semester'];
 $grade = $_POST['grade'];
 $class = $_POST['class'];
 
-$sql = "INSERT INTO  class(semester,grade, class)VALUES('$semester','$grade', '$class')";
-if(mysqli_query($link,$sql)){
+$sql = "INSERT INTO  class(semester,grade,class)VALUES('$semester','$grade', '$class')";
+echo $sql;
+
+if (mysqli_query($link, $sql)) {
     function_alert("班級新增成功!");
-}else{
+} else {
     function_alert("班級新增失敗！");
 }
 
-// 如果有新增成功
-header('Location: class-maintain.php'); 
+// 如果新增成功
+header('Location:class-maintain.php');
 
 // Close connection
 mysqli_close($link);
@@ -63,7 +64,15 @@ function function_alert($message)
     </script>";
     return false;
 }
- ?>
+
+
+// if(mysqli_query($link,$sql)){
+//     echo "新增成功!!";
+// }else{
+//     echo "新增失敗".mysqli_error($link);
+// }
+
+?>
 
 
 
@@ -80,9 +89,9 @@ function function_alert($message)
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                              
+
                             </div>
-                          
+
                         </div>
                     </div>
                 </div>
@@ -102,7 +111,7 @@ function function_alert($message)
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    
+
 </body>
 
 </html>
