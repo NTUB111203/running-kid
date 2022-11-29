@@ -1,15 +1,29 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,TouchableOpacity} from "react-native";
 import Header from "../../header";
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Feather } from "@expo/vector-icons";
-import { Sport_farm } from "./TextBox";
+import { useFonts } from '../../font';
+import AppLoading from 'expo-app-loading';
+import { useIsFocused } from "@react-navigation/native"; 
+
 
 
 
 export default function Sport_kF({navigation}) {
+
+    const focus = useIsFocused();  
+    const [AreaPadding,setpadding]=useState();
+
+    useEffect(()=>{
+        if(Platform.OS=='android'){
+            setpadding(30);
+         };
+       
+       },[focus])
+  
     return (
-        <SafeAreaView >
+        <SafeAreaView  style={{paddingTop:AreaPadding}}>
       
             <ScrollView
               showsVerticalScrollIndicator={false}
@@ -18,7 +32,7 @@ export default function Sport_kF({navigation}) {
              <Header/>
              <ImageBackground style={styles.backgroundimg} 
                 source={require("../../../assets/background.png")}>
-                <View style={{height:50,flexDirection:'row',alignItems:'center',marginTop:10,justifyContent:''}}>  
+                <View style={{height:100,flexDirection:'row',alignItems:'center'}}>  
                     <TouchableOpacity  onPress={()=> navigation.goBack()}>
                         <Feather name="arrow-left-circle" size={32} color='#117c72' style={{marginLeft:15}} />
                     </TouchableOpacity>
@@ -31,7 +45,7 @@ export default function Sport_kF({navigation}) {
                 <View style={styles.img}>
                     <Image
                         source={require('../../../assets/BeSport.png')}
-                        style={{width:220,height:200}}
+                        style={{width:200,height:180}}
                     ></Image>
                      <Text style={styles.text}>
                     暖身是為了要讓肌肉有溫度，
@@ -46,29 +60,20 @@ export default function Sport_kF({navigation}) {
                     <Text style={styles.textbox_title}>第一招：屈膝抱腿</Text>
                     <Text style={styles.text}>挺胸，背挺直，雙手抱膝(如果怕跌倒可以扶牆)</Text>
                 </View>
+
                 <View style={styles.textbox}>
                     <Text style={styles.textbox_title}>第二招：弓箭步胸椎轉體</Text>
                     <Text style={styles.text}>腳踩弓箭步，膝蓋不點地，肚子要穩住，記得以轉胸為主，頭往後方看</Text>
                 </View>
+
                 <View style={styles.textbox}>
                     <Text style={styles.textbox_title}>第三招：上肢肩膀伸展</Text>
                     <Text style={styles.text}>因為跑步時手臂也會跟著晃動，所以雙手也是需要暖身的喔！記得挺胸不要駝背。</Text>
                 </View>
 
-                <View style={[styles.textbox_Video]}>
-                    <Text style={[styles.textbox_title,{marginBottom:15}]}>觀看影片</Text>
-                    <YoutubePlayer
-                        height={300}
-                        width={320}
-                        play={true}
-                        videoId={"DslXasYvkak"}
-                    />
-                </View>
                 
                 
-                   
-                
-                
+                  
             </ImageBackground>
             </ScrollView>
         </SafeAreaView> 
@@ -89,17 +94,18 @@ const styles=StyleSheet.create({
       },
     
     title:{
-        fontFamily:'BpmfGenSenRounded-H',
+        fontFamily:'BpmfGenSenRoundedH',
         fontSize:24,
         color:'#117c72',
-        marginLeft:35
+        marginLeft:35,
+        marginTop:-20
     },
     textbox_title:{
-        fontFamily:'BpmfGenSenRounded-H',
+        fontFamily:'BpmfGenSenRoundedH',
         fontSize:18,
         color:'#117c72',
-        marginTop:20,
-        marginBottom:-10
+        marginTop:-20,
+        marginBottom:15
         
     },
     img:{
@@ -108,7 +114,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#ffffff',
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:20,
+        marginLeft:30,
         borderRadius:10,
         shadowOpacity: 0.2,
         shadowRadius: 1,
@@ -119,11 +125,13 @@ const styles=StyleSheet.create({
         },
     },
     text:{
-        fontFamily:'BpmfGenSenRounded-L',
+        fontFamily:'BpmfGenSenRoundedL',
         lineHeight:20,
         letterSpacing:3,
         fontSize:14,
-        margin:20
+        margin:20,
+        marginTop:-20
+
     },
     textbox:{
         width:350,
@@ -131,7 +139,7 @@ const styles=StyleSheet.create({
         backgroundColor:'#ffffff',
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:20,
+        marginLeft:30,
         marginTop:20,
         borderRadius:10,
         shadowOpacity: 0.2,

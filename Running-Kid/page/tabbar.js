@@ -62,10 +62,11 @@ export default function Tabbars() {
                 headerShown:false,
                 tabBarStyle : {
                     position:'absolute',
-                    marginBottom:30,
+                   
                     marginLeft:10,
                     marginRight:10,
-                    borderRadius:20,    
+                    borderTopLeftRadius:20,    
+                    borderTopRightRadius:20,    
                     borderTopWidth:2,
                     borderWidth:2,
                     borderColor:'#DCDCDC',

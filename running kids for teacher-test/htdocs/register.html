@@ -1,29 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
     <link rel="icon" href="../Logo/logo-pink.png" type="image/x-icon" />
-    <title>Register</title>
+    <title>會員註冊</title>
 
     <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
-      href="vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
-    <!-- Bootstrap core JavaScript-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -35,11 +30,12 @@
     <script src="js/sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
+
     <script>
       function validateForm() {
         var re = new RegExp('^[A-Za-z]+$');
@@ -59,8 +55,9 @@
           url: "register.php",
           dataType: "json",
           data: { 
+            
             school:$("#sch_no").val(),
-            class:$("#class_no").val(),
+            //class:$("#class_no").val(),
             id:$("#m_id").val(),
             password: $("#password").val(),
             name:$("#m_name").val(),
@@ -70,16 +67,18 @@
             mail:$("#mail").val(),
             bir:$("#birthday").val(),
           },
+          error:function(res){
+            console.log(res);
+          },
 
-          success: function (res) {
+          success: function (res) { 
             console.log(res)
           },
         });
         }
-        
-        
-      }
-      window.onload = function getSchool() {
+      } 
+      
+        window.onload = function getSchool() {
         $.ajax({
           type: "POST",
           url: "getRow.php",
@@ -97,6 +96,9 @@
           },
         });
       };
+        
+     
+       
     </script>
   </head>
 
@@ -177,7 +179,7 @@
                   <!-- Nested Row within Card Body -->
                   <div class="row">
                     <div
-                      class="col-lg-6 d-none d-lg-block bg-login-image"
+                      class="col-lg-6 d-none d-lg-block bg-login-image1"
                     ></div>
                     <div class="col-lg-6">
                       <div class="p-5">
@@ -187,130 +189,131 @@
                         <div
                           class="user"
                         >
-                          <div class="form-group">
-                            <select
-                              name="sch_no"
-                              id="sch_no"
-                              class="form-control selections"
-                              required
-                            >
-                              <option value="">請選擇學校</option>
-                            </select>
-                          </div>
-
-                          <div class="form-group">
-                            <input
-                              type="text"
-                              class="form-control form-control-user"
-                              name="class_no"
-                              id="class_no"
-                              value=""
-                              placeholder="請輸入您的處室或班級"
-                              required
-                            />
-                          </div>
-
-                          <div class="form-group">
-                            <input
-                              type="text"
-                              class="form-control form-control-user"
-                              name="m_id"
-                              id="m_id"
-                              value=""
-                              placeholder="請輸入您的教師編號"
-                              required
-                            />
-                          </div>
-
-                          <div class="form-group">
-                            <input
-                              type="text"
-                              class="form-control form-control-user"
-                              name="mail"
-                              id="mail"
-                              value=""
-                              placeholder="請輸入您的帳號(請使用學校信箱)"
-                              required
-                            />
-                          </div>
-
-                          <div class="form-group">
-                            <input
-                              type="password"
-                              class="form-control form-control-user"
-                              name="password"
-                              id="password"
-                              value=""
-                              placeholder="請輸入您的密碼(輸入8~12位數，須同時包含英文或數字)"
-                              autocomplete="off"
-                              required
-                            />
-                          </div>
-
-                          <div class="form-group">
-                            <input
-                              type="password"
-                              class="form-control form-control-user"
-                              name="repassword"
-                              id = "repassword"
-                              value=""
-                              placeholder="再次輸入密碼"
-                              autocomplete="off"
-                              required
-                            />
-                          </div>
-
-                          <div class="form-group">
-                            <select name="gender" class="form-control selections"required >                                            
-                              <option value="">身分
-                              <option value="PE">體育組公用帳號
-                              <option value="T">導師
+                        <div class="form-group">
+                          <select
+                            name="sch_no"
+                            id="sch_no"
+                            class="form-control selections"
+                            required
+                          >
+                            <option value="">請選擇學校</option>
                           </select>
-                          </div>
+                        </div>
 
-                          <div class="form-group">
-                            <input 
-                              type="text" 
-                              class="form-control form-control-user" 
-                              name="m_name"  
-                              value="" 
-                              placeholder="姓名"required
-                            />
-                          </div>
-
-                          <div class="form-group">
-                            <select name="gender" class="form-control selections"required >                                            
-                              <option value="">性別
-                              <option value="F">女生
-                              <option value="M">男生
+                        <div class="form-group">
+                          <select
+                            type="text"
+                            class="form-control form-control-user"
+                            name="class_no"
+                            id="class_no"
+                            value=""
+                            
+                            required
+                          >
+                          <option value="">請輸入您的處室或班級</option>
                           </select>
-                          </div>
+                        </div>
 
-                          <div class="form-group">
-                            <input type="text" class="form-control form-control-user" 
-                            name="phone" id="phone" value="" placeholder="電話"required>
-                          </div>
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control form-control-user"
+                            name="m_id"
+                            id="m_id"
+                            value=""
+                            placeholder="請輸入您的教師編號"
+                            required
+                          />
+                        </div>
 
-                        
+                        <div class="form-group">
+                          <input
+                            type="text"
+                            class="form-control form-control-user"
+                            name="mail"
+                            id="mail"
+                            value=""
+                            placeholder="請輸入您的帳號(請使用學校信箱)"
+                            required
+                          />
+                        </div>
 
-                          <div class="form-group">
-                            <input type="date" class="form-control form-control-user" 
-                              name="birthday" id="birthday" value="" placeholder="生日"required>
-                          </div>
-                  
-                          <button class="btn btn-primary btn-user btn-block" onclick="validateForm()">register</button>
-                          <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a> -->
+                        <div class="form-group">
+                          <input
+                            type="password"
+                            class="form-control form-control-user"
+                            name="password"
+                            id="password"
+                            value=""
+                            placeholder="請輸入您的密碼(輸入8~12位數，須同時包含英文或數字)"
+                            autocomplete="off"
+                            required
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <input
+                            type="password"
+                            class="form-control form-control-user"
+                            name="repassword"
+                            id = "repassword"
+                            value=""
+                            placeholder="再次輸入密碼"
+                            autocomplete="off"
+                            required
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <select name="identity" 
+                                  class="form-control selections"
+                                  id="identity" 
+                                  required >                                            
+                            <option value="">身分</option>
+                            <option value="PE">體育組公用</option>
+                            <option value="T">導師</option>
+                        </select>
+                        </div>
+
+                        <div class="form-group">
+                          <input 
+                            type="text" 
+                            class="form-control form-control-user" 
+                            name="m_name"  
+                            id = 'm_name'
+                            value="" 
+                            placeholder="姓名"required
+                          />
+                        </div>
+
+                        <div class="form-group">
+                          <select name="gender" 
+                                  class="form-control selections"
+                                  id="gender"
+                                  required >                                            
+                            <option value="">性別</option>
+                            <option value="F">女生</option>
+                            <option value="M">男生</option>
+                        </select>
+                        </div>
+
+                        <div class="form-group">
+                          <input type="text" class="form-control form-control-user" 
+                          name="phone" id="phone" value="" placeholder="電話"required>
+                        </div>
+
+                      
+
+                        <div class="form-group">
+                          <input type="date" class="form-control form-control-user" 
+                            name="birthday" id="birthday" value="" placeholder="生日"required>
+                        </div>
+                
+                        <button class="btn btn-primary btn-user btn-block" onclick="validateForm()">註冊</button>
+                         
                                       </div>
 
-                        <!-- <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div> -->
-                      
+                       
                         </div>
                       </div>
                     </div>
@@ -380,6 +383,22 @@
       </div>
     </div>
 
-    
+ <!-- Bootstrap core JavaScript-->
+ <script src="vendor/jquery/jquery.min.js"></script>
+ <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+ <!-- Core plugin JavaScript-->
+ <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+ <!-- Custom scripts for all pages-->
+ <script src="js/sb-admin-2.min.js"></script>
+
+ <!-- Page level plugins -->
+ <script src="vendor/chart.js/Chart.min.js"></script>
+ <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+ <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+ <!-- Page level custom scripts -->
+ <!-- <script src="js/demo/datatables-demo.js"></script> -->
   </body>
 </html>

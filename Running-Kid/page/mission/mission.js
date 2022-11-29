@@ -1,11 +1,27 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import Header from "../header";
 import {Textbox_title,Mission_farm,Mission_farm2} from "./Components/TextBox";
+import { useIsFocused } from "@react-navigation/native"; 
 
-export default function Mission() {
+
+export default function Mission(navigation) {
+    const [AreaPadding,setpadding] = useState(0);
+    const focus = useIsFocused();  
+    const [distance,setdis]=useState();
+
+   
+
+    useEffect(() => {
+    if(Platform.OS=='android'){
+        setpadding(30);
+    };
+    if (focus){}
+  
+    },[])
+
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{paddingTop:AreaPadding}}>
       
             <ScrollView
               showsVerticalScrollIndicator={false}
@@ -19,7 +35,7 @@ export default function Mission() {
             <Text></Text>
             <Textbox_title/>
             <Mission_farm/>    
-            <Mission_farm2/>    
+            
 
            
 

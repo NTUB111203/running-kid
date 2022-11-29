@@ -1,11 +1,11 @@
 <?php
 /*連接資料庫*/
- require_once 'DataBase.php';
- ?>
+require_once 'DataBase.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-    
+
 
 <head>
 
@@ -19,43 +19,60 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        .selections{
+        .selections {
             border-radius: 10rem;
-            height: calc(2rem + 1.25rem );
+            height: calc(2rem + 1.25rem);
             font-size: 0.8rem;
         }
     </style>
-    
+
 </head>
 
+
 <?php
-$sql = "INSERT INTO  `class` (`semester`,`grade`, `class`)";
-$sql = "UPDATE  `user`  = '557gfg', `name`='87dd' WHERE `id`= 6;";
-$result = mysqli_query($link,$sql);
+echo $_POST['sch_no'];
+$sch_no = $_POST['sch_no'];
+$semester = $_POST['semester'];
+$grade = $_POST['grade'];
+$class = $_POST['class'];
 
-// 如果有異動到資料庫數量(更新資料庫)
-if (mysqli_affected_rows($link)>0) {
-// 如果有一筆以上代表有更新
+$sql = "INSERT INTO  class(semester,grade,class)VALUES('$semester','$grade', '$class')";
+echo $sql;
 
-// mysqli_insert_id可以抓到第一筆的id
-$new_id= mysqli_insert_id ($link);
-echo "新增後的id為 {$new_id} ";
+if (mysqli_query($link, $sql)) {
+    function_alert("班級新增成功!");
+} else {
+    function_alert("班級新增失敗！");
 }
-elseif(mysqli_affected_rows($link)==0) {
-    echo "無資料新增";
+
+// 如果新增成功
+header('Location:class-maintain.php');
+
+// Close connection
+mysqli_close($link);
+
+function function_alert($message)
+{
+
+    echo "<script>alert('$message');
+    window.history.back(); 
+    </script>";
+    return false;
 }
-else {
-    echo "{$sql} 語法執行失敗，錯誤訊息: " . mysqli_error($link);
-}
- mysqli_close($link);     
- ?>
+
+
+// if(mysqli_query($link,$sql)){
+//     echo "新增成功!!";
+// }else{
+//     echo "新增失敗".mysqli_error($link);
+// }
+
+?>
 
 
 
@@ -72,67 +89,9 @@ else {
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">新增班級</h1>
+
                             </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option value="">請選擇年度
-                                            <option value="學校1">109
-                                            <option value="學校2">110
-                                            <option value="學校3">111
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option value="">請選擇年級
-                                            <option value="一年級">一年級
-                                            <option value="二年級">二年級
-                                            <option value="三年級">三年級
-                                            <option value="四年級">四年級
-                                            <option value="五年級">五年級
-                                            <option value="六年級">六年級
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-6 ">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="班別 : 甲班、二班">
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-                                
 
-                                <hr>
-                                <div class="form-group row">
-                                    <div class="col-sm-3 "></div>
-                                    <div class="col-sm-1 ">
-                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
-                                            <i class="fas fa-arrow-left"></i>
-                                        </a>
-                                    </div>                                        
-                                    <div class="col-sm-5 ">
-
-                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
-                                            確認新增班級
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-3 "></div>
-                                </div>
-
-
-
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -152,7 +111,7 @@ else {
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    
+
 </body>
 
 </html>

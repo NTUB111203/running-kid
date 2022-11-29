@@ -99,7 +99,7 @@ $m_name=$_SESSION["m_name"];
                                     echo "<div class=\"row no-gutters align-items-center\">\n";
                                     echo "<div class=\"col mr-2\">\n";
                                     echo "<div class=\"h1 font-weight-bold text-success text-uppercase mb-1\">\n";
-                                    echo "<h1>".$row["class"]."</h1>";
+                                    echo "<h1>".$row["grade"].$row["class"]."</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
                                     //echo "<h5>".$rowMember['member']."人</h5>";

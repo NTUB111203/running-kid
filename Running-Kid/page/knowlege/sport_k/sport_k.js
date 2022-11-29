@@ -1,11 +1,29 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,TouchableOpacity} from "react-native";
 import Header from "../../header";
 import { Textbox_title,Sport_farm } from "./TextBox";
+import { useFonts } from "../../font";
+import AppLoading from 'expo-app-loading';
+import { useIsFocused } from "@react-navigation/native"; 
+
 
 export default function Sport_k({navigation}) {
+  const focus = useIsFocused();  
+
+  const [AreaPadding,setpadding] = useState(0);
+
+  useEffect(() => {
+  if(Platform.OS=='android'){
+      setpadding(30);
+  };
+  if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
+    }
+},[focus])
+
+ 
+
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{marginTop:AreaPadding}}>
       
             <ScrollView
               showsVerticalScrollIndicator={false}
@@ -58,7 +76,7 @@ const styles=StyleSheet.create({
         fontSize:30,
         color:"#117C72",
         fontWeight:"600",
-        fontFamily:'BpmfGenSenRounded-H'
+        fontFamily:'BpmfGenSenRoundedH'
     },
     text:{
       textAlign:"justify",
@@ -67,7 +85,7 @@ const styles=StyleSheet.create({
       fontWeight:"600",
       marginBottom:15,
       marginTop:10,
-      fontFamily:'BpmfGenSenRounded-H'
+      fontFamily:'BpmfGenSenRoundedH'
  
     },
     textbox_title:{

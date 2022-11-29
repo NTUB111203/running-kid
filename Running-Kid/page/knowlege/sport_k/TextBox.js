@@ -1,13 +1,20 @@
-import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} from "react-native";
+import { useState } from "react";
+import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,navigation} from "react-native";
  import YoutubePlayer from "react-native-youtube-iframe";
  import { Font } from "expo";
  import {useNavigation} from "@react-navigation/native";
-
+ import { useFonts } from "../../font";
+ import AppLoading from 'expo-app-loading';
+ 
 
 
 
 
  function Textbox_title(){
+
+  /*{===============字體載入===============}*/
+  
+  /*{====================================}*/
    return(
    <View style={styles.textbox_title}>
      <Text style={styles.title}>運動知識</Text>
@@ -28,6 +35,10 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} 
 
 
  function Sport_farm(){
+
+  /*{===============字體載入===============}*/
+
+  /*{====================================}*/
   const navigation = useNavigation();
   return(
     <View style={styles.textbox}>
@@ -38,7 +49,7 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} 
                 />
                 <TouchableOpacity onPress={() => navigation.navigate('Sport_kF')}>
                     <View style={styles.button_on}>
-                    <Text style={{fontSize:24,color:'#ffffff',fontFamily:'BpmfGenSenRounded-L'}}>開 始 學 習</Text>
+                    <Text style={{fontSize:24,color:'#ffffff',fontFamily:'BpmfGenSenRoundedL',marginTop:-25,}}>開 始 學 習</Text>
                     </View>
                 </TouchableOpacity>
     </View>
@@ -75,7 +86,8 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} 
        fontSize:30,
        color:"#117C72",
        fontWeight:"600",
-       fontFamily:'BpmfGenSenRounded-H'
+       fontFamily:'BpmfGenSenRoundedH',
+       marginTop:-30
    },
    text:{
      textAlign:"justify",
@@ -83,8 +95,8 @@ import { StyleSheet,View,Text,Image,TouchableOpacity,Alert,useState,navigation} 
      color:"#117C72",
      fontWeight:"600",
      marginBottom:15,
-     marginTop:10,
-     fontFamily:'BpmfGenSenRounded-H'
+     marginTop:-20,
+     fontFamily:'BpmfGenSenRoundedH'
 
    },
    textbox_title:{

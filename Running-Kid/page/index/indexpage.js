@@ -1,92 +1,80 @@
-import {React,useState} from "react";
+import {React,useState,useEffect} from "react";
 import { TouchableOpacity,StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,navigation,Modal} from "react-native";
 import Textbox, { BOX } from './Components/TextBox'
 import Header from "../header";
-import Taiwan_k from "../knowlege/taiwan_k/taiwan_k";
 import space from './img/A0.png';
 import taipei from './img/A2.png';
-import taichung from './img/A9.png';
 import styles from './index_style';
-import Modal_index from "./Components/Modal";
-import { render } from "react-dom";
-import RouteNavigator from "../Route/route";
-import StackNavigator  from 'react-navigation';
-import { TouchableWithoutFeedback } from "react-native";
-import { useFonts } from "../font";
+/*{import { useFonts } from "../font";}*/
+import { useFonts } from "expo-font";
 import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen';
+import { useIsFocused } from "@react-navigation/native"; 
+ 
 
 export default function  Indexp({navigation}) {
 
-  const [modalVisible1, setModalVisible1] = useState(false);
+  const focus = useIsFocused();  
 
-  const [fontsLoaded, setFontsLoaded] = useState(false)
-  const LoadFonts = async () => {
-    await useFonts();
-  };
+  const [modalVisible1, setModalVisible1] = useState(false);
+  const [AreaPadding,setpadding] = useState(0);
+
 
   const [act, areaAct] = useState(0);
   const [mi, setTodayMi] = useState(0);
 
+  const [todaydis, setdis] = useState([]);
+
+
+  let Data= {'m_id':10902};
+ 
+
   let imageSource = space;
-  let today_mi=0;
-  let total_mi=0;
+
 
   if (act === "taipei") {
     imageSource = taipei;
   }
-  if(mi !== 0){
-    today_mi = mi
-  }
 
- 
 
-  if (!fontsLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadFonts}
-        onFinish={() => setFontsLoaded(true)}
-        onError={(err) => console.log(err)}
-      />
-    );
-  }
   
+
+  useEffect(() => {
+    if(Platform.OS=='android'){
+        setpadding(30);
+    }
+    getdis();
+    if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
+      getdis();
+   };
+    console.log();
+  },[focus])
+
+  const getdis = () => {
+    try {
+      fetch('http://140.131.114.154/api/index.php', {
+        method: 'POST',
+        headers:
+        {'Accept': 'application/json',
+        'Content-Type': 'application/json'},
+        body: JSON.stringify(Data)
+      })
+      .then ((response)=>response.json())
+      .then ((response)=> {setdis(response[0].todaydis)})
+      ;    
+
+      console.log(todaydis)
+      if (todaydis==''){
+        setdis(0);
+      }
+   } catch (error) {
+    console.error(error);
+  }}
+
  
   return (
-  <SafeAreaView>
-     <Modal   /* 滑出視窗 */
-        animationType="none"
-        transparent={true}
-        visible={modalVisible1}
-        onRequestClose={() => {
-          setModalVisible1(!modalVisible1);
-        }}
-        onBackdropPress={() => setModalVisible1(false)}
-      >
-
-       
-      <TouchableWithoutFeedback onPress={() => setModalVisible1(false) }>
-        <View style={styles.centeredView}>
-        <ImageBackground source={require('../../assets/background.png')} style={styles.modalView}>
-         
-            <Text style={styles.modalTitle}>選擇模式</Text>
-
-            <TouchableOpacity
-              style={{ ...styles.openButton}}
-              onPress={() => {setModalVisible1(false),setTodayMi(0.1),areaAct('taipei'),navigation.navigate('Run_solo')}}
-            >
-              <View style={styles.modalButton_on}>
-                <Text style={styles.modalText}>開始跑步</Text>
-              </View>
-             </TouchableOpacity>
-
-           
-          
-        </ImageBackground>
-        
-        </View>
-         </TouchableWithoutFeedback>
-      </Modal>
-
+  <SafeAreaView style={{paddingTop:AreaPadding}}>
+  
     
 
       <ScrollView
@@ -100,12 +88,17 @@ export default function  Indexp({navigation}) {
        
         >
         <View style={styles.textbox}>
-          <Text style={styles.text}>   今日里程數 {today_mi} 公里</Text>
+          <Text style={styles.text}>   今日里程數 {todaydis} 公尺</Text>
         </View>
         
-        <View style={styles.textbox}>
-          <Text style={styles.text}>   累積里程數 {today_mi} 公里</Text>
-        </View> 
+        <TouchableOpacity
+          onPress={() => {setModalVisible1(true),navigation.navigate('Run_solo')}}
+        >
+          <View style={[styles.textbox,{backgroundColor:'#117c72'}]}>
+            <Text style={[styles.text,{color:'#ffffff',fontFamily:'BpmfGenSenRoundedH'}]}>開始跑步!</Text>
+          </View> 
+        </TouchableOpacity>
+        
 
         
         <View style={styles.center}>
@@ -113,9 +106,9 @@ export default function  Indexp({navigation}) {
         <TouchableOpacity
       
         
-        onLongPress={() => navigation.navigate('Taiwan_K')}
+        onPress={() => navigation.navigate('Taiwan_K')}
         activeOpacity={0.8}
-        onPress={() => {setModalVisible1(true)}}
+        
         >
 
         <ImageBackground
@@ -129,7 +122,7 @@ export default function  Indexp({navigation}) {
           >
             <ImageBackground
           style={styles.taiwan_part} 
-          source={require('./img/A3.png')}
+          source={require('./img/A2.png')}
           />
           </ImageBackground>
 

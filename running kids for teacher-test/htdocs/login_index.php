@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,13 +13,12 @@
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 </head>
+
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -34,7 +34,7 @@
                     </button>
                     <!-- Logo -->
                     <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="Logo/logo-pink.png" width="50px">
+                        <img src="Logo/logo-pink.png" width="50px">
                     </div>
                     <div class="sidebar-brand-text mx-3">孩是要運動</div>
                     <!-- Topbar Search -->
@@ -42,18 +42,14 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -68,60 +64,57 @@
                 <!-- End of Topbar -->
                 <!-- /.container-fluid -->
                 <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">教師登入</h1>
-                                    </div>
-                                    <form class="user" method="post" action="login.php">
-                                        <div class="form-group">
-                                            <input type="text" name="mail" class="form-control form-control-user"
-                                                id="mail" aria-describedby="emailHelp"
-                                                placeholder="請輸入您的帳號(使用您的信箱)">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="password" class="form-control form-control-user"
-                                                id="password" placeholder="請輸入您的密碼">
-                                        </div>
-                                        <!-- <div class="form-group">
+                    <div class="col-xl-10 col-lg-12 col-md-9">
+                        <div class="card o-hidden border-0 shadow-lg my-5">
+                            <div class="card-body p-0">
+                                <!-- Nested Row within Card Body -->
+                                <div class="row">
+                                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                    <div class="col-lg-6">
+                                        <div class="p-5">
+                                            <div class="text-center">
+                                                <h1 class="h4 text-gray-900 mb-4">教師登入</h1>
+                                            </div>
+                                            <form class="user" method="post" action="login.php">
+                                                <div class="form-group">
+                                                    <input type="text" name="mail" class="form-control form-control-user" id="mail" aria-describedby="emailHelp" placeholder="請輸入您的帳號(使用您的信箱)">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="password" class="form-control form-control-user" id="password" placeholder="請輸入您的密碼">
+                                                </div>
+                                                <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <button class="btn btn-primary btn-user btn-block" type="submit">登入</button>
-                                            
-                                        <hr>
-                                        <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
+                                                <button class="btn btn-primary btn-user btn-block" type="submit">登入</button>
+
+                                                <hr>
+                                                <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a> -->
-                                    </form>
-                                    
-                                    <!-- <div class="text-center">
+                                            </form>
+
+                                            <!-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div> -->
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">註冊帳號</a>
+                                            <div class="text-center">
+                                                <a class="small" href="register.html">註冊帳號</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
-
-            </div>
-
-        </div>
 
             </div>
             <!-- End of Main Content -->
@@ -148,8 +141,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

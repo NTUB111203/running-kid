@@ -76,7 +76,7 @@ $class_no = $_GET['id'];
                                 $num = mysqli_num_rows($retval);
                                 if (mysqli_num_rows($retval) > 0){
                                     while ($row = mysqli_fetch_assoc($retval)) {
-                                        echo $row["class"];
+                                        echo $row["grade"].$row["class"];
                                         // echo "<h1>".$row["grade"]."</h1>";
                                     }
                                 }
@@ -91,7 +91,7 @@ $class_no = $_GET['id'];
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">本月班級紀錄</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">班級紀錄</h6>
                         </div>
                     </div>
                     <!-- Content Row -->
@@ -104,12 +104,12 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                                            平均跑步里程
+                                            累計跑步里程
                                             </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             
                                             
-                                            <!-- bug -->
+                                            <!-- 累計跑步里程 -->
                                             <?php 
                                             $result = "SELECT sum(record.distance) as totalDistance FROM runningkids.record
                                             inner join members on members.m_id=record.m_id
@@ -117,10 +117,14 @@ $class_no = $_GET['id'];
                                             (SELECT members.m_id FROM runningkids.class
                                             inner join members on class.class_no=members.class_no
                                             where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+
+                                           
+
                                             $retval=mysqli_query($link, $result);
-                                            $rowMember = mysqli_fetch_assoc($retval);
-                                            echo "<p>".$rowMember["totalDistance"]."KM</p>";
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            echo "<p>".$rowClass["totalDistance"]."公尺</p>";
                                             ?>
+                                            
                                             <!-- KM -->
                                             </div>
                                         </div>
@@ -139,8 +143,50 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
-                                                累計跑步里程</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">450KM</div>
+                                                平均跑步里程</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <!-- 以下為SQL班級人數 -->
+                                            <?php 
+                                            // $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            // inner join members on class.class_no=members.class_no
+                                            // where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            // $retval=mysqli_query($link, $result);
+                                            
+                                            //  $rowClass = mysqli_fetch_assoc($retval);
+                                            //  echo "<p>".$rowClass["classMembers"]."人</p>";
+                                            ?>
+
+                                            <?php 
+                                            $result = "SELECT sum(record.distance) as totalDistance FROM runningkids.record
+                                            inner join members on members.m_id=record.m_id
+                                            where record.m_id in
+                                            (SELECT members.m_id FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            //echo "<p>".$rowClass["totalDistance"]."公尺</p>";
+                                            $totaldis= (float)$rowClass["totalDistance"];
+
+                                            $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            $retval=mysqli_query($link, $result);
+                                            
+                                             $rowClass = mysqli_fetch_assoc($retval);
+                                            //echo "<p>".$rowClass["classMembers"]."人</p>";
+                                            $clas = (float)$rowClass["classMembers"];
+                                            //echo ($totaldis/$clas);
+                                            echo "<p>".round($totaldis/$clas)."公尺</p>";
+                                            ?>
+
+                                            
+                                            
+                                            
+
+                                        
+
+                                        </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -157,10 +203,25 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
-                                                平均跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">2.6HR</div>
+                                            累計跑步時間</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php 
+                                            $result = "SELECT round(ABS(sum(timestampdiff(minute, r_datetime, end_time)))) as totalTime FROM runningkids.record
+                                            inner join members on members.m_id=record.m_id
+                                            where record.m_id in
+                                            (SELECT members.m_id FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            $totalTime = $rowClass["totalTime"];
+                                            echo sprintf('%.2f',$totalTime/60).'小時';
+                                           
+                                            ?>    
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
+                                            
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div> -->
                                     </div>
@@ -175,8 +236,29 @@ $class_no = $_GET['id'];
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
-                                                累計跑步時間</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">68HR</div>
+                                                平均跑步時間</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php 
+                                            $result = "SELECT round(ABS(sum(timestampdiff(minute, r_datetime, end_time)))) as totalTime FROM runningkids.record
+                                            inner join members on members.m_id=record.m_id
+                                            where record.m_id in
+                                            (SELECT members.m_id FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where  members.identity='S' and members.class_no =" .$_GET['id']. ")" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            $totalTime = $rowClass["totalTime"];
+                                            $result = "SELECT count(m_id) as classMembers FROM runningkids.class
+                                            inner join members on class.class_no=members.class_no
+                                            where members.identity='S' and members.class_no =  " .$_GET['id']. "" ;
+                                            $retval=mysqli_query($link, $result);
+                                            $rowClass = mysqli_fetch_assoc($retval);
+                                            $clas = (float)$rowClass["classMembers"];
+                                            // echo "<p>".round($totalTime/$clas)."分鐘</p>";
+                                            echo sprintf('%.2f',$totalTime/$clas/60).'小時';
+
+                                            ?>  
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -198,20 +280,9 @@ $class_no = $_GET['id'];
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">班級進步分析</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">班級數據分析</h6>
                                     <div class="dropdown no-arrow">
-                                        <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a> -->
-                                        <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div> -->
+                                    
                                     </div>
                                 </div>
                                 <!-- Card Body -->
@@ -265,13 +336,169 @@ $class_no = $_GET['id'];
      <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-school.js"></script>
+    <!-- <script src="js/demo/chart-school.js"></script> -->
     <!-- <script src="js/demo/chart-area-demo.js"></script>     -->
     <!-- <script src="js/demo/pie-BMI.js"></script> -->
     <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <script src="js/demo/datatables-demo.js"></script>
+
+    <!-- 里程紀錄分析 -->
+    <script>
+    <?php 
+       
+       $query = $link->query("
+       SELECT  sum(distance) as monthDistance,concat(year(r_datetime),'/',right(100+month(r_datetime),2)) as eachMonth  FROM runningkids.record
+        inner join members on members.m_id=record.m_id
+        where record.m_id in
+        (SELECT members.m_id FROM runningkids.class
+        inner join members on class.class_no=members.class_no
+	    where  members.identity='S' and members.class_no =" .$_GET['id'].")
+        group by eachMonth
+	    order by eachMonth ASC
+        ;");
+        foreach($query as $data){
+            $monthDistance[] = $data['monthDistance'];
+            $eachMonth[] = $data['eachMonth'];
+        }
+
+        // $query = $link->query("
+        // SELECT sum(distance) as monthDistance ,month(r_datetime) as months FROM runningkids.record
+        // where c_no=" .$_GET['id']." 
+        // group by month(r_datetime);    
+        // ");
+        // foreach($query as $data){
+        //     $monthDistance[] = $data['monthDistance'];
+        //     $months[] = $data['months'];
+        // }
+    ?>
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+
+        function number_format(number, decimals, dec_point, thousands_sep) {
+        // *     example: number_format(1234.56, 2, ',', ' ');
+        // *     return: '1 234,56'
+        number = (number + '').replace(',', '').replace(' ', '');
+        var n = !isFinite(+number) ? 0 : +number,
+            prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+            sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+            dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+            s = '',
+            toFixedFix = function(n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+            };
+        // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+        s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+        if (s[0].length > 3) {
+            s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+        }
+        if ((s[1] || '').length < prec) {
+            s[1] = s[1] || '';
+            s[1] += new Array(prec - s[1].length + 1).join('0');
+        }
+        return s.join(dec);
+        }
+
+        // Area Chart Example
+        var ctx = document.getElementById("chartSchool");
+        var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            //labels: echo json_encode($months) ,
+            labels: <?php echo json_encode($eachMonth) ?> ,
+            datasets: [{
+            label: "跑步里程",
+            lineTension: 0.3,
+            backgroundColor: "rgba(54, 185, 204, 0.05)",
+            borderColor: "rgba(54, 185, 204, 1)",
+            pointRadius: 3,
+            pointBackgroundColor: "rgba(54, 185, 204, 1)",
+            pointBorderColor: "rgba(54, 185, 204, 1)",
+            pointHoverRadius: 3,
+            pointHoverBackgroundColor: "rgba(54, 185, 204, 1)",
+            pointHoverBorderColor: "rgba(54, 185, 204, 1)",
+            pointHitRadius: 10,
+            pointBorderWidth: 2,
+            data:<?php echo json_encode($monthDistance) ?> ,
+            
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+            padding: {
+                left: 10,
+                right: 25,
+                top: 25,
+                bottom: 0
+            }
+            },
+            scales: {
+            xAxes: [{
+                time: {
+                    unit: 'date'
+                },
+                gridLines: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    maxTicksLimit: 30,
+                    padding: 10,
+                    // callback: function(value, index, values) {
+                    //     return number_format(value)+'月';
+                    // }
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    maxTicksLimit: 3,//左側顯示項次數量
+                    padding: 10,
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return '公尺' + number_format(value);
+                    }
+                },
+                gridLines: {
+                    color: "rgb(234, 236, 244)",
+                    zeroLineColor: "rgb(234, 236, 244)",
+                    drawBorder: false,
+                    borderDash: [2],
+                    zeroLineBorderDash: [2]
+                }
+            }],
+            },
+            legend: {
+            display: false
+            },
+            tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            intersect: false,
+            mode: 'index',
+            caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+'公尺';
+                }
+            }
+            }
+        }
+        });
+
+        </script>
 
 </body>
 

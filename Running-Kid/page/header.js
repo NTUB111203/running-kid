@@ -1,10 +1,47 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity,StyleSheet,Image,Text,View} from 'react-native';
 
 
 
 export default function Header() {
+
+  const [isLoading, setLoading] = useState(true);
+  const [coin, setCoin] = useState([0]);
+  const [score, setScore] = useState([0]);
+
+
+  let Data= {'m_id':10902};
+  const getMovies = async () => {
+    try {
+      fetch('http://140.131.114.154/api/header.php', {
+        method: 'POST',
+        headers:
+        {'Accept': 'application/json',
+        'Content-Type': 'application/json'},
+        body: JSON.stringify(Data)
+      })
+      .then ((response)=>response.json())
+      .then ((response)=> {setCoin(response[1].coinsum),setScore(response[0].scoresum)})
+      ;
+      
+
+      
+     
+
+      
+   } catch (error) {
+     console.error(error);
+   }finally {
+    setLoading(false);
+  }}
+
+   useEffect(() => {
+    getMovies();
+  }, );
+
+
+
     return (    
     <View>
       <View style={styles.header}>
@@ -22,7 +59,7 @@ export default function Header() {
       style={styles.money}
       ></Image>
       <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}}>
-      0
+      {score}  $
       </Text>
     </View>
 
@@ -32,7 +69,7 @@ export default function Header() {
       style={styles.money}
       ></Image>
       <Text style={{justifyContent:"flex-start",marginRight:10,marginLeft:5}} >
-        0
+      {coin}
       </Text>
     </View>
 

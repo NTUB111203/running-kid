@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>編輯管理</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,140 +43,74 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">班級編輯</h1>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="card  mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">增加班級年級</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            貼心提醒:適用於一年級升上二年級，學生不須換班之情況。<hr>
-                                            <form>
-                                                <input id="a" type="radio" name="hopping" value="a" checked >
-                                                <label for="a"><span></span>無</label><br>
-                                                <input id="b" type="radio" name="hopping" value="b">
-                                                <label for="b"><span></span>上升一個年級</label>                                            
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="card  mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">更改狀態</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            貼心提醒:可將目前授課班級之狀態做更改!<hr>
-                                            <form>
-                                                <input id="a" type="radio" name="hopping" value="a" checked >
-                                                <label for="a"><span></span>更改狀態為目前授課班級</label><br>
-                                                <input id="b" type="radio" name="hopping" value="b">
-                                                <label for="b"><span></span>更改狀態為歷史紀錄班級</label>                                            
-                                            </form>
-                                        </div>
+                            
+                            <form class="user" method="POST" action="class-edit.php">   
+                           
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
                                         
+                                        <H6>學年度:</H6>
+                                        <input
+                                          type="text"
+                                          class="form-control form-control-user"
+                                          name="semester"
+                                          id="semester"
+                                          value=""
+                                          placeholder="學年度:110、109"
+                                          required/> 
                                     </div>
-                                    <div class="form-group row">
-
-                                        <div class="col-sm-2 "></div>
-                                        <div class="col-sm-2 ">
-                                            <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
-                                                <i class="fas fa-arrow-left"></i>
-                                            </a>
-                                        </div>                                        
-                                        <div class="col-sm-6 ">
-    
-                                            <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
-                                                確認修改
-                                            </a>
-                                        </div>
-                                        <div class="col-sm-2 "></div>
-                                    </div>
+                                    <div class="col-sm-3 "></div>
                                 </div>
-                               
-                                <div class="col-lg-6">
-                                    <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>勾選狀態</th>
-                                                <th>入學學年</th>
-                                                <th>年級</th>
-                                                <th>班別</th>
-                                                <th>狀態</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>勾選狀態</th>
-                                                <th>入學學年</th>
-                                                <th>年級</th>
-                                                <th>班別</th>
-                                                <th>狀態</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck1" checked>
-                                                        <label class="custom-control-label" for="customCheck1">1</label>
-                                                    </div>
-                                                  </td>
-                                                <td>110</td>
-                                                <td>1年級</td>
-                                                <td>1班</td>
-                                                <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                        <label class="custom-control-label" for="customCheck2">2</label>
-                                                    </div>
-                                                </td>
-                                                <td>110</td>
-                                                <td>1年級</td>
-                                                <td>2班</td>
-                                                <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                                        <label class="custom-control-label" for="customCheck3">3</label>
-                                                    </div>
-                                                </td>
-                                                <td>108</td>
-                                                <td>3年級</td>
-                                                <td>1班</td>
-                                                <th style="color: rgb(0, 87, 248);">現任班級</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                        <label class="custom-control-label" for="customCheck4">4</label>
-                                                    </div>
-                                                </td>
-                                                <td>107</td>
-                                                <td>4年級</td>
-                                                <td>1班</td>
-                                                <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck5">
-                                                        <label class="custom-control-label" for="customCheck5">5</label>
-                                                    </div>
-                                                </td>
-                                                <td>105</td>
-                                                <td>6年級</td>
-                                                <td>3班</td>
-                                                <th style="color: rgb(248, 0, 83);">歷史紀錄班級</th>
-                                            </tr>
-                                        </tbody>
-                                    </div>                                
-                            </div>
-                          
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <select name="grade" id="grade" class="form-control selections" >                                            
+                                            <option value="">請選擇年級
+                                            <option value="1">一年級
+                                            <option value="2">二年級
+                                            <option value="3">三年級
+                                            <option value="4">四年級
+                                            <option value="5">五年級
+                                            <option value="6">六年級
+                                            <!-- <option value="畢業生">畢業生 -->
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <input
+                                          type="text"
+                                          class="form-control form-control-user"
+                                          name="class"
+                                          id="class"
+                                          value=""
+                                          placeholder="班別 : 甲班、二班、01"
+                                          required/>
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+                                
+
+                                <hr>
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-1 ">
+                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </a>
+                                    </div>                                        
+                                    <div class="col-sm-5 ">
+
+                                        <button type="submit" class="btn btn-warning btn-user btn-block">
+                                            確認編輯班級
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
                             </form>
                         </div>
                     </div>

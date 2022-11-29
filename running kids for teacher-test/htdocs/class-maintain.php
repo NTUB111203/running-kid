@@ -1,19 +1,19 @@
 <?php
 /*連接資料庫*/
- require_once 'DataBase.php';
- ?>
+require_once 'DataBase.php';
+?>
 
 <?php
 // Initialize the session
 session_start();
- 
+
 // // Check if the user is already logged in, if yes then redirect him to welcome page
 // if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 //     header("location: welcome.php");
 //     exit;  //記得要跳出來，不然會重複轉址過多次
 // }
 
-$m_name=$_SESSION["m_name"];
+$m_name = $_SESSION["m_name"];
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
@@ -31,13 +31,11 @@ $m_name=$_SESSION["m_name"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Other Utilities</title>
+    <!-- <title>班級管理</title> -->
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -50,21 +48,21 @@ $m_name=$_SESSION["m_name"];
     <div id="wrapper">
 
 
-    <?php include("side.php"); ?>
+        <?php include("side.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">        
-                
-    <?php include("top.php"); ?>
+            <div id="content">
+
+                <?php include("top.php"); ?>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                  <!-- Page Heading -->
-                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">班級列表</h1>
                     </div>
                     <!-- DataTales 班級增刪 -->
@@ -79,58 +77,87 @@ $m_name=$_SESSION["m_name"];
                                     <span class="text" style="font-weight:bold;">新增班級</span>
                                 </a>
                                 <!-- &emsp; -->
-                                <a href="class-edit.html" class="btn btn-warning btn-icon-split ">
+                                <!-- <a href="class-edit.html" class="btn btn-warning btn-icon-split ">
                                     <span class="icon text-white-50">
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </span>
                                     <span class="text" style="font-weight:bold;">編輯班級</span>
-                                </a>
+                                </a> -->
                             </div>
                         </div>
-                        
+
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>學年度</th>
-                                            <th>年級</th>
-                                            <th>班別</th>
+                                            <!-- <th>年級</th> -->
+                                            <th>班級</th>
                                             <th>人數</th>
-                                         
+                                            <th>編輯</th>
+                                            <th>刪除</th>
+
                                         </tr>
                                     </thead>
-                                     
-                                               <!--表格資料仍有錯誤待修，目前只是把class表拉進-->
-                                                    <?php
-                                                        $result = "SELECT * FROM class";
-                                                        $retval=mysqli_query($link, $result); 
-                                                        
-                                                        if ($retval) {
-                                                            $num = mysqli_num_rows($retval);
-                                                           
-                                                               if (mysqli_num_rows($retval) > 0) {
-                                                                while ($row = mysqli_fetch_assoc($retval)) {
-                                                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
-                                                                    $retval2=mysqli_query($link, $members);
-                                                                    $rowMember = mysqli_fetch_assoc($retval2);
-                                                                    // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
-                                                                    echo "<th>".$row["semester"]."</th>";
-                                                                    echo "<th>".$row["grade"]."</th>";
-                                                                    echo "<th>".$row["class_no"]."</th>";
-                                                                    echo "<th>".$rowMember['member']."</th>";
-                                                                    echo '</tr>';
-                                                                }
-                                                            }
-                                                        }
-                                                    ?>
-                                                     
+                                    <tobody>
+
+
+                                        <?php
+
+                                        $result = "SELECT * FROM class";
+                                        $retval = mysqli_query($link, $result);
+
+                                        if ($retval) {
+                                            $num = mysqli_num_rows($retval);
+
+                                            if (mysqli_num_rows($retval) > 0) {
+                                                while ($row = mysqli_fetch_assoc($retval)) {
+                                                    $_SESSION['class_no'] = $row["class_no"];
+                                                    $members = "select count(*)as member from members where class_no =" . $row['class_no'] . " AND identity='S'";
+                                                    //$members = "select count(*)as member from members where class_no =".$row['class_no'];
+                                                    $retval2 = mysqli_query($link, $members);
+                                                    $rowMember = mysqli_fetch_assoc($retval2);
+                                                    // echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";                                                           
+                                                    echo "<th>" . $row["semester"] . "</th>";
+                                                    //echo "<th>".$row["grade"]."</th>";
+                                                    echo "<th>" . $row["grade"] . $row["class"] . "</th>";
+                                                    echo "<th>" . $rowMember['member'] . "</th>";
+                                        ?>
+                                                    <td>
+
+                                                        <?php
+                                                        echo '<a href="class-edit.php?class_no=' . $row['class_no'] . '" class=" btn btn-warning btn-icon-split ">';
+                                                        echo '<span class="text" style="font-weight:bold;">編輯</span>';
+                                                        echo '</a>'
+                                                        ?>
+
+                                                    </td>
+
+                                                    <!-- 連接到class-delete.php -->
+
+                                                    <td>
+                                                        <?php
+                                                        echo '<a href="class-delete.php?class_no=' . $row['class_no'] . '" class=" btn btn-danger btn-icon-split ">';
+                                                        echo '<span class="text" style="font-weight:bold;">刪除</span>';
+                                                        echo '</a>';
+                                                        ?>
+                                                    </td>
+                                                    <!-- 跳出確認刪除按鈕                                                                                                -->
+                                                    </tr>
+                                        <?php
+                                                }
+                                            }
+                                        } ?>
+                                    </tobody>
                                 </table>
                             </div>
                         </div>
+
                     </div>
 
-                    
+
 
                 </div>
                 <!-- /.container-fluid -->

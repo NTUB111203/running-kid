@@ -1,14 +1,32 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView} from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { borderColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import Header from "../header";
 import styles from "./game_style";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Wardrobe({navigation}) {
+
+    const focus = useIsFocused();  
+    const [AreaPadding,setpadding] = useState(0);
+
+
+    useEffect(()=>{
+        if(Platform.OS=='android'){
+            setpadding(30);
+         };
+    },[focus])
+
+    var clothView =[];
+    let h=3;
+    
+
+  
+
     return (
-        <SafeAreaView >
+        <SafeAreaView style={{marginTop:AreaPadding}}>
       
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -96,7 +114,7 @@ export default function Wardrobe({navigation}) {
                           
                                 <View style={{width:100,flex:1,borderRadius:20,alignItems:'center',justifyContent:'center'}}>
                                 <Image
-                                        source={require('../../assets/game_man/hair3.png')}
+                                        source={require('../../assets/game_man/hair'+h+'.png')}
                                         style={{width:150,height:100}}></Image>
                                         
                                 </View>

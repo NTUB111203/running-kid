@@ -1,14 +1,33 @@
 <?php
 require_once("DataBase.php");
- DELETE FROM customers WHERE Name='王二';
-    $sql = "DELETE INTO gift_supplier(sup_name,sup_tel) VALUES ($sup_name,$sup_tel)";
-    mysqli_query($link,$sql);
-    $sql = "Select sup_no from  gift_supplier where sup_name=".$_POST['sup_name'];
-    $check_sup = mysqli_query($link,$sql);
-    $sup_no = mysqli_fetch_assoc($check_sup)["sup_no"][0];
 
-if(mysqli_query($link,$sql)){
-    header("Location: gift.php");
+
+$result = "SELECT * FROM gift ";
+$retval = mysqli_query($link, $result);
+if ($retval) {
+  $num = mysqli_num_rows($retval);
+
+  if (mysqli_num_rows($retval) > 0) {
+    while ($row = mysqli_fetch_assoc($retval)) {
+      $gift_no = $_GET['gift_no'];
+      // echo $gift_no . '<br>';
+      // $sql = "DELETE FROM gift where gift_no = " . $row['gift_no'] . "";
+      $sql = "DELETE FROM gift where gift_no = " . $gift_no . "";
+      echo $sql;
+      $result = $link->query($sql);
+    }
+  }
+}
+// echo $sql;
+
+if (!$result) {
+  die($link->error);
 }
 
-?>
+if ($link->affected_rows >= 1) {
+  echo '刪除成功';
+} else {
+  echo '查無資料';
+}
+// 如果刪除成功
+header('Location: gift.php');

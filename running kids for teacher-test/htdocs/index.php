@@ -7,10 +7,7 @@ session_start();
 //     exit;  //記得要跳出來，不然會重複轉址過多次
 // }
 $m_name=$_SESSION["m_name"];
-//echo session_save_path();
-//echo "<h1>你好 ".$m_name."</h1>";
-//echo "<tr>";
-//echo "<a href='logout.php'>登出</a>";
+
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +20,7 @@ $m_name=$_SESSION["m_name"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Other Utilities</title>
+    <title>孩是要運動</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -145,16 +142,9 @@ $m_name=$_SESSION["m_name"];
                 <!-- /.container-fluid -->
 
             </div>
-            End of Main Content
-
+            
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
+            <?php include("footer.php"); ?>
             <!-- End of Footer -->
 
         </div>

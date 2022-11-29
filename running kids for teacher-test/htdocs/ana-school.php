@@ -8,6 +8,9 @@ session_start();
 //     exit;  //記得要跳出來，不然會重複轉址過多次
 // }
 
+/*連接資料庫*/
+require_once 'DataBase.php';
+
 $m_name=$_SESSION["m_name"];
 
 //echo session_save_path();
@@ -68,7 +71,7 @@ $m_name=$_SESSION["m_name"];
 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">本月全校班級平均公里數排行榜</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">班級排行榜</h6>
                         </div>
                     </div>
 
@@ -83,7 +86,28 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
                                                 第一名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">201</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php 
+                                                $resultSchoolDistance = "SELECT CONCAT(grade,class) as schoolClass FROM runningkids.record
+                                                inner join class on record.c_no = class.class_no
+                                                group by c_no
+                                                order by sum(distance) DESC;" ;
+                                                $retval4=mysqli_query($link, $resultSchoolDistance);
+                                                $NO1 = mysqli_fetch_assoc($retval4);
+                                                $NO2 = mysqli_fetch_assoc($retval4);
+                                                $NO3 = mysqli_fetch_assoc($retval4);
+                                                $NO4 = mysqli_fetch_assoc($retval4);
+                                                // $num1 = $row4[0];
+
+                                                //如何取排序第一筆資料第一個
+                                                //第二名取第二筆 以此類推
+                                                //echo $row4['schoolClass'];
+                                                echo $NO1['schoolClass'];
+                                                
+                                                
+                                            ?> 
+                                            
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -101,7 +125,11 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-success text-uppercase mb-1">
                                                 第二名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">101</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <?php
+                                                echo $NO2['schoolClass'];
+                                                ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -119,7 +147,11 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-info text-uppercase mb-1">
                                                 第三名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">103</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                                echo $NO3['schoolClass'];
+                                                ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -137,7 +169,11 @@ $m_name=$_SESSION["m_name"];
                                         <div class="col mr-2">
                                             <div class="text-lg font-weight-bold text-warning text-uppercase mb-1">
                                                 第四名</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">207</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <?php
+                                                echo $NO4['schoolClass'];
+                                                ?>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -159,7 +195,7 @@ $m_name=$_SESSION["m_name"];
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">當月全校班級里程</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">全校班級里程</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -213,7 +249,7 @@ $m_name=$_SESSION["m_name"];
     <script src="vendor/chart.js/Chart.min.js"></script>
 
      <!-- Page level custom scripts -->
-     <script src="js/demo/chart-bar-school.js"></script>
+     <!-- <script src="js/demo/chart-bar-school.js"></script> -->
      <!-- <script src="js/demo/pie-BMI.js"></script> -->
      <!-- <script src="js/demo/chart-school.js"></script> -->
      <!-- <script src="js/demo/chart-area-demo.js"></script> -->
@@ -221,6 +257,132 @@ $m_name=$_SESSION["m_name"];
      <script src="vendor/datatables/jquery.dataTables.min.js"></script>
      <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
      <script src="js/demo/datatables-demo.js"></script>
+
+    <script>
+        <?php 
+       
+       $query = $link->query("
+       SELECT sum(distance) as schoolDistance,c_no,CONCAT(grade,class) as schoolClass FROM runningkids.record
+        inner join class on record.c_no = class.class_no
+        group by c_no;    
+       ");
+
+       foreach($query as $data){
+           $schoolDistance[] = $data['schoolDistance'];
+           $schoolClass[] = $data['schoolClass'];
+        //    $class[] = $data[]
+       }
+        ?>
+    Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#858796';
+
+    function number_format(number, decimals, dec_point, thousands_sep) {
+    number = (number + '').replace(',', '').replace(' ', '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function(n, prec) {
+        var k = Math.pow(10, prec);
+        return '' + Math.round(n * k) / k;
+        };
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+    }
+
+    // Bar Chart Example
+    var ctx = document.getElementById("chartBarSchool");
+    var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: <?php echo json_encode($schoolClass) ?> ,
+        datasets: [{
+        label: "跑步里程",
+        backgroundColor: "#4e73df",
+        hoverBackgroundColor: "#2e59d9",
+        borderColor: "#4e73df",
+        data: <?php echo json_encode($schoolDistance) ?> ,
+        }],
+    },
+    options: {
+        maintainAspectRatio: false,
+        layout: {
+        padding: {
+            left: 10,
+            right: 25,
+            top: 25,
+            bottom: 0
+        }
+        },
+        scales: {
+        xAxes: [{
+            time: {
+            unit: 'month'
+            },
+            gridLines: {
+            display: true,
+            drawBorder: false
+            },
+            ticks: {
+            maxTicksLimit: 50 //X軸label最大數量
+            },
+            maxBarThickness: 25,
+        }],
+        yAxes: [{
+            ticks: {
+            min: 0,
+            //max: 3000,
+            //maxTicksLimit: 5,
+            padding: 100,
+            // Include a dollar sign in the ticks
+            callback: function(value, index, values) {
+                return  number_format(value)+ '公尺';
+            }
+            },
+            gridLines: {
+            color: "rgb(234, 236, 244)",
+            zeroLineColor: "rgb(234, 236, 244)",
+            drawBorder: false,
+            borderDash: [2],
+            zeroLineBorderDash: [2]
+            }
+        }],
+        },
+        legend: {
+        display: false
+        },
+        tooltips: {
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+        callbacks: {
+            label: function(tooltipItem, chart) {
+            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+            return datasetLabel + ': ' + number_format(tooltipItem.yLabel)+ '公尺 ';
+            }
+        }
+        },
+    }
+    });
+
+    </script>
+    
 
 
 </body>

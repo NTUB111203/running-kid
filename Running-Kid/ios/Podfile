@@ -14,6 +14,11 @@ target 'RunningKid' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  pod 'EXTaskManager',
+  :path => "../node_modules/expo-task-manager/ios"
+  pod 'EXTaskManagerInterface',
+    :path => "../node_modules/expo-task-manager-interface/ios"
+
 
   use_react_native!(
     :path => config[:reactNativePath],
