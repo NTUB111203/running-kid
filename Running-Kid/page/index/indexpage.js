@@ -10,7 +10,8 @@ import { useFonts } from "expo-font";
 import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
 import { useIsFocused } from "@react-navigation/native"; 
- 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function  Indexp({navigation}) {
 
@@ -18,24 +19,22 @@ export default function  Indexp({navigation}) {
 
   const [modalVisible1, setModalVisible1] = useState(false);
   const [AreaPadding,setpadding] = useState(0);
+  const [id, setid] = useState('');
+  const [mapdis,setmapdis] = useState(0);
+  AsyncStorage.getItem('m_id').then(value => setid(value));
 
 
-  const [act, areaAct] = useState(0);
-  const [mi, setTodayMi] = useState(0);
 
   const [todaydis, setdis] = useState([]);
 
 
-  let Data= {'m_id':10902};
+  let Data= {'m_id':id};
  
 
   let imageSource = space;
 
 
-  if (act === "taipei") {
-    imageSource = taipei;
-  }
-
+  
 
   
 
@@ -47,7 +46,7 @@ export default function  Indexp({navigation}) {
     if(focus){ // if condition required here because it will call the function even when you are not focused in the screen as well, because we passed it as a dependencies to useEffect hook
       getdis();
    };
-    console.log();
+    console.log(mapdis);
   },[focus])
 
   const getdis = () => {
@@ -60,16 +59,231 @@ export default function  Indexp({navigation}) {
         body: JSON.stringify(Data)
       })
       .then ((response)=>response.json())
-      .then ((response)=> {setdis(response[0].todaydis)})
+      .then ((response)=> {
+        setdis(response[1].todaydis)
+       
+        setmapdis(response[0].totaldistance)
+        
+      })
       ;    
 
-      console.log(todaydis)
+     
       if (todaydis==''){
         setdis(0);
       }
    } catch (error) {
     console.error(error);
   }}
+
+
+
+
+  var map =[];
+        if(mapdis<30000){    //台北
+          AsyncStorage.setItem('city_no','1');
+          console.log('台北')
+          map.push(
+            <ImageBackground
+            style={styles.taiwan} 
+            source={require('./img/taiwan.png')}
+            >
+  
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A1.png')}
+            >
+            
+            </ImageBackground>
+  
+            
+  
+  
+            </ImageBackground>
+          )
+        }else if(mapdis<60000){  //新北
+          AsyncStorage.setItem('city_no','2');
+          map.push(
+            <ImageBackground
+            style={styles.taiwan} 
+            source={require('./img/taiwan.png')}
+            >
+  
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A1.png')}
+            >
+            
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A2.png')}
+            >
+            
+            </ImageBackground>
+
+            </ImageBackground>
+  
+            
+  
+  
+            </ImageBackground>)
+        }else if(mapdis<90000){  //桃園
+          AsyncStorage.setItem('city_no','3');
+          map.push(
+            <ImageBackground
+            style={styles.taiwan} 
+            source={require('./img/taiwan.png')}
+            >
+  
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A1.png')}
+            >
+            
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A2.png')}
+            >
+               <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A3.png')}
+            >
+            
+            </ImageBackground>
+            
+            </ImageBackground>
+
+            </ImageBackground>
+  
+            
+  
+  
+            </ImageBackground>)
+        }else if(mapdis<120000){  //新竹
+          AsyncStorage.setItem('city_no','4');
+          map.push(
+            <ImageBackground
+            style={styles.taiwan} 
+            source={require('./img/taiwan.png')}
+            >
+  
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A1.png')}
+            >
+            
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A2.png')}
+            >
+               <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A3.png')}
+            >
+              <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A4.png')}
+            >
+            
+            </ImageBackground>
+            
+            </ImageBackground>
+            
+            </ImageBackground>
+
+            </ImageBackground>
+  
+            
+  
+  
+            </ImageBackground>)
+        }else if(mapdis<150000){  //苗栗
+          AsyncStorage.setItem('city_no','5');
+          map.push(
+            <ImageBackground
+            style={styles.taiwan} 
+            source={require('./img/taiwan.png')}
+            >
+  
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A1.png')}
+            >
+            
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A2.png')}
+            >
+               <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A3.png')}
+            >
+              <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A4.png')}
+            >
+              <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A5.png')}
+            ></ImageBackground>
+            </ImageBackground>
+            
+            </ImageBackground>
+            
+            </ImageBackground>
+
+            </ImageBackground>
+  
+            
+  
+  
+            </ImageBackground>)
+        }else if(mapdis<180000){  //台中
+          AsyncStorage.setItem('city_no','6');
+          map.push(
+            <ImageBackground
+            style={styles.taiwan} 
+            source={require('./img/taiwan.png')}
+            >
+  
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A1.png')}
+            >
+            
+            <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A2.png')}
+            >
+               <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A3.png')}
+            >
+              <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A4.png')}
+            >
+              <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A5.png')}
+            >
+              <ImageBackground
+            style={styles.taiwan_part} 
+            source={require('./img/A6.png')}
+            ></ImageBackground>
+            </ImageBackground>
+            </ImageBackground>
+            
+            </ImageBackground>
+            
+            </ImageBackground>
+
+            </ImageBackground>
+  
+            
+  
+  
+            </ImageBackground>)
+        }
 
  
   return (
@@ -87,7 +301,7 @@ export default function  Indexp({navigation}) {
         <ImageBackground style={[styles.backgroundimg,{height:1200}]} 
        
         >
-        <View style={styles.textbox}>
+        <View style={[styles.textbox,{borderWidth:2,borderColor:'#117c72'}]}>
           <Text style={styles.text}>   今日里程數 {todaydis} 公尺</Text>
         </View>
         
@@ -111,25 +325,8 @@ export default function  Indexp({navigation}) {
         
         >
 
-        <ImageBackground
-          style={styles.taiwan} 
-          source={require('./img/taiwan.png')}
-          >
-
-          <ImageBackground
-          style={styles.taiwan_part} 
-          source={imageSource}
-          >
-            <ImageBackground
-          style={styles.taiwan_part} 
-          source={require('./img/A2.png')}
-          />
-          </ImageBackground>
-
-          
-
-
-          </ImageBackground>
+        {map}
+       
         </TouchableOpacity>
 
 

@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity,StyleSheet,Image,Text,View} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -9,9 +10,14 @@ export default function Header() {
   const [isLoading, setLoading] = useState(true);
   const [coin, setCoin] = useState([0]);
   const [score, setScore] = useState([0]);
+  const [id, setid] = useState('');
+  const [name, setname] = useState();
 
 
-  let Data= {'m_id':10902};
+
+  AsyncStorage.getItem('m_id').then(value => setid(value));
+
+  
   const getMovies = async () => {
     try {
       fetch('http://140.131.114.154/api/header.php', {
@@ -19,14 +25,14 @@ export default function Header() {
         headers:
         {'Accept': 'application/json',
         'Content-Type': 'application/json'},
-        body: JSON.stringify(Data)
+        body: JSON.stringify({'m_id':id})
       })
       .then ((response)=>response.json())
-      .then ((response)=> {setCoin(response[1].coinsum),setScore(response[0].scoresum)})
+      .then ((response)=> {setCoin(response[2].coinsum),setname(response[0].m_name),setScore(response[1].scoresum)})
       ;
       
 
-      
+     
      
 
       
@@ -41,7 +47,6 @@ export default function Header() {
   }, );
 
 
-
     return (    
     <View>
       <View style={styles.header}>
@@ -50,7 +55,7 @@ export default function Header() {
      style={styles.usrimg}
      ></Image>
      <Text style={{flex:5,justifyContent:"center"}}>
-       Gigi
+      {name}
      </Text>
 
     <View style={styles.txt}>

@@ -15,17 +15,20 @@ import Shop from './page/Game/shop';
 import Game from './page/Game/game';
 import {Login} from './page/login/login';
 import {Signup} from './page/login/signup';
-import {Signin} from './page/login/signin';
 import Wardrobe from './page/Game/wardrobe';
 import { TGOS_map } from './page/knowlege/taiwan_k/webview';
 import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
+
 import Shop_hair from './page/Game/shop_hair';
 import Shop_face from './page/Game/shop_face';
 import Shop_short from './page/Game/shop_short';
 import Shop_pant from './page/Game/shop_pant';
 import Shop_body from './page/Game/shop_body';
 import Shop_shoes from './page/Game/shop_shoes';
+
+//loading
+import AppLoading from 'expo-app-loading';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 console.disableYellowBox = true;
 const Stack = createNativeStackNavigator();
@@ -38,6 +41,8 @@ const App = () => {
     'BpmfGenSenRoundedH': require('./assets/BpmfGenSenRounded-H.ttf'),
     'BpmfGenSenRoundedL': require('./assets/BpmfGenSenRounded-L.ttf')
   })
+
+  
 
   if (!fontsLoaded) {
     return (
@@ -70,7 +75,6 @@ const App = () => {
          <Stack.Screen name="Shop_body" component={Shop_body}/>
          <Stack.Screen name="Shop_shoes" component={Shop_shoes}/>
          <Stack.Screen name="Login"      component={Login}/>
-         <Stack.Screen name="Signin"  component={Signin}/>
          <Stack.Screen name="Signup"      component={Signup}/>
 
 

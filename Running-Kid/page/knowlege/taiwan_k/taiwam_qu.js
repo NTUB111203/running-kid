@@ -1,6 +1,5 @@
-import {React,useState} from "react";
+import {React,useState,useEffect} from "react";
 import { StyleSheet,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,Modal} from "react-native";
-import CheckBox from '@react-native-community/checkbox';
 import Header from "../../header";
 import { Feather } from "@expo/vector-icons";
 import styles_TK from "./taiwank_style";
@@ -9,11 +8,17 @@ import { TouchableOpacity } from "react-native";
 
 
 export  function Taiwan_Qu({navigation}) {
-
+  const [AreaPadding,setpadding] = useState(0);
   const [modalVisible1, setModalVisible1] = useState(false);
+
+  useEffect(() => {
+    if(Platform.OS=='android'){
+        setpadding(30);
+    };
+   })
   
   return (
-   <SafeAreaView>
+   <SafeAreaView style={{paddingTop:AreaPadding}}>
       <Modal   /* 滑出視窗 */
         animationType="none"
         transparent={true}
@@ -74,24 +79,20 @@ export  function Taiwan_Qu({navigation}) {
         </View>
         
         <View style={styles_TK.textbox_an}>
-            <Text style={{fontSize:18}}>1.請問台北市有幾個行政區?</Text>
+            <Text style={{fontSize:16,fontFamily:'BpmfGenSenRoundedL'}}>1.請問台北市有幾個行政區?</Text>
             <View style={{flexDirection:'row'}}>
-            <CheckBox boxType='square' style={{width:20, height:20,marginTop:10}}  onAnimationType='bounce' offAnimationType='bounce'></CheckBox>
             <Text style={{fontSize:20,marginTop:7,marginLeft:10}}>A.12</Text>
             </View>
 
             <View style={{flexDirection:'row'}}>
-            <CheckBox boxType='square' style={{width:20, height:20,marginTop:10}}  onAnimationType='bounce' offAnimationType='bounce'></CheckBox>
             <Text style={{fontSize:20,marginTop:7,marginLeft:10}}>B.14</Text>
             </View>
 
             <View style={{flexDirection:'row'}}>
-            <CheckBox boxType='square' style={{width:20, height:20,marginTop:10}}  onAnimationType='bounce' offAnimationType='bounce'></CheckBox>
             <Text style={{fontSize:20,marginTop:7,marginLeft:10}}>C.16</Text>
             </View>
 
             <View style={{flexDirection:'row'}}>
-            <CheckBox boxType='square' style={{width:20, height:20,marginTop:10}}  onAnimationType='bounce' offAnimationType='bounce'></CheckBox>
             <Text style={{fontSize:20,marginTop:7,marginLeft:10}}>D.20</Text>
             </View>
         </View>
@@ -100,7 +101,7 @@ export  function Taiwan_Qu({navigation}) {
         onPress={() => setModalVisible1(true)} 
       >
          <View style={styles_TK.button_on}>
-          <Text style={{fontSize:20,color:'#ffffff'}}>完成作答</Text>
+          <Text style={{fontSize:20,color:'#ffffff',fontFamily:'BpmfGenSenRoundedH',marginTop:-20}}>完成作答</Text>
         </View>
       </TouchableOpacity>
        

@@ -4,7 +4,7 @@ import * as TaskManager from 'expo-task-manager';
 import * as Location from "expo-location";
 import MapView ,{ Polyline,AnimatedRegion,Marker,PROVIDER_GOOGLE} from 'react-native-maps';
 import haversine from 'haversine-distance';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const LOCATION_TRACKING = 'location-tracking';
@@ -33,6 +33,7 @@ export default function Run_solo ({navigation}){
     const [end_time,setendtime] = useState('');
 
     const [isLoading, setLoading] = useState(true);
+    AsyncStorage.getItem('m_id').then(value => setmid(value));
 
     
     const getstarttime =() =>{
@@ -166,7 +167,6 @@ export default function Run_solo ({navigation}){
              setuserlong(longitude);
              setcoor(routeCoordinates.concat([newCoordinate]));
 
-             setmid(10902);
              setcno(1);
              setendtime(getendtime());
        

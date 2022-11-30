@@ -16,6 +16,7 @@ import {
 import { Feather } from "@expo/vector-icons";
 import Header from "../header";
 import { useIsFocused } from "@react-navigation/native"; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Gift() {
@@ -36,7 +37,11 @@ export default function Gift() {
     const [giftde,setde]= useState();
     const [exchangeda,setexda]= useState();
     const [giftph,setph]= useState();
-    const [qua,setqua] = useState(true);         
+    const [qua,setqua] = useState(true);     
+    const [id, setmid] = useState('');
+    AsyncStorage.getItem('m_id').then(value => setmid(value));
+  
+        
 
     const gettime =() =>{
         let date = new Date();
@@ -46,17 +51,13 @@ export default function Gift() {
         let hours = date.getHours();
         let minutes = date.getMinutes();
         let seconds = date.getSeconds();
-        return (`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
+        setexda(`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
     };
   
-    let changeData={ 
-        'student_id':10902,
-        'gift_no':giftid,
-        'exchange_qty':giftquantity,
-        'exchange_date':exchangeda,
-        'exchange_status':'未兌換',
-        'score':-(giftchange*giftquantity)
-        };
+    const map = ()=>{
+        
+    }
+    
   
     
     const change =()=>{
@@ -64,6 +65,17 @@ export default function Gift() {
             Alert.alert('你的積分不夠喔');
         }else{
             Alert.alert('兌換成功~');
+
+            let changeData={ 
+                'student_id':id,
+                'gift_no':giftid,
+                'exchange_qty':giftquantity,
+                'exchange_date':exchangeda,
+                'exchange_status':'未兌換',
+                'score':-(giftchange*giftquantity)
+                };
+
+
             console.log(changeData);
             try {
                 fetch('http://140.131.114.154/api/exchange.php', {
@@ -91,7 +103,7 @@ export default function Gift() {
               body: JSON.stringify(Data)
             })
             .then ((response)=>response.json())
-            .then ((response)=> {setscore(response[0].scoresum)});
+            .then ((response)=> {setscore(response[1].scoresum)});
             
            
         
@@ -112,7 +124,7 @@ export default function Gift() {
               headers:
               {'Accept': 'application/json',
               'Content-Type': 'application/json'},
-              body: JSON.stringify(Data)
+              body: JSON.stringify({'m_id':id})
             })
             .then ((response)=>response.json())
             .then ((response)=> {setgift(response)});
@@ -125,12 +137,13 @@ export default function Gift() {
         }
     }
 
-  
+   
    useEffect(()=>{
     if(Platform.OS=='android'){
         setpadding(30);
      };
     getscore();
+    gettime();
     getgift();
     if (focus){
         getscore();
@@ -149,7 +162,7 @@ export default function Gift() {
        
             <Text style={styles.text}>{gift[i].gift}</Text>
                 <Image
-                source={require('../../assets/Papple.jpg')}
+                source={{uri:gift[i].gift_photo}}
                 style={styles.imga}/>
     
                 <TouchableOpacity 

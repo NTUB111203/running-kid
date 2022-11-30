@@ -1,21 +1,119 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import { StyleSheet,Linking,Image,ScrollView,ImageBackground,View,Text,SafeAreaView,CheckBox} from "react-native";
 import Header from "../../header";
 import { Feather } from "@expo/vector-icons";
 import styles_TK from "./taiwank_style";
 import { TouchableOpacity } from "react-native";
-import WebView from "react-native-webview";
-import { useFonts } from "../../font";
-import AppLoading from 'expo-app-loading';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 export  function Taiwan_k({navigation}) {
+  const [AreaPadding,setpadding] = useState(0);
+  const [city_no,setcityno] = useState('');  
+
+  const [city,setcity] = useState('');
+  const [content,setconcent] = useState('');
+  
+  AsyncStorage.getItem('city_no').then(value => setcityno(value));
+
+
+
+  var KnowView =[];
+  
+  switch(city_no){
+    case '1':
+      KnowView.push(
+        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/1_k.png')}>
+        <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 台北 </Text></View> 
+      </ImageBackground>
+      )
+     break; 
+     case '2':
+      KnowView.push(
+        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/2_k.png')}>
+        <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 新北 </Text></View> 
+      </ImageBackground>
+      )
+     break; 
+     case '3':
+      KnowView.push(
+        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/3_k.png')}>
+        <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 桃園 </Text></View> 
+      </ImageBackground>
+      )
+     break; 
+     case '4':
+      KnowView.push(
+        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/4_k.png')}>
+        <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 新竹 </Text></View> 
+      </ImageBackground>
+      )
+     break; 
+     case '5':
+      KnowView.push(
+        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/5_k.png')}>
+        <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 苗栗 </Text></View> 
+      </ImageBackground>
+      )
+     break; 
+     case '6':
+      KnowView.push(
+        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/6_k.png')}>
+        <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 台中 </Text></View> 
+      </ImageBackground>
+      )
+     break; 
+  }
+ 
+
+  const getknowledge = () => {
+    try {
+      fetch('http://140.131.114.154/api/knowledge.php', {
+        method: 'POST',
+        headers:
+        {'Accept': 'application/json',
+        'Content-Type': 'application/json'},
+        body: JSON.stringify({'city_no':city_no})
+      })
+      .then ((response)=>response.json())
+      .then ((response)=> {
+        setcity(response[0].city)
+        setconcent(response[0].content)
+        
+      })
+      ;    
+
+     
+    
+   } catch (error) {
+    console.error(error);
+  }}
+  
+  useEffect(() => {
+    if(Platform.OS=='android'){
+        setpadding(30);
+    };
+    getknowledge();
+    console.log(city)
+    console.log(content)
+
+   })
+
+   KnowView.push(
+   
+        <View style={styles_TK.textbox_m}>
+          <Text style={[styles_TK.title,{fontFamily:'BpmfGenSenRoundedH',marginTop:-30}]}>{city}知識</Text>
+          <Image source={require('../../../assets/taipei_k.jpeg')} style={styles_TK.textbox_image}></Image>
+          <Text style={{fontFamily:'BpmfGenSenRoundedL'}}>{content}</Text>
+        </View>
+
 
   
-
+   )
 
   return (
-   <SafeAreaView>
+   <SafeAreaView style={{paddingTop:AreaPadding}}>
      <ScrollView
       showsVerticalScrollIndicator={false}
       bounces={false}
@@ -42,29 +140,14 @@ export  function Taiwan_k({navigation}) {
         </View>
         
         
-        <ImageBackground  style={styles_TK.map} imageStyle={styles_TK.map} source={require('../../../assets/taipei_k.png')}>
-          <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 台北 </Text></View> 
-        </ImageBackground>
+       
 
-        <View style={styles_TK.textbox_m}>
-          <Text style={[styles_TK.title,{fontFamily:'BpmfGenSenRoundedH',marginTop:-30}]}>台北知識</Text>
-          <Image source={require('../../../assets/taipei_k.jpeg')} style={styles_TK.textbox_image}></Image>
-          <Text style={{fontFamily:'BpmfGenSenRoundedL'}}>據《臺灣島之歷史與地誌》，景美源自梘尾，指瑠公圳大木梘之尾，其址約在今日舊景美橋附近，後取臺語同音，改稱「景尾」。總共有12個行政區</Text>
-        </View>
-
+       
+    {KnowView}
+          
         <TouchableOpacity onPress={() => navigation.navigate('Taiwan_Qu') }>
           <View style={styles_TK.button_on}><Text style={{fontSize:20,color:"#ffffff",fontFamily:'BpmfGenSenRoundedH',marginTop:-20}}>開始作答</Text></View>
         </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate('TGOS_map')}>
-          <View style={[styles_TK.button_on,{marginTop:10,backgroundColor:'#678F74'}]}><Text style={{fontSize:20,color:"#ffffff",fontFamily:'BpmfGenSenRoundedH',marginTop:-20}}>查看相關景點</Text></View>
-        </TouchableOpacity>
-        
-        
-          
-        
-          
-        
         
 
 

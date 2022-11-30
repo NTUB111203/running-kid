@@ -5,6 +5,8 @@ import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import useFonts from '../../font'
 import { useIsFocused } from "@react-navigation/native"; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 function Textbox_title(){
 
@@ -36,6 +38,8 @@ function Mission_farm(){
   const [coin,setcoin]=useState(10);
   const [time,settime]=useState(0);
   const [tri,settri]=useState(true);
+  const [id, setid] = useState('');
+  AsyncStorage.getItem('m_id').then(value => setid(value));
 
   
 
@@ -51,7 +55,7 @@ const gettime =() =>{
     
 };
  
-let Data = {'m_id':10902,'coin':coin,'datetime':time};
+let Data = {'m_id':id,'coin':coin,'datetime':time};
 
   useEffect(() => {
     getd();
@@ -72,7 +76,7 @@ let Data = {'m_id':10902,'coin':coin,'datetime':time};
       body: JSON.stringify(Data)
     })
     .then ((response)=>response.json())
-    .then ((response)=> {setdis(response[0].todaydis)})
+    .then ((response)=> {setdis(response[1].todaydis)})
     ;    
   
    

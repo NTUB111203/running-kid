@@ -47,10 +47,11 @@ const styles_TK = StyleSheet.create({
       title:{
         justifyContent:"center",
         alignItems:'center',
-        fontSize:30,
+        fontSize:24,
         color:"#117C72",
         fontWeight:"600",
-       
+        fontFamily:'BpmfGenSenRoundedH',
+        marginTop:-30
     },
 
     textbox_image:{
@@ -105,11 +106,11 @@ const styles_TK = StyleSheet.create({
 
     textbox_an:{
       paddingLeft:20,
-      paddingRight:20,
+      paddingRight:5,
       paddingBottom:20,
       paddingTop:10,
-      width:280,
-      borderRadius:20,
+      width:350,
+      borderRadius:20, borderWidth:2,borderColor:'#117c72',
       backgroundColor:'#ffffff',
       justifyContent:"center",
       alignItems:'flex-start',

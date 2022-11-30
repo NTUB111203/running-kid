@@ -57,6 +57,7 @@ export default function Tabbars() {
     return(
         <Tab.Navigator
             screenOptions = {{
+                
                 tabBarShowLabel: false, 
                 Title:false, 
                 headerShown:false,
@@ -77,7 +78,7 @@ export default function Tabbars() {
             
         >
 
-        <Tab.Screen name='Game' component={Game}  options={{
+        <Tab.Screen name='Game' component={Game}   options={{
             tabBarIcon:({focused}) =>(
                 <View>
                     <Image 
