@@ -61,11 +61,11 @@
             id:$("#m_id").val(),
             password: $("#password").val(),
             name:$("#m_name").val(),
-            gender:$("#gender").val(),
             identity:$("#identity").val(),
-            phone:$("#phone").val(),
             mail:$("#mail").val(),
-            bir:$("#birthday").val(),
+            // phone:$("#phone").val(),
+            // gender:$("#gender").val(),
+            // bir:$("#birthday").val(),
           },
           error:function(res){
             console.log(res);
@@ -123,7 +123,7 @@
 
             <!-- Logo -->
             <div class="sidebar-brand-icon rotate-n-15">
-              <img src="../Logo/logo-pink.png" width="50px" />
+              <img src="Logo/logo-pink.png" width="50px" />
             </div>
             <div class="sidebar-brand-text mx-3">孩是要運動</div>
 
@@ -173,15 +173,15 @@
 
           <!-- /.container-fluid -->
           <div class="row justify-content-center">
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-6 col-lg-8 col-md-9">
               <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="card-body p-0">
                   <!-- Nested Row within Card Body -->
                   <div class="row">
-                    <div
+                    <!-- <div
                       class="col-lg-6 d-none d-lg-block bg-login-image1"
-                    ></div>
-                    <div class="col-lg-6">
+                    ></div> -->
+                    <div class="col-lg-12">
                       <div class="p-5">
                         <div class="text-center">
                           <h1 class="h4 text-gray-900 mb-4">會員註冊</h1>
@@ -286,7 +286,7 @@
                           />
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                           <select name="gender" 
                                   class="form-control selections"
                                   id="gender"
@@ -307,7 +307,7 @@
                         <div class="form-group">
                           <input type="date" class="form-control form-control-user" 
                             name="birthday" id="birthday" value="" placeholder="生日"required>
-                        </div>
+                        </div> -->
                 
                         <button class="btn btn-primary btn-user btn-block" onclick="validateForm()">註冊</button>
                          
