@@ -31,7 +31,7 @@ $m_id = $_GET['id'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Other Utilities</title>
+    <title>running kids</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -461,7 +461,8 @@ $m_id = $_GET['id'];
         select  MONTH(r_datetime) as Months ,sum(distance) as 'eachMonth' 
         from runningkids.record
         WHERE (r_datetime between '2022/09/01' and '2023/08/31') and m_id=" .$_GET['id']."
-        GROUP BY  MONTH(r_datetime);    
+        GROUP BY  MONTH(r_datetime)
+        ORDER BY Months;    
         ");
 
         foreach($query as $data){
