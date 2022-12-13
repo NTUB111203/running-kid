@@ -97,7 +97,7 @@
                         <!-- <a class="collapse-item" href="gift-on.php">商品上架</a> -->
                         <!--<a class="collapse-item" href="gift.php">禮品編輯</a>-->
                         <!-- <a class="collapse-item" href="gift-update.php">商品修改</a> -->
-                        <a class="collapse-item" href="gift-off.php">禮品兌換</a>
+                        <a class="collapse-item" href="gift-off-teacher.php">禮品兌換</a>
                         <!-- <a class="collapse-item" href="utilities-animation.html">Animations</a>
                         <a class="collapse-item" href="utilities-other.html">Other</a> -->
                     </div>
