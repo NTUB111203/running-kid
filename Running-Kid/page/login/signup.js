@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from "react";
-import { StyleSheet,Linking,Image,TouchableOpacity,ImageBackground,View,Text,SafeAreaView,CheckBox,TextInput} from "react-native";
+import { StyleSheet,Linking,Image,TouchableOpacity,ImageBackground,View,Text,SafeAreaView,CheckBox,TextInput,Modal} from "react-native";
 import DropDownPicker from 'react-native-dropdown-picker'
 import { SelectList } from 'react-native-dropdown-select-list'
+import DatePicker from 'react-native-modern-datepicker';
 
 
 export  function Signup({navigation}) {
-  
+  const [modalVisible,setModalVisible] = useState(false);
   const [ver,setver]=useState(false);
   const [AreaPadding,setpadding]=useState();
   const [genderOpen, setGenderOpen] = useState(false);
@@ -15,7 +16,7 @@ export  function Signup({navigation}) {
   const [m_name, setname] = useState('');
   const [m_id, setmid] = useState('');
   const [gender, setgender] = useState('');
-  const [birthday, setbirth] = useState('');
+  const [birthday, setbirth] = useState('選擇生日');
   const [mail, setmail] = useState('');
   const [phone, setphone] = useState('');
   const [password, setpassword] = useState('');
@@ -114,6 +115,38 @@ export  function Signup({navigation}) {
 
   return (
    <SafeAreaView style={{marginTop:AreaPadding}}>
+
+    <Modal      /* 彈出選擇數量視窗 */
+            animationType="none"
+            transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                setModalVisible(!modalVisible);
+                }}
+            >
+      <View style={styles.centeredView}>
+      <View style={{width:300,height:400,justifyContent:'center',alignItems:'center',backgroundColor:'#ffffff'}}>
+      <DatePicker
+        isGregorian='true'
+        mode='calendar'
+        style={{ borderRadius: 10,width:300,height:200 }}
+        options={{}}
+        onSelectedChange={selectdate => {
+          var datee = selectdate.split('/')
+          
+          setbirth(datee[0]+'-'+datee[1]+'-'+datee[2])
+        }}
+      />
+      <TouchableOpacity  onPress={()=>{setModalVisible(false)}}>
+       <View style={{width:250,height:50,borderRadius:70,backgroundColor:'#117c72',alignItems:'center',justifyContent:'center'}}>
+         <Text style={{fontFamily:'BpmfGenSenRoundedH',fontSize:14,color:'#ffffff',marginTop:-14}}>選擇完成</Text>
+       </View>
+      </TouchableOpacity>
+      </View>
+        
+      </View>
+                
+    </Modal>
     
     <ImageBackground style={styles.backgroundimg} 
                     source={require('../../assets/background.png')}
@@ -162,10 +195,12 @@ export  function Signup({navigation}) {
      </View>
      <View style={{flexDirection:'row',justifyContent:'center',marginTop:20,marginLeft:-10}}>    
        <Text style={{fontFamily:'BpmfGenSenRoundedH',fontSize:18,marginTop:-18,color:'#117c72'}}>生日：</Text>
-       <TextInput 
-         style={[styles.textput,{width:200}]}
-         onChangeText={ e=> setbirth(e)}
-         />
+       <TouchableOpacity  onPress={()=>{setModalVisible(true)}}>
+       <View style={[styles.textput,{width:200,justifyContent:'center',alignItems:'center'}]}>
+         <Text style={{fontFamily:'BpmfGenSenRoundedH',fontSize:14,color:'#117c72',marginTop:-14}}>{birthday}</Text>
+       </View>
+     </TouchableOpacity>
+
 
      </View>   
        <View style={{flexDirection:'row',justifyContent:'center',marginTop:20,marginLeft:-10}}>    
@@ -175,6 +210,8 @@ export  function Signup({navigation}) {
         >學號：</Text>
        <TextInput 
          style={[styles.textput,{width:200}]}
+        maxLength={10}
+       
          onChangeText={ e=> setmid(e)}
          />
 
@@ -185,6 +222,7 @@ export  function Signup({navigation}) {
        <TextInput 
          style={[styles.textput,{width:200}]}
          onChangeText={ e=> setmail(e)}
+         keyboardType='email-address'
          />
 
      </View>             
@@ -194,6 +232,8 @@ export  function Signup({navigation}) {
        <TextInput 
          style={[styles.textput,{width:150}]}
          onChangeText={ e=> setphone(e)}
+         keyboardType='number-pad'
+         maxLength={10}
          />
 
      </View>   
@@ -289,5 +329,14 @@ textput:{
     borderColor:'#696969',
     borderRadius:10,
     backgroundColor:'#ffffff', 
-}
+},
+centeredView: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            overflow: 'hidden',
+            backgroundColor: 'rgba(0, 0, 0, 0.3)',
+},
 });

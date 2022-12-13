@@ -149,6 +149,9 @@ export default function Gift() {
         getscore();
         getgift();
     }
+    return()=>{
+        setqua('')
+    }
    },[focus])
        
 
@@ -206,11 +209,14 @@ export default function Gift() {
                                 source={require('../../assets/Papple.jpg')}
                                 style={styles.imgb}
                             />
-                            <Text style={{fontFamily:'BpmfGenSenRoundedL',lineHeight:20,letterSpacing:3,marginTop:-15}}>
-                            {giftde}
-                            </Text>
+                           
+                                <Text style={{fontFamily:'BpmfGenSenRoundedL',lineHeight:20,letterSpacing:3,marginTop:-15}}>
+                                {giftde}
+                                </Text>
+                           
+                            
 
-                            <Text style={{fontFamily:'BpmfGenSenRoundedH',lineHeight:25,fontSize:24,marginLeft:5,letterSpacing:1,color:'#117472'}}>
+                            <Text style={{fontFamily:'BpmfGenSenRoundedH',lineHeight:25,fontSize:24,marginLeft:5,letterSpacing:1,color:'#117472',marginTop:10}}>
                             需要 {giftchange*giftquantity} 積分
                             </Text>
 

@@ -89,7 +89,7 @@ let Data = {'m_id':id,'coin':coin,'datetime':time};
 
     if(tri){
       setFontsLoaded(true);
-        if(disper<1){
+        if(distancea<1000){
           setFontsLoaded(false);
         };
     }else{
@@ -144,7 +144,7 @@ console.error(error);
       <Image
       source={require('../../../assets/icon-money.png')}      
       style={styles.money}/>
-      <Text flex={1} style={{fontSize:20}}> 10 </Text>
+      <Text flex={1} style={[styles.text,{color:'#000000',marginTop:-10}]}> 10 金幣</Text>
     </View>
     {
       buttonstatus ?
