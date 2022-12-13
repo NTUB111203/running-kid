@@ -28,7 +28,8 @@ export default function Sport_kF({navigation}) {
             <ScrollView
               showsVerticalScrollIndicator={false}
               bounces={false}
-              stickyHeaderIndices={[0]}>
+              stickyHeaderIndices={[0]}
+              >
              <Header/>
              <ImageBackground style={styles.backgroundimg} 
                 source={require("../../../assets/background.png")}>
@@ -43,10 +44,15 @@ export default function Sport_kF({navigation}) {
                     
                 </View>
                 <View style={styles.img}>
-                    <Image
-                        source={require('../../../assets/BeSport.png')}
-                        style={{width:200,height:180}}
-                    ></Image>
+                   
+                    <YoutubePlayer
+                        style={styles.video}
+                        height={200}
+                        width={320}
+                        play={false}
+                        videoId={"DslXasYvkak"}
+
+                    /> 
                      <Text style={styles.text}>
                     暖身是為了要讓肌肉有溫度，
                     肌腱韌帶才不會拉傷。 {'\n'} {'\n'}
@@ -57,16 +63,28 @@ export default function Sport_kF({navigation}) {
                 </View>
 
                 <View style={styles.textbox}>
+                     <Image
+                        source={require('../../../assets/sp1.jpg')}
+                        style={{width:200,height:250,marginBottom:10}}
+                    ></Image>
                     <Text style={styles.textbox_title}>第一招：屈膝抱腿</Text>
                     <Text style={styles.text}>挺胸，背挺直，雙手抱膝(如果怕跌倒可以扶牆)</Text>
                 </View>
 
                 <View style={styles.textbox}>
+                <Image
+                        source={require('../../../assets/sp2.jpg')}
+                        style={{width:200,height:250,marginBottom:10}}
+                    ></Image>
                     <Text style={styles.textbox_title}>第二招：弓箭步胸椎轉體</Text>
                     <Text style={styles.text}>腳踩弓箭步，膝蓋不點地，肚子要穩住，記得以轉胸為主，頭往後方看</Text>
                 </View>
 
                 <View style={styles.textbox}>
+                <Image
+                        source={require('../../../assets/sp3.jpg')}
+                        style={{width:200,height:250,marginBottom:10}}
+                    ></Image>
                     <Text style={styles.textbox_title}>第三招：上肢肩膀伸展</Text>
                     <Text style={styles.text}>因為跑步時手臂也會跟著晃動，所以雙手也是需要暖身的喔！記得挺胸不要駝背。</Text>
                 </View>
@@ -85,7 +103,7 @@ const styles=StyleSheet.create({
 
     backgroundimg:{
         width:"100%",
-        height:1450,
+        height:2000,
         flex:1,
         justifyContent:'flex-start',
         alignItems: 'flex-start',
@@ -135,7 +153,7 @@ const styles=StyleSheet.create({
     },
     textbox:{
         width:350,
-        height:140,
+        height:400,
         backgroundColor:'#ffffff',
         justifyContent:'center',
         alignItems:'center',

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet ,Dimensions,Image, Alert,SafeAreaView,ImageBackground} from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet ,Dimensions,Image, Alert,SafeAreaView,ImageBackground,Modal} from 'react-native';
 import * as TaskManager from 'expo-task-manager';
 import * as Location from "expo-location";
 import MapView ,{ Polyline,AnimatedRegion,Marker,PROVIDER_GOOGLE} from 'react-native-maps';
@@ -22,6 +22,7 @@ var en='';
 export default function Run_solo ({navigation}){
     
     const [locationStarted, setLocationStarted] = useState(false);   //啟動裝態
+    const [modalv,setmodalv] = useState(false)
     const [latitude,setuserlat] = useState(LATITUDE);                       //設定經度
     const [longitude,setuserlong] = useState(LONGITUDE);                    //設定緯度
     const [routeCoordinates,setcoor] = useState([]);
@@ -56,6 +57,15 @@ export default function Run_solo ({navigation}){
         let minutes = date.getMinutes();
         let seconds = date.getSeconds();
         return (`${years}-${month+1}-${day} ${hours}:${minutes}:${seconds}`);
+    };
+
+    const timel =() =>{
+        var d1 = r_datetime.replace(/\-/g, "/");
+        var t1 = new Date(d1);
+        var d2 = end_time.replace(/\-/g, "/");
+        var t2 = new Date(d2);
+        console.log(parseInt(t2- t1) / 1000 / 60);//兩個時間相差的分鐘數
+        return (parseInt(t2- t1) / 1000);
     };
     
     let Data={ 
@@ -130,7 +140,7 @@ export default function Run_solo ({navigation}){
     const stopLocation = () => {              
                  setLocationStarted(false);
                  mi =0;
-                 setdistanceTravelled(0);
+                
                  setcoor([]);
                  TaskManager.isTaskRegisteredAsync(LOCATION_TRACKING)
                      .then((tracking) => {
@@ -194,6 +204,34 @@ export default function Run_solo ({navigation}){
 
     return(
         <SafeAreaView>
+
+    <Modal      /* 彈出選擇數量視窗 */
+    animationType="none"
+    transparent={true}
+        visible={modalv}
+        onRequestClose={() => {
+        setModalVisible(!modalVisible);
+        }}
+
+    >
+    <View style={styles.centeredView}>
+        <View style={styles.modal_view}>
+            <Text style={styles.title}>你總共跑了：</Text>
+            <Text style={styles.text}>{distanceTravelled} 公尺</Text>
+            <Text style={styles.title}>使用時間為：</Text>
+            <Text style={styles.text}>{parseInt(timel()/60)}分{timel() % 60}秒</Text>
+            <TouchableOpacity onPress={() => {setmodalv(false),navigation.navigate('Tabbar')}}>
+                    <View style={styles.modal_button}>
+                        <Text style={{color:'#ffffff',fontSize:24,fontFamily:'BpmfGenSenRoundedL',marginTop:-25}}>回到首頁</Text>
+                    </View>
+             </TouchableOpacity>
+        </View>
+
+       
+    </View>   
+</Modal>
+
+
             <View>
             {locationStarted ?
                  <View style={{width:"100%",height:750,justifyContent:'center'}}>
@@ -212,7 +250,7 @@ export default function Run_solo ({navigation}){
                 </MapView>
                 <ImageBackground source={require('../../assets/background.png')} style={{width:'100%',height:200,justifyContent:'flex-start',alignItems:'center'}}>
                 <Text style={styles.nText}>共移動：{distanceTravelled}公尺</Text>
-                    <TouchableOpacity onPress={()=>{getMovies(),stopLocation(),navigation.goBack()}}>
+                    <TouchableOpacity onPress={()=>{getMovies(),stopLocation(),setmodalv(true),timel()}}>
                         <Text style={[styles.btnText,{width:300,height:80,backgroundColor:'#d11507',fontFamily:'BpmfGenSenRoundedH',}]}>結束跑步</Text>
 
                     </TouchableOpacity>
@@ -281,5 +319,49 @@ const styles = StyleSheet.create({
        
         borderRadius: 10,
         textAlign:'center',textAlignVertical:'top'
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        
+        borderTopLeftRadius: 10,
+                  borderTopRightRadius: 10,
+                  overflow: 'hidden',
+                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+      },
+      modal_view:{
+        width:300,
+        height:200,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:20,
+        backgroundColor:'#ffffff'
+      },
+      modal_button:{
+        width:200,
+        height:50,
+        backgroundColor:'#117c72',
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:20,
+        marginTop:15
+      },
+      text:{
+        textAlign:"justify",
+        fontSize:16,
+        marginTop:-15,
+        color:"#d11507",
+        fontWeight:"600",
+        fontFamily:'BpmfGenSenRoundedH'
+        
+      },
+      title:{
+        textAlign:"center",
+        fontSize:20,
+        color:"#117C72",
+        fontWeight:"500",
+        fontFamily:'BpmfGenSenRoundedH',
+        marginTop:-20
     },
 });

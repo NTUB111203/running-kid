@@ -20,25 +20,25 @@ export default function Game({navigation}) {
     const [body_id,setbo_id] = useState(0);
     const [shose_id,setshos_id] = useState(0);
     const [CView,setCV]=useState([]);
-    const [cloth,setcloth] = useState([]);
+    const cloth =[];
 
     const [id, setmid] = useState('');
     AsyncStorage.getItem('m_id').then(value => setmid(value));
 
     const list = {
         hair:{
-            "0": require('../../assets/game_man/hair0.png'),
-            "1": require('../../assets/game_man/hair1.png'),
-            "2": require('../../assets/game_man/hair2.png'),
-            "3": require('../../assets/game_man/hair3.png')
+            0: require('../../assets/game_man/hair0.png'),
+            1: require('../../assets/game_man/hair1.png'),
+            2: require('../../assets/game_man/hair2.png'),
+            3: require('../../assets/game_man/hair3.png')
         },
         short:{
             0: require('../../assets/game_man/short0.png'),
             1: require('../../assets/game_man/short1.png'),
         },
         body:{
-            "0": require('../../assets/game_man/body0.png'),
-            "1": require('../../assets/game_man/body1.png'),
+            0: require('../../assets/game_man/body0.png'),
+            1: require('../../assets/game_man/body1.png'),
         },
         face:{
             0: require('../../assets/game_man/face0.png'),
@@ -70,11 +70,24 @@ export default function Game({navigation}) {
             .then (response=>response.json())
             .then (response=>{
                 
+                
+               console.log(response)
+                
+                response.forEach((item) => {
+                    const newItem = {
+                        clo_category: item.clo_category,
+                        clo_id: item.clo_id,
+                    }
+                    cloth.push(newItem)
+                })
                
-                setcloth(response);
-                console.log('1--------------');
-                console.log(cloth(0).clo_category);
-             
+                
+                setbo_id(list[cloth[0].clo_category][cloth[0].clo_id])
+                setfa_id(list[cloth[1].clo_category][cloth[1].clo_id])
+                setpa_id(list[cloth[2].clo_category][cloth[2].clo_id])
+                setshos_id(list[cloth[3].clo_category][cloth[3].clo_id])
+                setshor_id(list[cloth[4].clo_category][cloth[4].clo_id])
+                setha_id(list[cloth[5].clo_category][cloth[5].clo_id])
 
             })
         
@@ -103,23 +116,23 @@ export default function Game({navigation}) {
         <View style ={styles.view_center}>
         <ImageBackground 
             style={styles.img_center}
-            source={require('../../assets/game_man/hair0.png')}
+            source={body_id}
         >
             <ImageBackground
              style={styles.img_center}
-             source={require('../../assets/game_man/hair0.png')}>
+             source={hair_id}>
                 <ImageBackground
                     style={styles.img_center}
-                    source={require('../../assets/game_man/short0.png')}>
+                    source={short_id}>
                         <ImageBackground
                           style={styles.img_center}
-                          source={require('../../assets/game_man/pant0.png')}>
+                          source={pant_id}>
                         <ImageBackground
                           style={styles.img_center}
-                          source={require('../../assets/game_man/face0.png')}>
+                          source={face_id}>
                          <ImageBackground
                           style={styles.img_center}
-                          source={require('../../assets/game_man/shoes0.png')}>
+                          source={shose_id}>
                         
                          </ImageBackground>
                          </ImageBackground>
