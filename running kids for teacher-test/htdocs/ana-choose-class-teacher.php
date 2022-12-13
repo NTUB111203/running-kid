@@ -33,7 +33,7 @@ $class_no=$_SESSION["class_no"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>running kids</title>
+    <title>SB Admin 2 - Other Utilities</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,7 @@ $class_no=$_SESSION["class_no"];
     <div id="wrapper">
 
 
-    <?php include("side.php"); ?>
+    <?php include("side-teacher.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

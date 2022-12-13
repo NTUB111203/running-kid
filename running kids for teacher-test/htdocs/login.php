@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($row["identity"]=="PE"){
             header("location:ana-school.php");
         }else{
-            header("location:ana-choose-class-teacher.php");
+            header("location:ana-school-teacher.php");
         }
     }else{
         function_alert("帳號或密碼錯誤"); 
