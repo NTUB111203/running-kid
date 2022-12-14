@@ -108,7 +108,7 @@ $class_no=$_SESSION["class_no"];
                                     //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";
                                     //按鈕
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-class.php?id=".$row['class_no']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-class-teacher.php?id=".$row['class_no']. "\" class=\"btn btn-success btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
