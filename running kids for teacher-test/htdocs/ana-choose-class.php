@@ -14,6 +14,7 @@ session_start();
 // }
 
 $m_name=$_SESSION["m_name"];
+$sch_no=$_SESSION["sch_no"];
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
@@ -83,7 +84,7 @@ $m_name=$_SESSION["m_name"];
                         
                       <!-- PHP 班級 -->
                       <?php
-                        $result = "SELECT * FROM class";
+                        $result = "SELECT * FROM class where sch_no ='".$sch_no."'";
                         $retval=mysqli_query($link, $result);
                         if ($retval) {
                             $num = mysqli_num_rows($retval);

@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION["loggedin"] = true;
         $_SESSION["m_id"] = $row["m_id"];
         $_SESSION["m_name"] = $row["m_name"];
-        $_SESSION["school_no"] = $row["school_no"];
+        $_SESSION["sch_no"] = $row["sch_no"];
         $_SESSION["class_no"] = $row["class_no"];
         $_SESSION["mail"] = $row["mail"];
         $_SESSION["phone"] = $row["phone"];
