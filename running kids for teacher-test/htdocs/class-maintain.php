@@ -114,6 +114,7 @@ $m_name = $_SESSION["m_name"];
 
                                             if (mysqli_num_rows($retval) > 0) {
                                                 while ($row = mysqli_fetch_assoc($retval)) {
+
                                                     $_SESSION['class_no'] = $row["class_no"];
                                                     $members = "select count(*)as member from members where class_no =" . $row['class_no'] . " AND identity='S'";
                                                     //$members = "select count(*)as member from members where class_no =".$row['class_no'];

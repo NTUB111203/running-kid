@@ -2,21 +2,11 @@
 /*連接資料庫*/
 require_once 'DataBase.php';
 
-// Initialize the session
 session_start();
-
-// // Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: welcome.php");
-//     exit;  //記得要跳出來，不然會重複轉址過多次
-// }
-
 $m_name = $_SESSION["m_name"];
+// $sch_no = $_SESSION["sch_no"];
+$class_no = $_SESSION["class_no"];
 
-//echo session_save_path();
-//echo "<h1>你好 ".$m_name."</h1>";
-//echo "<tr>";
-//echo "<a href='logout.php'>登出</a>";
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +56,12 @@ $m_name = $_SESSION["m_name"];
                         <h1 class="h3 mb-0 text-gray-800">班級學生管理</h1>
                     </div>
 
+                    <!-- <form class="user" method="post" action="student-view.php"> -->
+                    <?php
+                    // $class_no = $_SESSION["class_no"];
+                    // echo $class_no;
+                    ?>
+
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -78,7 +74,6 @@ $m_name = $_SESSION["m_name"];
 
 
                         <?php
-
                         $result = "SELECT * FROM class";
                         $retval = mysqli_query($link, $result);
                         if ($retval) {
@@ -104,8 +99,10 @@ $m_name = $_SESSION["m_name"];
                                     //按鈕
                                     echo "</div>\n";
                                     echo "<a href=\"student-view.php?class_no=" . $row['class_no'] . "\" class=\"btn btn-success btn-circle btn-lg\">\n";
+                                    // echo "<button class=\"btn btn-success btn-circle btn-lg\" type=\"submit\" name=\"buttonSave\" id=\"button\" value=\"送出\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
+                                    //echo "</button>\n";
                                     echo "</div>\n";
                                     echo "</div>\n";
                                     echo "</div>\n";
@@ -117,6 +114,7 @@ $m_name = $_SESSION["m_name"];
 
                     </div>
                     <tr>
+                        </form>
 
                 </div>
                 <!-- Footer -->

@@ -92,7 +92,9 @@ session_start();
                             <form class="user" method="post" action="gift-update.php">
 
                                 <?php
-                                $result = "SELECT * FROM gift LEFT JOIN gift_supplier ON gift.gift_sup_no = gift_supplier.sup_no";
+                                $gift_no = $_GET['gift_no'];
+                                $result = "SELECT * FROM gift LEFT JOIN gift_supplier ON gift.gift_sup_no = gift_supplier.sup_no
+                                           WHERE gift_no = '$gift_no'";
                                 $retval = mysqli_query($link, $result);
 
                                 if ($retval) {
@@ -105,7 +107,7 @@ session_start();
                                             //echo "<th>".$row["gift_sup_no"]."</th>";
                                             echo "<th>" . $row['gift_description'] . "</th>";
                                             echo "<th>" . $row["sup_name"] . "</th>";
-                                            echo "<th>" . $row['sup_tel'] . "</th>";
+                                            //echo "<th>" . $row['sup_tel'] . "</th>";
                                         }
                                     }
                                 }
@@ -114,13 +116,13 @@ session_start();
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-3 ">
                                         <h6>禮品名稱</h6>
-                                        <?php echo "<input type='text' class='form-control form-control-user' name='gift' id='gift' value='$gift'/>" ?>
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='gift' id='gift' value='$gift' required/>" ?>
                                         <!-- <input type="text" class="form-control form-control-user" name="gift" id="gift" value="" required /> -->
                                     </div>
 
                                     <div class="col-sm-3 ">
                                         <h6>兌換積分</h6>
-                                        <?php echo "<input type='text' class='form-control form-control-user' name='exchange_points' id='exchange_points' value='$exchange_points'/>" ?>
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='exchange_points' id='exchange_points' value='$exchange_points' required/>" ?>
                                         <!-- <input type="text" class="form-control form-control-user" name="exchange_points" id="exchange_points" value="" required /> -->
                                     </div>
                                     <div class="col-sm-3 "></div>
@@ -128,26 +130,16 @@ session_start();
 
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
-                                    <div class="col-sm-3 ">
-                                        <!-- <input
-                                            type="text"
-                                            class="form-control form-control-user"
-                                            name="sup_name"
-                                            id="sup_name"
-                                            placeholder="供應商"
-                                            required
-                                          /> -->
-                                        <h6>供應商</h6>
+                                    <div class="col-sm-6 ">
+                                        <h6>禮物供應商</h6>
                                         <select name="sup_no" id="sup_no" class="form-control selections" required>
                                             <option value="">請選擇供應商</option>
                                         </select>
+
                                     </div>
-                                    <div class="col-sm-3 ">
-                                        <h6>供應商電話</h6>
-                                        <input type="text" class="form-control form-control-user" name="sup_tel" id="sup_tel" value="" required />
-                                    </div>
-                                    <div class="col-sm-3 "></div>
+
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
 
@@ -183,9 +175,6 @@ session_start();
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
-
-
-
                             </form>
                         </div>
                     </div>

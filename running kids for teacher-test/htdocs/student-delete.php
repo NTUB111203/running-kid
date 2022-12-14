@@ -20,9 +20,9 @@ if ($retval) {
 }
 
 
-if (!$result) {
-    die($link->error);
-}
+// if (!$result) {
+//     die($link->error);
+// }
 
 if ($link->affected_rows >= 1) {
     echo '刪除成功';
@@ -30,4 +30,4 @@ if ($link->affected_rows >= 1) {
     echo '查無資料';
 }
 // 如果刪除成功
-header('Location: student-view.php?class_no="[$class_no]"');
+header('Location: student-view.php');

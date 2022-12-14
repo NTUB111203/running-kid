@@ -1,7 +1,5 @@
 <?php
 require_once("DataBase.php");
-echo //$_POST['sch_no'];
-//$sch_no = $_POST['sch_no'];
 
 $sup_name = $_POST['sup_name'];
 $sup_tel = $_POST['sup_tel'];

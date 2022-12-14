@@ -1,4 +1,11 @@
+<?php
+/*連接資料庫*/
+require_once 'DataBase.php';
 
+session_start();
+$m_name = $_SESSION["m_name"];
+$class_no = $_SESSION["class_no"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,49 +17,46 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>新增教室</title>
+    <title>新增學生</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <style>
-        .selections{
+        .selections {
             border-radius: 10rem;
-            height: calc(2rem + 1.25rem );
+            height: calc(2rem + 1.25rem);
             font-size: 0.8rem;
         }
     </style>
     <script>
-         window.onload = function getSchool() {
-        $.ajax({
-          type: "POST",
-          url: "getRow.php",
-          dataType: "json",
-          data: { name: "schoolList" },
+        window.onload = function getSchool() {
+            $.ajax({
+                type: "POST",
+                url: "getRow.php",
+                dataType: "json",
+                data: {
+                    name: "schoolList"
+                },
 
-          success: function (res) {
-            $.each(res, function (index, val) {
-              $("#sch_no").append(
-                $("<option></option>")
-                  .attr("value", index)
-                  .text(val)
-              );
-            });  
-          },
-        });
-      };
+                success: function(res) {
+                    $.each(res, function(index, val) {
+                        $("#sch_no").append(
+                            $("<option></option>")
+                            .attr("value", index)
+                            .text(val)
+                        );
+                    });
+                },
+            });
+        };
     </script>
-   
 </head>
 
 <body class="bg-gradient-primary">
-    
-    
 
     <div class="container">
 
@@ -65,29 +69,16 @@
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">新增班級</h1>
+                                <h1 class="h4 text-gray-900 mb-4">新增學生</h1>
                             </div>
 
+                            <form class="user" method="POST" action="student-add.php">
 
-                            <form class="user" method="POST" action="class-add.php">   
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        <H6>學年度:</H6>
-                                        <input
-                                          type="text" 
-                                          id="semester" 
-                                          class="form-control form-control-user"
-                                          name="semester"
-                                          value=""
-                                          placeholder= ""
-                                          readonly="readonly"
-                                          required/>
-                                          <script>
-                                            now =new Date();
-                                            Year = now.getFullYear() - 1911
-                                            document.getElementById('semester').value=Year;
-                                          </script>
+                                        <h6>學號</h6>
+                                        <input type="text" class="form-control form-control-user" name="m_id" id="m_id" value="" required />
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
@@ -95,52 +86,51 @@
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        <H6>年級:</H6>
-                                        <select name="grade" id="grade" class="form-control selections" >                                            
-                                            <option value="">請選擇年級(體育室則免填)
-                                            <option value="1">一年級
-                                            <option value="2">二年級
-                                            <option value="3">三年級
-                                            <option value="4">四年級
-                                            <option value="5">五年級
-                                            <option value="6">六年級
+                                        <h6>姓名</h6>
+                                        <input type="text" class="form-control form-control-user" name="m_name" id="m_name" value="" required />
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <h6>性別</h6>
+                                        <select name="gender" class="form-control selections" required>
+                                            <option value="">
+                                            <option value="F">女生
+                                            <option value="M">男生
                                         </select>
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        <H6>班別:</H6>
-                                        <input
-                                          type="text"
-                                          class="form-control form-control-user"
-                                          name="class"
-                                          id="class"
-                                          value=""
-                                          placeholder="請填:甲班、二班、01"
-                                          required/>
+                                        <h6>生日</h6>
+                                        <input type="text" class="form-control form-control-user" name="birthday" id="birthday" value="" placeholder="XXXX-XX-XX" required />
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
-                                
 
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-1 ">
-                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
+                                        <a href="student-view.php" class="btn btn-warning btn-user btn-block">
                                             <i class="fas fa-arrow-left"></i>
                                         </a>
-                                    </div>                                        
+                                    </div>
                                     <div class="col-sm-5 ">
 
                                         <button type="submit" class="btn btn-warning btn-user btn-block">
-                                            確認新增班級
+                                            確認新增學生
                                         </button>
+
                                     </div>
                                     <div class="col-sm-3 "></div>
-                                </div> 
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -161,8 +151,6 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-      
-    
 </body>
 
 </html>
