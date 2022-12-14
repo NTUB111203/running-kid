@@ -12,7 +12,7 @@ session_start();
 // }
 
 $m_name=$_SESSION["m_name"];
-$class_no = $_SESSION["class_no"];
+$class_no=$_SESSION["class_no"];
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
 //echo "<tr>";
@@ -30,7 +30,7 @@ $class_no = $_SESSION["class_no"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Other Utilities</title>
+    <title>running kids</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -49,7 +49,7 @@ $class_no = $_SESSION["class_no"];
     <div id="wrapper">
 
 
-    <?php include("side-teacher.php"); ?>
+    <?php include("side.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -80,7 +80,9 @@ $class_no = $_SESSION["class_no"];
 
                     <!-- PHP 班級 -->
                     <?php
-                        $result = "SELECT * FROM members where identity='S' and class_no='".$class_no."'";
+                        $result = "SELECT * FROM runningkids.members
+                        inner join class on class.class_no = members.class_no
+                        where identity ='S' and members.class_no = '".$class_no."'";
 
                         $retval=mysqli_query($link, $result);
                         if ($retval) {
@@ -88,7 +90,7 @@ $class_no = $_SESSION["class_no"];
                             
                                 if (mysqli_num_rows($retval) > 0) {
                                 while ($row = mysqli_fetch_assoc($retval)) {
-                                    $members = "select count(*)as member from members where class_no =". $row['class_no'];
+                                    $members = "select count(*)as member from members where class_no =". $row['class_no'] ;
                                     $retval2=mysqli_query($link, $members);
                                     //$rowMember = mysqli_fetch_assoc($retval2);
                                     echo "<div class=\"col-xl-3 col-md-6 mb-4\">\n";
@@ -100,7 +102,7 @@ $class_no = $_SESSION["class_no"];
                                     echo "<h1>".$row["m_name"]."</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
-                                    echo "<h5>年級:".$row['class_no']."</h5>";
+                                    echo "<h5>年級:".$row['grade'].$row['class']."</h5>";
                                     echo "</div>";
 
                                     echo "</div>\n";
