@@ -49,7 +49,7 @@ $class_no=$_SESSION["class_no"];
     <div id="wrapper">
 
 
-    <?php include("side.php"); ?>
+    <?php include("side-teacher.php"); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -106,7 +106,7 @@ $class_no=$_SESSION["class_no"];
                                     echo "</div>";
 
                                     echo "</div>\n";
-                                    echo "<a href=\"ana-student.php?id=".$row['m_id'].  "\" class=\"btn btn-warning btn-circle btn-lg\">\n";
+                                    echo "<a href=\"ana-student-teacher.php?id=".$row['m_id'].  "\" class=\"btn btn-warning btn-circle btn-lg\">\n";
                                     echo "<i class=\"fas fa-info-circle\"></i>\n";
                                     echo "</a>\n";
                                     echo "</div>\n";
