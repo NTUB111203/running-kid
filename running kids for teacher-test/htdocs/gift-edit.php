@@ -60,10 +60,12 @@ session_start();
                 },
 
                 success: function(res) {
+                    let selectedValue = $("#sup_no").data("selected-value")
                     $.each(res, function(index, val) {
                         $("#sup_no").append(
                             $("<option></option>")
                             .attr("value", index)
+                            .attr("selected", selectedValue == index)
                             .text(val)
                         );
                     });
@@ -92,7 +94,7 @@ session_start();
                             <form class="user" method="post" action="gift-update.php">
 
                                 <?php
-                                $gift_no = $_GET['gift_no'];
+                                // $gift_no = $_GET['gift_no'];
                                 $result = "SELECT * FROM gift LEFT JOIN gift_supplier ON gift.gift_sup_no = gift_supplier.sup_no
                                            WHERE gift_no = '$gift_no'";
                                 $retval = mysqli_query($link, $result);
@@ -102,12 +104,16 @@ session_start();
 
                                     if (mysqli_num_rows($retval) > 0) {
                                         while ($row = mysqli_fetch_assoc($retval)) {
-                                            echo "<th>" . $row["gift"] . "</th>";
-                                            echo "<th>" . $row["exchange_points"] . "</th>";
-                                            //echo "<th>".$row["gift_sup_no"]."</th>";
-                                            echo "<th>" . $row['gift_description'] . "</th>";
-                                            echo "<th>" . $row["sup_name"] . "</th>";
-                                            //echo "<th>" . $row['sup_tel'] . "</th>";
+                                            $_SESSION['gift_no'] = $row["gift_no"];
+                                            // echo "<th>" . $row["gift"] . "</th>";
+                                            // echo "<th>" . $row["exchange_points"] . "</th>";
+                                            // echo "<th>" . $row['gift_description'] . "</th>";
+                                            // echo "<th>" . $row["sup_name"] . "</th>";
+                                            $gift =  $row["gift"];
+                                            $exchange_points =  $row["exchange_points"];
+                                            $gift_description =  $row["gift_description"];
+                                            $sup_name =  $row["sup_name"];
+                                            $sup_no = $row["gift_sup_no"];
                                         }
                                     }
                                 }
@@ -132,8 +138,10 @@ session_start();
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
                                         <h6>禮物供應商</h6>
-                                        <select name="sup_no" id="sup_no" class="form-control selections" required>
-                                            <option value="">請選擇供應商</option>
+                                        <?php echo "<select name='sup_no' id='sup_no' class='form-control selections' data-selected-value='" . $sup_no . "' value='$sup_no'>" ?>
+
+                                        <select name="" id="sup_no" class="form-control selections" required>
+                                            <!-- <option value="">請選擇供應商</option> -->
                                         </select>
 
                                     </div>
@@ -145,7 +153,8 @@ session_start();
 
                                     <div class="col-sm-6 ">
                                         <h6>禮物描述</h6>
-                                        <textarea id="w3review" class="form-control form-control-user" name="gift_description" id="gift_description" rows="1" cols="10"></textarea>
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='gift_description' id='gift_description' value='$gift_description' required/>" 
+                                        ?>
                                     </div>
 
                                 </div>
@@ -198,7 +207,7 @@ session_start();
 </body>
 
 </html>
-
+<!-- 
 $result = "SELECT * FROM gift";
 
 $retval=mysqli_query($link, $result);
@@ -225,4 +234,4 @@ echo "<th>".$row['sup_tel']."</th>";
 
 
 //$result = "UPDATE 'gift' SET 'exchange_points' = '200' WHERE (`gift_no` = '2')";
-?>
+?> -->

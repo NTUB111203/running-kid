@@ -27,4 +27,4 @@ if (mysqli_query($link, $sql)) {
 }
 
 // 如果有新增成功
-// header('Location: student-view.php');
+header('Location: student-view.php');

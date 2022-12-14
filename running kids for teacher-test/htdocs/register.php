@@ -13,15 +13,31 @@ $mail = $_POST['mail'];
 $m_id = $_POST['id'];
 $password = $_POST['password'];
 //$class = $_POST["class"];
-//$class_no = $_POST["class"];
+$class_no = $_POST["class"];
 
-$sql = "INSERT INTO members(sch_no,identity,m_name,mail,m_id,password,class_no) 
-        VALUES ('$sch_no','$identity','$m_name','$mail','$m_id','$password','$class_no')";
+$sql = "INSERT INTO members(sch_no,identity,m_name,mail,m_id,password,class_no) VALUES ('$sch_no','$identity','$m_name','$mail','$m_id','$password','$class_no')";
 
-echo $sql;
+// echo $sql;
+
+// if (!$result) {
+//     die($link->error);
+// }
+
 
 if (mysqli_query($link, $sql)) {
-    echo "註冊成功!!";
+    $response = array();
+    $response['success'] = "註冊成功!!";
+    // 如果成功
+    // header('Location:login_index.php');
 } else {
-    echo "註冊失敗" . mysqli_error($link);
+    $response['error'] = "註冊失敗" . mysqli_error($link);
+}
+exit(json_encode($response));
+
+function function_alert($message)
+{
+    echo "<script>alert('$message');
+    window.history.back(); 
+    </script>";
+    return false;
 }

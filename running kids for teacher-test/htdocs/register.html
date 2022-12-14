@@ -47,34 +47,36 @@
         }else if($("#password").val() != $("#repassword").val()){
           alert("請確認密碼是否輸入正確");
         }else if(re.test($("#password").val())|re2.test($("#password").val())){
-          alert("8787");
+          alert("密碼不符合需求");
         }else{
           console.log("in")
           $.ajax({
-          type: "POST",
-          url: "register.php",
-          dataType: "json",
-          data: { 
-            school:$("#sch_no").val(),
-            //class:$("#class_no").val(),
-            id:$("#m_id").val(),
-            password: $("#password").val(),
-            name:$("#m_name").val(),
-            identity:$("#identity").val(),
-            mail:$("#mail").val(),
-            class:$("#class_no").val()
-            // phone:$("#phone").val(),
-            // gender:$("#gender").val(),
-            // bir:$("#birthday").val(),
-          },
-          error:function(res){
-            console.log(res);
-          },
-
-          success: function (res) { 
-            console.log(res)
-          },
-        });
+            type: "POST",
+            url: "register.php",
+            dataType: "json",
+            data: { 
+              school:$("#sch_no").val(),
+              //class:$("#class_no").val(),
+              id:$("#m_id").val(),
+              password: $("#password").val(),
+              name:$("#m_name").val(),
+              identity:$("#identity").val(),
+              mail:$("#mail").val(),
+              class:$("#class_no").val()
+              // phone:$("#phone").val(),
+              // gender:$("#gender").val(),
+              // bir:$("#birthday").val(),
+            },
+            success: function (res) { 
+              console.log("baba")
+              console.log(res)
+              window.history.back(); 
+            },
+            error:function(res){
+              console.log("gogo")
+              console.log(res);
+            },
+          });
         }
       } 
       
