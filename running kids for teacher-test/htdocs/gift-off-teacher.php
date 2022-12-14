@@ -127,13 +127,7 @@ $m_name = $_SESSION["m_name"];
                                             </span>
                                             <span class="text">禮物兌換紀錄</span>
                                         </a>
-                                        <a href="gift-exchange.php" class=" btn btn-success btn-icon-split ">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-check"></i>
-                                            </span>
-                                            <!-- <button><span class="text" type="submit" name="buttonSave" id="button" value="送出" style="font-weight:bold"></span>確認兌換</button> -->
-                                            <span class="text" style="font-weight:bold;" type="submit" name="buttonSave" id="button" value="送出">確認兌換</span>
-                                        </a>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +180,7 @@ $m_name = $_SESSION["m_name"];
                                                 $result = "SELECT * FROM student_exchange as a 
                                                 LEFT JOIN members as b ON a.student_id = b.m_id
                                                 LEFT JOIN gift as c ON a.gift_no = c.gift_no
-                                                WHERE exchange_status = '未兌換' ";
+                                                WHERE exchange_status = '未兌換'  ";
                                                 $retval = mysqli_query($link, $result);
 
                                                 if ($retval) {
@@ -221,7 +215,16 @@ $m_name = $_SESSION["m_name"];
                                                     }
                                                 }
                                 ?>
-                                <button type="submit" name="buttonSave" id="button" value="送出"></button>
+                                <div class="col align-right">
+                                        <div class="row justify-content-end ">
+                                            <a href="gift-exchange.php" class=" btn btn-success btn-icon-split ">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <button type="submit" class="btn-success btn " style="font-weight:bold;" name="buttonSave" id="button" value="送出">確認兌換</button>
+                                            </a>
+                                        </div>
+                                    </div>
                                         </tbody>
                                     </table>
                                 </div>

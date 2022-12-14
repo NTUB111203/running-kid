@@ -111,6 +111,7 @@ $m_name = $_SESSION["m_name"];
                         <!-- <form class="user" method="post" action="gift-exchange.php"> -->
                         <div class="card-body">
                             <div class="row">
+                                
                                 <div class="col">
                                     <h1 class="h3 mb-2 text-gray-800">
                                         <i class="fas fa-fw fa-gift"></i>禮品兌換(尚未兌換)
@@ -127,13 +128,13 @@ $m_name = $_SESSION["m_name"];
                                             </span>
                                             <span class="text">禮物兌換紀錄</span>
                                         </a>
-                                        <a href="gift-exchange.php" class=" btn btn-success btn-icon-split ">
+                                        <!-- <a href="gift-exchange.php" class=" btn btn-success btn-icon-split ">
                                             <span class="icon text-white-50">
                                                 <i class="fas fa-check"></i>
                                             </span>
-                                            <!-- <button><span class="text" type="submit" name="buttonSave" id="button" value="送出" style="font-weight:bold"></span>確認兌換</button> -->
+                                            <button><span class="text" type="submit" name="buttonSave" id="button" value="送出" style="font-weight:bold"></span>確認兌換</button>
                                             <span class="text" style="font-weight:bold;" type="submit" name="buttonSave" id="button" value="送出">確認兌換</span>
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </div>
@@ -221,13 +222,24 @@ $m_name = $_SESSION["m_name"];
                                                     }
                                                 }
                                 ?>
-                                <button type="submit" name="buttonSave" id="button" value="送出"></button>
-                                        </tbody>
+                                    <div class="col align-right">
+                                        <div class="row justify-content-end ">
+                                            <a href="gift-exchange.php" class=" btn btn-success btn-icon-split ">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-check"></i>
+                                                </span>
+                                                <button type="submit" class="btn-success btn " style="font-weight:bold;" name="buttonSave" id="button" value="送出">確認兌換</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </tbody>
                                     </table>
                                 </div>
 
                             </form>
+                            
                         </div>
+                        
                     </div>
 
                 </div>
