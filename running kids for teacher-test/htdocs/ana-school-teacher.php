@@ -90,7 +90,7 @@ $sch_no=$_SESSION["sch_no"];
                                             <?php 
                                                 $resultSchoolDistance = "SELECT CONCAT(grade,class) as schoolClass FROM runningkids.record
                                                 inner join class on record.c_no = class.class_no
-                                                group by c_no where class.sch_no='".$sch_no."' 
+                                                group by c_no 
                                                 order by sum(distance) DESC;" ;
                                                 $retval4=mysqli_query($link, $resultSchoolDistance);
                                                 $NO1 = mysqli_fetch_assoc($retval4);
