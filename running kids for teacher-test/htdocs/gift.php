@@ -1,22 +1,10 @@
 <?php
 /*連接資料庫*/
 require_once 'DataBase.php';
-
-// Initialize the session
 session_start();
-
-// // Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: welcome.php");
-//     exit;  //記得要跳出來，不然會重複轉址過多次
-// }
-
 $m_name = $_SESSION["m_name"];
 
-//echo session_save_path();
-//echo "<h1>你好 ".$m_name."</h1>";
-//echo "<tr>";
-//echo "<a href='logout.php'>登出</a>";
+
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +113,7 @@ $m_name = $_SESSION["m_name"];
                                             <!-- <th>禮品數量</th> -->
                                             <th>禮品描述</th>
                                             <th>禮品供應商</th>
-                                            <th>供應商連絡電話</th>
+                                            <!-- <th>供應商連絡電話</th> -->
                                             <th>編輯</th>
                                             <th>刪除</th>
                                         </tr>
@@ -162,7 +150,7 @@ $m_name = $_SESSION["m_name"];
                                                     //echo "<th>".$row["gift_sup_no"]."</th>";
                                                     echo "<th>" . $row['gift_description'] . "</th>";
                                                     echo "<th>" . $row["sup_name"] . "</th>";
-                                                    echo "<th>" . $row['sup_tel'] . "</th>";
+                                                    //echo "<th>" . $row['sup_tel'] . "</th>";
 
                                         ?>
 

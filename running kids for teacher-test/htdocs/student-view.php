@@ -2,16 +2,12 @@
 /*連接資料庫*/
 require_once 'DataBase.php';
 
-// Initialize the session
+
 session_start();
 
-// // Check if the user is already logged in, if yes then redirect him to welcome page
-// if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-//     header("location: welcome.php");
-//     exit;  //記得要跳出來，不然會重複轉址過多次
-// }
-
 $m_name = $_SESSION["m_name"];
+// $sch_no = $_SESSION["sch_no"];
+$class_no = $_SESSION["class_no"];
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +29,36 @@ $m_name = $_SESSION["m_name"];
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <script type="text/javascript">
+        function check_all(obj, cName) {
+            var checkboxs = document.getElementsByName(cName);
+            for (var i = 0; i < checkboxs.length; i++) {
+                checkboxs[i].checked = obj.checked;
+            }
+        }
+    </script>
+    <script>
+        window.onload = function getclass() {
+            $.ajax({
+                type: "POST",
+                url: "getRow-class.php",
+                dataType: "json",
+                data: {
+                    name: "classList"
+                },
+
+                success: function(res) {
+                    $.each(res, function(index, val) {
+                        $("#class_no").append(
+                            $("<option></option>")
+                            .attr("value", index)
+                            .text(val)
+                        );
+                    });
+                },
+            });
+        };
+    </script>
 
 </head>
 
@@ -70,10 +96,13 @@ $m_name = $_SESSION["m_name"];
                                             <div class="text-center">
                                                 <h1 class="h4 text-gray-900 mb-4">學生編輯</h1>
                                             </div>
-                                            <!-- DataTales 學生成員 -->
+
+
+                                            <!-- ==============學生基本資料================= -->
+
                                             <div class="card shadow mb-4">
                                                 <div class="card-header py-3">
-                                                    <h6 class="m-0 font-weight-bold text-primary">編輯學生資料</h6>
+                                                    <h6 class="m-0 font-weight-bold text-primary">編輯學生基本資料</h6>
                                                     <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
 
                                                 </div>
@@ -82,19 +111,35 @@ $m_name = $_SESSION["m_name"];
                                                     <div class="card-header py-3">
                                                         <!-- <h6 class="m-0 font-weight-bold text-primary">班級管理</h6>         -->
                                                         <div class="row justify-content-end">
-                                                            <a href="student-add.html" class="btn btn-success btn-icon-split ">
+                                                            <!-- <a href="studentadd.php" class="btn btn-success btn-icon-split ">
                                                                 <span class="icon text-white-50">
                                                                     <i class="fas fa-check"></i>
                                                                 </span>
                                                                 <span class="text" style="font-weight:bold;">新增學生</span>
-                                                            </a>
-                                                            <!-- &emsp; -->
-                                                            <!-- <a href="class-edit.html" class="btn btn-warning btn-icon-split ">
-                                    <span class="icon text-white-50">
-                                        <i class="fas fa-exclamation-triangle"></i>
-                                    </span>
-                                    <span class="text" style="font-weight:bold;">編輯班級</span>
-                                </a> -->
+                                                            </a> -->
+
+                                                            <!-- 新增學生鈕 -->
+                                                            <?php
+                                                            $class_no = $_GET['class_no'];
+                                                            // $class_no = $_SESSION['class_no'];
+                                                           
+                                                            $result = "SELECT * FROM class WHERE class_no = '$class_no'";
+
+                                                            $retval = mysqli_query($link, $result);
+                                                            if ($retval) {
+                                                                $num = mysqli_num_rows($retval);
+                                                                if (mysqli_num_rows($retval) > 0) {
+                                                                    while ($row = mysqli_fetch_assoc($retval)) {
+                                                                        echo "<a href=\"studentadd.php\" class=\"btn btn-success btn-icon-split \">\n";
+                                                                        echo "<span class='icon text-white-50'>";
+                                                                        echo "<i class=\"fas fa-check\"></i>\n";
+                                                                        echo "</span>\n";
+                                                                        echo "<span class=\"text\" style=\"font-weight:bold\">新增學生</span>\n";
+                                                                        echo "</a>\n";
+                                                                    }
+                                                                }
+                                                            }
+                                                            ?>
                                                         </div>
                                                     </div>
 
@@ -103,13 +148,15 @@ $m_name = $_SESSION["m_name"];
                                                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>
-                                                                            <input type="checkbox" name="all" onclick="check_all(this,'c')">
-                                                                            <!-- 美化 -->
-                                                                            <!-- 全選/全不選 -->
-                                                                            選取
-                                                                            </a>
-                                                                        </th>
+                                                                        <!-- <th> -->
+                                                                        <!-- <label> -->
+                                                                        <!-- <input type="checkbox" name="all" onclick="check_all(this,'m_id[]')" /> -->
+                                                                        <!-- 美化 -->
+                                                                        <!-- 全選/全不選 -->
+                                                                        <!-- 選取 -->
+                                                                        <!-- 
+                                                                            </label> -->
+                                                                        <!-- </th> -->
                                                                         <th>學號</th>
                                                                         <th>姓名</th>
                                                                         <th>性別</th>
@@ -123,19 +170,26 @@ $m_name = $_SESSION["m_name"];
                                                                 </thead>
 
                                                                 <tbody>
+
                                                                     <tr>
+
                                                                         <?php
-                                                                        $class_no = $_GET['class_no'];
+
                                                                         $result = "SELECT * FROM members where class_no = $class_no AND identity='S'";
                                                                         $retval = mysqli_query($link, $result);
                                                                         if ($retval) {
                                                                             $num = mysqli_num_rows($retval);
 
                                                                             if (mysqli_num_rows($retval) > 0) {
-                                                                                while ($row = mysqli_fetch_assoc($retval)) {
+                                                                                while ($row = mysqli_fetch_assoc($retval)) { ?>
+
+                                                                                    <!-- <td><input type="checkbox" name="c" value="" /></td> -->
+
+                                                                                    <?php
                                                                                     //$class_no = $_GET['class_no'];
                                                                                     //echo "<th> <input type=cheakbox name=change></th>";
-                                                                                    echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";
+                                                                                    //echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";
+                                                                                    //echo '<td><input type="checkbox" name="m_id[]" value="' . $row['m_id'] . '"></input></td>';
                                                                                     echo "<th>" . $row["m_id"] . "</th>";
                                                                                     echo "<th>" . $row["m_name"] . "</th>";
                                                                                     echo "<th>" . $row["gender"] . "</th>";
@@ -143,40 +197,12 @@ $m_name = $_SESSION["m_name"];
                                                                                     echo "<th>" . $row["phone"] . "</th>";
                                                                                     echo "<th>" . $row["mail"] . "</th>";
                                                                                     echo "<th>" . $row["enrollment"] . "</th>";
-                                                                                    //echo $sql;
-                                                                                    //$result = $link->query($sql);
-                                                                                    // $result = "SELECT * FROM members where class_no = $class_no AND identity='S'";
 
-                                                                                    // $retval = mysqli_query($link, $result);
 
-                                                                                    // if ($retval) {
-                                                                                    //     $num = mysqli_num_rows($retval);
-
-                                                                                    //     if (mysqli_num_rows($retval) > 0) {
-                                                                                    //         while ($row = mysqli_fetch_assoc($retval)) {
-
-                                                                                    //             echo "<th>" . $row["m_id"] . "</th>";
-                                                                                    //             echo "<th>" . $row["m_name"] . "</th>";
-                                                                                    //             echo "<th>" . $row["gender"] . "</th>";
-                                                                                    //             echo "<th>" . $row["birthday"] . "</th>";
-                                                                                    //             echo "<th>" . $row["phone"] . "</th>";
-                                                                                    //             echo "<th>" . $row["mail"] . "</th>";
-                                                                                    //             echo "<th>" . $row["enrollment"] . "</th>";
-                                                                                    // echo "<td> <button type=\"button\" onclick='location.href=\"student-edit.html?id=". $row->m_id."\"'>更新</button></td>";
-                                                                                    // echo "<td>\n";
-                                                                                    // echo "<a href=\"student-edit.html\" class=\"btn btn-warning btn-icon-split \">\n";
-                                                                                    // echo "<span class=\"icon text-white-50\">\n";
-                                                                                    // echo "<i class=\"fas fa-exclamation-triangle\"></i>\n";
-                                                                                    // echo "</span>\n";
-                                                                                    // echo "<span class=\"text\">編輯學生</span>\n";
-                                                                                    // echo "</a>\n";
-                                                                                    // echo "</td>\n";
-                                                                                    //echo "<tr>";
-
-                                                                        ?>
+                                                                                    ?>
                                                                                     <td>
                                                                                         <?php
-                                                                                        echo '<a href="student-edit.html?m_id=' . $row['m_id'] . '" class="btn btn-warning btn-icon-split">';
+                                                                                        echo '<a href="student-edit.php?m_id=' . $row['m_id'] . '" class="btn btn-warning btn-icon-split">';
                                                                                         echo '<span class="text" style="font-weight:bold;">編輯</span>';
                                                                                         echo '</a>';
                                                                                         ?>
@@ -194,22 +220,6 @@ $m_name = $_SESSION["m_name"];
                                                                             }
                                                                         } ?>
 
-                                                        <!-- <tr>                                                    
-                                                <td>Javascript Developer</td>
-                                                <td>San Francisco</td>
-                                                <td>女</td>
-                                                <td>2009/09/15</td>
-                                                <td>
-                                                    <a href="student-edit.html"
-                                                        class="btn btn-warning btn-icon-split ">
-                                                        <span class="icon text-white-50">
-                                                            <i class="fas fa-exclamation-triangle"></i>
-                                                        </span>
-                                                        <span class="text">編輯學生</span>
-                                                    </a>
-                                                </td>
-                                            </tr> -->
-
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -217,168 +227,137 @@ $m_name = $_SESSION["m_name"];
                                                 </div>
 
 
-                                                <div class="card shadow mb-4">
-                                                    <div class="card-header py-3">
-                                                        <h6 class="m-0 font-weight-bold text-primary">學生換班</h6>
-                                                        <!-- 一個班級一個表格or全部學生一個表格or 按下班級的人數再顯現學生清單 -->
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="card  mb-4">
-                                                                    <div class="card-header py-3">
-                                                                        <h6 class="m-0 font-weight-bold text">換班資訊</h6>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        貼心提醒:適用於二年級升上三年級，低中高年級之分班情況，與轉校換班。
-                                                                        <hr>
-                                                                        <form class="user">
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-3 "></div>
-                                                                                <div class="col-sm-6 ">
 
+                                                <!-- ==============學生換班================= -->
+                                                <form class="user" method="post" action="class-change.php">
+                                                    <div class="card shadow mb-4">
+                                                        <div class="card-header py-3">
+                                                            <h6 class="m-0 font-weight-bold text-primary">學生換班</h6>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <h6 class="m-0 font-weight-bold text">換班資訊</h6>
+                                                                <div class="card-body">
+                                                                    貼心提醒:適用於二年級升上三年級，低中高年級之分班與轉班情況。
+                                                                    <hr>
+                                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <label>
+                                                                                        <input type="checkbox" name="all" onclick="check_all(this,'m_id[]')" />
+                                                                                        <!-- 美化 -->
+                                                                                        <!-- 全選/全不選 -->
+                                                                                        選取
+                                                                                    </label>
+                                                                                    <!-- </th> -->
+                                                                                <th>學號</th>
+                                                                                <th>姓名</th>
+                                                                            </tr>
+                                                                        </thead>
 
-                                                                                    <!-- <select name="grade" id="grade" class="form-control selections">
-                                                                                        <option value='請選擇'>請選擇學校</option>
-                                                                                    </select> -->
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <?php
 
-                                                                                </div>
-                                                                                <div class="col-sm-3 "></div>
-                                                                            </div>
+                                                                                $result = "SELECT * FROM members where class_no = $class_no AND identity='S'";
+                                                                                $retval = mysqli_query($link, $result);
+                                                                                if ($retval) {
+                                                                                    $num = mysqli_num_rows($retval);
 
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-3 "></div>
-                                                                                <div class="col-sm-6 ">
-                                                                                    <H6>班級:</H6>
-                                                                                    <select name="class" id="class" class="form-control selections">
+                                                                                    if (mysqli_num_rows($retval) > 0) {
+                                                                                        while ($row = mysqli_fetch_assoc($retval)) { ?>
+                                                                                            <!-- <td><input type="checkbox" name="c" value="" /></td> -->
+                                                                                            <?php
+                                                                                            //$class_no = $_GET['class_no'];
+                                                                                            //echo "<th> <input type=cheakbox name=change></th>";
+                                                                                            //echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";
+                                                                                            echo '<td><input type="checkbox" name="m_id[]" value="' . $row['m_id'] . '"></input></td>';
+                                                                                            echo "<th>" . $row["m_id"] . "</th>";
+                                                                                            echo "<th>" . $row["m_name"] . "</th>";
+                                                                                            ?>
+                                                                            </tr>
+                                                                <?php
+                                                                                        }
+                                                                                    }
+                                                                                } ?>
 
-                                                                                        <!-- <option value="$result['local']">請選擇年級
-                                                                                        <option value="1">一年級
-                                                                                        <option value="2">二年級
-                                                                                        <option value="3">三年級
-                                                                                        <option value="4">四年級
-                                                                                        <option value="5">五年級
-                                                                                        <option value="6">六年級 -->
-                                                                                            <!-- <option value="畢業生">畢業生 -->
-                                                                                    </select>
-                                                                                </div>
-                                                                                <div class="col-sm-3 "></div>
-                                                                            </div>
-
-                                                                            <!-- <div class="form-group row">
-                                                                                <div class="col-sm-3 "></div>
-                                                                                <div class="col-sm-6 ">
-                                                                                    <H6>班別:</H6>
-                                                                                    <input name="class" id="class" class="form-control selections">
-                                                                                </div>
-                                                                                <div class="col-sm-3 "></div>
-                                                                            </div> -->
-
-                                                                        </form>
-                                                                        <!-- <form>
-                                                <input id="a" type="radio" name="hopping" value="a" checked >
-                                                <label for="a"><span></span>無</label><br>
-                                                <input id="b" type="radio" name="hopping" value="b">
-                                                <label for="b"><span></span>上升一個年級</label>                                            
-                                            </form> -->
-                                                                    </div>
-                                                                </div>
                                                                 <div class="form-group row">
-
                                                                     <div class="col-sm-3 "></div>
                                                                     <div class="col-sm-6 ">
-
-                                                                        <a href="student-maintain.php" class="btn btn-warning btn-user btn-block">
-                                                                            確認修改
-                                                                        </a>
+                                                                        <H6>班級:</H6>
+                                                                        <select name="class_no" id="class_no" class="form-control selections" required>
+                                                                            <option value="">請選擇要轉的班級</option>
+                                                                        </select>
                                                                     </div>
                                                                     <div class="col-sm-3 "></div>
                                                                 </div>
+                                                                </div>
                                                             </div>
-
-                                                            <!-- <div class="col-lg-6">
-                                                                <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th></th>
-                                                                            <th>姓名</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr> -->
-                                                            <?php
-
-                                                            // $result = "SELECT * FROM members where class= " . $_GET["class"];
-
-                                                            // $retval = mysqli_query($link, $result);
-
-                                                            // if ($retval) {
-                                                            //     $num = mysqli_num_rows($retval);
-
-                                                            //     if (mysqli_num_rows($retval) > 0) {
-                                                            //         while ($row = mysqli_fetch_assoc($retval)) {
-                                                            //             echo "<td><input type=\"checkbox\" id=\"cbox1\" value=\"first_checkbox\"></input></td>\n";
-                                                            //             echo "<th>" . $row["m_name"] . "</th>";
-                                                            //             echo '</tr>';
-                                                            //         }
-                                                            //     }
-                                                            // }
-                                                            ?>
-
-                                                            </tbody>
-                                                            </table>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
+                                                            <div class="form-group row">
+                                                                <div class="col-sm-3 "></div>
+                                                                <div class="col-sm-6 ">
+                                                                    <!-- <a href="student-maintain.php" class="btn btn-warning btn-user btn-block">
+                                                                    
+                                                                </a> -->
+                                                                    <button class="btn btn-warning btn-user btn-block" type="submit" name="buttonSave" id="button" value="送出">確認修改</button>
+                                                                </div>
+                                                </form>
+                                                <div class="col-sm-3 "></div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                    </div>
                 </div>
-                <!-- Footer -->
-                <?php include("footer.php"); ?>
-                <!-- End of Footer -->
-
-
-
-
             </div>
-
-            <!-- End of Content Wrapper -->
-
         </div>
-        <!-- End of Page Wrapper -->
-        <!-- Footer -->
-        <?php //include("footer.php"); 
-        ?>
-        <!-- End of Footer -->
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+
+    </div>
+
+    <!-- Footer -->
+    <?php //include("footer.php"); 
+    ?>
+    <!-- End of Footer -->
 
 
 
-        <!-- Logout Modal-->
-        <?php include("logout_btn.php"); ?>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </div>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- End of Content Wrapper -->
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Footer -->
+    <?php //include("footer.php"); 
+    ?>
+    <!-- End of Footer -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+    <!-- Logout Modal-->
+    <?php include("logout_btn.php"); ?>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

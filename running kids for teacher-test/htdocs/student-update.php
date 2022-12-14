@@ -3,18 +3,15 @@ session_start();
 /*連接資料庫*/
 require_once('DataBase.php');
 
-$class_no = $_SESSION['class_no'];
-$grade = $_POST['grade'];
-$class = $_POST['class'];
+// $class_no = $_SESSION['class_no'];
+// $m_id = $_GET['m_id']; 
+$m_id = $_POST['m_id'];
+$m_name = $_POST['m_name'];
+$gender = $_POST['gender'];
+$birthday = $_POST['birthday'];
 
-//$class_no = $_POST['class_no'];
-
-
-
-$sql = "UPDATE `class` SET `grade`='$grade' ,`class`='$class'  
-        WHERE `class_no` = '" . $class_no . "'";
-
-echo $sql;
+$sql = "UPDATE `members` SET `m_id`='$m_id' ,`m_name`='$m_name', `gender`='$gender',`birthday`='$birthday'
+        WHERE `m_id` = '" . $m_id . "'";
 
 
 // if (!$result) {
@@ -23,7 +20,7 @@ echo $sql;
 
 
 if (mysqli_query($link, $sql)) {
-    function_alert("班級編輯成功!");
+    function_alert("學生資料編輯成功!");
 } else {
     function_alert("編輯失敗！");
 }
@@ -33,8 +30,8 @@ if (mysqli_query($link, $sql)) {
 //     die($link->error);
 // }
 
-// 如果編輯成功
-header('Location: class-maintain.php');
+// // 如果編輯成功
+header('Location:student-view.php');
 
 // Close connection
 mysqli_close($link);

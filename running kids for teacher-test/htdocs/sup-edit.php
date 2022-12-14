@@ -78,6 +78,7 @@ $sup_no = $_GET['sup_no'];
 
                                         if (mysqli_num_rows($retval) > 0) {
                                             while ($row = mysqli_fetch_assoc($retval)) {
+                                                $_SESSION['sup_no'] = $row["sup_no"];
                                                 $sup_name =  $row["sup_name"];
                                                 $sup_tel =  $row["sup_tel"];
                                             }

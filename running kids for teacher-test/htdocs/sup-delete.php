@@ -17,16 +17,30 @@ if ($retval) {
             $result = $link->query($sql);
         }
     }
+    if (mysqli_query($link, $sql)) {
+        function_alert("供應商刪除成功!");
+    } else {
+        function_alert("有禮物為該供應商，故無法直接刪除！");
+    }
 }
 
 if (!$result) {
     die($link->error);
 }
 
-if ($link->affected_rows >= 1) {
-    echo '刪除成功';
-} else {
-    echo '查無資料';
-}
+// if ($link->affected_rows >= 1) {
+//     echo '刪除成功';
+// } else {
+//     echo '查無資料';
+// }
 // 如果刪除成功
 header('Location: supplier.php');
+function function_alert($message)
+{
+
+    echo "<script>alert('$message');
+    window.history.back(); 
+    </script>";
+    return false;
+}
+

@@ -1,7 +1,10 @@
 <?php
+/*連接資料庫*/
 require_once 'DataBase.php';
 
-$class_no = $_GET['class_no'];
+
+session_start();
+$m_name = $_SESSION["m_name"];
 
 ?>
 
@@ -16,7 +19,7 @@ $class_no = $_GET['class_no'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>班級編輯</title>
+    <title>學生基本資料編輯</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,10 +30,11 @@ $class_no = $_GET['class_no'];
     <style>
         .selections {
             border-radius: 10rem;
-            height: calc(2rem + 1.25rem);
+            height: calc(2em + 1.25rem);
             font-size: 0.8rem;
         }
     </style>
+
 </head>
 
 <body class="bg-gradient-primary">
@@ -46,12 +50,14 @@ $class_no = $_GET['class_no'];
                         <!-- col-lg-7 -->
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">班級編輯</h1>
+                                <h1 class="h4 text-gray-900 mb-4">學生基本資料編輯</h1>
                             </div>
 
-                            <form class="user" method="POST" action="class-update.php">
+                            <form class="user" method="POST" action="student-update.php">
+
                                 <?php
-                                $result = "SELECT * FROM class WHERE class_no = '$class_no'";
+                                $m_id = $_GET['m_id'];
+                                $result = "SELECT * FROM members WHERE m_id = '$m_id'";
                                 // $result = "SELECT * FROM class";
                                 $retval = mysqli_query($link, $result);
 
@@ -60,22 +66,21 @@ $class_no = $_GET['class_no'];
 
                                     if (mysqli_num_rows($retval) > 0) {
                                         while ($row = mysqli_fetch_assoc($retval)) {
-                                            $semester =  $row["semester"];
-                                            $grade =  $row["grade"];
-                                            $class =  $row["class"];
+                                            // $m_id = $_GET['m_id'];
+                                            $m_id =  $row["m_id"];
+                                            $m_name =  $row["m_name"];
+                                            $gender =  $row["gender"];
+                                            $birthday =  $row["birthday"];
                                         }
                                     }
                                 }
                                 ?>
-                                
+
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-
-                                        <H6>學年度:</H6>
-                                        <?php echo "<input type='text' class='form-control form-control-user' name='semester' id='semester' value='$semester' readonly='readonly'/>" ?>
-                                        <!-- <input type="text" class="form-control form-control-user" name="semester" id="semester" value="" /> -->
-                                        <!-- placeholder="學年度:110、109" required />  -->
+                                        <H6>學號:</H6>
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='m_id' id='m_id' value='$m_id' require/>" ?>
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
@@ -83,17 +88,22 @@ $class_no = $_GET['class_no'];
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        <H6>年級:</H6>
-                                        <?php echo "<select name='grade' id='grade' class='form-control selections' value='$grade'>" ?>
-                                        <!-- <select name="grade" id="grade" class="form-control selections"> -->
+                                        <H6>姓名:</H6>
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='m_name' id='m_name' value='$m_name' require/>"
+                                        ?>
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+                                    <div class="col-sm-6 ">
+                                        <H6>性別:</H6>
+                                        <?php echo "<select name='gender' id='gender' class='form-control selections' value='$gender' require/>"
+                                        ?>
                                         <option value="">
-                                        <option value="1" <?= $grade == '1' ? ' selected="selected"' : ''; ?>>一年級</option>
-                                        <option value="2" <?= $grade == '2' ? ' selected="selected"' : ''; ?>>二年級</option>
-                                        <option value="3" <?= $grade == '3' ? ' selected="selected"' : ''; ?>>三年級</option>
-                                        <option value="4" <?= $grade == '4' ? ' selected="selected"' : ''; ?>>四年級</option>
-                                        <option value="5" <?= $grade == '5' ? ' selected="selected"' : ''; ?>>五年級</option>
-                                        <option value="6" <?= $grade == '6' ? ' selected="selected"' : ''; ?>>六年級</option>
-                                        <!-- <option value="畢業生">畢業生 -->
+                                        <option value="F" <?= $gender == 'F' ? ' selected="selected"' : ''; ?>>女生</option>
+                                        <option value="M" <?= $gender == 'M' ? ' selected="selected"' : ''; ?>>男生</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-3 "></div>
@@ -102,40 +112,35 @@ $class_no = $_GET['class_no'];
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-6 ">
-                                        <H6>班別:</H6>
-                                        <?php echo "<input type='text' class='form-control form-control-user' name='class' id='class' value='$class' />" ?>
-                                        <!-- <input type="text" class="form-control form-control-user" name="class" id="class" value="" /> -->
-                                        <!-- placeholder="班別 : 甲班、二班、01" required  -->
+                                        <H6>生日:</H6>
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='birthday' id='birthday' value='$birthday' require/>"
+                                        ?>
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
+
                                 <hr>
 
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
                                     <div class="col-sm-1 ">
-                                        <a href="class-maintain.php" class="btn btn-warning btn-user btn-block">
+                                        <a href="student-view.php" class="btn btn-warning btn-user btn-block">
                                             <i class="fas fa-arrow-left"></i>
                                         </a>
                                     </div>
                                     <div class="col-sm-5 ">
 
-                                        <td>
-                                            <button type="submit" class="btn btn-warning btn-user btn-block">
-                                                確認編輯班級
-                                            </button>
-
-                                        </td>
-
-                                        <!-- <button type="submit" class="btn btn-warning btn-user btn-block">
-                                            確認編輯班級
-                                        </button> -->
+                                        <button type="submit" class="btn btn-warning btn-user btn-block">確認修改</button>
+                                        <!-- <a href="student-update.php" class="btn btn-warning btn-user btn-block">
+                                            確認修改
+                                        </a> -->
                                     </div>
                                     <div class="col-sm-3 "></div>
                                 </div>
+
+
+
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -154,14 +159,6 @@ $class_no = $_GET['class_no'];
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/datatables-demo.js"></script> -->
 
 </body>
 
