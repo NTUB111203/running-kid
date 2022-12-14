@@ -139,7 +139,7 @@ $m_name = $_SESSION["m_name"];
                             </div>
                             <hr>
 
-                            <form class="user" method="post" action="gift-exchange.php">
+                            <form class="user" method="post" action="gift-exchange-teacher.php">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
