@@ -55,7 +55,6 @@
           url: "register.php",
           dataType: "json",
           data: { 
-            
             school:$("#sch_no").val(),
             //class:$("#class_no").val(),
             id:$("#m_id").val(),
@@ -63,6 +62,7 @@
             name:$("#m_name").val(),
             identity:$("#identity").val(),
             mail:$("#mail").val(),
+            class:$("#class_no").val()
             // phone:$("#phone").val(),
             // gender:$("#gender").val(),
             // bir:$("#birthday").val(),
@@ -78,7 +78,7 @@
         }
       } 
       
-        window.onload = function getSchool() {
+      window.onload = function getSchool() {
         $.ajax({
           type: "POST",
           url: "getRow.php",
@@ -96,6 +96,55 @@
           },
         });
       };
+      function setclass(){
+        // console.log(123)
+        $("#class_no").empty();
+        $("#sch_no option:selected").each(function () { 
+          // sch_no = $(this).val();
+          $.ajax({
+          type: "POST",
+          url: "getRow.php",
+          dataType: "json",
+          data: { name: "classList",sch_no: $(this).val() },
+
+          success: function (res) {
+            // console.log(res)
+            $.each(res, function (index, val) {
+              $("#class_no").append(
+                $("<option></option>")
+                  .attr("value", index)
+                  .text(val)
+              );
+            });  
+          },
+          error: function(res) {
+            console.log(res)
+          },
+          });
+        });
+      }
+   
+
+      // window.onload = function getclass() {
+      //       $.ajax({
+      //           type: "POST",
+      //           url: "getRow-class.php",
+      //           dataType: "json",
+      //           data: {
+      //               name: "classList"
+      //           },
+
+      //           success: function(res) {
+      //               $.each(res, function(index, val) {
+      //                   $("#class_no").append(
+      //                       $("<option></option>")
+      //                       .attr("value", index)
+      //                       .text(val)
+      //                   );
+      //               });
+      //           },
+      //       });
+      //   };
         
      
        
@@ -195,6 +244,7 @@
                             id="sch_no"
                             class="form-control selections"
                             required
+                            onchange="setclass()"
                           >
                             <option value="">請選擇學校</option>
                           </select>
@@ -202,12 +252,11 @@
 
                         <div class="form-group">
                           <select
-                            type="text"
+                            
                             class="form-control form-control-user"
                             name="class_no"
                             id="class_no"
-                            value=""
-                            
+                           
                             required
                           >
                           <option value="">請輸入您的處室或班級</option>
