@@ -8,14 +8,14 @@ $password=$_POST["password"];
 // $repassword=$_POST["repassword"];
 
 //增加hash可以提高安全性
-$password_hash=password_hash($password,PASSWORD_DEFAULT);
+$base=base64_encode($password);
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql = "SELECT * FROM members WHERE mail ='".$mail."'";
     $result=mysqli_query($link,$sql);
     $row = mysqli_fetch_assoc($result);
     // print_r(mysqli_fetch_assoc($result));
-    if(mysqli_num_rows($result)==1 && $password==$row["password"]){
+    if(mysqli_num_rows($result)==1 && $base==$row["password"]){
         // Store data in session variables
         session_start();
         $_SESSION["loggedin"] = true;

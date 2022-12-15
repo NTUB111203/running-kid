@@ -15,7 +15,9 @@ $password = $_POST['password'];
 //$class = $_POST["class"];
 $class_no = $_POST["class"];
 
-$sql = "INSERT INTO members(sch_no,identity,m_name,mail,m_id,password,class_no) VALUES ('$sch_no','$identity','$m_name','$mail','$m_id','$password','$class_no')";
+$base_encode = base64_encode($password);
+
+$sql = "INSERT INTO members(sch_no,identity,m_name,mail,m_id,password,class_no) VALUES ('$sch_no','$identity','$m_name','$mail','$m_id','$base_encode','$class_no')";
 
 // echo $sql;
 
