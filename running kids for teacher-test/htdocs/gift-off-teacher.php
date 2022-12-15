@@ -12,6 +12,7 @@ session_start();
 // }
 
 $m_name = $_SESSION["m_name"];
+$class_no = $_SESSION["class_no"];
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
@@ -180,7 +181,7 @@ $m_name = $_SESSION["m_name"];
                                                 $result = "SELECT * FROM student_exchange as a 
                                                 LEFT JOIN members as b ON a.student_id = b.m_id
                                                 LEFT JOIN gift as c ON a.gift_no = c.gift_no
-                                                WHERE exchange_status = '未兌換'  ";
+                                                WHERE exchange_status = '未兌換' and b.class_no = '".$class_no."' ";
                                                 $retval = mysqli_query($link, $result);
 
                                                 if ($retval) {
@@ -217,7 +218,7 @@ $m_name = $_SESSION["m_name"];
                                 ?>
                                 <div class="col align-right">
                                         <div class="row justify-content-end ">
-                                            <a href="gift-exchange.php" class=" btn btn-success btn-icon-split ">
+                                            <a href="gift-exchange-teacher.php" class=" btn btn-success btn-icon-split ">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-check"></i>
                                                 </span>

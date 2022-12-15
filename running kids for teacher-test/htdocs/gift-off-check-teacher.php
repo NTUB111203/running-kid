@@ -111,7 +111,7 @@ $m_name = $_SESSION["m_name"];
                                             $result = "SELECT * FROM student_exchange as a 
                                            LEFT JOIN members as b ON a.student_id = b.m_id
                                            LEFT JOIN gift as c ON a.gift_no = c.gift_no
-                                           Where exchange_status = '已兌換'";
+                                           Where exchange_status = '已兌換' and b.class_no = '".$class_no."'";
                                             $retval = mysqli_query($link, $result);
 
                                             if ($retval) {
