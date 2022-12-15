@@ -12,6 +12,7 @@ session_start();
 // }
 
 $m_name = $_SESSION["m_name"];
+$class_no = $session["class_no"];
 
 //echo session_save_path();
 //echo "<h1>你好 ".$m_name."</h1>";
