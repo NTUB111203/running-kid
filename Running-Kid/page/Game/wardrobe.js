@@ -91,9 +91,9 @@ export default function Wardrobe({navigation}) {
                             <TouchableOpacity 
                             style={{height:200,width:200,flex:1,borderRadius:20,alignItems:'center',justifyContent:'flex-start'}}
                             onPress ={() => {
-                                setitem(response[i].clo_category)
+                                setitem(response[i].clo_category),
                                 setcid(response[i].clo_id)
-                                senditem()
+                               
                                
                                 }}
                             >
@@ -129,7 +129,7 @@ export default function Wardrobe({navigation}) {
                                     style={{width:150,height:150,}}></Image>
                                     
                                 </ImageBackground>
-                                <Text style={{fontFamily:'BpmfGenSenRoundedH',marginTop:-10}}>已佩戴</Text>
+                                <Text style={{fontFamily:'BpmfGenSenRoundedH',marginTop:-10}}></Text>
                                 
                         
                             </View>
@@ -213,7 +213,7 @@ export default function Wardrobe({navigation}) {
          if (focus){
             getitem();
         }
-       },[clo_id])
+       },[])
     
     
       
@@ -237,7 +237,7 @@ export default function Wardrobe({navigation}) {
                 source={require('../../assets/background.png')}
                 >
                     <View style={{marginTop:10,flexDirection:'row'}}>
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <TouchableOpacity onPress={() => {navigation.goBack() ,senditem()}}>
                             <View style={[styles.cl_button,{marginLeft:-20}]}>
                             <Feather name="arrow-left" size={32} color="gray" />
                             </View>

@@ -15,11 +15,40 @@ const styles = StyleSheet.create({
       alignItems:"center",
   },
 
+  modal_view:{
+    width:300,
+    height:200,
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:20,
+    backgroundColor:'#ffffff'
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    
+    borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
+              overflow: 'hidden',
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  },
+  
+  modal_button:{
+    width:200,
+    height:50,
+    backgroundColor:'#117c72',
+    justifyContent:'center',
+    alignItems:'center',
+    borderRadius:20,
+    marginBottom:20
+  }
+  ,
   backgroundimg:{
       width:"100%",
       height:700,
       flex:1,
-      justifyContent: 'flex-end',
+      justifyContent: 'flex-start',
       alignItems: "flex-start",
       backgroundColor:'#fff2e0'
     },

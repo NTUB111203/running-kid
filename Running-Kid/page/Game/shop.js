@@ -6,12 +6,15 @@ import { borderColor } from "react-native/Libraries/Components/View/ReactNativeS
 import Header from "../header";
 import styles from "./game_style";
 import { useIsFocused } from "@react-navigation/native"; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Shop({navigation}) {
 
     const focus = useIsFocused();  
     const [AreaPadding,setpadding] = useState(0);
+
+    
 
     useEffect(() => {
         if(Platform.OS=='android'){
@@ -52,12 +55,18 @@ export default function Shop({navigation}) {
 
                   
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Shop_hair')}>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Shop_cloth')
+                        AsyncStorage.setItem('cloth','hair');
+                        }}>
                         <View style={styles.shop_textbox}>
                             <Text style={styles.title}>頭髮</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Shop_face')}>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Shop_cloth')
+                        AsyncStorage.setItem('cloth','face');
+                        }}>
                         <View style={styles.shop_textbox}>
                             <Text style={styles.title}>表情</Text>
                         </View>
@@ -65,29 +74,43 @@ export default function Shop({navigation}) {
                     </View>
 
                     <View  style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Shop_short')}>
-                            <View style={styles.shop_textbox}>
-                                <Text style={styles.title}>上衣</Text>
-                            </View>
-                            </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('Shop_pant')}>
-                            <View style={styles.shop_textbox}>
-                                <Text style={styles.title}>下著</Text>
-                            </View>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Shop_cloth')
+                        AsyncStorage.setItem('cloth','short');
+                    }}>
+                        <View style={styles.shop_textbox}>
+                            <Text style={styles.title}>上衣</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Shop_cloth')
+                        AsyncStorage.setItem('cloth','pant');
+                    }}>
+                        <View style={styles.shop_textbox}>
+                            <Text style={styles.title}>下著</Text>
+                        </View>
                     </TouchableOpacity>
                     </View>
 
                     <View  style={{flexDirection:'row',justifyContent:'space-between',marginTop:15}}>
-                    <TouchableOpacity onPress={() => navigation.navigate('Shop_body')}>
-                            <View style={styles.shop_textbox}>
-                                <Text style={styles.title}>姿勢</Text>
-                            </View>
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => navigation.navigate('Shop_shoes')}>
-                            <View style={styles.shop_textbox}>
-                                <Text style={styles.title}>鞋子</Text>
-                            </View>
-                            </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Shop_cloth')
+                        AsyncStorage.setItem('cloth','body');
+                    }}>
+                        <View style={styles.shop_textbox}>
+                            <Text style={styles.title}>姿勢</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => {
+                        navigation.navigate('Shop_cloth')
+                        AsyncStorage.setItem('cloth','shoes');
+                    }}>
+                        <View style={styles.shop_textbox}>
+                            <Text style={styles.title}>鞋子</Text>
+                        </View>
+                    </TouchableOpacity>
                     </View>
                    
 </View>

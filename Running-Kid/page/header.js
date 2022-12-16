@@ -2,18 +2,16 @@ import React,{useState,useEffect} from 'react';
 import { Feather } from "@expo/vector-icons";
 import { TouchableOpacity,StyleSheet,Image,Text,View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 export default function Header() {
-
+  const navigation = useNavigation(); 
   const [isLoading, setLoading] = useState(true);
   const [coin, setCoin] = useState([0]);
   const [score, setScore] = useState([0]);
   const [id, setid] = useState('');
   const [name, setname] = useState();
-
-
 
   AsyncStorage.getItem('m_id').then(value => setid(value));
 
@@ -28,7 +26,18 @@ export default function Header() {
         body: JSON.stringify({'m_id':id})
       })
       .then ((response)=>response.json())
-      .then ((response)=> {setCoin(response[2].coinsum),setname(response[0].m_name),setScore(response[1].scoresum)})
+      .then ((response)=> {
+        setname(response[0].m_name)
+
+        if(response[2].coinsum==null){
+          setCoin(0)
+        }else{
+          setCoin(response[2].coinsum)}
+        
+          if(response[1].scoresum==null){
+            setScore(0)
+          }else{  
+           setScore(response[1].scoresum)}})
       ;
       
 
@@ -50,10 +59,14 @@ export default function Header() {
     return (    
     <View>
       <View style={styles.header}>
-     <Image
-     source={require('../assets/icon-p0.png')}
-     style={styles.usrimg}
-     ></Image>
+      <TouchableOpacity
+        onPress={() => {navigation.navigate('Logout')}}
+      >
+      <Image
+      source={require('../assets/icon-p0.png')}
+      style={styles.usrimg}
+      />
+      </TouchableOpacity>
      <Text style={{flex:5,justifyContent:"center"}}>
       {name}
      </Text>
