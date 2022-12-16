@@ -1,6 +1,9 @@
 <?php
 /*連接資料庫*/
 require_once 'DataBase.php';
+session_start();
+$m_name = $_SESSION["m_name"];
+$sch_no = $_SESSION["sch_no"];
 ?>
 
 <!DOCTYPE html>
@@ -36,12 +39,12 @@ require_once 'DataBase.php';
 
 <?php
 echo $_POST['sch_no'];
-$sch_no = $_POST['sch_no'];
+// $sch_no = $_POST['sch_no'];
 $semester = $_POST['semester'];
 $grade = $_POST['grade'];
 $class = $_POST['class'];
 
-$sql = "INSERT INTO  class(semester,grade,class)VALUES('$semester','$grade', '$class')";
+$sql = "INSERT INTO  class(semester,grade,class,sch_no)VALUES('$semester','$grade', '$class','$sch_no')";
 echo $sql;
 
 if (mysqli_query($link, $sql)) {

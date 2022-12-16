@@ -93,6 +93,7 @@ $class_no = $_SESSION["class_no"];
                                     echo "<h1>" . $row["grade"] . $row["class"] . "</h1>";
                                     echo "</div>\n";
                                     echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">\n";
+                                    echo "<h5>年度:" . $row['semester'] . "</h5>";
                                     //echo "<h5>".$rowMember['member']."人</h5>";
                                     echo "</div>";
                                     //echo "<div class=\"h5 mb-0 font-weight-bold text-gray-800\">年級</div>\n";

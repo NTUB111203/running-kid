@@ -153,21 +153,25 @@ session_start();
 
                                     <div class="col-sm-6 ">
                                         <h6>禮物描述</h6>
-                                        <?php echo "<input type='text' class='form-control form-control-user' name='gift_description' id='gift_description' value='$gift_description' required/>" 
+                                        <?php echo "<input type='text' class='form-control form-control-user' name='gift_description' id='gift_description' value='$gift_description' required/>"
                                         ?>
                                     </div>
 
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <div class="col-sm-4 "></div>
-                                    
-                                        <label for="file-upload" class="btn btn-info custom-file-upload selections col-sm-4 text-center align-center">
-                                        <i class="fa fa-cloud-upload"></i> 上傳照片檔案
+                                <div class="form-group row">
+                                    <div class="col-sm-3 "></div>
+
+                                    <div class="col-sm-6 ">
+                                        照片上傳
+                                        <label for="gift_photo" class="btn btn-info custom-file-upload selections col-sm-12 text-center align-center">
+                                            <i class="fa fa-cloud-upload"></i>選擇照片檔案
                                         </label>
-                                        <input id="file-upload" type="file"/>
-                                    
-                                    <div class="col-sm-4 "></div>
-                                </div> -->
+                                        <input type="file" name="gift_photo" id="gift_photo" required />
+                                        <!-- <input type="submit" value="Upload Image" name="submit"> -->
+
+                                    </div>
+                                    <div class="col-sm-3 "></div>
+                                </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-3 "></div>
