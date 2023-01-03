@@ -35,7 +35,7 @@ function Mission_farm(){
   const [buttonstatus, setFontsLoaded] = useState(false);
   const [distancea,setdis]=useState(0);
   const [disper,setdisper]=useState(0);
-  const [coin,setcoin]=useState(10);
+  const [coin,setcoin]=useState(1000);
   const [time,settime]=useState(0);
   const [tri,settri]=useState(true);
   const [id, setid] = useState('');
@@ -66,7 +66,8 @@ let Data = {'m_id':id,'coin':coin,'datetime':time};
    gettime();
   })
 
-  const getd = ()=>{  try {
+  const getd = ()=>{  
+    try {
     
     fetch('http://140.131.114.154/api/index.php', {
       method: 'POST',
@@ -96,18 +97,14 @@ let Data = {'m_id':id,'coin':coin,'datetime':time};
       setFontsLoaded(false);
     }
 
-    
-
-   
  
-   
   } catch (error) {
   console.error(error);
   }
 }
 
   const submitd = ()=>{  
-  let Data2 = {'m_id':10902,'coin':coin,'datetime':time};
+  let Data2 = {'m_id':id,'coin':coin,'datetime':time};
 
   console.log(Data2);
   try {
@@ -144,11 +141,11 @@ console.error(error);
       <Image
       source={require('../../../assets/icon-money.png')}      
       style={styles.money}/>
-      <Text flex={1} style={[styles.text,{color:'#000000',marginTop:-10}]}> 10 金幣</Text>
+      <Text flex={1} style={[styles.text,{color:'#000000',marginTop:-10}]}> 1000 金幣</Text>
     </View>
     {
       buttonstatus ?
-      <TouchableOpacity style={styles.button_on} onPress={()=>{setcoin(20),gettime(),showAlert(),settri(false)}}>
+      <TouchableOpacity style={styles.button_on} onPress={()=>{setcoin(1000),gettime(),showAlert(),settri(false)}}>
       <Text style={{fontSize:20,color:"#FFFFFF",fontFamily:'BpmfGenSenRoundedL',marginTop:-20}}>領取獎勵</Text>
       </TouchableOpacity>
       :

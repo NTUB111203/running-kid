@@ -15,16 +15,13 @@ import Shop from './page/Game/shop';
 import Game from './page/Game/game';
 import {Login} from './page/login/login';
 import {Signup} from './page/login/signup';
+import {Logout} from './page/login/logout';
 import Wardrobe from './page/Game/wardrobe';
 import { TGOS_map } from './page/knowlege/taiwan_k/webview';
 import { useFonts } from 'expo-font';
 
-import Shop_hair from './page/Game/shop_hair';
-import Shop_face from './page/Game/shop_face';
-import Shop_short from './page/Game/shop_short';
-import Shop_pant from './page/Game/shop_pant';
-import Shop_body from './page/Game/shop_body';
-import Shop_shoes from './page/Game/shop_shoes';
+import Shop_cloth from './page/Game/shop_cloth';
+
 
 //loading
 import AppLoading from 'expo-app-loading';
@@ -68,14 +65,11 @@ const App = () => {
          <Stack.Screen name="Wardrobe" component={Wardrobe}/>
          <Stack.Screen name="TGOS_map" component={TGOS_map}/>
          <Stack.Screen name="Indexp" component={Indexp}/>
-         <Stack.Screen name="Shop_hair" component={Shop_hair}/>
-         <Stack.Screen name="Shop_face" component={Shop_face}/>
-         <Stack.Screen name="Shop_short" component={Shop_short}/>
-         <Stack.Screen name="Shop_pant" component={Shop_pant}/>
-         <Stack.Screen name="Shop_body" component={Shop_body}/>
-         <Stack.Screen name="Shop_shoes" component={Shop_shoes}/>
+         <Stack.Screen name="Shop_cloth" component={Shop_cloth}/>
          <Stack.Screen name="Login"      component={Login}/>
          <Stack.Screen name="Signup"      component={Signup}/>
+         <Stack.Screen name="Logout"      component={Logout}/>
+
 
 
 

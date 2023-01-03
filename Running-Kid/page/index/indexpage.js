@@ -47,7 +47,7 @@ export default function  Indexp({navigation}) {
       getdis();
    };
     console.log(mapdis);
-  },[focus])
+  })
 
   const getdis = () => {
     try {
@@ -284,6 +284,9 @@ export default function  Indexp({navigation}) {
   
             </ImageBackground>)
         }
+
+  
+  var runrecord =[];
 
  
   return (
