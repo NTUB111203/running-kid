@@ -56,6 +56,7 @@ const Runbutton = ({run,onPress,focused}) => (
 export default function Tabbars() {
     return(
         <Tab.Navigator
+            initialRouteName="index" 
             screenOptions = {{
                 
                 tabBarShowLabel: false, 

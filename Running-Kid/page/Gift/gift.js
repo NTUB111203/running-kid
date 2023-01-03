@@ -124,7 +124,9 @@ export default function Gift() {
               headers:
               {'Accept': 'application/json',
               'Content-Type': 'application/json'},
-              body: JSON.stringify({'m_id':id})
+              body: JSON.stringify({
+                'm_id':id
+            })
             })
             .then ((response)=>response.json())
             .then ((response)=> {setgift(response)});
@@ -170,7 +172,7 @@ export default function Gift() {
     
                 <TouchableOpacity 
                     style={styles.button_on}
-                    onPress={()=>{setModalVisible(true),setid(gift[i].gift_no),setname(gift[i].gift),setde(gift[i].gift_description),setchange(gift[i].exchange_points)}}
+                    onPress={()=>{setModalVisible(true),setid(gift[i].gift_no),setname(gift[i].gift),setde(gift[i].gift_description),setchange(gift[i].exchange_points),setph(gift[i].gift_photo)}}
                 >
                     <View style={{flexDirection:"row",justifyContent:'center',alignItems:'center'}}>
                         <Text flex={1} style={{fontSize:14,color:'#ffffff',fontFamily:'BpmfGenSenRoundedH',marginTop:-15}}> 我要兌換 </Text>
@@ -206,11 +208,11 @@ export default function Gift() {
                         </View>
                         <View style={{flex:10,alignItems:'center',justifyContent:'flex-start',marginLeft:20,marginRight:20}}>
                             <Image  
-                                source={require('../../assets/Papple.jpg')}
+                                source={{uri:giftph}}
                                 style={styles.imgb}
                             />
                            
-                                <Text style={{fontFamily:'BpmfGenSenRoundedL',lineHeight:20,letterSpacing:3,marginTop:-15}}>
+                                <Text style={{fontFamily:'BpmfGenSenRoundedL',lineHeight:20,letterSpacing:3,marginTop:-0}}>
                                 {giftde}
                                 </Text>
                            

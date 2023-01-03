@@ -28,6 +28,15 @@ export  function Taiwan_k({navigation}) {
         <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 台北 </Text></View> 
       </ImageBackground>
       )
+      KnowView.push(
+   
+        <View style={styles_TK.textbox_m}>
+          <Text style={[styles_TK.title,{fontFamily:'BpmfGenSenRoundedH',marginTop:-30}]}>{city}知識</Text>
+          <Image source={require('../../../assets/taipei_k.jpeg')} style={styles_TK.textbox_image}></Image>
+          <Text style={{fontFamily:'BpmfGenSenRoundedL'}}>{content}</Text>
+        </View>
+  
+   )
      break; 
      case '2':
       KnowView.push(
@@ -49,6 +58,15 @@ export  function Taiwan_k({navigation}) {
         <View style={styles_TK.map_text}><Text style={{color:"#ffffff",fontWeight:"600",fontSize:35,textAlign:'center'}}> 新竹 </Text></View> 
       </ImageBackground>
       )
+      KnowView.push(
+   
+        <View style={styles_TK.textbox_m}>
+          <Text style={[styles_TK.title,{fontFamily:'BpmfGenSenRoundedH',marginTop:-30}]}>{city}知識</Text>
+          <Image source={require('../../../assets/hc.jpeg')} style={styles_TK.textbox_image}></Image>
+          <Text style={{fontFamily:'BpmfGenSenRoundedL'}}>{content}</Text>
+        </View>
+  
+     )
      break; 
      case '5':
       KnowView.push(
@@ -100,17 +118,7 @@ export  function Taiwan_k({navigation}) {
 
    })
 
-   KnowView.push(
-   
-        <View style={styles_TK.textbox_m}>
-          <Text style={[styles_TK.title,{fontFamily:'BpmfGenSenRoundedH',marginTop:-30}]}>{city}知識</Text>
-          <Image source={require('../../../assets/taipei_k.jpeg')} style={styles_TK.textbox_image}></Image>
-          <Text style={{fontFamily:'BpmfGenSenRoundedL'}}>{content}</Text>
-        </View>
-
-
-  
-   )
+ 
 
   return (
    <SafeAreaView style={{paddingTop:AreaPadding}}>

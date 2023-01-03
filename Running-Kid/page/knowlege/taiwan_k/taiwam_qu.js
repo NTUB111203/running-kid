@@ -20,7 +20,7 @@ export  function Taiwan_Qu({navigation}) {
   const [modalVisible2, setModalVisible2] = useState(false);
 
   const [city_no,setcityno] = useState('');  
-  const [qu,setqu] = useState();
+  const [qu,setqu] = useState('');
   const [quno,setquno] = useState();
   const [answer,setans] = useState([]);
   const [choanswer,setcoh] = useState('');
@@ -119,13 +119,14 @@ const subanswer = () =>{
     if(Platform.OS=='android'){
         setpadding(30);
     };
-    getqu();
    
-
+    getqu();
     if (focus){
      getqu();
-  }
- },[focus])
+    }
+    console.log('useEffect執行return');
+ 
+ },[])
   
   
   return (
